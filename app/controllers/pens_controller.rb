@@ -6,4 +6,8 @@ class PensController < ApplicationController
   def new
     @pen = Pen.new
   end
+
+  def create
+    
+  end
 end

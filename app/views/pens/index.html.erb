@@ -51,7 +51,13 @@
 </div>
 
 <div>
-  <%# 這個就是PEN列表 %>
+  
+  <% @pens.each do |pen| %>
+    <%= @pen.title %>
+    <%= @pen.created_at %>
+    <%= @pen.updated_at %>
+  <% end %>
+  
 </div>
 
 <button>NEXT ></button>

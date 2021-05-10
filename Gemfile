@@ -41,8 +41,8 @@ gem 'paranoia', '~> 2.4', '>= 2.4.3'
 gem 'figaro', '~> 1.2'
 
 # react on rails
-# https://github.com/reactjs/react-rails#get-started-with-webpacker
-gem 'react-rails'
+# https://www.shakacode.com/react-on-rails/docs/basics/tutorial
+gem 'react_on_rails', '~> 12.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

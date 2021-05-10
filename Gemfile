@@ -28,6 +28,22 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# User authentication 
+# https://github.com/heartcombo/devise
+gem "devise", "~> 4.8"
+
+# soft deletion
+# https://github.com/rubysherpas/paranoia
+gem 'paranoia', '~> 2.4', '>= 2.4.3'
+
+# protect sensitive information
+# https://github.com/laserlemon/figaro
+gem 'figaro', '~> 1.2'
+
+# react on rails
+# https://www.shakacode.com/react-on-rails/docs/basics/tutorial
+gem 'react_on_rails', '~> 12.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -38,10 +54,11 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
+  # gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "foreman", "~> 0.87.2"
 end
 
 group :test do

@@ -40,6 +40,10 @@ gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.2'
 
+# react on rails
+# https://github.com/reactjs/react-rails#get-started-with-webpacker
+gem 'react-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

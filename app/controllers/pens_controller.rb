@@ -16,7 +16,7 @@ class PensController < ApplicationController
     # @pen = Pen.new(pens_params)
     # render json: @pen.random_url
     # @pen = Pen.new(pen_params)
-    pen_params
+    # pen_params
     # p '-------------'
     # p params
     # p '-------------'
@@ -44,8 +44,8 @@ class PensController < ApplicationController
 
   private
 
-  def pen_params
-    params.require(:pen).permit(:title, :html, :css, :js)
-  end
+  # def pen_params
+  #   params.require(:pen).permit(:title, :html, :css, :js)
+  # end
 
 end

@@ -12,14 +12,15 @@ document.addEventListener('turbolinks:load', () => {
     Rails.ajax({
       url: `/pen`,
       type: 'POST',
+      dataType: 'json',
       data: {
-        'title': title,
-        'html': html,
-        'css': css,
-        'js': js
+        // params: {
+          title: 'TTT',
+          html: 'HHH'
+        // }
       },
-      success: reponse => {
-        console.log('yeahaha')
+      success: response => {
+        console.log('response')
       },
       error: err => {
         console.log('shit')

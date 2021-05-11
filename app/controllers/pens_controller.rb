@@ -14,20 +14,20 @@ class PensController < ApplicationController
     # @pen = Pen.new(pens_params)
     # render json: @pen.random_url
     # @pen = Pen.new(pen_params)
-    # if @pen.save
-    # else
-    # p '----------'
-    # p pen_params
-    # p '----------'
-    render json: pen_params
+    pen_params
+    # p '-------------'
+    # p params
+    # p '-------------'
+    # render js: "window.location = '#{}'"
     
+    # redirect_to action: :edit
   end
 
   def edit
     # @pen = Pen.find_by(parmas[:id])
   end
 
-  private
+  # private
 
   def pen_params
     params.require(:pen).permit(:title, :html, :css, :js)

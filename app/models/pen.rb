@@ -12,7 +12,4 @@ class Pen < ApplicationRecord
     random_url = SecureRandom.urlsafe_base64
   end
 
-  def to_param
-    random_url
-  end
 end

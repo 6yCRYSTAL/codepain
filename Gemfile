@@ -30,7 +30,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # User authentication 
 # https://github.com/heartcombo/devise
-gem "devise", "~> 4.8"
+gem 'devise', '~> 4.8'
+gem 'activerecord-session_store', '~> 2.0'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-google-oauth2', '~> 1.0'
 
 # soft deletion
 # https://github.com/rubysherpas/paranoia
@@ -47,6 +52,7 @@ gem 'react_on_rails', '~> 12.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "faker", "~> 2.17"
 end
 
 group :development do

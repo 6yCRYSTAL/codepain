@@ -1,0 +1,46 @@
+/* usermenu.html */
+.search-userMenu-box{
+  width: 100%;
+  display: flex;
+}
+.search-box{
+  width: calc(100% - 55px);
+}
+.search-box input{
+  font-weight: bold;
+  background: #252830;
+  color: white;
+  padding: 0.4em 0.4em 0.4em 0.4em;
+  height: 45px;
+  width: 100%;
+  border-radius: 2px;
+  border: none;
+  font-size: 20px;
+}
+.userMenu-img{
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-left: 10px;
+  padding: 0;
+  border: 1px solid transparent;
+  outline: none;
+}
+.userMenu-box{
+  position: relative;
+}
+.userMenu-content{
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 225px;
+  background-color: #1e1f26;
+}
+.userMenu-content a{
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+}
+/* usermenu.html end */

@@ -13,3 +13,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import 'editor'
+import 'styles'

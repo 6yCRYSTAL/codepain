@@ -1,5 +1,7 @@
 class PensController < ApplicationController
-
+  # before_action :authenticate_user!, except: [:new] 
+  # after User modle complete
+  
   def index
     @pens = Pen.all
   end
@@ -26,10 +28,24 @@ class PensController < ApplicationController
   def edit
     # @pen = Pen.find_by(parmas[:id])
   end
+  
+  def show
+    render 'pen#show'
+  end
 
-  # private
+  def update
+    if @pen.update(pen_params)
+      flash[:notice] = 'Pen saved.'
+      #redirect_to restaurant_path(@restaurant), notice: '成功修改資料'
+    else
+      #render :edit
+    end
+  end
+
+  private
 
   def pen_params
     params.require(:pen).permit(:title, :html, :css, :js)
   end
+
 end

@@ -17,7 +17,6 @@ class Pen < ApplicationRecord
       end
 
       self.random_url = new_random_url
-
   end
 
 end

@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_05_10_174355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pens", force: :cascade do |t|
+    t.string "title", default: "Untitled"
+    t.text "html", default: ""
+    t.text "css", default: ""
+    t.text "js", default: ""
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "random_url"
+    t.index ["deleted_at"], name: "index_pens_on_deleted_at"
+    t.index ["random_url"], name: "index_pens_on_random_url", unique: true
+    t.index ["title"], name: "index_pens_on_title"
+  end
 
 end

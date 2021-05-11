@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
   # pens
-  # resources :pens, only: [:index, :new], path_names: { index: 'your-work', new: 'pen' }
-  
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
   
   # wait for devise user
-  # scope ':username' do
-    resources :pen, controller: 'pens', except: [:index, :new]
+  # scope 'username' do
+    resources :pen, controller: 'pens', except: [:index, :new], param: :random_url
   # end
 
   # static pages

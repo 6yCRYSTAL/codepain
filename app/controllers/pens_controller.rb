@@ -13,12 +13,23 @@ class PensController < ApplicationController
     # pen_path(@pen) 現在有random_url
     # @pen = Pen.new(pens_params)
     # render json: @pen.random_url
+    # @pen = Pen.new(pen_params)
+    # if @pen.save
+    # else
+    # p '----------'
+    # p pen_params
+    # p '----------'
+    render json: pen_params
+    
+  end
+
+  def edit
+    # @pen = Pen.find_by(parmas[:id])
   end
 
   private
 
-  def pens_params
-    params.require(:pen).permit(:title, :html, :css, :js, :random_url)
-    # pens_params.merge(:)
+  def pen_params
+    params.require(:pen).permit(:title, :html, :css, :js)
   end
 end

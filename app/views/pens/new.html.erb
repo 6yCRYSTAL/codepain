@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editor</title>
-</head>
-<body>
+
   <header>
     <div class="edit_left_side">
       <img src="" alt="" class="edit_logo">
-      <div class="edit_title"></div>
-      <a href="#">user_name</a>
+      <div class="edit_title" id="title">TEST TITLE</div>
+      <a href="#" id="user-name">TEST USER NAME</a>
       <a href="">
         <span>pro_tag</span>
       </a>
     </div>
     <div class="edit_right_side">
-      <button>Save</button>
+      <button id="save-btn">Save之後返回edit頁面</button>
       <button>Save as Private</button>
       <button>Settings</button>
       <button>Change View</button>
@@ -25,14 +17,14 @@
       <button>edit_picture</button>
     </div>
   </header>
-  <session class="edit_zone">
+  <section class="edit_zone">
     <div class="edit_html_zone">
       <div>
         <button class="edit_setting"></button>
         <div>HTML</div>
         <button> v </button>
       </div>
-      <textarea name="edit_html" id="" cols="30" rows="10"></textarea>
+      <textarea name="edit_html" id="user-input-html" cols="30" rows="10"></textarea>
     </div>  
     <div class="edit_css_zone">
       <div>
@@ -40,7 +32,7 @@
         <div>CSS</div>
         <button> v </button>
       </div>
-      <textarea name="edit_css" id="" cols="30" rows="10"></textarea>
+      <textarea name="edit_css" id="user-input-css" cols="30" rows="10"></textarea>
     </div>  
     <div class="edit_html_zone">
       <div>
@@ -48,14 +40,12 @@
         <div>JS</div>
         <button> v </button>
       </div>
-      <textarea name="edit_js" id="" cols="30" rows="10"></textarea>
+      <textarea name="edit_js" id="user-input-js" cols="30" rows="10"></textarea>
     </div> 
-  </session>
-  <session>
+  </section>
+  <section>
     <iframe></iframe>
-  </session>
+  </section>
   <footer>
     <button>console</button>
   </footer>
-</body>
-</html>

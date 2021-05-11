@@ -9,7 +9,7 @@ class Pen < ApplicationRecord
 
   def generate_random_url
     require 'securerandom'
-    # TODO: 要對Pen做判斷式看看是否已經存在random_url
+    # 對Pen做判斷式看看是否已經存在random_url
       new_random_url = SecureRandom.urlsafe_base64(6)
 
       while Pen.where(random_url: new_random_url).exists?
@@ -20,7 +20,4 @@ class Pen < ApplicationRecord
 
   end
 
-  def to_param
-    random_url
-  end
 end

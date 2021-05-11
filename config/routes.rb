@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
   
-  scope ':username' do
+  # wait for devise user
+  # scope ':username' do
     resources :pen, controller: 'pens', except: [:index, :new]
-  end
+  # end
 
   # static pages
   root 'statics#index'

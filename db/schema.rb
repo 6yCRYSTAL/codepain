@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_174355) do
+ActiveRecord::Schema.define(version: 2021_05_11_060324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "pens", force: :cascade do |t|
-    t.string "title", default: "Untitled"
+    t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
     t.text "css", default: ""
     t.text "js", default: ""

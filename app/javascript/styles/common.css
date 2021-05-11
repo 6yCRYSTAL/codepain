@@ -1,46 +1,100 @@
-/* usermenu.html */
+/* search-userMenu-box */
+body{
+  font-family: Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
+  background-color: rgb(197, 195, 195); 
+  /* replace back bgc for dev */
+  font-weight: normal;
+}
 .search-userMenu-box{
   width: 100%;
   display: flex;
+  align-items: center;
 }
 .search-box{
-  width: calc(100% - 55px);
-}
-.search-box input{
-  font-weight: bold;
-  background: #252830;
-  color: white;
-  padding: 0.4em 0.4em 0.4em 0.4em;
-  height: 45px;
+  position: relative;
   width: 100%;
+  padding-right: .5rem;
+}
+.search-box .fa-search{
+  font-size: 20px;
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+.search-box input::placeholder,.search-box .fa-search{
+  color: #717790;
+}
+.search-box input,.search-box input:focus{
+  background: #252830;
+  padding: 0.4em 0.4em 0.4em 2em;
+  width: 100%;
+  height: 45px;
   border-radius: 2px;
   border: none;
   font-size: 20px;
+  color: white;
+  outline: none;
+  font-weight: bold;
+}
+/* 登出 */
+.signup-button,.login-button{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background-color: #47cf73;
+  border-radius: 5px;
+  margin-right: .5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  color: black;
+}
+.login-button{
+  background-color: #444857;
+  color: white;
+}
+/* 登入 */
+.userMenu-box{
+  position: relative;
 }
 .userMenu-img{
   width: 45px;
   height: 45px;
   overflow: hidden;
   border-radius: 2px;
-  margin-left: 10px;
   padding: 0;
-  border: 1px solid transparent;
-  outline: none;
+  border: none;
 }
-.userMenu-box{
-  position: relative;
-}
-.userMenu-content{
+.userMenu-topnav{
   position: absolute;
   right: 0;
-  top: 50px;
+  top: 55px;
   width: 225px;
+  padding: .5rem 0;
   background-color: #1e1f26;
+  display: none;
+  border-radius: 6px 0 6px 6px;
 }
-.userMenu-content a{
+.userMenu-topnav a{
   color: white;
+  font-weight: bold;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: .5rem 1rem;
   display: block;
 }
-/* usermenu.html end */
+.userMenu-topnav a:hover{
+  background: #444857;
+  cursor: pointer;
+}
+.divider_before::before{
+  content: '';
+  display: block;
+  border-top: 1px solid white;
+  opacity: .2;
+  margin: 0.5rem 1rem;
+}
+.active{
+  display: block;
+}
+/* search-userMenu-box end */

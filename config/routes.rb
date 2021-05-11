@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
-
+  
   scope ':username' do
-    resources :pens, except: [:index, :new]
+    resources :pen, controller: 'pens', except: [:index, :new]
   end
 
   # static pages

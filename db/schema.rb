@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_135844) do
+ActiveRecord::Schema.define(version: 2021_05_10_174355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 2021_05_10_135844) do
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "random_url"
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
+    t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"
   end
 

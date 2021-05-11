@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # User authentication 
 # https://github.com/heartcombo/devise
 gem "devise", "~> 4.8"
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-google-oauth2', '~> 1.0'
 
 # soft deletion
 # https://github.com/rubysherpas/paranoia

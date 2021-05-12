@@ -11,7 +11,7 @@ body, html{
 .container{
   padding-left: 200px;
 }
-.container[data-sidebar-open='false']{
+.container.close-sidebar{
   padding-left: 0px;
 }
 button{
@@ -30,14 +30,16 @@ button{
   z-index: 16;
   width: 200px;
   height: 100vh;
-  background-color: var(--primary-gray-6);
   position: fixed;
   z-index: 20;
-  /* transition: .4s ease-in; */
 }
-.main-sidebar[data-sidebar-open='false']{
-  /* transition: .4s ease-in; */
-  transform: translateX(-200px);
+.close-sidebar .main-sidebar{
+  left: -200px;
+}
+.main-sidebar-an{
+  transition: .3s linear;
+  -webkit-transition: .3s linear;
+  -moz-transition: .3s linear;
 }
 .main-sidebar .sidebar-toggle-btn button{
   box-shadow: 0px 0px 20px black;
@@ -46,20 +48,48 @@ button{
   height: 30px;
   background-color: var(--primary-gray-4);
   border-radius: 0 4px 4px 0;
-  transition: opacity .4s ease-in-out,right .4s ease-in-out;
-  transform-origin: left center;
   opacity: 0;
   top: 22px;
-  right: 0px;
+  right: 0;
   z-index: 10;
+  padding: 8px 5px;
+  color: var(--light-gray);
+  display: flex;
+  align-items: center;
+}
+.sidebar-toggle-btn span{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.sidebar-toggle-btn span::before,.sidebar-toggle-btn span::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 2px;
+  background-color: white;
+}
+.sidebar-toggle-btn span::after{
+  bottom: 0;
+  box-shadow: 0 -6px 0 var(--light-gray);
+}
+.sidebar-toggle-btn .rotate-arrow{
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .main-sidebar:hover .sidebar-toggle-btn button{
+  -moz-transition: opacity .4s ease-in-out,right .4s ease-in-out;
+  -webkit-transition: opacity .4s ease-in-out,right .4s ease-in-out;
+  transition: opacity .4s ease-in-out,right .4s ease-in-out;
+  transform-origin: left center;
   top: 22px;
   right: -30px;
   opacity: 1;
   background-color: var(--primary-gray-2);
 }
-.main-sidebar[data-sidebar-open='false'] .sidebar-toggle-btn button{
+.close-sidebar .main-sidebar .sidebar-toggle-btn button{
   opacity: 1;
   right: -30px;
 }

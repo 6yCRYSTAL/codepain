@@ -10,11 +10,9 @@ body, html{
 }
 .container{
   padding-left: 200px;
-  transition: padding .4s ease-in;
 }
 .container[data-sidebar-open='false']{
   padding-left: 0px;
-  transition: padding .4s ease-in;
 }
 button{
   margin: 0;
@@ -35,11 +33,11 @@ button{
   background-color: var(--primary-gray-6);
   position: fixed;
   z-index: 20;
-  transition: left .4s ease-in;
+  /* transition: .4s ease-in; */
 }
 .main-sidebar[data-sidebar-open='false']{
-  transition: left .4s ease-in;
-  left: -200px;
+  /* transition: .4s ease-in; */
+  transform: translateX(-200px);
 }
 .main-sidebar .sidebar-toggle-btn button{
   box-shadow: 0px 0px 20px black;
@@ -69,17 +67,14 @@ button{
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
-  min-height: 100vh;
+  height: 100vh;
   width: 12px;
   background-color: var(--primary-gray-5);
   z-index: 5;
   opacity: 0;
-  transition: opacity .1s ease;
 }
 .sidebar-line-active{
   opacity: 1;
-  transition: opacity .1s .4s ease;
 }
 .sidebar-logo{
   background-color: var(--primary-gray-6);
@@ -166,7 +161,7 @@ button{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 16px;
+  padding: 0 16px;
   background-color: var(--btn-green);
   color: var(--dark-gray);
   border-radius: 5px;
@@ -253,6 +248,7 @@ main{
 }
 .footer-menu > nav a{
   color: var(--primary-gray-1);
+  text-decoration: none;
 }
 .footer-logo{
   background-color: transparent;

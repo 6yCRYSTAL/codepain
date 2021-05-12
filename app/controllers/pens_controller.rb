@@ -1,8 +1,11 @@
 class PensController < ApplicationController
+  # TODO:等到USER可以登入後就要加入
   # before_action :authenticate_user!, except: [:new]
   
+
   def index
     @pens = Pen.all
+    @deleted_pens = Pen.deleted_at_1_hour_ago
   end
   
   def new
@@ -13,7 +16,6 @@ class PensController < ApplicationController
   end
 
   def edit
-    # @pen = Pen.find_by(parmas[:id])
   end
   
   def show
@@ -31,7 +33,7 @@ class PensController < ApplicationController
 
   def destroy
     # @pen = current_user.pens.find_by(:random_url)
-    #測試用
+    #TODO:等到USER可以登入後就要加入current_user
     @pen = Pen.find_by(random_url: params[:random_url])
     @pen.destroy
     redirect_to root_path, notice: "DELETED!!!"

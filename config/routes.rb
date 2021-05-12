@@ -13,11 +13,9 @@ Rails.application.routes.draw do
   # get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
   # get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   # delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-  # 測試路徑
+  # TODO:測試路徑
   get '/details/:random_url', to: 'pens#show', as: 'pen'
   get '/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
-  delete '/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-  
   
   # 這是以前的先放著 resources :pens, path: '/pen', except: [:index, :new], param: :random_url
 
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:create, :update]
+      resources :pens, only: [:create, :update, :destroy]
     end
   end
 end

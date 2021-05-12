@@ -4,7 +4,7 @@ import Rails from '@rails/ujs'
 document.addEventListener('turbolinks:load', () => {
   const delBtn = document.querySelector('#delete-btn')
 
-// 測試要改
+// TODO:測試要改
   let editPagePath = window.location.pathname
   // let userName = editPagePath.split('/')[1]
   let randomURL = editPagePath.split('/').pop()

@@ -4,7 +4,7 @@ import Rails from '@rails/ujs'
 document.addEventListener('turbolinks:load', () => {
   // const saveBtn = document.querySelector('#save-btn')
 
-// 測試要改
+// TODO:測試要改
 
   let title = document.querySelector('#title').textContent
   let html = document.querySelector('#user-input-html').textContent

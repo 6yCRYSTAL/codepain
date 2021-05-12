@@ -17,6 +17,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
@@ -45,6 +46,10 @@ gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # protect sensitive information
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.2'
+
+# state machine to handle pens states
+# https://github.com/aasm/aasm
+gem 'aasm', '~> 5.2'
 
 # react on rails
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial

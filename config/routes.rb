@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
+  # users
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # pens
-  # resources :pens, only: [:index, :new], path_names: { index: 'your-work', new: 'pen' }
-  
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
+  get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
+  get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   
-  scope ':username' do
-    resources :pen, controller: 'pens', except: [:index, :new]
-  end
+  # 這是以前的先放著 resources :pens, path: '/pen', except: [:index, :new], param: :random_url
 
   # static pages
   root 'statics#index'
+
+  # api
+  namespace :api, default: { format: :json } do
+    namespace :v1 do
+      resources :pens, only: [:create, :update, :destroy]
+    end
+  end
 end

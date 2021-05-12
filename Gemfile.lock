@@ -94,6 +94,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.17.0)
+      i18n (>= 1.6, < 2)
     faraday (1.4.1)
       faraday-excon (~> 1.1)
       faraday-net_http (~> 1.0)
@@ -287,6 +289,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise (~> 4.8)
+  faker (~> 2.17)
   figaro (~> 1.2)
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)

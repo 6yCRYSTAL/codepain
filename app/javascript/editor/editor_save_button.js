@@ -1,7 +1,11 @@
 import Rails from '@rails/ujs'
 
+
 document.addEventListener('turbolinks:load', () => {
-  const saveBtn = document.querySelector('#save-btn')
+  // const saveBtn = document.querySelector('#save-btn')
+
+// 測試要改
+
   let title = document.querySelector('#title').textContent
   let html = document.querySelector('#user-input-html').textContent
   let css = document.querySelector('#user-input-css').textContent
@@ -14,8 +18,7 @@ document.addEventListener('turbolinks:load', () => {
       type: 'POST',
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Content-Type": "application/json"
       },
       dataType: 'json',
       data: penParams

@@ -1,11 +1,10 @@
 class Pen < ApplicationRecord
   acts_as_paranoid
 
+  validates :random_url, uniqueness: true
   before_create :generate_random_url
 
-  # belongs_to :user
-
-  private
+  belongs_to :user
 
   def generate_random_url
     require 'securerandom'
@@ -17,6 +16,10 @@ class Pen < ApplicationRecord
       end
 
       self.random_url = new_random_url
+  end
+
+  def to_param
+    random_url
   end
 
 end

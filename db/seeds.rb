@@ -6,12 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
-10.times do
-  Pen.create(
-    title: Faker::Book.title ,
-    html: Faker::Lorem.paragraph(sentence_count: 10),
-    css: Faker::Lorem.paragraph(sentence_count: 10),
-    created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-    random_url: Faker::Lorem.characters(number: 8)
+# 10.times do
+#   Pen.create(
+#     title: Faker::Book.title ,
+#     html: Faker::Lorem.paragraph(sentence_count: 10),
+#     css: Faker::Lorem.paragraph(sentence_count: 10),
+#     created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+#     random_url: Faker::Lorem.characters(number: 8)
+#   )
+# end
+
+5.times do
+  # password = "password"
+  user = User.new(
+    email: Faker::Internet.free_email,
+    password: "password",
+    username: Faker::Internet.username,
+    display_name: Faker::Name.first_name
   )
+  user.save
 end

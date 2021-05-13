@@ -5,10 +5,11 @@ document.addEventListener('turbolinks:load', () => {
   const saveBtn = document.querySelector('#save-btn')
 
   let title = document.querySelector('#edit-title').textContent
+  let username = document.querySelector('#user-name').textContent
   let html = ace.edit("editor--html").session.getValue()
   let css = ace.edit("editor--css").session.getValue()
   let js = ace.edit("editor--js").session.getValue()
-  let penParams = `user[username]=${username}&pen[title]=${title}&pen[html]=${html}&pen[css]=${css}&pen[js]=${js}`
+  let paramsFromNewPen = `user[username]=${username}&pen[title]=${title}&pen[html]=${html}&pen[css]=${css}&pen[js]=${js}`
 
   saveBtn.addEventListener('click', () => {
     Rails.ajax({
@@ -19,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
         "Content-Type": "application/json"
       },
       dataType: 'json',
-      data: penParams
+      data: paramsFromNewPen
     })
   })
 })

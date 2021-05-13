@@ -12,6 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import 'editor'
 import 'styles'
 import 'frontend'
-import 'editor'

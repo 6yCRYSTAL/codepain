@@ -268,3 +268,11 @@ main{
   margin-left: auto;
 }
 /* footer end */
+
+.login-title {
+  color: #fff;
+}
+
+.login-p {
+  color: #0ebeff;
+}

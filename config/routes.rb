@@ -10,11 +10,10 @@ Rails.application.routes.draw do
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
   # get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
-  # get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
+  get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   # delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
   # user還不能註冊登入 目前測試路徑
   get '/details/:random_url', to: 'pens#show', as: 'pen'
-  get '/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   delete '/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
   
   # static pages

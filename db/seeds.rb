@@ -11,17 +11,17 @@ require 'date'
 #   user = User.create(
 #     email: Faker::Internet.free_email,
 #     password: "password",
-#     username: Faker::Internet.username,
+#     username: Faker::Name.last_name,
 #     display_name: Faker::Name.first_name
 #   )
 # end
-10.times do
-  Pen.create(
-    title: Faker::Book.title ,
-    html: Faker::Lorem.paragraph(sentence_count: 10),
-    css: Faker::Lorem.paragraph(sentence_count: 10),
-    created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
-    random_url: Faker::Lorem.characters(number: 8),
-    user_id: 45
-  )
-end
+# 10.times do
+#   Pen.create(
+#     title: Faker::Book.title ,
+#     html: Faker::Lorem.paragraph(sentence_count: 10),
+#     css: Faker::Lorem.paragraph(sentence_count: 10),
+#     created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+#     random_url: Faker::Lorem.characters(number: 8),
+#     user_id: 45
+#   )
+# end

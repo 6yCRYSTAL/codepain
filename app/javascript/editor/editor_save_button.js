@@ -8,7 +8,7 @@ document.addEventListener('turbolinks:load', () => {
   let html = ace.edit("editor--html").session.getValue()
   let css = ace.edit("editor--css").session.getValue()
   let js = ace.edit("editor--js").session.getValue()
-  let penParams = `pen[title]=${title}&pen[html]=${html}&pen[css]=${css}&pen[js]=${js}`
+  let penParams = `user[username]=${username}&pen[title]=${title}&pen[html]=${html}&pen[css]=${css}&pen[js]=${js}`
 
   saveBtn.addEventListener('click', () => {
     Rails.ajax({

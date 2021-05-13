@@ -9,16 +9,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= notice %><%= alert %>
-    <div class="container">
-      <%= render './shared/sidebar' %>
-      <%= render './shared/usermenu_signin' %>
-      <main>
-        <%= yield %>
-      </main>
-      <%= render './shared/footer' %>
+  <body class="edit">
+    <div class="container-edit">
+    <%= render './shared/edit_header' %>
+    <main>
+      <%= yield %>
+    </main>
+    <%= render './shared/edit_footer' %>
     </div>
   </body>
 </html>

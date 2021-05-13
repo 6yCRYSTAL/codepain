@@ -1,6 +1,7 @@
 class PensController < ApplicationController
   # before_action :authenticate_user!, except: [:new] 
   # after User modle complete
+  layout 'layout-edit',only: [:new]
   
   def index
     @pens = Pen.all

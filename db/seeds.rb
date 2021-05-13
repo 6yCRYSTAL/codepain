@@ -21,7 +21,7 @@ require 'date'
   user = User.new(
     email: Faker::Internet.free_email,
     password: "password",
-    username: Faker::Internet.username,
+    username: Faker::Internet.first_name,
     display_name: Faker::Name.first_name
   )
   user.save

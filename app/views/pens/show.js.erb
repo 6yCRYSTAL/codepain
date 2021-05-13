@@ -1,0 +1,11 @@
+// 這邊放燈箱
+
+document.addEventListener('turbolinks:load', () => {
+
+  let a = document.querySelector('footer')
+  a.addEventListener('click', () => {
+    a.append('<%= j (render partial: 'pens/details') %>')
+    console.log('ss');
+
+  })
+})

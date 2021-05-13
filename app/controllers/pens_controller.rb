@@ -3,12 +3,21 @@ class PensController < ApplicationController
   before_action :authenticate_user!, except: [:new]
 
   def index
-    @pens = Pen.all
-    @deleted_pens = Pen.deleted_in_1_hour
+    @pens = current_user.pens.all
+    @deleted_pens = current_user.pens.deleted_in_1_hour
   end
   
   def new
     @pen = Pen.new
+  end
+
+  def show
+    current_pen
+
+    respond_to do |format|
+      format.js 
+      format.html
+    end
   end
 
   def edit
@@ -16,7 +25,7 @@ class PensController < ApplicationController
   end
 
   def destroy
-    @pen = current_user.pens.find_by(random_url: params[:random_url])
+    current_pen
     # change pen state
     @pen.update(state: 'soft_deleting')
     # soft_delete the pen
@@ -27,7 +36,7 @@ class PensController < ApplicationController
   private
 
   def current_pen
-    @pen = Pen.find_by(random_url: params[:random_url])
+    @pen = current_user.pens.find_by(random_url: params[:random_url])
     redirect_to pens_path if @pen.nil?
   end
 end

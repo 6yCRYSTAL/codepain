@@ -9,11 +9,9 @@ Rails.application.routes.draw do
   # pens
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
-  # get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
+  get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-  # 目前測試路徑
-  get '/details/:random_url', to: 'pens#show', as: 'pen'
 
   # static pages
   root 'statics#index'

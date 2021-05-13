@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let editorCSS = ace.edit("editor--css")
   let editorJS = ace.edit("editor--js")
 
-  let editor = {
-    init() {
+
+    let init = () => {
       //set options
       editorHTML.setOptions({
         mode: "ace/mode/html",
@@ -51,16 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
         enableSnippets: true,
       })
       editorHTML.getSession().on('change',function(){
-        update()
+        renderToiframe()
       })
       editorCSS.getSession().on('change',function(){
-        update()
+        renderToiframe()
       })
       editorJS.getSession().on('change',function(){
-        update()
+        renderToiframe()
       })
     }
-  }
+
   //event
   //get console 
   // function getSessionValue(){
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //render to iframe
 
 
-  function update(){
+  let renderToiframe  = () => {
     // let result = document.querySelector('#edit--result')
     let result = document.querySelector('#edit--result').contentDocument
     result.open()
@@ -102,10 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
     result.close()
   }
 
+  document.querySelector('#edit-share-btn').addEventListener('click', () => {
+    alert(location.href)
+  })
 
-  editor.init()
+
+  init()
+  renderToiframe()
   // getSessionValue()
-  update()
 
 
 

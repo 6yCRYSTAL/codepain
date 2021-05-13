@@ -4,7 +4,7 @@ import "ace-builds/src-noconflict/ext-language_tools"
 import "ace-builds/src-noconflict/mode-html"
 import "ace-builds/src-noconflict/mode-css"
 import "ace-builds/src-noconflict/mode-javascript"
-import "ace-builds/src-noconflict/theme-monokai"
+import "ace-builds/src-noconflict/theme-twilight"
 import "ace-builds/src-noconflict/ext-error_marker"
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/html",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/css",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/javascript",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -72,26 +72,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   //TODO
 
-
-  //TODO
   // get console 
   const consoleResult = document.querySelector('.edit-console')
   const editConsole = document.querySelector('#console-btn')
-
-  let windowConsole = console.log
-  // let windowConsole = console.log.bind(console)
-  let consoleMessage = []
+  
+  // 把 console 備份起來
+  let oldConsole = console
+  // let consoleMessage = []
   
   editConsole.addEventListener('click', ()=>{
-    windowConsole.apply(console, arguments)
-    consoleMessage.push.apply(consoleMessage, arguments)
+    let stdoutMsg = ""
+    // 改寫 console
+    window.console = {
+      log: function(msg) {
+        stdoutMsg += `${msg}\n`
+      }
+    }
 
-    console.log(consoleMessage)
-    consoleResult.innerHTML = consoleMessage
+    try{
+      eval(editorJS.session.getValue())
+      consoleResult.innerText = stdoutMsg
+    } catch (err) {
+      let msg = `${err.name}: ${err.message}`
+      consoleResult.innerText = msg
+    }
+    // 恢復原本的 console.log
+    window.console = oldConsole
   })
-  //TODO
-
-
 
 
   //share btn get web url

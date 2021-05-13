@@ -1,51 +1,57 @@
+<header>
+  <div class="edit-left-side">
+    <img src="" alt="" class="edit-logo">
+    <div class="edit-title"></div>
+    <a href="#" id="user-name">user_name</a>
+    <a href="">
+      <span>pro_tag</span>
+    </a>
+  </div>
+  <div class="edit-right-side">
+    <button id="save-btn">Save</button>
+    <button>Save as Private</button>
+    <button>Settings</button>
+    <button>Change View</button>
+    <button>pin</button>
+    <button>edit_picture</button>
+  </div>
+</header>
+<section class="edit-zone-wrapper">
+  <div class="edit-zone edit-html-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>HTML</div>
+      <button> v </button>
+    </div>
+    <div id="editor--html" class="editor-code editor-html"></div>
+  </div> 
 
-  <header>
-    <div class="edit_left_side">
-      <img src="" alt="" class="edit_logo">
-      <div class="edit_title" id="title">TEST TITLE</div>
-      <a href="#" id="user-name">TEST USER NAME</a>
-      <a href="">
-        <span>pro_tag</span>
-      </a>
+  <div class="edit-zone edit-css-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>CSS</div>
+      <button> v </button>
     </div>
-    <div class="edit_right_side">
-      <button id="save-btn">Save之後返回edit頁面</button>
-      <button>Save as Private</button>
-      <button>Settings</button>
-      <button>Change View</button>
-      <button>pin</button>
-      <button>edit_picture</button>
+    <div id="editor--css" class="editor-code editor-css"></div>
+  </div>  
+
+  <div class="edit-zone edit-js-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>JS</div>
+      <button> v </button>
     </div>
-  </header>
-  <section class="edit_zone">
-    <div class="edit_html_zone">
-      <div>
-        <button class="edit_setting"></button>
-        <div>HTML</div>
-        <button> v </button>
-      </div>
-      <textarea name="edit_html" id="user-input-html" cols="30" rows="10">HHH</textarea>
-    </div>  
-    <div class="edit_css_zone">
-      <div>
-        <button class="edit_setting"></button>
-        <div>CSS</div>
-        <button> v </button>
-      </div>
-      <textarea name="edit_css" id="user-input-css" cols="30" rows="10">CCC</textarea>
-    </div>  
-    <div class="edit_html_zone">
-      <div>
-        <button class="edit_setting"></button>
-        <div>JS</div>
-        <button> v </button>
-      </div>
-      <textarea name="edit_js" id="user-input-js" cols="30" rows="10">JJJ</textarea>
-    </div> 
-  </section>
-  <section>
-    <iframe></iframe>
-  </section>
-  <footer>
-    <button>console</button>
-  </footer>
+    <div id="editor--js" class="editor-code editor-js"></div>
+  </div> 
+</section>
+<section>
+  <iframe id="edit--result" class="edit-render-result"></iframe>
+  <div class="edit-console">
+    <ul class="edit-console-ul"></ul>
+  </div>
+</section>
+<footer>
+  <button id="console-btn">console</button>
+  <button id="clear-console-btn">clear_console</button>
+  <button id="edit-share-btn">share URL</button>
+</footer>

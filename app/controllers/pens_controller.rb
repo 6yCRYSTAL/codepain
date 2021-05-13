@@ -1,6 +1,6 @@
 class PensController < ApplicationController
-  # TODO:等到USER可以登入後就要加入
-  # before_action :authenticate_user!, except: [:new]
+  
+  before_action :authenticate_user!, except: [:new]
 
   def index
     @pens = Pen.all
@@ -11,24 +11,17 @@ class PensController < ApplicationController
     @pen = Pen.new
   end
 
-  def create
-  end
-
   def edit
     current_pen
   end
-  
-  def show
-  end
 
   def destroy
-    # @pen = current_user.pens.find_by(:random_url)
-    # TODO:等到USER可以登入後就要加入current_user
-    @pen = Pen.find_by(random_url: params[:random_url])
+    @pen = current_user.pens.find_by(random_url: params[:random_url])
+    # change pen state
     @pen.update(state: 'soft_deleting')
     # soft_delete the pen
     @pen.destroy
-    redirect_to root_path, notice: "DELETED!!!"
+    redirect_to pens_path, notice: "DELETED!!!"
   end
 
   private

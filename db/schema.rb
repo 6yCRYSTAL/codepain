@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_182916) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "random_url"
     t.bigint "user_id", null: false
-    t.string "state"
+    t.string "state", default: "editing"
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2021_05_12_182916) do
     t.string "username", null: false
     t.string "bio", default: ""
     t.string "display_name", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"

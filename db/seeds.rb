@@ -22,6 +22,6 @@ require 'date'
     css: Faker::Lorem.paragraph(sentence_count: 10),
     created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
     random_url: Faker::Lorem.characters(number: 8),
-    user_id: Faker::Number.between(from: 26, to: 35)
+    user_id: 45
   )
 end

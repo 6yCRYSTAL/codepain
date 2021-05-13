@@ -47,10 +47,6 @@ gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # https://github.com/laserlemon/figaro
 gem 'figaro', '~> 1.2'
 
-# state machine to handle pens states
-# https://github.com/aasm/aasm
-gem 'aasm', '~> 5.2'
-
 # react on rails
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial
 gem 'react_on_rails', '~> 12.2'

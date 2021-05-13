@@ -1,19 +1,9 @@
-<div class="container" data-sidebar-open="true">
+<div class="container">
   <%= render './shared/sidebar' %>
   <%= render './shared/usermenu_signin' %>
   <main>
     <table>
     <tr>
-      <%# TODO: DELETE頁面測試 %>
-      <%# link_to '這是DELETE頁面測試', 
-                  pens_path(@pen), 
-                  id: 'show-btn', 
-                  style: 'font-size:100px;color:#fff;' %>
-      <%# TODO: show測試 %>
-      <%# link_to '這是show測試按鈕', 
-                  pen_path(@pen), 
-                  id: 'show-btn', 
-                  style: 'font-size:100px;color:#fff;' %>
       <%= link_to 'Pens', pens_path %>
       <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
     </tr>
@@ -30,13 +20,13 @@
       <% @deleted_pens.each do |pen| %>
         <div style="color:#fff;font-size:20px"><%= pen.title %></div>
         <div><button id="restore-or-del-btn" 
-                     data-restore="<%= pen.id %>" 
+                     data-undo="<%= pen.id %>" 
                      style="color:#fff;font-size:20px;cursor:pointer;">
-                     這是後悔不要假刪除測試按鈕</button></div>
+                     Restore</button></div>
         <div><button id="restore-or-del-btn" 
-                     data-really-delete="<%= pen.id %>" 
+                     data-forever-delete="<%= pen.id %>" 
                      style="color:#fff;font-size:20px;cursor:pointer;">
-                     這是真的假刪除測試按鈕</button></div>
+                     Really Delete</button></div>
       <% end %>
 
     <% end %>

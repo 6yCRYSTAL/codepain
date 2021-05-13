@@ -1,5 +1,4 @@
 class Pen < ApplicationRecord
-  include AASM
   acts_as_paranoid
 
   validates :random_url, uniqueness: true
@@ -7,39 +6,21 @@ class Pen < ApplicationRecord
 
   belongs_to :user
 
-  scope :deleted_at_1_hour_ago, -> { only_deleted.where('deleted_at < ?', 1.hour.ago) }
+  scope :is_soft_deleting, -> { only_deleted.where(state: 'soft_deleting') }
+  scope :deleted_in_1_hour, -> { is_soft_deleting.where('deleted_at > ?', 1.hour.ago) }
 
   def generate_random_url
     require 'securerandom'
+    new_random_url = SecureRandom.urlsafe_base64(6)
     # 對Pen做判斷式看看是否已經存在random_url
+    while Pen.where(random_url: new_random_url).exists?
       new_random_url = SecureRandom.urlsafe_base64(6)
+    end
 
-      while Pen.where(random_url: new_random_url).exists?
-        new_random_url = SecureRandom.urlsafe_base64(6)
-      end
-
-      self.random_url = new_random_url
+    self.random_url = new_random_url
   end
 
   def to_param
     random_url
-  end
-
-  # state machine for pen
-  aasm column: :state, create_scopes: false do
-    state :editing, initial: true
-    state :soft_deleted, :really_deleted
-
-    event :soft_delete do
-      transtions from: :editing, to: :soft_deleted
-    end
-
-    event :restore do
-      transtions from: :soft_deleted, to: :editing
-    end
-
-    event :really_delete do
-      transtions from: :soft_deleted, to: :really_deleted
-    end
   end
 end

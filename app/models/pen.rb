@@ -26,7 +26,7 @@ class Pen < ApplicationRecord
   end
 
   # state machine for pen
-  aasm column: :state do
+  aasm column: :state, create_scopes: false do
     state :editing, initial: true
     state :soft_deleted, :really_deleted
 

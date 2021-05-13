@@ -1,11 +1,11 @@
-class Api::V1::PensController < ApplicationController
+class Api::V1::DeletedPensController < ApplicationController
   respond_to :json
   # TODO:等到USER可以登入後就要加入
   # before_action :authenticate_user!
 
   def update
     find_deleted_pen
-    @pen.update(deleted_at: )
+    @pen.update
   end
 
   def destroy

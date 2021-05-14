@@ -12,7 +12,10 @@
           <div style="color:#fff;font-size:20px"><%= pen.title %></div>
           <div style="color:#fff;font-size:20px"><%= pen.html %></div>
           
-          <%= link_to 'modal test', pen_path(pen, username: current_user.username), remote: true %>
+          <%= button_to pen_path(pen, username: current_user.username), 
+                        remote: true, method: :get, class: 'aaa' do %>
+            <i class="fas fa-chevron-left"></i>
+          <% end %>
         <% end %>
 
       <% else %>
@@ -43,5 +46,5 @@
     <% end %>-->
     </table>
   </main>
-  <%= render './shared/footer' %>
+  <%= render 'shared/footer' %>
 </div>

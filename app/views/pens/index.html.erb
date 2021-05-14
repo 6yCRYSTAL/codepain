@@ -4,14 +4,35 @@
   <main>
     <table>
     <tr>
-      <th>Title</th>
-      <th>-preview--</th>
-      <th>Created</th>
-      <th>Last Updated</th>
-      <th>Stats</th>
-      <th>--menu--</th>
+      <%= link_to 'Pens', pens_path %>
+      <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
     </tr>
-    <% @pens.each do |pen| %>
+    
+    <% if params[:item_type] != 'deleted_item' %>
+      
+      <% @pens.each do |pen| %>
+        <div style="color:#fff;font-size:20px"><%= pen.title %></div>
+        <div style="color:#fff;font-size:20px"><%= pen.html %></div>
+      <% end %>
+
+    <% else %>
+      
+      <% @deleted_pens.each do |pen| %>
+        <div style="color:#fff;font-size:20px"><%= pen.title %></div>
+        <div><button id="restore-or-del-btn" 
+                     data-undo="<%= pen.id %>" 
+                     style="color:#fff;font-size:20px;cursor:pointer;">
+                     Restore</button></div>
+        <div><button id="restore-or-del-btn" 
+                     data-forever-delete="<%= pen.id %>" 
+                     style="color:#fff;font-size:20px;cursor:pointer;">
+                     Really Delete</button></div>
+      <% end %>
+
+    <% end %>
+    
+
+    <!--<% @pens.each do |pen| %>
       <tr>
         <td><%= pen.title %></td>
         <%#= link_to pen.title, pen_path(pen) %> 
@@ -22,7 +43,7 @@
         <td> pen.status </td>
         <td> menu btn </td>
       </tr>
-    <% end %>
+    <% end %>-->
     </table>
   </main>
   <%= render './shared/footer' %>

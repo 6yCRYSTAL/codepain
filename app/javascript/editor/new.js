@@ -112,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(location.href)
   })
 
-
   init()
   renderToiframe()
 })

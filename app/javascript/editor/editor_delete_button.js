@@ -2,7 +2,7 @@ import Rails from '@rails/ujs'
 
 
 document.addEventListener('turbolinks:load', () => {
-  const delBtn = document.querySelector('#delete-btn')
+  const delBtn = document.querySelector('#btn-delete')
 
   let editPagePath = window.location.pathname
   let userName = editPagePath.split('/')[1]

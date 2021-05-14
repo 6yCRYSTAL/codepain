@@ -71,7 +71,6 @@ document.addEventListener('turbolinks:load', () => {
     result.close()
   }
   
-
   // get console 
   const consoleResult = document.querySelector('.edit-console')
   const editConsole = document.querySelector('#console-btn')

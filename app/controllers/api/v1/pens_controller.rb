@@ -2,6 +2,12 @@ class Api::V1::PensController < ApplicationController
   respond_to :json
 
   before_action :authenticate_user!
+
+  def index
+    @pens = current_user.pens
+    p "YOU GOOD!! GET PENS DATA!!"
+    render(json: @pens)
+  end
   
   def create
     @pen = current_user.pens.new(clear_params)

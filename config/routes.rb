@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:create, :update, :destroy]
+      resources :pens, only: [:index, :create, :update, :destroy]
     end
   end
 end

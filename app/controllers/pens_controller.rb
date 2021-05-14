@@ -1,7 +1,8 @@
 class PensController < ApplicationController
-  # TODO:等到USER可以登入後就要加入
-  # before_action :authenticate_user!, except: [:new]
-
+  # before_action :authenticate_user!, except: [:new] 
+  # after User modle complete
+  layout 'edit',only: [:new]
+  
   def index
     @pens = Pen.all
     @deleted_pens = Pen.deleted_in_1_hour

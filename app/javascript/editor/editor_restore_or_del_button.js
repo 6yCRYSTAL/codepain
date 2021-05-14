@@ -2,7 +2,7 @@ import Rails from '@rails/ujs'
 
 function sendParamsToRails(method, params) {
   Rails.ajax({
-    url: `/api/v1/deleted_pens/${params}`,
+    url: `/api/v1/pens/${params}`,
     type: method,
     headers: {
       "Accept": "application/json",

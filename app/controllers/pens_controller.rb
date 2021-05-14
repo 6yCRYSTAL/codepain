@@ -1,4 +1,5 @@
 class PensController < ApplicationController
+  layout 'edit',only: [:new]
   
   before_action :authenticate_user!, except: [:new]
 

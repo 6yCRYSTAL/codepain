@@ -25,3 +25,14 @@ require 'date'
 #     user_id: 45
 #   )
 # end
+
+5.times do
+  # password = "password"
+  user = User.new(
+    email: Faker::Internet.free_email,
+    password: "password",
+    username: Faker::Internet.first_name,
+    display_name: Faker::Name.first_name
+  )
+  user.save
+end

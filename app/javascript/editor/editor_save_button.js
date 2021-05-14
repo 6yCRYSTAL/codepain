@@ -1,10 +1,10 @@
 import Rails from '@rails/ujs'
 
 document.addEventListener('turbolinks:load', () => {
-  const saveBtn = document.querySelector('#save-btn')
+  const saveBtn = document.querySelector('#btn-save')
 
   let title = document.querySelector('#edit-title').textContent
-  let username = document.querySelector('#user-name').textContent
+  let username = document.querySelector('#username').textContent
   let html = ace.edit("editor--html")
   let css = ace.edit("editor--css")
   let js = ace.edit("editor--js")

@@ -256,6 +256,7 @@ button{
 /* main dev */
 main{
   width: 100%;
+  height: 100%;
   padding: 5rem 0;
   background-color: var(--primary-gray-1);
 }

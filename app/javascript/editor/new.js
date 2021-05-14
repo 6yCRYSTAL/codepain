@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/html",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',//TODO
+      fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/css",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',//TODO
+      fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/javascript",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',//TODO
+      fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     consoleResult.innerText = ""
   })
 
-
   //share btn get web url
   document.querySelector('#edit-share-btn').addEventListener('click', () => {
     alert(location.href)
@@ -115,4 +114,3 @@ document.addEventListener('DOMContentLoaded', () => {
   init()
   renderToiframe()
 })
-

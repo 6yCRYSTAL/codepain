@@ -7,7 +7,6 @@ class Api::V1::PensController < ApplicationController
     @pen = current_user.pens.new(clear_params)
 
     if @pen.save
-      p @pen
       redirect_to edit_pen_path(@pen, username: current_user.username)
     else
       redirect_to pens_path

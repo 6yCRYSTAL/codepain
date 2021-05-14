@@ -7,7 +7,7 @@ import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/theme-twilight"
 import "ace-builds/src-noconflict/ext-error_marker"
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   //set Ace
   ace.require("ace/ext/language_tools");
   let editorHTML = ace.edit("editor--html")
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  //TODO postMessage
+   postMessage
   //render to iframe
   let renderToiframe  = () => {
     let result = document.querySelector('#edit--result').contentDocument
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     result.write(`<script>${editorJS.session.getValue()}</script>`)
     result.close()
   }
-  //TODO
+  
 
   // get console 
   const consoleResult = document.querySelector('.edit-console')

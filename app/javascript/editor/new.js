@@ -75,29 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // get console 
   const consoleResult = document.querySelector('.edit-console')
   const editConsole = document.querySelector('#console-btn')
+  const clearConsole = document.querySelector('#clear-console-btn')
   
-  // 把 console 備份起來
+  // 把 原本的console 備份起來
   let oldConsole = console
-  // let consoleMessage = []
-  
-  editConsole.addEventListener('click', ()=>{
-    let stdoutMsg = ""
-    // 改寫 console
-    window.console = {
-      log: function(msg) {
-        stdoutMsg += `${msg}\n`
-      }
-    }
 
-    try{
-      eval(editorJS.session.getValue())
-      consoleResult.innerText = stdoutMsg
-    } catch (err) {
-      let msg = `${err.name}: ${err.message}`
-      consoleResult.innerText = msg
-    }
-    // 恢復原本的 console.log
-    window.console = oldConsole
+  editConsole.addEventListener('click', ()=>{
+    editorJS.getSession().on('change', ()=>{
+      let stdoutMsg = ""
+      // 改寫 console
+      window.console = {
+        log: function(msg) {
+          stdoutMsg += `${msg}\n`
+        }
+      }
+
+      try{
+        eval(editorJS.session.getValue())
+        consoleResult.innerText = stdoutMsg
+      } catch (err) {
+        let msg = `${err.name}: ${err.message}`
+        consoleResult.innerText = msg
+      }
+      // 恢復原本的 console.log
+      window.console = oldConsole
+    })
+  })
+  // clear console
+  clearConsole.addEventListener('click', () => {
+    consoleResult.innerText = ""
   })
 
 

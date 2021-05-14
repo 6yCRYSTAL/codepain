@@ -8,14 +8,13 @@ import "ace-builds/src-noconflict/theme-twilight"
 import "ace-builds/src-noconflict/ext-error_marker"
 
 document.addEventListener('turbolinks:load', () => {
-  //set Ace
-  ace.require("ace/ext/language_tools");
+  // set Ace
   let editorHTML = ace.edit("editor--html")
   let editorCSS = ace.edit("editor--css")
   let editorJS = ace.edit("editor--js")
 
-  let init = () => {
-    //set options
+  function init() {
+    // set options
     editorHTML.setOptions({
       mode: "ace/mode/html",
       theme: "ace/theme/twilight",
@@ -60,9 +59,9 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 
-   postMessage
-  //render to iframe
-  let renderToiframe  = () => {
+  //TODO postMessage
+  // render to iframe
+  function renderToiframe() {
     let result = document.querySelector('#edit--result').contentDocument
     result.open()
     result.write(`${editorHTML.session.getValue()}`)
@@ -71,16 +70,24 @@ document.addEventListener('turbolinks:load', () => {
     result.close()
   }
   
-
-  // get console 
+  // show console
+  const consoleWrapper = document.querySelector('.edit-console-wrapper')
   const consoleResult = document.querySelector('.edit-console')
-  const editConsole = document.querySelector('#console-btn')
-  const clearConsole = document.querySelector('#clear-console-btn')
-  
-  // 把 原本的console 備份起來
-  let oldConsole = console
+  const consoleBtn = document.querySelector('#console-btn')
+  const clearConsoleBtn = document.querySelector('.edit-console-clear')
+  const closeConsoleBtn = document.querySelector('.edit-console-close')
 
-  editConsole.addEventListener('click', ()=>{
+  consoleBtn.addEventListener('click', () => {
+    consoleWrapper.classList.toggle('on')
+    consoleMsg()
+    clearConsole()
+  })
+
+  // get console msg
+  function consoleMsg() {
+    // 先把原本的console 備份起來
+    let oldConsole = console
+
     editorJS.getSession().on('change', ()=>{
       let stdoutMsg = ""
       // 改寫 console
@@ -89,28 +96,38 @@ document.addEventListener('turbolinks:load', () => {
           stdoutMsg += `${msg}\n`
         }
       }
-
+  
       try{
         eval(editorJS.session.getValue())
         consoleResult.innerText = stdoutMsg
-      } catch (err) {
-        let msg = `${err.name}: ${err.message}`
+      } catch (e) {
+        let msg = `${e.name}: ${e.message}`
         consoleResult.innerText = msg
       }
       // 恢復原本的 console.log
       window.console = oldConsole
     })
-  })
+  }
   // clear console
-  clearConsole.addEventListener('click', () => {
-    consoleResult.innerText = ""
-  })
+  function clearConsole() {
+    clearConsoleBtn.addEventListener('click', () => {
+      consoleResult.innerText = ""
+    })
+  }
 
-  //share btn get web url
+  // close console
+  function closeConsole() {
+    closeConsoleBtn.addEventListener('click', () => {
+      consoleWrapper.classList.toggle('on')
+    })
+  }
+ 
+  // share btn get web url
   document.querySelector('#edit-share-btn').addEventListener('click', () => {
     alert(location.href)
   })
 
   init()
   renderToiframe()
+  closeConsole()
 })

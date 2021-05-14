@@ -16,12 +16,22 @@
   display: flex;
   justify-content: space-between;
 }
-.editor-code{
+.editor-code, .edit-render-result, .edit-console{
   width: 100%;
   height: 100%;
 }
 .edit-render-result{
-  width: 100%;
-  height: 100%;
-  background-color: rgb(230, 230, 230);
+  background-color: var(--light-gray);
+}
+.edit-console-clear, .edit-console-close{ 
+  border: 1px solid rgb(237, 237, 237);
+  color: white;
+}
+.edit-console-wrapper{
+  display: none;
+}
+.edit-console-wrapper.on{
+  display: block;
+  background-color: var(--primary-gray-8);
+  color: var(--primary-gray-1)
 }

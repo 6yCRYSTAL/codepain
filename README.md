@@ -1,1 +1,1 @@
-# Codepain - 5xRuby Demoday Project
+# CodePain - 5xRuby Demo Day Project

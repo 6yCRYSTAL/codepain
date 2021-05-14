@@ -1,0 +1,114 @@
+/* header */
+.edit{
+  background-color: var(--primary-gray-6);
+}
+.container-edit{
+  height: 100vh;
+  overflow: hidden;
+}
+.edit-header{
+  height: 65px;
+  padding: 0 1rem;
+  justify-content: space-between;
+}
+.edit-title-header svg{
+  width: 30px;
+  fill: white;
+}
+.edit-btn-header{
+  margin-left: auto;
+  display: flex;
+}
+.edit-btn-header button{
+  border-radius: 4px;
+  height: 45px;
+  font-size: var(--text-p);
+  color: white;
+  display: inline-block;
+  padding: 10px 16px;
+  margin-right: .5rem;
+  background-color: var(--primary-gray-4);
+}
+.edit-btn-header button span{
+  display: inline-block;
+  margin-right: .2rem;
+  width: 1rem;
+  fill: white;
+}
+.edit-btn-header button span svg{
+  width: 100% !important;
+}
+.pinned-btn{
+  display: flex;
+}
+.pinned-btn button:first-child{
+  border-radius: 4px 0 0 4px;
+  margin: 0;
+}
+.pinned-btn button:first-child svg{
+  display: block;
+  transform: rotate(45deg);
+}
+.pinned-btn button:last-child{
+  border-radius: 0 4px 4px 0;
+  padding: 10px 5px;
+  font-size: 8px;
+}
+.edit-title-header{
+  display: flex;
+  align-items: center;
+}
+.edit-title-area{
+  padding-left: .5rem;
+}
+.edit-title-area h1{
+  color: var(--light-gray);
+  font-size: var(--text-h6);
+  letter-spacing: .2px;
+  margin: 0;
+  padding: .2rem 0;
+}
+.edit-title-area span{
+  padding-left: .5rem;
+}
+.edit-author{
+  font-size: var(--text-s-p);
+  color: var(--primary-gray-1);
+}
+/* header end */
+/* footer */
+.edit-footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.edit-footer-btn{
+  height: 30px;
+  background-color: var(--primary-gray-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.edit-footer-btn button{
+  color: var(--light-gray);
+  font-size: var(--text-s-p);
+  padding: 2px 7px;
+  background-color: var(--primary-gray-4);
+  border-radius: 2px;
+  margin-right: 4px;
+}
+.edit-footer-btn button:last-child{
+  margin-right: 0px;
+}
+.edit-footer-btn > div{
+  display: flex;
+}
+.save-dateTime{
+  margin-right: 1rem;
+}
+.save-dateTime time{
+  color: var(--light-gray);
+}
+/* footer end */

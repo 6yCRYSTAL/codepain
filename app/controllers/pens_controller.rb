@@ -1,51 +1,34 @@
 class PensController < ApplicationController
-  # before_action :authenticate_user!, except: [:new] 
-  # after User modle complete
+  layout 'edit',only: [:new]
   
+  before_action :authenticate_user!, except: [:new]
+
   def index
     @pens = Pen.all
+    @deleted_pens = Pen.deleted_in_1_hour
   end
   
   def new
     @pen = Pen.new
   end
 
-  def create
-    # 看看要不要丟一包資料給前端
-    # pen_path(@pen) 現在有random_url
-    # @pen = Pen.new(pens_params)
-    # render json: @pen.random_url
-    # @pen = Pen.new(pen_params)
-    # pen_params
-    # p '-------------'
-    # p params
-    # p '-------------'
-    # render js: "window.location = '#{}'"
-    
-    # redirect_to action: :edit
-  end
-
   def edit
-    # @pen = Pen.find_by(parmas[:id])
-  end
-  
-  def show
-    render 'pen#show'
+    current_pen
   end
 
-  def update
-    if @pen.update(pen_params)
-      flash[:notice] = 'Pen saved.'
-      #redirect_to restaurant_path(@restaurant), notice: '成功修改資料'
-    else
-      #render :edit
-    end
+  def destroy
+    @pen = current_user.pens.find_by(random_url: params[:random_url])
+    # change pen state
+    @pen.update(state: 'soft_deleting')
+    # soft_delete the pen
+    @pen.destroy
+    redirect_to pens_path, notice: "DELETED!!!"
   end
 
   private
 
-  # def pen_params
-  #   params.require(:pen).permit(:title, :html, :css, :js)
-  # end
-
+  def current_pen
+    @pen = Pen.find_by(random_url: params[:random_url])
+    redirect_to pens_path if @pen.nil?
+  end
 end

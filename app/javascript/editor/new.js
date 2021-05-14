@@ -4,7 +4,7 @@ import "ace-builds/src-noconflict/ext-language_tools"
 import "ace-builds/src-noconflict/mode-html"
 import "ace-builds/src-noconflict/mode-css"
 import "ace-builds/src-noconflict/mode-javascript"
-import "ace-builds/src-noconflict/theme-monokai"
+import "ace-builds/src-noconflict/theme-twilight"
 import "ace-builds/src-noconflict/ext-error_marker"
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/html",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/css",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mode: "ace/mode/javascript",
       theme: "ace/theme/twilight",
       highlightActiveLine: true,
-      fontFamily: 'monospace',
+      fontFamily: 'monospace',//TODO
       fontSize: '12pt',
       tabSize: '2',
       enableBasicAutocompletion: true,
@@ -73,75 +73,41 @@ document.addEventListener('DOMContentLoaded', () => {
   //TODO
 
   // get console 
-  let consoleLogList = document.querySelector('.edit-console-ul')
-  let consoleMessage = []
-
-  let printToConsole = () => {
-    consoleMessage.forEach(log => {
-      const newLogItem = document.createElement('li')
-      const newLogText = document.createElement('p')
-      // const newLogText = document.createElement('pre')
+  const consoleResult = document.querySelector('.edit-console')
+  const editConsole = document.querySelector('#console-btn')
+  const clearConsole = document.querySelector('#clear-console-btn')
   
-      newLogItem.setAttribute('class', log.class)
-      newLogText.textContent = `> ${log.message}`
+  // 把 原本的console 備份起來
+  let oldConsole = console
 
-      newLogItem.appendChild(newLogText)
-      consoleLogList.appendChild(newLogItem)
+  editConsole.addEventListener('click', ()=>{
+    editorJS.getSession().on('change', ()=>{
+      let stdoutMsg = ""
+      // 改寫 console
+      window.console = {
+        log: function(msg) {
+          stdoutMsg += `${msg}\n`
+        }
+      }
+
+      try{
+        eval(editorJS.session.getValue())
+        consoleResult.innerText = stdoutMsg
+      } catch (err) {
+        let msg = `${err.name}: ${err.message}`
+        consoleResult.innerText = msg
+      }
+      // 恢復原本的 console.log
+      window.console = oldConsole
     })
-  }
-
-  editorHTML.session.on('chane', () => {
-    //get user insert code
-    const userHTMLCode = editorHTML.getValue()
-
-    //run in console
-    try{
-      userHTMLCode
-    }catch(errMessage){
-      console.error(errMessage);
-    }
   })
-
-  editorCSS.session.on('chane', () => {
-    //get user insert code
-    const userCSSCode = editorCSS.getValue()
-
-    //run in console
-    try{
-      userCSSCode
-    }catch(errMessage){
-      console.error(errMessage);
-    }
-  })
-
-  editorJS.session.on('chane', () => {
-    //get user insert code
-    const userJSCode = editorJS.getValue()
-
-    //run in console
-    try{
-      userJSCode
-    }catch(errMessage){
-      console.error(errMessage);
-    }
-  }) 
-
-  let clearConsoleScreen = () => {
-    consoleMessage.length = 0
-
-    while (consoleLogList.firstChild) {
-      consoleLogList.removeChild(consoleLogList.firstChild)
-    }
-
-  }
-  let clearBtn = document.querySelector('#clear-console-btn')
-  clearBtn.addEventListener('click', () => {
-    clearConsoleScreen()
+  // clear console
+  clearConsole.addEventListener('click', () => {
+    consoleResult.innerText = ""
   })
 
 
-
-  //get web url
+  //share btn get web url
   document.querySelector('#edit-share-btn').addEventListener('click', () => {
     alert(location.href)
   })
@@ -149,7 +115,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   init()
   renderToiframe()
-  printToConsole()
-
 })
 

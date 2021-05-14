@@ -8,6 +8,38 @@
     </a>
   </div>
   <div class="edit-right-side">
+    <button id="edit-save-btn">Save</button>
+    <button>Save as Private</button>
+    <button>Settings</button>
+    <button>Change View</button>
+    <button>pin</button>
+    <button>edit_picture</button>
+  </div>
+</header>
+<section class="edit-zone-wrapper">
+  <div class="edit-zone edit-html-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>HTML</div>
+      <button> v </button>
+    </div>
+    <div id="editor--html" class="editor-code editor-html"></div>
+  </div> 
+
+  <div class="edit-zone edit-css-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>CSS</div>
+      <button> v </button>
+    </div>
+
+    <div id="edit-title">TEST TITLE</div>
+    <a href="#userprofile" id="user-name"><%= current_user.username %></a>
+    <a href="">
+      <span>pro_tag</span>
+    </a>
+  </div>
+  <div class="edit-right-side">
     <button id="save-btn">Save</button>
     <button>Save as Private</button>
     <button>Settings</button>
@@ -41,6 +73,18 @@
       <div>JS</div>
       <button> v </button>
     </div>
+
+    </div>
+    <div id="editor--css" class="editor-code editor-css"></div>
+  </div>  
+
+  <div class="edit-zone edit-js-zone">
+    <div class="edit-zone-bar">
+      <button class="edit-setting">setting</button>
+      <div>JS</div>
+      <button> v </button>
+    </div>
+
     <div id="editor--js" class="editor-code editor-js"></div>
   </div> 
 </section>

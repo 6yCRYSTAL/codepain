@@ -5,14 +5,14 @@ document.addEventListener('turbolinks:load',function(){
   const Container = document.querySelector('.container');
   const OnClose = localStorage.getItem('onClose');
 
-  // 登入頁-使用者菜單
-  if (UserMenuBtn !== null) {
+  // 登入頁-使用者選單
+  if (UserMenuBtn) {
     UserMenuBtn.addEventListener('click',(e)=>{
       e.currentTarget.nextElementSibling.classList.toggle('active');
     });
   }
-
-  if (Container !== null) {
+  // 全站-側選單
+  if (Container) {
     let sidebarOpen = ()=>{
       Container.classList.remove('close-sidebar');
       Container.classList.add('open-sidebar');

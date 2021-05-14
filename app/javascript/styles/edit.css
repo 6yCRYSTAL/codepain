@@ -1,4 +1,4 @@
-/* edit header */
+/* header */
 .edit{
   background-color: var(--primary-gray-6);
 }
@@ -75,6 +75,8 @@
   font-size: var(--text-s-p);
   color: var(--primary-gray-1);
 }
+/* header end */
+/* footer */
 .edit-footer{
   position: fixed;
   left: 0;
@@ -109,4 +111,4 @@
 .save-dateTime time{
   color: var(--light-gray);
 }
-/* edit header end */
+/* footer end */

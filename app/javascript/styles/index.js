@@ -1,7 +1,4 @@
 import './variables.css'
-<<<<<<< HEAD
 import './common.css'
-=======
-// import './common.css'
->>>>>>> dev
+import './edit.css'
 import './new.css'

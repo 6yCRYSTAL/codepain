@@ -8,6 +8,10 @@ body, html{
   margin: 0;
   padding: 0;
 }
+ul, ol {
+  list-style:none;
+  padding-left:0;
+}
 .container{
   padding-left: 200px;
 }
@@ -154,8 +158,7 @@ button{
 .search-userMenu-container{
   padding: 1.2rem;
 }
-.search-userMenu{
-  width: 100%;
+.search-userMenu,.edit-header{
   display: flex;
   align-items: center;
 }
@@ -226,6 +229,7 @@ button{
   background-color: var(--primary-gray-5);
   display: none;
   border-radius: 6px 0 6px 6px;
+  z-index: 50;
 }
 .userMenu-topnav a{
   color: var(--light-gray);
@@ -249,12 +253,12 @@ button{
   display: block;
 }
 /* search-userMenu-box end */
-/* main */
+/* main dev */
 main{
   width: 100%;
-  height: 600px;
+  padding: 5rem 0;
+  background-color: var(--primary-gray-1);
 }
-
 /* main end */
 
 /* footer */
@@ -295,10 +299,11 @@ main{
 }
 /* footer end */
 
+/* login */
 .login-title {
   color: #fff;
 }
-
 .login-p {
   color: #0ebeff;
 }
+

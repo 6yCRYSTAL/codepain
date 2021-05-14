@@ -7,9 +7,11 @@ import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/theme-monokai"
 import "ace-builds/src-noconflict/ext-error_marker"
 
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('turbolinks:load', () => {
   //set Ace
-  ace.require("ace/ext/language_tools");
+  ace.require("ace/ext/language_tools")
+
   let editorHTML = ace.edit("editor--html")
   let editorCSS = ace.edit("editor--css")
   let editorJS = ace.edit("editor--js")
@@ -152,4 +154,3 @@ document.addEventListener('DOMContentLoaded', () => {
   printToConsole()
 
 })
-

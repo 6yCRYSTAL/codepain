@@ -2,6 +2,7 @@
   
       <%= link_to 'Pens', pens_path %>
       <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
+      <button id="test">測試按鈕練習打api跟後端拿資料</button>
 
       <% if params[:item_type] != 'deleted_item' %>
         <% @pens.each do |pen| %>
@@ -9,8 +10,8 @@
           <div style="color:#fff;font-size:20px"><%= pen.html %></div>
           
           <%= button_to pen_path(pen, username: current_user.username), 
-                        remote: true, method: :get, class: 'aaa' do %>
-            <i class="fas fa-chevron-left"></i>
+                        remote: true, method: :get, class: 'show-details-btn' do %>
+            <i class="fas fa-expand-arrows-alt"></i>
           <% end %>
         <% end %>
 

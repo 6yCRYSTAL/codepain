@@ -122,12 +122,15 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
  
-  // share btn get web url
-  document.querySelector('#edit-share-btn').addEventListener('click', () => {
-    alert(location.href)
-  })
-
+  // share btn get url
+  function shareURL() {
+    document.querySelector('#edit-share-btn').addEventListener('click', () => {
+      alert(window.location.href)
+    })
+  }
+ 
   init()
   renderToiframe()
   closeConsole()
+  shareURL()
 })

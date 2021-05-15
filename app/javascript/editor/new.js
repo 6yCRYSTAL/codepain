@@ -71,14 +71,14 @@ document.addEventListener('turbolinks:load', () => {
   }
   
   // show console
-  const consoleWrapper = document.querySelector('.edit-console-wrapper')
+  const consolecontainer = document.querySelector('.edit-console-container')
   const consoleResult = document.querySelector('.edit-console')
   const consoleBtn = document.querySelector('#console-btn')
   const clearConsoleBtn = document.querySelector('.edit-console-clear')
   const closeConsoleBtn = document.querySelector('.edit-console-close')
 
   consoleBtn.addEventListener('click', () => {
-    consoleWrapper.classList.toggle('on')
+    consolecontainer.classList.toggle('on')
     consoleMsg()
     clearConsole()
   })
@@ -118,16 +118,19 @@ document.addEventListener('turbolinks:load', () => {
   // close console
   function closeConsole() {
     closeConsoleBtn.addEventListener('click', () => {
-      consoleWrapper.classList.toggle('on')
+      consolecontainer.classList.toggle('on')
     })
   }
  
   // share btn get url
-  function shareURL() {
-    document.querySelector('#edit-share-btn').addEventListener('click', () => {
-      alert(window.location.href)
-    })
-  }
+  // function shareURL() {
+  //   document.querySelector('#edit-share-btn').addEventListener('click', () => {
+  //     let shareWindow = document.createElement('div')
+  //     shareWindow.setAttribute('class', shareWindow)
+  //     shareWindow.()
+  //     // alert(window.location.href)
+  //   })
+  // }
  
   init()
   renderToiframe()

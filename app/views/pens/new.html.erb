@@ -1,36 +1,41 @@
-<section class="edit-zone-wrapper">
+<section class="edit-zone-container">
   <div class="edit-zone edit-html-zone">
     <div class="edit-zone-bar">
-      <button class="edit-setting">setting</button>
+      <button class="edit-setting"><span><i class="fas fa-cog"></i></span></button>
       <div>HTML</div>
-      <button> v </button>
+      <button class="edit-selector"><span><i class="fas fa-angle-down"></i></span></button>
     </div>
     <div id="editor--html" class="editor-code editor-html"></div>
   </div> 
 
   <div class="edit-zone edit-css-zone">
     <div class="edit-zone-bar">
-      <button class="edit-setting">setting</button>
+      <button class="edit-setting btn-settings"><span><i class="fas fa-cog"></i></span></button>
       <div>CSS</div>
-      <button> v </button>
+      <button class="edit-selector"><span><i class="fas fa-angle-down"></i></span></button>
     </div>
     <div id="editor--css" class="editor-code editor-css"></div>
   </div>   
 
   <div class="edit-zone edit-js-zone">
     <div class="edit-zone-bar">
-      <button class="edit-setting">setting</button>
+      <button class="edit-setting btn-settings"><span><i class="fas fa-cog"></i></span></button>
       <div>JS</div>
-      <button> v </button>
+      <button class="edit-selector"><span><i class="fas fa-angle-down"></i></span></button>
     </div>
     <div id="editor--js" class="editor-code editor-js"></div>
   </div>  
 </section>
-<section>
-  <iframe id="edit--result" class="edit-render-result"></iframe>
-  <div class="edit-console-wrapper">
-    <button class="edit-console-clear">clear</button>
-    <button class="edit-console-close">X</button>
-    <div class="edit-console">console</div>
+<section class="edit-zone-container">
+  <div class="edit-result-container">
+    <iframe id="edit--result" class="edit-render-result"></iframe>
+  </div>
+  <div class="edit-console-container">
+    <div class="edit-console-bar">
+      Console
+      <button class="edit-console-clear">clear</button>
+      <button class="edit-console-close">X</button>
+    </div>
+    <div class="edit-console"></div>
   </div>
 </section>

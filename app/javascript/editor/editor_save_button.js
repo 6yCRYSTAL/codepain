@@ -1,15 +1,31 @@
 import Rails from '@rails/ujs'
-import "./new"
 
 document.addEventListener('turbolinks:load', () => {
-  const saveBtn = document.querySelector('#save-btn')
+  const saveBtn = document.querySelector('#btn-save')
 
   let title = document.querySelector('#edit-title').textContent
-  let username = document.querySelector('#user-name').textContent
-  let html = ace.edit("editor--html").session.getValue()
-  let css = ace.edit("editor--css").session.getValue()
-  let js = ace.edit("editor--js").session.getValue()
-  let paramsFromNewPen = `user[username]=${username}&pen[title]=${title}&pen[html]=${html}&pen[css]=${css}&pen[js]=${js}`
+  let username = document.querySelector('#username').textContent
+  let html = ace.edit("editor--html")
+  let css = ace.edit("editor--css")
+  let js = ace.edit("editor--js")
+  let htmlValue
+  let cssValue
+  let jsValue
+  let paramsFromNewPen = () => {
+    return `user[username]=${username}&pen[title]=${title}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
+  }
+
+  html.getSession().on('change',function(){
+    htmlValue = html.session.getValue()
+  })
+
+  css.getSession().on('change',function(){
+    cssValue = css.session.getValue()
+  })
+
+  js.getSession().on('change',function(){
+    jsValue = js.session.getValue()
+  })
 
   saveBtn.addEventListener('click', () => {
     Rails.ajax({
@@ -20,7 +36,7 @@ document.addEventListener('turbolinks:load', () => {
         "Content-Type": "application/json"
       },
       dataType: 'json',
-      data: paramsFromNewPen
+      data: paramsFromNewPen()
     })
   })
 })

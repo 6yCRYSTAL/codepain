@@ -8,13 +8,13 @@
       </svg>
     </a>
     <div class="edit-title-area">
-      <h1>Untitled<span><i class="fas fa-pencil-alt"></i></span></h1>
-      <div class="edit-author">Tsai tim</div>
+      <div id="edit-title"><%= @pen.title %><span><i class="fas fa-pencil-alt"></i></span></div>
+      <div class="edit-author" id="username"><%= current_user.username %></div>
     </div>
   </div>
   <div class="edit-btn-header">
-    <button class="btn-Love"><span><i  class="fas fa-heart"></i></span></button>
-    <button class="btn-save"><span><i  class="fas fa-cloud"></i></span>Save</button>
+    <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
+    <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
     <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
     <button class="btn-changeView">
       <span>

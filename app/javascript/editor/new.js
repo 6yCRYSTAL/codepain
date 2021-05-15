@@ -59,7 +59,6 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 
-  //TODO postMessage
   // render to iframe
   function renderToiframe() {
     let result = document.querySelector('#edit--result').contentDocument
@@ -124,27 +123,27 @@ document.addEventListener('turbolinks:load', () => {
  
   // share btn get url
   function shareURL() {
-    let shareBtn = document.querySelector('#edit-share-btn')
+    const shareBtn = document.querySelector('#edit-share-btn')
 
     shareBtn.addEventListener('click', () => {
-      let shareBox = document.createElement('div')
+      const shareBox = document.createElement('div')
       shareBox.setAttribute('class', 'share-box')
       shareBox.textContent = "Share The URL"
 
-      let editContainer = document.querySelector('.edit-zone-container:last-child')
+      const editContainer = document.querySelector('.edit-zone-container:last-child')
       editContainer.appendChild(shareBox)
 
-      let shareBtnInput = document.createElement('input')
+      const shareBtnInput = document.createElement('input')
       shareBtnInput.setAttribute('class', 'share-btn-input')
       shareBox.appendChild(shareBtnInput)
       shareBtnInput.value = window.location.href
 
-      let shareBtnCopy = document.createElement('div')
+      const shareBtnCopy = document.createElement('div')
       shareBtnCopy.setAttribute('class', 'share-btn-copy')
       shareBox.appendChild(shareBtnCopy)
       shareBtnCopy.textContent = "Copy Link"
 
-      let closeBox = document.createElement('span')
+      const closeBox = document.createElement('span')
       closeBox.setAttribute('class', 'share-box-close')
       closeBox.textContent = "x"
       shareBox.appendChild(closeBox)
@@ -153,14 +152,14 @@ document.addEventListener('turbolinks:load', () => {
         shareBox.remove()
       })
 
-      copyLink()
+      shareBtnCopy.addEventListener('click', ()=> {
+        shareBtnInput.select()
+        document.execCommand('copy')
+        
+      })
     })
   }
 
-  function copyLink(){
-
-  }
- 
   init()
   renderToiframe()
   closeConsole()

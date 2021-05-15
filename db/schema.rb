@@ -15,6 +15,18 @@ ActiveRecord::Schema.define(version: 2021_05_13_085503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "pen_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
+    t.index ["pen_id"], name: "index_comments_on_pen_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -55,5 +67,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_085503) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "comments", "pens"
+  add_foreign_key "comments", "users"
   add_foreign_key "pens", "users"
 end

@@ -38,6 +38,6 @@ class PensController < ApplicationController
 
   def current_pen
     @pen = current_user.pens.find_by(random_url: params[:random_url])
-    redirect_to pens_path if @pen.nil?
+    redirect_to pens_path if @pen.nil? # 要改成404
   end
 end

@@ -3,11 +3,13 @@
 <button id="test">測試按鈕練習打api跟後端拿資料</button>
 
 <% if params[:item_type] != 'deleted_item' %>
-  
+
   <%= render 'pens' %>
 
 <% else %>
+
   <%= render 'deleted_pens' %>
+  
 <% end %>
 
 <!--<% @pens.each do |pen| %>

@@ -1,20 +1,26 @@
     <table>
   
-      <%= link_to 'Pens', pens_path %>
+      <%= link_to 'Pens', pens_path %>, 
       <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
       <button id="test">測試按鈕練習打api跟後端拿資料</button>
 
       <% if params[:item_type] != 'deleted_item' %>
-        <% @pens.each do |pen| %>
-          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-          <div style="color:#fff;font-size:20px"><%= pen.html %></div>
-          
-          <%= button_to pen_path(pen, username: current_user.username), 
-                        remote: true, method: :get, class: 'show-details-btn' do %>
-            <i class="fas fa-expand-arrows-alt"></i>
+        <ul>
+          <% @pens.each do |pen| %>
+            <li>
+              ---
+              <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>,
+              <%= pen.html %>,
+              <%= link_to 'show', pen_path(pen, username: current_user.username)%>
+              <%# 下方會被 Turbolinks 影響，跳轉回/your-work，重整一次才有效果%>
+              <%= button_to pen_path(pen, username: current_user.username), 
+                            method: :get, class: 'show-details-btn' do %>
+                <i class="fas fa-expand-arrows-alt"></i>
+              <% end %>
+              ---
+            </li>
           <% end %>
-        <% end %>
-
+        </ul>
       <% else %>
         <% @deleted_pens.each do |pen| %>
           <div style="color:#fff;font-size:20px"><%= pen.title %></div>

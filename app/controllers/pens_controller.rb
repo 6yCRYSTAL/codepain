@@ -14,6 +14,8 @@ class PensController < ApplicationController
 
   def show
     current_pen
+    @comments = current_user.comments.order(id: :desc)
+    @comment = current_user.comments.new
 
     respond_to do |format|
       format.js 
@@ -38,6 +40,7 @@ class PensController < ApplicationController
 
   def current_pen
     @pen = current_user.pens.find_by(random_url: params[:random_url])
-    redirect_to pens_path if @pen.nil?
+    return (@pen) || (redirect_to pens_path )
   end
+
 end

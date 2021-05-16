@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', () => {
     let penURL = modal.dataset['url']
     let username = modal.children[0].children[0].textContent
     // change URL at window location
-    history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/pen/${penURL}`)
+    history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
     modal.style.display = 'block'
     modal.addEventListener('click', closeModal)
   }
@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load', () => {
     if (e.target === this) {
       this.style.display = 'none'
       // back to your-work
-      history.back()
+      history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
     }
   }
 })

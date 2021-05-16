@@ -1,0 +1,11 @@
+<% @deleted_pens.each do |pen| %>
+  <div style="color:#fff;font-size:20px"><%= pen.title %></div>
+  <div><button id="restore-or-del-btn" 
+              data-undo="<%= pen.id %>" 
+              style="color:#fff;font-size:20px;cursor:pointer;">
+              Restore</button></div>
+  <div><button id="restore-or-del-btn" 
+              data-forever-delete="<%= pen.id %>" 
+              style="color:#fff;font-size:20px;cursor:pointer;">
+              Really Delete</button></div>
+<% end %>

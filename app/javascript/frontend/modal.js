@@ -10,6 +10,10 @@ document.addEventListener('turbolinks:load', () => {
 
   function openModal(e) {
     let modal = this.nextElementSibling
+    let penURL = modal.dataset['url']
+    let username = modal.children[0].children[0].textContent
+    // change URL at window location
+    history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/pen/${penURL}`)
     modal.style.display = 'block'
     modal.addEventListener('click', closeModal)
   }
@@ -17,6 +21,8 @@ document.addEventListener('turbolinks:load', () => {
   function closeModal(e) {
     if (e.target === this) {
       this.style.display = 'none'
+      // back to your-work
+      history.back()
     }
   }
 })

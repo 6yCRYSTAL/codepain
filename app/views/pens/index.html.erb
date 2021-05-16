@@ -12,8 +12,9 @@
           <button class="modal-btn" id="modal-btn">
             <i class="fas fa-expand-arrows-alt"></i>
           </button>
-          <div id="modal" class="modal">
+          <div id="modal" class="modal" data-url="<%= pen.random_url %>">
             <div class="modal-content">
+              <a href="#" id="username"><%= current_user.username %></a>
               <%= pen.title %>
               <%= pen.html %>
               <%= pen.css %>
@@ -21,8 +22,6 @@
               這裡放comments
             </div>
           </div>
-            
-          
         <% end %>
 
       <% else %>

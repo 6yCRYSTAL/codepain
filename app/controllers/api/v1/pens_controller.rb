@@ -1,7 +1,13 @@
 class Api::V1::PensController < ApplicationController
   respond_to :json
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new]
+
+  def index
+    @pens = current_user.pens
+    p "YOU GOOD!! GET PENS DATA!!"
+    render(json: @pens)
+  end
   
   def create
     @pen = current_user.pens.new(clear_params)
@@ -14,27 +20,23 @@ class Api::V1::PensController < ApplicationController
   end
 
   def update
-    find_soft_deleting_pen
-    # change pen state to editing
-    @pen.restore
-    @pen.update(state: 'editing')
-    redirect_to pens_path(item_type: 'deleted_item')
-  end
+    current_pen
 
-  def destroy
-    find_soft_deleting_pen
-    # change pen state to archived
-    @pen.update(state: 'archived')
-    redirect_to pens_path(item_type: 'deleted_item')
+    if @pen.update(clear_params)
+      redirect_to edit_pen_path(@pen, username: current_user.username), notice: 'UPDATED!'
+    else
+      redirect_to pens_path
+    end
   end
 
   private
   
   def clear_params
-    params.require(:pen).permit(:title, :html, :css, :js, :username)
+    params.require(:pen).permit(:title, :html, :css, :js)
   end
 
-  def find_soft_deleting_pen
-    @pen = Pen.is_soft_deleting.find_by(id: params[:id])
+  def current_pen
+    @pen = current_user.pens.find_by(random_url: params[:random_url])
+    redirect_to pens_path if @pen.nil?
   end
 end

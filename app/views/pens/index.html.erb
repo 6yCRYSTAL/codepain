@@ -1,43 +1,25 @@
-    <table>
+<%= link_to 'Pens', pens_path %>
+<%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
+<button id="test">測試按鈕練習打api跟後端拿資料</button>
+
+<% if params[:item_type] != 'deleted_item' %>
   
-      <%= link_to 'Pens', pens_path %>
-      <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
+  <%= render 'pens' %>
 
-      <% if params[:item_type] != 'deleted_item' %>
-        <% @pens.each do |pen| %>
-          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-          <div style="color:#fff;font-size:20px"><%= pen.html %></div>
-          
-          <%= button_to pen_path(pen, username: current_user.username), 
-                        remote: true, method: :get, class: 'aaa' do %>
-            <i class="fas fa-chevron-left"></i>
-          <% end %>
-        <% end %>
+<% else %>
+  <%= render 'deleted_pens' %>
+<% end %>
 
-      <% else %>
-        <% @deleted_pens.each do |pen| %>
-          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-          <div><button id="restore-or-del-btn" 
-                      data-undo="<%= pen.id %>" 
-                      style="color:#fff;font-size:20px;cursor:pointer;">
-                      Restore</button></div>
-          <div><button id="restore-or-del-btn" 
-                      data-forever-delete="<%= pen.id %>" 
-                      style="color:#fff;font-size:20px;cursor:pointer;">
-                      Really Delete</button></div>
-        <% end %>
-      <% end %>
+<!--<% @pens.each do |pen| %>
+  <tr>
+    <td><%= pen.title %></td>
+    <%#= link_to pen.title, pen_path(pen) %> 
+    <%# to /:username/pen/:id(.:format)	pens#show%>
+    <td>preview btn</td>
+    <td><%= pen.created_at.strftime("%b %d, %Y") %></td>
+    <td><%= pen.updated_at.strftime("%b %d, %Y") %></td>
+    <td> pen.status </td>
+    <td> menu btn </td>
+  </tr>
+<% end %>-->
 
-    <!--<% @pens.each do |pen| %>
-      <tr>
-        <td><%= pen.title %></td>
-        <%#= link_to pen.title, pen_path(pen) %> 
-        <%# to /:username/pen/:id(.:format)	pens#show%>
-        <td>preview btn</td>
-        <td><%= pen.created_at.strftime("%b %d, %Y") %></td>
-        <td><%= pen.updated_at.strftime("%b %d, %Y") %></td>
-        <td> pen.status </td>
-        <td> menu btn </td>
-      </tr>
-    <% end %>-->
-    </table>

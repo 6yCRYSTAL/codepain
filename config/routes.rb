@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations', passwords: 'users/passwords', registrations: 'users/registrations', unlocks: 'users/unlocks', sessions: 'users/sessions' }
 
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:create, :update, :destroy]
+      resources :pens, only: [:index, :create, :update], param: :random_url
+      resources :deleted_pens, only: [:update, :destroy]
     end
   end
 end

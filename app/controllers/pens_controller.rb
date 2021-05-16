@@ -1,7 +1,7 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new]
   
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!
 
   def index
     @pens = current_user.pens.all
@@ -16,7 +16,7 @@ class PensController < ApplicationController
     current_pen
 
     respond_to do |format|
-      format.js 
+      format.js
       format.html
     end
   end

@@ -16,7 +16,7 @@ class PensController < ApplicationController
     current_pen
 
     respond_to do |format|
-      format.js 
+      format.js
       format.html
     end
   end

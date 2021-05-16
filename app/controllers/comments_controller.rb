@@ -12,6 +12,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+  end
+
+  def destroy
+    pen = current_comment.pen
+    current_comment.destroy
+    redirect_to pen_path(pen, username: current_user.username)
+  end 
+
 
   private
 
@@ -26,8 +35,8 @@ class CommentsController < ApplicationController
     return (@pen) || (p params )
   end
 
-
-  def find_soft_deleting_pen
-    @pen = Pen.is_soft_deleting.find_by(id: params[:id])
+  def current_comment
+    @comment = Comment.find_by(id: params[:id])
   end
+
 end

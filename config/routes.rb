@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-  post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
 
+  # comments
+  post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
+  resources :comments, only: [:update, :destroy]
+ 
   # static pages
   root 'statics#index'
 

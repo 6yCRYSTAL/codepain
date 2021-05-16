@@ -14,8 +14,10 @@ class PensController < ApplicationController
 
   def show
     current_pen
-    @comments = current_user.comments.order(id: :desc)
+    @comments = current_pen.comments.all.order(id: :desc)
+    @comments_counts = @comments.count
     @comment = current_user.comments.new
+    @current_user = current_user
 
     respond_to do |format|
       format.js 

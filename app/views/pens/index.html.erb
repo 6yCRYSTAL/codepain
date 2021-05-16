@@ -1,55 +1,25 @@
-    <table>
+<%= link_to 'Pens', pens_path %>
+<%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
+<button id="test">測試按鈕練習打api跟後端拿資料</button>
+
+<% if params[:item_type] != 'deleted_item' %>
   
-      <%= link_to 'Pens', pens_path %>, 
-      <%= link_to 'DELETE', pens_path(item_type: 'deleted_item') %>
-      <button id="test">測試按鈕練習打api跟後端拿資料</button>
+  <%= render 'pens' %>
 
-      <% if params[:item_type] != 'deleted_item' %>
-        <% @pens.each do |pen| %>
-          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-          <%#= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
-          <div style="color:#fff;font-size:20px"><%= pen.html %></div>
-          <div> <%= link_to 'show', pen_path(pen, username: current_user.username)%> </div>
-          
-          <button class="modal-btn" id="modal-btn">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </button>
-          <div id="modal" class="modal" data-url="<%= pen.random_url %>">
-            <div class="modal-content">
-              <a href="#" id="username"><%= current_user.username %></a>
-              <%= pen.title %>
-              <%= pen.html %>
-              <%= pen.css %>
-              <%= pen.js %>
-              這裡放comments
-            </div>
-          </div>
-        <% end %>
+<% else %>
+  <%= render 'deleted_pens' %>
+<% end %>
 
-      <% else %>
-        <% @deleted_pens.each do |pen| %>
-          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-          <div><button id="restore-or-del-btn" 
-                      data-undo="<%= pen.id %>" 
-                      style="color:#fff;font-size:20px;cursor:pointer;">
-                      Restore</button></div>
-          <div><button id="restore-or-del-btn" 
-                      data-forever-delete="<%= pen.id %>" 
-                      style="color:#fff;font-size:20px;cursor:pointer;">
-                      Really Delete</button></div>
-        <% end %>
-      <% end %>
+<!--<% @pens.each do |pen| %>
+  <tr>
+    <td><%= pen.title %></td>
+    <%#= link_to pen.title, pen_path(pen) %> 
+    <%# to /:username/pen/:id(.:format)	pens#show%>
+    <td>preview btn</td>
+    <td><%= pen.created_at.strftime("%b %d, %Y") %></td>
+    <td><%= pen.updated_at.strftime("%b %d, %Y") %></td>
+    <td> pen.status </td>
+    <td> menu btn </td>
+  </tr>
+<% end %>-->
 
-    <!--<% @pens.each do |pen| %>
-      <tr>
-        <td><%= pen.title %></td>
-        <%#= link_to pen.title, pen_path(pen) %> 
-        <%# to /:username/pen/:id(.:format)	pens#show%>
-        <td>preview btn</td>
-        <td><%= pen.created_at.strftime("%b %d, %Y") %></td>
-        <td><%= pen.updated_at.strftime("%b %d, %Y") %></td>
-        <td> pen.status </td>
-        <td> menu btn </td>
-      </tr>
-    <% end %>-->
-    </table>

@@ -11,7 +11,7 @@
     <% @pens.each do |pen| %>
       <tr>
         <th>
-          <%= pen.title %>
+          <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
           <%# modal %>
           <button class="modal-btn" id="modal-btn">
             <i class="fas fa-expand-arrows-alt"></i>

@@ -9,10 +9,20 @@
           <div style="color:#fff;font-size:20px"><%= pen.title %></div>
           <div style="color:#fff;font-size:20px"><%= pen.html %></div>
           
-          <%= button_to pen_path(pen, username: current_user.username), 
-                        remote: true, method: :get, class: 'show-details-btn' do %>
+          <button class="modal-btn" id="modal-btn">
             <i class="fas fa-expand-arrows-alt"></i>
-          <% end %>
+          </button>
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <%= pen.title %>
+              <%= pen.html %>
+              <%= pen.css %>
+              <%= pen.js %>
+              這裡放comments
+            </div>
+          </div>
+            
+          
         <% end %>
 
       <% else %>

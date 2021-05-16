@@ -1,11 +1,17 @@
 import "ace-builds/src-noconflict/ace.js"
-import "ace-builds/webpack-resolver"
-import "ace-builds/src-noconflict/ext-language_tools"
-import "ace-builds/src-noconflict/mode-html"
-import "ace-builds/src-noconflict/mode-css"
-import "ace-builds/src-noconflict/mode-javascript"
-import "ace-builds/src-noconflict/theme-twilight"
-import "ace-builds/src-noconflict/ext-error_marker"
+import "ace-builds/webpack-resolver.js"
+import "ace-builds/src-noconflict/ext-language_tools.js"
+import "ace-builds/src-noconflict/mode-html.js"
+import "ace-builds/src-noconflict/mode-css.js"
+import "ace-builds/src-noconflict/mode-javascript.js"
+import "emmet-core/emmet.js"
+import "ace-builds/src-noconflict/ext-emmet.js"
+import "ace-builds/src-noconflict/theme-twilight.js"
+import "ace-builds/src-noconflict/ext-error_marker.js"
+import 'ace-builds/src-noconflict/snippets/html.js'
+import 'ace-builds/src-noconflict/snippets/css.js'
+import 'ace-builds/src-noconflict/snippets/javascript.js'
+
 
 document.addEventListener('turbolinks:load', () => {
   // set Ace
@@ -22,6 +28,7 @@ document.addEventListener('turbolinks:load', () => {
       fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
+      enableEmmet: true,
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
@@ -33,6 +40,7 @@ document.addEventListener('turbolinks:load', () => {
       fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
+      enableEmmet: true,
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
@@ -48,13 +56,13 @@ document.addEventListener('turbolinks:load', () => {
       enableLiveAutocompletion: true,
       enableSnippets: true,
     })
-    editorHTML.getSession().on('change',function(){
+    editorHTML.getSession().on('change',() => {
       renderToiframe()
     })
-    editorCSS.getSession().on('change',function(){
+    editorCSS.getSession().on('change',() => {
       renderToiframe()
     })
-    editorJS.getSession().on('change',function(){
+    editorJS.getSession().on('change',() => {
       renderToiframe()
     })
   }
@@ -63,12 +71,12 @@ document.addEventListener('turbolinks:load', () => {
   function renderToiframe() {
     let result = document.querySelector('#edit--result').contentDocument
     result.open()
-    result.write(`${editorHTML.session.getValue()}`)
-    result.write(`<style>${editorCSS.session.getValue()}</style>`)
-    result.write(`<script>${editorJS.session.getValue()}</script>`)
+    result.write(`${editorHTML.getValue()}`)
+    result.write(`<style>${editorCSS.getValue()}</style>`)
+    result.write(`<script>${editorJS.getValue()}</script>`)
     result.close()
   }
-  
+
   // show console
   const consolecontainer = document.querySelector('.edit-console-container')
   const consoleResult = document.querySelector('.edit-console')
@@ -155,7 +163,7 @@ document.addEventListener('turbolinks:load', () => {
       shareBtnCopy.addEventListener('click', ()=> {
         shareBtnInput.select()
         document.execCommand('copy')
-        
+
       })
     })
   }

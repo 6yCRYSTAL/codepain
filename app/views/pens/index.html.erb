@@ -6,21 +6,40 @@
 
       <% if params[:item_type] != 'deleted_item' %>
         <ul>
-          <% @pens.each do |pen| %>
+          <%# @pens.each do |pen| %>
             <li>
               ---
-              <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>,
-              <%= pen.html %>,
-              <%= link_to 'show', pen_path(pen, username: current_user.username)%>
+              <%#= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>,
+              <%#= pen.html %>,
+              <%#= link_to 'show', pen_path(pen, username: current_user.username)%>
               <%# 下方會被 Turbolinks 影響，跳轉回/your-work，重整一次才有效果%>
-              <%= button_to pen_path(pen, username: current_user.username), 
+              <%#= button_to pen_path(pen, username: current_user.username), 
                             method: :get, class: 'show-details-btn' do %>
                 <i class="fas fa-expand-arrows-alt"></i>
-              <% end %>
+              <%# end %>
               ---
             </li>
-          <% end %>
+          <%# end %>
         </ul>
+        <% @pens.each do |pen| %>
+          <div style="color:#fff;font-size:20px"><%= pen.title %></div>
+          <div style="color:#fff;font-size:20px"><%= pen.html %></div>
+          
+          <button class="modal-btn" id="modal-btn">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
+          <div id="modal" class="modal" data-url="<%= pen.random_url %>">
+            <div class="modal-content">
+              <a href="#" id="username"><%= current_user.username %></a>
+              <%= pen.title %>
+              <%= pen.html %>
+              <%= pen.css %>
+              <%= pen.js %>
+              這裡放comments
+            </div>
+          </div>
+        <% end %>
+
       <% else %>
         <% @deleted_pens.each do |pen| %>
           <div style="color:#fff;font-size:20px"><%= pen.title %></div>

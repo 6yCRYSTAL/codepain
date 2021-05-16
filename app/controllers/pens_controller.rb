@@ -20,7 +20,7 @@ class PensController < ApplicationController
     @current_user = current_user
 
     respond_to do |format|
-      format.js 
+      format.js
       format.html
     end
   end

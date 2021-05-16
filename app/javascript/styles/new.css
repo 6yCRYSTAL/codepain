@@ -109,6 +109,7 @@
   height: 30px;
   bottom: 10px;
   line-height: 30px;
+  text-align: center;
   padding: 3px;
   cursor: pointer;
 }

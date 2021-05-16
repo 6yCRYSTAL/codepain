@@ -8,6 +8,7 @@ import "emmet-core/emmet.js"
 import "ace-builds/src-noconflict/ext-emmet.js"
 import "ace-builds/src-noconflict/theme-twilight.js"
 import "ace-builds/src-noconflict/ext-error_marker.js"
+import "ace-builds/src-noconflict/snippets/javascript.js"
 
 document.addEventListener('turbolinks:load', () => {
   // set Ace
@@ -72,8 +73,9 @@ document.addEventListener('turbolinks:load', () => {
     result.write(`<script>${editorJS.getValue()}</script>`)
     result.close()
   }
-  
-  // get console 
+
+  // show console
+  const consolecontainer = document.querySelector('.edit-console-container')
   const consoleResult = document.querySelector('.edit-console')
   const consoleBtn = document.querySelector('#console-btn')
   const clearConsoleBtn = document.querySelector('.edit-console-clear')

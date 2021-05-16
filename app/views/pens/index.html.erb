@@ -5,25 +5,11 @@
       <button id="test">測試按鈕練習打api跟後端拿資料</button>
 
       <% if params[:item_type] != 'deleted_item' %>
-        <ul>
-          <%# @pens.each do |pen| %>
-            <li>
-              ---
-              <%#= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>,
-              <%#= pen.html %>,
-              <%#= link_to 'show', pen_path(pen, username: current_user.username)%>
-              <%# 下方會被 Turbolinks 影響，跳轉回/your-work，重整一次才有效果%>
-              <%#= button_to pen_path(pen, username: current_user.username), 
-                            method: :get, class: 'show-details-btn' do %>
-                <i class="fas fa-expand-arrows-alt"></i>
-              <%# end %>
-              ---
-            </li>
-          <%# end %>
-        </ul>
         <% @pens.each do |pen| %>
           <div style="color:#fff;font-size:20px"><%= pen.title %></div>
+          <%#= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
           <div style="color:#fff;font-size:20px"><%= pen.html %></div>
+          <div> <%= link_to 'show', pen_path(pen, username: current_user.username)%> </div>
           
           <button class="modal-btn" id="modal-btn">
             <i class="fas fa-expand-arrows-alt"></i>

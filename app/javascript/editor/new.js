@@ -8,10 +8,6 @@ import "emmet-core/emmet.js"
 import "ace-builds/src-noconflict/ext-emmet.js"
 import "ace-builds/src-noconflict/theme-twilight.js"
 import "ace-builds/src-noconflict/ext-error_marker.js"
-import 'ace-builds/src-noconflict/snippets/html.js'
-import 'ace-builds/src-noconflict/snippets/css.js'
-import 'ace-builds/src-noconflict/snippets/javascript.js'
-
 
 document.addEventListener('turbolinks:load', () => {
   // set Ace
@@ -69,7 +65,7 @@ document.addEventListener('turbolinks:load', () => {
 
   // render to iframe
   function renderToiframe() {
-    let result = document.querySelector('#edit--result').contentDocument
+    let result = document.querySelector('#edit--result').contentWindow.document
     result.open()
     result.write(`${editorHTML.getValue()}`)
     result.write(`<style>${editorCSS.getValue()}</style>`)

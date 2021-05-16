@@ -79,9 +79,11 @@ document.addEventListener('turbolinks:load', () => {
   const consoleBtn = document.querySelector('#console-btn')
   const clearConsoleBtn = document.querySelector('.edit-console-clear')
   const closeConsoleBtn = document.querySelector('.edit-console-close')
-
+  const resultContainer = document.querySelector('.edit-result-container')
+  
   consoleBtn.addEventListener('click', () => {
     consolecontainer.classList.toggle('on')
+    resultContainer.classList.toggle('on')
     consoleMsg()
     clearConsole()
   })
@@ -122,6 +124,7 @@ document.addEventListener('turbolinks:load', () => {
   function closeConsole() {
     closeConsoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
+      resultContainer.classList.toggle('on')
     })
   }
  
@@ -134,7 +137,7 @@ document.addEventListener('turbolinks:load', () => {
       shareBox.setAttribute('class', 'share-box')
       shareBox.textContent = "Share The URL"
 
-      const editContainer = document.querySelector('.edit-zone-container:last-child')
+      const editContainer = document.querySelector('.iframe-console-container')
       editContainer.appendChild(shareBox)
 
       const shareBtnInput = document.createElement('input')

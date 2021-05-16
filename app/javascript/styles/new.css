@@ -1,4 +1,4 @@
-.edit-zone-container{
+.edit-zone-container, .iframe-console-container{
   width: 100%;
   height: 50%;
   display: flex;
@@ -38,6 +38,11 @@
   width: 100%;
   height: 100%;
 }
+.iframe-console-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 .edit-render-result{
   border: 0 solid transparent;
   background-color: var(--light-gray);
@@ -63,15 +68,18 @@
 .edit-console-clear{
   margin-left: auto;
 }
-
+.edit-result-container.on{
+  height: 50%;
+}
 .edit-console-container.on{
-  width: 50%;
+  position: absolute;
+  overflow: hidden;
+  bottom: 0px;
+  width: 100%;
+  height: 50%;
   display: block;
   background-color: var(--primary-gray-6);
   color: var(--primary-gray-1)
-}
-.edit-result-container{
-  position: relative;
 }
 
 .share-box{
@@ -82,7 +90,7 @@
   height: 120px;
   padding: 15px;
   right: 20px;
-  bottom: 30px;
+  bottom: 100px;
   z-index: 9;
 }
 .share-btn-input, .share-btn-copy{

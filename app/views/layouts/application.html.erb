@@ -14,7 +14,11 @@
     <%= notice %><%= alert %>
     <div class="container">
       <%= render './shared/sidebar' %>
-      <%= render './shared/usermenu_signin' %>
+      <% if current_user %>
+        <%= render './shared/usermenu_signin' %>
+      <% else %>
+        <%= render './shared/usermenu_signout' %>
+      <% end %>
       <main>
         <%= yield %>
       </main>

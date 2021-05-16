@@ -1,0 +1,36 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>Last Updated</th>
+      <th>Stats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pens.each do |pen| %>
+      <tr>
+        <th>
+          <%= pen.title %>
+          <%# modal %>
+          <button class="modal-btn" id="modal-btn">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
+          <div id="modal" class="modal" data-url="<%= pen.random_url %>">
+            <div class="modal-content">
+              <a href="#" id="username"><%= current_user.username %></a>
+              <%= pen.title %>
+              <%= pen.html %>
+              <%= pen.css %>
+              <%= pen.js %>
+              這裡放comments
+            </div>
+          </div>
+        </th>
+        <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
+        <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

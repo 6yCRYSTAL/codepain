@@ -4,6 +4,7 @@ document.addEventListener('turbolinks:load',function(){
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container');
   const OnClose = localStorage.getItem('onClose');
+  const btn = document.querySelector('#btn');
 
   // 登入頁-使用者選單
   if (UserMenuBtn) {
@@ -44,4 +45,82 @@ document.addEventListener('turbolinks:load',function(){
       }
     });
   }
+  const input = document.querySelector('#inputTitle')
+  btn.addEventListener('click', () => {
+    input.disabled = false
+    input.focus()
+    btn.style.display="none"
+  })
+  let allEvent = 0;
+  input.addEventListener('keyup', (e) => {
+    allEvent =  allEvent + 1;
+    if(e.keyCode === 13 && (allEvent !== 3)){
+      eventContent(e);
+    }else{
+      allEvent = 0;
+    }
+  })
+  input.addEventListener('blur', (e) => {
+    allEvent = allEvent + 2;
+    if(allEvent !== 3){
+      eventContent(e);
+    }else{
+      allEvent = 0;
+    }
+  })
+  let eventContent = (e)=>{
+    input.disabled = true
+    btn.style.display="inline"
+    let inputValue = e.target.value
+    postData(inputValue)
+  }
+
+
+
+  function postData(inputValue) {
+    console.log(inputValue);
+    // axios.post('#', { name: inputValue })
+    // .then((res) => { console.log(res) })
+    // .catch((error) => { console.log(error) })
+    
+  }
+
+  // function eventContent(e) {
+  //   e.target.disabled = true
+  //   btn.style.display="inline"
+  //   let inputValue = e.target.value
+  //   return inputValue
+  //   // postData(inputValue);
+  // }
+  // function eventInput() {
+    // var isTouchEnabled = true || false;
+    // input.addEventListener(isTouchEnabled ? 'keyup' : 'blur' , (e) =>{
+    // });
+    //  let test = 0
+    // 失去焦點
+    // let count = 0;
+    // input.addEventListener('blur', (e) => {
+    //   test++
+    //   eventContent(e);
+    //   console.log(test);
+    // })
+   
+    // input.addEventListener('keyup', (e) => {
+    //   if(e.keyCode === 13){
+    //     e.target.disabled = true
+    //     btn.style.display="inline"
+    //     let inputValue = e.target.value
+    //     let ss= document.getElementById('dd')
+    //     ss.textContent += inputValue
+    //     // console.log(inputValue);
+    //     // postData(inputValue);
+        
+    //   }
+      
+    // })
+
+ 
+  // }
+
+
 })

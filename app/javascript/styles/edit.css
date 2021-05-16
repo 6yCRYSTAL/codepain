@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 .edit-header{
-  height: 65px;
+  /* height: 65px; */
   padding: 0 1rem;
   justify-content: space-between;
 }

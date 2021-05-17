@@ -5,6 +5,7 @@
       <th>Created</th>
       <th>Last Updated</th>
       <th>Stats</th>
+      <th>Show </th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
       <tr>
         <th>
           <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
+          
           <%# modal %>
           <button class="modal-btn" id="modal-btn">
             <i class="fas fa-expand-arrows-alt"></i>
@@ -23,13 +25,13 @@
               <%= pen.html %>
               <%= pen.css %>
               <%= pen.js %>
-              這裡放comments
+              這裡放comments，重整跳到show
             </div>
           </div>
         </th>
         <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
         <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
-        <td></td>
+        <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
       </tr>
     <% end %>
   </tbody>

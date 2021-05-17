@@ -4,7 +4,6 @@ document.addEventListener('turbolinks:load',function(){
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container');
   const OnClose = localStorage.getItem('onClose');
-  const editBtn = document.querySelector('#btn');
 
   // 登入頁-使用者選單
   if (UserMenuBtn) {
@@ -45,50 +44,4 @@ document.addEventListener('turbolinks:load',function(){
       }
     });
   }
-
-  if (editBtn){
-    const input = document.querySelector('#inputTitle');
-    const title = document.querySelector('#edit-title');
-    editBtn.addEventListener('click', () => {
-      title.textContent= '';
-      title.style.display="none";
-      input.style.display="inline";
-      editBtn.style.display="none";
-      input.focus();
-    })
-    let allEvent = 0;
-    input.addEventListener('keyup', (e) => {
-      allEvent =  allEvent + 1;
-      if(e.keyCode === 13 && (allEvent !== 3)){
-        eventContent(e);
-      }else{
-        allEvent = 0;
-      }
-    })
-    input.addEventListener('blur', (e) => {
-      allEvent = allEvent + 2;
-      if(allEvent !== 3){
-        eventContent(e);
-      }else{
-        allEvent = 0;
-      }
-    })
-    let eventContent = (e)=>{
-      title.style.display="inline";
-      input.style.display="none";
-      editBtn.style.display="inline";
-      let inputValue = e.target.value;
-      title.textContent= inputValue;
-      postData(inputValue)
-    }
-
-    function postData(inputValue) {
-      console.log(inputValue);
-      axios.post('', { name: 'Mark' })
-      .catch((error) => { console.error(error) })
-    }
-  }
-
-
-
 })

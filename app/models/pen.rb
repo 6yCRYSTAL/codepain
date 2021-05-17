@@ -5,6 +5,7 @@ class Pen < ApplicationRecord
   before_create :generate_random_url
 
   belongs_to :user
+  has_many :comments
 
   scope :is_soft_deleting, -> { only_deleted.where(state: 'soft_deleting') }
   scope :deleted_in_1_hour, -> { is_soft_deleting.where('deleted_at > ?', 1.hour.ago) }

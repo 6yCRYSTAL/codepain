@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations', passwords: 'users/passwords', registrations: 'users/registrations', unlocks: 'users/unlocks', sessions: 'users/sessions' }
 
   devise_scope :user do
-    get 'login', to: 'devise/sessions#new'
-    delete 'logout', to: 'devise/sessions#destroy'
+    get 'login', to: 'users/sessions#new'
+    delete 'logout', to: 'users/sessions#destroy'
   end
 
   # pens

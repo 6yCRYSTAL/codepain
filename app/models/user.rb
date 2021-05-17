@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google, :facebook]
   
-  has_many :comments
   has_many :pens, dependent: :destroy
+  has_many :comments
 
   def self.from_omniauth_provider(auth)
     data = auth.info

@@ -1,21 +1,23 @@
 import "ace-builds/src-noconflict/ace.js"
-import "ace-builds/webpack-resolver"
-import "ace-builds/src-noconflict/ext-language_tools"
-import "ace-builds/src-noconflict/mode-html"
-import "ace-builds/src-noconflict/mode-css"
-import "ace-builds/src-noconflict/mode-javascript"
-import "ace-builds/src-noconflict/theme-twilight"
-import "ace-builds/src-noconflict/ext-error_marker"
+import "ace-builds/webpack-resolver.js"
+import "ace-builds/src-noconflict/ext-language_tools.js"
+import "ace-builds/src-noconflict/mode-html.js"
+import "ace-builds/src-noconflict/mode-css.js"
+import "ace-builds/src-noconflict/mode-javascript.js"
+import "emmet-core/emmet.js"
+import "ace-builds/src-noconflict/ext-emmet.js"
+import "ace-builds/src-noconflict/theme-twilight.js"
+import "ace-builds/src-noconflict/ext-error_marker.js"
+import "ace-builds/src-noconflict/snippets/javascript.js"
 
 document.addEventListener('turbolinks:load', () => {
-  //set Ace
-  ace.require("ace/ext/language_tools");
+  // set Ace
   let editorHTML = ace.edit("editor--html")
   let editorCSS = ace.edit("editor--css")
   let editorJS = ace.edit("editor--js")
 
-  let init = () => {
-    //set options
+  function init() {
+    // set options
     editorHTML.setOptions({
       mode: "ace/mode/html",
       theme: "ace/theme/twilight",
@@ -23,6 +25,7 @@ document.addEventListener('turbolinks:load', () => {
       fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
+      enableEmmet: true,
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
@@ -34,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
       fontFamily: 'monospace',
       fontSize: '12pt',
       tabSize: '2',
+      enableEmmet: true,
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
@@ -49,37 +53,47 @@ document.addEventListener('turbolinks:load', () => {
       enableLiveAutocompletion: true,
       enableSnippets: true,
     })
-    editorHTML.getSession().on('change',function(){
+    editorHTML.getSession().on('change',() => {
       renderToiframe()
     })
-    editorCSS.getSession().on('change',function(){
+    editorCSS.getSession().on('change',() => {
       renderToiframe()
     })
-    editorJS.getSession().on('change',function(){
+    editorJS.getSession().on('change',() => {
       renderToiframe()
     })
   }
 
-   postMessage
-  //render to iframe
-  let renderToiframe  = () => {
-    let result = document.querySelector('#edit--result').contentDocument
+  // render to iframe
+  function renderToiframe() {
+    let result = document.querySelector('#edit--result').contentWindow.document
     result.open()
-    result.write(`${editorHTML.session.getValue()}`)
-    result.write(`<style>${editorCSS.session.getValue()}</style>`)
-    result.write(`<script>${editorJS.session.getValue()}</script>`)
+    result.write(`${editorHTML.getValue()}`)
+    result.write(`<style>${editorCSS.getValue()}</style>`)
+    result.write(`<script>${editorJS.getValue()}</script>`)
     result.close()
   }
-  
-  // get console 
-  const consoleResult = document.querySelector('.edit-console')
-  const editConsole = document.querySelector('#console-btn')
-  const clearConsole = document.querySelector('#clear-console-btn')
-  
-  // 把 原本的console 備份起來
-  let oldConsole = console
 
-  editConsole.addEventListener('click', ()=>{
+  // show console
+  const consolecontainer = document.querySelector('.edit-console-container')
+  const consoleResult = document.querySelector('.edit-console')
+  const consoleBtn = document.querySelector('#console-btn')
+  const clearConsoleBtn = document.querySelector('.edit-console-clear')
+  const closeConsoleBtn = document.querySelector('.edit-console-close')
+  const resultContainer = document.querySelector('.edit-result-container')
+  
+  consoleBtn.addEventListener('click', () => {
+    consolecontainer.classList.toggle('on')
+    resultContainer.classList.toggle('on')
+    consoleMsg()
+    clearConsole()
+  })
+
+  // get console msg
+  function consoleMsg() {
+    // 先把原本的console 備份起來
+    let oldConsole = console
+
     editorJS.getSession().on('change', ()=>{
       let stdoutMsg = ""
       // 改寫 console
@@ -88,30 +102,74 @@ document.addEventListener('turbolinks:load', () => {
           stdoutMsg += `${msg}\n`
         }
       }
-
+  
       try{
         eval(editorJS.session.getValue())
         consoleResult.innerText = stdoutMsg
-      } catch (err) {
-        let msg = `${err.name}: ${err.message}`
+      } catch (e) {
+        let msg = `${e.name}: ${e.message}`
         consoleResult.innerText = msg
       }
       // 恢復原本的 console.log
       window.console = oldConsole
     })
-  })
+  }
   // clear console
-  clearConsole.addEventListener('click', () => {
-    consoleResult.innerText = ""
-  })
+  function clearConsole() {
+    clearConsoleBtn.addEventListener('click', () => {
+      consoleResult.innerText = ""
+    })
+  }
 
+  // close console
+  function closeConsole() {
+    closeConsoleBtn.addEventListener('click', () => {
+      consolecontainer.classList.toggle('on')
+      resultContainer.classList.toggle('on')
+    })
+  }
+ 
+  // share btn get url
+  function shareURL() {
+    const shareBtn = document.querySelector('#edit-share-btn')
 
-  //share btn get web url
-  document.querySelector('#edit-share-btn').addEventListener('click', () => {
-    alert(location.href)
-  })
+    shareBtn.addEventListener('click', () => {
+      const shareBox = document.createElement('div')
+      shareBox.setAttribute('class', 'share-box')
+      shareBox.textContent = "Share The URL"
+
+      const editContainer = document.querySelector('.iframe-console-container')
+      editContainer.appendChild(shareBox)
+
+      const shareBtnInput = document.createElement('input')
+      shareBtnInput.setAttribute('class', 'share-btn-input')
+      shareBox.appendChild(shareBtnInput)
+      shareBtnInput.value = window.location.href
+
+      const shareBtnCopy = document.createElement('div')
+      shareBtnCopy.setAttribute('class', 'share-btn-copy')
+      shareBox.appendChild(shareBtnCopy)
+      shareBtnCopy.textContent = "Copy Link"
+
+      const closeBox = document.createElement('span')
+      closeBox.setAttribute('class', 'share-box-close')
+      closeBox.textContent = "x"
+      shareBox.appendChild(closeBox)
+      
+      closeBox.addEventListener('click', () => {
+        shareBox.remove()
+      })
+
+      shareBtnCopy.addEventListener('click', ()=> {
+        shareBtnInput.select()
+        document.execCommand('copy')
+
+      })
+    })
+  }
 
   init()
   renderToiframe()
+  closeConsole()
+  shareURL()
 })
-

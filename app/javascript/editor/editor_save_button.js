@@ -1,17 +1,13 @@
-import axios from 'axios'
 import Rails from '@rails/ujs'
 
 document.addEventListener('turbolinks:load', () => {
-  const saveBtn = document.querySelector('#btn-save')
-  const editBtn = document.querySelector('#btn');
-  // let ax = axios.create()
-  // let token = document.querySelector('meta[name=csrf-token]').content
-  // ax.defaults.headers.common['X-CSRF-Token'] = token
+  const saveBtn = document.querySelector('#btn-save');
+  const editBtn = document.querySelector('#btn-edit');
+  const input = document.querySelector('#inputTitle');
+  const title = document.querySelector('#edit-title');
 
-  // edit 儲存資料與編輯文字
+  // edit 編輯和存取
   if (editBtn && saveBtn){
-    const input = document.querySelector('#inputTitle');
-    const title = document.querySelector('#edit-title');
     editBtn.addEventListener('click', () => {
       title.textContent= '';
       title.style.display="none";
@@ -37,28 +33,15 @@ document.addEventListener('turbolinks:load', () => {
       }
     })
     let eventContent = (e)=>{
-      let inputValue = e.target.value;
       title.style.display="inline";
       input.style.display="none";
       editBtn.style.display="inline";
-      title.textContent= inputValue;
-      titleNew = title.textContent;
-
-      // ax.post('/api/v1/pens',data)
-      //   .then(response => {
-      //     console.log(response)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-      // var data = {
-      //   title: titleNew
-      // }
-
+      let inputValue = e.target.value;
+      titleNew = title.textContent = inputValue;
+      console.log(titleNew);
     }
-  
     
-    let titleNew = document.querySelector('#edit-title').textContent
+    let titleNew
     let username = document.querySelector('#username').textContent
     let html = ace.edit("editor--html")
     let css = ace.edit("editor--css")
@@ -95,5 +78,4 @@ document.addEventListener('turbolinks:load', () => {
       })
     })
   }
-
 })

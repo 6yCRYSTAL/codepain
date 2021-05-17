@@ -1,0 +1,26 @@
+<h1>show page of <%= @pen.html%> </h1>
+
+<h3>Comment</h3>
+<%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url )) do |form| %>
+  <div>
+    <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<div id="comment_area">
+  <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
+
+  <% @comments.each do |comment| %>
+    <section id="">
+      <%= "#{current_user.display_name} (@#{current_user.username})"  %>
+      <%= comment.content %>
+      <%= time_ago_in_words(comment.created_at) + ' ago'%>
+      <%= link_to "Edit", comment_path(comment), method: "put" %>
+      <%= link_to "Delete", comment_path(comment), method: "delete",
+                  data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
+    </section>
+  <% end %>
+</div>
+
+<%= link_to '回到your_work', pens_path%>

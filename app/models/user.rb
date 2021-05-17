@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google, :facebook]
   
   has_many :pens, dependent: :destroy
+  has_many :comments
 
   def self.from_omniauth_provider(auth)
     data = auth.info

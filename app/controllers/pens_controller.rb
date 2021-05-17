@@ -1,41 +1,43 @@
 class PensController < ApplicationController
-  # before_action :authenticate_user!, except: [:new] 
-  # after User modle complete
   layout 'edit',only: [:new]
   
+  before_action :authenticate_user!
+
   def index
-    @pens = Pen.all
-    @deleted_pens = Pen.deleted_in_1_hour
+    @pens = current_user.pens.all
+    @deleted_pens = current_user.pens.deleted_in_1_hour
   end
   
   def new
     @pen = Pen.new
   end
 
-  def create
+  def show
+    current_pen
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def edit
     current_pen
   end
-  
-  def show
-  end
 
   def destroy
-    # @pen = current_user.pens.find_by(:random_url)
-    # TODO:等到USER可以登入後就要加入current_user
-    @pen = Pen.find_by(random_url: params[:random_url])
+    current_pen
+    # change pen state
     @pen.update(state: 'soft_deleting')
     # soft_delete the pen
     @pen.destroy
-    redirect_to root_path, notice: "DELETED!!!"
+    redirect_to pens_path, notice: "DELETED!!!"
   end
 
   private
 
   def current_pen
-    @pen = Pen.find_by(random_url: params[:random_url])
+    @pen = current_user.pens.find_by(random_url: params[:random_url])
     redirect_to pens_path if @pen.nil?
   end
 end

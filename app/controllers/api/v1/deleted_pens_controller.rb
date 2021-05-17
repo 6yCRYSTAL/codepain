@@ -1,7 +1,7 @@
 class Api::V1::DeletedPensController < ApplicationController
   respond_to :json
-  # TODO:等到USER可以登入後就要加入
-  # before_action :authenticate_user!
+
+  before_action :authenticate_user!
 
   def update
     find_soft_deleting_pen
@@ -19,6 +19,7 @@ class Api::V1::DeletedPensController < ApplicationController
   end
 
   private
+
   def find_soft_deleting_pen
     @pen = Pen.is_soft_deleting.find_by(id: params[:id])
   end

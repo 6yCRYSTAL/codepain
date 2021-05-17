@@ -11,7 +11,7 @@ class Api::V1::PensController < ApplicationController
   
   def create
     @pen = current_user.pens.new(pen_params)
-
+    p "#{pen_params}----------"
     if @pen.save
       redirect_to edit_pen_path(@pen, username: current_user.username)
     else
@@ -46,7 +46,13 @@ class Api::V1::PensController < ApplicationController
   end
   
   def pen_params
-    params.require(:pen).permit(:title, :html, :css, :js)
+    clean_params = params.require(:pen).permit(:title, :html, :css, :js)
+    
+    if clean_params[:title] == "Untitled"
+      clean_params.merge(title: "A Pen by #{current_user.display_name}")
+    else
+      clean_params
+    end
   end
 
   def current_pen

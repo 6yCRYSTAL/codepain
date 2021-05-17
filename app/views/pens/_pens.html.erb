@@ -1,8 +1,3 @@
-<%= form_for(@pens) do |f| %>
-  <%= f.search_field :pen, :title, placeholder: 'Search for...' %>
-  <%= f.submit 'Search' %>
-<% end %>
-  
 <table>
   <thead>
     <tr>
@@ -14,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @pens.each do |pen| %>
+    <% pens.each do |pen| %>
       <tr>
         <th>
           <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>

@@ -8,6 +8,7 @@ class Pen < ApplicationRecord
 
   scope :is_soft_deleting, -> { only_deleted.where(state: 'soft_deleting') }
   scope :deleted_in_1_hour, -> { is_soft_deleting.where('deleted_at > ?', 1.hour.ago) }
+  scope :find_pen_by_search_keyword, -> search_params { where('title Ilike ?', "%#{search_params}%") }
 
   def generate_random_url
     require 'securerandom'

@@ -3,12 +3,23 @@
 <button id="test">測試按鈕練習打api跟後端拿資料</button>
 
 <% if params[:item_type] != 'deleted_item' %>
-
-  <%= render 'pens' %>
+  <%# search bar %>
+  <%= form_tag pens_path, method: 'get' do %>
+    <%= label_tag :search, 'SEARCH' %>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search for...' %>
+    <%= submit_tag :search, title: nil %>
+  <% end %>
+  <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
+  <% if @pens.count == 0 %>
+    <p>No results for <%= params[:search] %></p>
+  <% else %>
+    <%= render 'pens', pens: @pens %>
+  <% end %>
+  
 
 <% else %>
 
-  <%= render 'deleted_pens' %>
+  <%= render 'deleted_pens', deleted_pens: @deleted_pens %>
   
 <% end %>
 

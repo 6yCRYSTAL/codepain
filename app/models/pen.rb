@@ -1,5 +1,6 @@
 class Pen < ApplicationRecord
   acts_as_paranoid
+  is_impressionable
 
   validates :random_url, uniqueness: true
   before_create :generate_random_url

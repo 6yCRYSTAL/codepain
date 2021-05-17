@@ -1,7 +1,8 @@
 class PensController < ApplicationController
-  layout 'edit',only: [:new]
+  layout 'edit',only: [:new, :edit]
   
   before_action :authenticate_user!
+  # impressionist :actions=>[:edit]
 
   def index
     @pens = current_user.pens.all
@@ -23,6 +24,8 @@ class PensController < ApplicationController
 
   def edit
     current_pen
+    puts @pen.id
+    impressionist(@pen)
   end
 
   def destroy

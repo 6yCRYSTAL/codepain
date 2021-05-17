@@ -10,7 +10,7 @@ class Api::V1::PensController < ApplicationController
   end
   
   def create
-    @pen = current_user.pens.new(clear_params)
+    @pen = current_user.pens.new(pen_params)
 
     if @pen.save
       redirect_to edit_pen_path(@pen, username: current_user.username)
@@ -22,16 +22,30 @@ class Api::V1::PensController < ApplicationController
   def update
     current_pen
 
-    if @pen.update(clear_params)
+    if @pen.update(pen_params)
       redirect_to edit_pen_path(@pen, username: current_user.username), notice: 'UPDATED!'
     else
       redirect_to pens_path
     end
   end
 
+  def love_list
+    @pen = Pen.find_by(random_url: love_params[:random_url])
+
+    if current_user.loved?(@pen)
+      current_user.love_pens.destroy(@pen)
+    else
+      current_user.love_pens << @pen
+    end
+  end
+
   private
+
+  def love_params
+    params.permit(:random_url)
+  end
   
-  def clear_params
+  def pen_params
     params.require(:pen).permit(:title, :html, :css, :js)
   end
 

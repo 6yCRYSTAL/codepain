@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_064427) do
+ActiveRecord::Schema.define(version: 2021_05_17_094257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "pen_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
+    t.index ["pen_id"], name: "index_comments_on_pen_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
@@ -40,18 +52,6 @@ ActiveRecord::Schema.define(version: 2021_05_17_064427) do
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
-  
-  create_table "comments", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id", null: false
-    t.bigint "pen_id", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
-    t.index ["pen_id"], name: "index_comments_on_pen_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
 
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_064427) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
+    t.integer "edit_view_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"

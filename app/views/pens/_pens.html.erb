@@ -32,6 +32,7 @@
         <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
         <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
         <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
+        <td><i class="fas fa-eye"></i><%= pen.edit_view_count %></td>
       </tr>
     <% end %>
   </tbody>

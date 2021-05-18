@@ -11,7 +11,6 @@ class Api::V1::PensController < ApplicationController
   
   def create
     @pen = current_user.pens.new(pen_params)
-    p "#{pen_params}----------"
     if @pen.save
       redirect_to edit_pen_path(@pen, username: current_user.username)
     else
@@ -34,8 +33,10 @@ class Api::V1::PensController < ApplicationController
 
     if current_user.loved?(@pen)
       current_user.love_pens.destroy(@pen)
+      render json: { status: 'removed' }
     else
       current_user.love_pens << @pen
+      render json: { status: 'added' }
     end
   end
 

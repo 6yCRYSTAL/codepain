@@ -7,7 +7,6 @@ class PensController < ApplicationController
   def index
     # pens tab / all or search
     @pens = search_pen(clear_search_params)
-    p @pens
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
@@ -37,7 +36,6 @@ class PensController < ApplicationController
 
   def edit
     current_pen
-    puts @pen.id
     impressionist(@pen)
   end
 
@@ -72,5 +70,4 @@ class PensController < ApplicationController
       redirect_to pens_path
     end
   end
-
 end

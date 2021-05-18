@@ -2,9 +2,14 @@ class PensController < ApplicationController
   layout 'edit',only: [:new, :edit]
   
   before_action :authenticate_user!
+  # impressionist :actions=>[:edit]
 
   def index
-    @pens = current_user.pens.all
+    # pens tab / all or search
+    @pens = search_pen(clear_search_params)
+    p @pens
+
+    # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
     
     # for Comment
@@ -32,6 +37,8 @@ class PensController < ApplicationController
 
   def edit
     current_pen
+    puts @pen.id
+    impressionist(@pen)
   end
 
   def destroy
@@ -44,6 +51,16 @@ class PensController < ApplicationController
   end
 
   private
+  def clear_search_params
+    params.permit(:search)
+  end
+
+  def search_pen(search_params)
+    # 如果沒搜尋 那就給他user所有的pens
+    return current_user.pens if search_params[:search].nil?
+    # 有搜尋的話就去db撈資料
+      current_user.pens.find_pen_by_search_keyword(search_params[:search])
+  end
 
   def current_pen
     @pen = current_user.pens.find_by(random_url: params[:random_url])

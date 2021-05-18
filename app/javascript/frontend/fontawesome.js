@@ -11,6 +11,7 @@ import {
   faChevronDown,
   faAngleDown,
   faExpandArrowsAlt,
+  faEye
  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -23,6 +24,7 @@ library.add(
   faThumbtack,
   faChevronDown,
   faAngleDown,
-  faExpandArrowsAlt
+  faExpandArrowsAlt,
+  faEye
   )
 dom.watch()

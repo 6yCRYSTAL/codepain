@@ -8,15 +8,21 @@
   <%= form.submit %>
 <% end %>
 
-<div id="comment_area">
+<div id="comment_area" >
   <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
 
   <% @comments.each do |comment| %>
-    <section id="">
-      <%= "#{current_user.display_name} (@#{current_user.username})"  %>
-      <%= comment.content %>
-      <%= time_ago_in_words(comment.created_at) + ' ago'%>
-      <%= link_to "Edit", comment_path(comment), method: "put" %>
+    <section id="comment-area">
+      <span id="user-info"> <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
+      <span id="time-info"><%= time_ago_in_words(comment.created_at) + ' ago'%></span>
+      <span id="comment-content"><%= comment.content %></span>
+      <span
+        data-controller="comment"        
+        data-action="click->comment#update"
+        data-comment-target="edit-btn"
+        data-comment-id="<%= comment.id %>" >
+        Edit
+      </span>
       <%= link_to "Delete", comment_path(comment), method: "delete",
                   data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
     </section>

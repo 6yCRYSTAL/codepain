@@ -7,8 +7,7 @@
   overflow: hidden;
 }
 .edit-header{
-  height: 65px;
-  padding: 0 1rem;
+  padding: .5rem 1rem;
   justify-content: space-between;
 }
 .edit-title-header svg{
@@ -60,20 +59,30 @@
 }
 .edit-title-area{
   padding-left: .5rem;
-}
-.edit-title-area h1{
   color: var(--light-gray);
+}
+.edit-title-area h1,.edit-title-area input{
   font-size: var(--text-h6);
   letter-spacing: .2px;
   margin: 0;
   padding: .2rem 0;
+  display: inline-block;
+  color: var(--light-gray);
 }
 .edit-title-area span{
-  padding-left: .5rem;
+  padding-left: 2px;
+  padding-bottom: 2px;
 }
 .edit-author{
   font-size: var(--text-s-p);
   color: var(--primary-gray-1);
+}
+.edit-title-area input{
+  background-color: transparent;
+  border: none;
+  outline: medium;
+  font-weight: bold;
+  padding: 0;
 }
 /* header end */
 /* footer */

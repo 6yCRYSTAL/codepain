@@ -27,6 +27,39 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "impressions", force: :cascade do |t|
+    t.string "impressionable_type"
+    t.integer "impressionable_id"
+    t.integer "user_id"
+    t.string "controller_name"
+    t.string "action_name"
+    t.string "view_name"
+    t.string "request_hash"
+    t.string "ip_address"
+    t.string "session_hash"
+    t.text "message"
+    t.text "referrer"
+    t.text "params"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
+    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+    t.index ["user_id"], name: "index_impressions_on_user_id"
+  create_table "heart_lists", force: :cascade do |t|
+    t.bigint "pen_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pen_id"], name: "index_heart_lists_on_pen_id"
+    t.index ["user_id"], name: "index_heart_lists_on_user_id"
+  end
+
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -39,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
     t.integer "comments_count", default: 0
+    t.integer "edit_view_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"
@@ -70,5 +104,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
 
   add_foreign_key "comments", "pens"
   add_foreign_key "comments", "users"
+  add_foreign_key "heart_lists", "pens"
+  add_foreign_key "heart_lists", "users"
   add_foreign_key "pens", "users"
 end

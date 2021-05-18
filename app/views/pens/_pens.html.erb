@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @pens.each do |pen| %>
+    <% pens.each do |pen| %>
       <tr>
         <th>
           <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
@@ -22,15 +22,17 @@
             <div class="modal-content">
               <a href="#" id="username"><%= current_user.username %></a>
               <%= pen.title %>
-              <%= pen.html %>
-              <%= pen.css %>
-              <%= pen.js %>
-              這裡放comments，重整跳到show
             </div>
           </div>
         </th>
         <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
         <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
+        <td>
+          <div class="hearts">愛心</div>
+          <div class="comments">評論</div>
+          <div class="views">眼睛</div>
+        </td>
+        <td>三個點</td>
         <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
         <td><i class="fas fa-eye"></i><%= pen.edit_view_count %></td>
       </tr>

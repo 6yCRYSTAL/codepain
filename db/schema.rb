@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_065613) do
+ActiveRecord::Schema.define(version: 2021_05_17_094257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,32 @@ ActiveRecord::Schema.define(version: 2021_05_17_065613) do
     t.index ["user_id"], name: "index_heart_lists_on_user_id"
   end
 
+  create_table "impressions", force: :cascade do |t|
+    t.string "impressionable_type"
+    t.integer "impressionable_id"
+    t.integer "user_id"
+    t.string "controller_name"
+    t.string "action_name"
+    t.string "view_name"
+    t.string "request_hash"
+    t.string "ip_address"
+    t.string "session_hash"
+    t.text "message"
+    t.text "referrer"
+    t.text "params"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
+    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+    t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -47,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_065613) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
+    t.integer "edit_view_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"

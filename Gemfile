@@ -52,6 +52,10 @@ gem 'figaro', '~> 1.2'
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial
 gem 'react_on_rails', '~> 12.2'
 
+# view counter
+# https://github.com/charlotte-ruby/impressionist
+gem 'impressionist'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -68,6 +72,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem "foreman", "~> 0.87.2"
+  gem 'hirb', '~> 0.7.3'
 end
 
 group :test do

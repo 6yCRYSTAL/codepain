@@ -1,0 +1,15 @@
+diff --git a/node_modules/emmet-core/emmet.js b/node_modules/emmet-core/emmet.js
+index 394aeb3..cb2cbba 100644
+--- a/node_modules/emmet-core/emmet.js
++++ b/node_modules/emmet-core/emmet.js
+@@ -14633,8 +14633,8 @@ define(function(require, exports, module) {
+ 		 * @return {Object} Object with <code>width</code> and <code>height</code> properties
+ 		 */
+ 		getImageSize: function(stream) {
+-			var pngMagicNum = "\211PNG\r\n\032\n",
+-				jpgMagicNum = "\377\330",
++			var pngMagicNum = "211PNG\r\n032\n",
++				jpgMagicNum = "377330",
+ 				gifMagicNum = "GIF8",
+ 				pos = 0,
+ 				nextByte = function() {

@@ -3,6 +3,7 @@ class PensController < ApplicationController
   
   before_action :authenticate_user!
   # impressionist :actions=>[:edit]
+  
 
   def index
     # pens tab / all or search

@@ -1,5 +1,6 @@
 class Pen < ApplicationRecord
   acts_as_paranoid
+  is_impressionable counter_cache: true, column_name: :edit_view_count, unique: :session_hash
 
   validates :random_url, uniqueness: true
   before_create :generate_random_url

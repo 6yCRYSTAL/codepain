@@ -22,5 +22,7 @@
     </section>
   <% end %>
 </div>
-
+<% if @pen.edit_view_count != 0 %>
+  <div id="view_count"><i class="fas fa-eye"></i> <%= @pen.edit_view_count %> Views</div>
+<% end %>
 <%= link_to '回到your_work', pens_path%>

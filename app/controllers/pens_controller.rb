@@ -1,6 +1,6 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new, :edit]
-  
+  layout 'show',only: [:show]
   before_action :authenticate_user!
   # impressionist :actions=>[:edit]
 

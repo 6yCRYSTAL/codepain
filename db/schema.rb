@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_094257) do
+ActiveRecord::Schema.define(version: 2021_05_17_204238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_094257) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
+    t.integer "comments_count", default: 0
     t.integer "edit_view_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true

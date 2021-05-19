@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_many :pens, dependent: :destroy
   has_many :comments
+  has_many :orders
 
   def self.from_omniauth_provider(auth)
     data = auth.info

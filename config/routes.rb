@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :update], param: :random_url
+      resources :pens, only: [:index, :create, :update], param: :random_url do
+        member do
+          post :love, action: 'love_list'
+        end
+      end
       resources :deleted_pens, only: [:update, :destroy]
     end
   end

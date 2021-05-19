@@ -278,3 +278,78 @@ label {
 .hidden {
   display: none;
 }
+
+.login-flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  color: white;
+  background-color: #1b1c24;
+}
+
+.login-divider {
+  width: 0%;
+  position: relative;
+}
+
+.login-or {
+  position: absolute;
+  width: 46px;
+  top: 41%;
+  height: 18%;
+  left: -23px;
+  border: 2px solid #9b9dad;
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  line-height: 30px;
+  color: #b7bbc8;
+  box-sizing: border-box;
+}
+
+.bar-bottom {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  width: 2px;
+  height: 41%;
+  background-color: #9b9dad;
+  left: -1px;
+  display: block;
+}
+
+.bar-top {
+  content: "";
+  top: 0;
+  position: absolute;
+  width: 2px;
+  height: 41%;
+  background-color: #9b9dad;
+  left: -1px;
+  display: block;
+}
+
+.login-email-left {
+  padding-right: 10%;
+  width: 55%;
+  box-sizing: border-box;
+}
+
+.login-3party-right {
+  padding-left: 10%;
+  width: 45%;
+  margin-right: 0;
+  box-sizing: border-box;
+}

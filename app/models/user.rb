@@ -6,6 +6,8 @@ class User < ApplicationRecord
   
   has_many :pens, dependent: :destroy
   has_many :comments
+  has_many :heart_list
+  has_many :love_pens, through: :heart_list, source: :pen
 
   def self.from_omniauth_provider(auth)
     data = auth.info
@@ -17,5 +19,9 @@ class User < ApplicationRecord
       user.display_name = data.name
       user.skip_confirmation!
     end
+  end
+
+  def loved?(pen)
+    love_pens.exists?(pen.id)
   end
 end

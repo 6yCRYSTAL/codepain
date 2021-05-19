@@ -9,16 +9,18 @@ document.addEventListener('turbolinks:load', () => {
   let randomURL = editPagePath.split('/').pop()
   let penDelParams = `user[username]=${userName}&pen[random_url]=${randomURL}`
 
-  delBtn.addEventListener('click', () => {
-    Rails.ajax({
-      url: editPagePath,
-      type: 'DELETE',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      dataType: 'json',
-      data: penDelParams
+  if (delBtn) {
+    delBtn.addEventListener('click', () => {
+      Rails.ajax({
+        url: editPagePath,
+        type: 'DELETE',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        dataType: 'json',
+        data: penDelParams
+      })
     })
-  })
+  }
 })

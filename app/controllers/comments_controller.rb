@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    @comment = current_user.comments.new(clear_params)
+    @comment = current_user.comments.new(comment_params)
     pen = current_pen
 
     if @comment.save
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def clear_params
+  def comment_params
     user_id = current_user.id
     pen_id = current_user.pens.find_by(random_url: params[:random_url]).id
     params.require(:comment).permit(:content).merge({user_id: user_id, pen_id: pen_id})

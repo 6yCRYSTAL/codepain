@@ -7,6 +7,8 @@ class Pen < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+  has_many :heart_list
+  has_many :lovers, through: :heart_list, source: :user
 
   scope :is_soft_deleting, -> { only_deleted.where(state: 'soft_deleting') }
   scope :deleted_in_1_hour, -> { is_soft_deleting.where('deleted_at > ?', 1.hour.ago) }
@@ -16,7 +18,7 @@ class Pen < ApplicationRecord
     require 'securerandom'
     new_random_url = SecureRandom.urlsafe_base64(6)
     # 對Pen做判斷式看看是否已經存在random_url
-    while Pen.where(random_url: new_random_url).exists?
+    while Pen.exists?(random_url: new_random_url)
       new_random_url = SecureRandom.urlsafe_base64(6)
     end
 

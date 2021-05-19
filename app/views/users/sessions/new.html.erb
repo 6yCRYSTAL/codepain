@@ -1,36 +1,41 @@
 <%= notice %><%= alert %>
 <div class="login-container">
-  <h1 class="login-header">Log In!</h2>
+  <div class="login-header">
+    <h1 class="login-logo">CodePain Login</h1>
+    <h2 class="login-title">Log In!</h2>
+  </div>
   <div class="login-flex-grid">
     
     <div class="login-email-left">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :email, "Username or Email", class: "login-field-title" %><br />
+          <%= f.label :email, "Username or Email", class: "login-field-title" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
         <div class="field">
-          <%= f.label :password, class: "login-field-title" %><br />
+          <%= f.label :password, class: "login-field-title" %>
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
-        <div class="actions">
-          <%= f.submit "Log in" %>
+        <div class="actions button-email-login-submit">
+          <%= f.submit "Log in", class: "button button-email-login-submit" %>
         </div>
       <% end %>
 
-      <a href="#" class="password-reset">Forgot Password?</a>
+      <a href="#" class="forgot-password-title">Forgot Password?</a>
 
-      <h2 class="password-reset-header">Reset Your Password</h2>
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name),    html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="field">
-          <%= f.label :email, "Username Or Email", class: "login-field-title" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "your@email.com" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Send Password Reset Email" %>
-        </div>
-      <% end %>
+      <div class="password-reset-wrap">
+        <h3 class="password-reset-header">Reset Your Password</h3>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name),    html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field">
+            <%= f.label :email, "Username Or Email", class: "login-field-title" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "your@email.com" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Send Password Reset Email", class: "button button-password-reset-submit" %>
+          </div>
+        <% end %>
+      </div>
     </div>
     
     <div class="login-divider">
@@ -53,7 +58,7 @@
     
   </div>
 
-  <div class="sign-up-subbutton">
+  <div class="signup-subbutton">
     Need an account? <%= link_to "Sign up now!", new_user_registration_path, class: 'sign-up-link' %> 
   </div>
 </div>

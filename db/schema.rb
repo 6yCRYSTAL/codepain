@@ -106,7 +106,5 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
 
   add_foreign_key "comments", "pens"
   add_foreign_key "comments", "users"
-  add_foreign_key "heart_lists", "pens"
-  add_foreign_key "heart_lists", "users"
   add_foreign_key "pens", "users"
 end

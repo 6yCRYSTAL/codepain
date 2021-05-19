@@ -17,3 +17,4 @@ import 'tailwindcss'
 import 'editor'
 import 'frontend'
 import "controllers"
+import "user"

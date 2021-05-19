@@ -5,6 +5,7 @@
     "@babel/preset-react": "^7.13.13",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
@@ -15,6 +16,7 @@
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "emmet-core": "^1.0.0",
+    "init": "^0.1.2",
     "normalize.css": "^8.0.1",
     "patch-package": "^6.4.7",
     "postcss": "^7",
@@ -30,6 +32,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "postcss": "^7",
     "webpack-dev-server": "^3.11.2"
   }
 }

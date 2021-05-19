@@ -9,7 +9,7 @@
 <% end %>
 
 <div id="comment_area" >
-  <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
+  <%= (pluralize @comments_counts, "comment").upcase %>
   <% @comments.each do |comment| %>
     <section data-controller="comment">
       <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
@@ -29,7 +29,7 @@
       <span
         data-action="click->comment#edit"
         data-comment-target="editBtn"
-        data-comment-id="<%= comment.id %>"
+        data-id="<%= comment.id %>"
       > Edit </span>
       <%= link_to "Delete", comment_path(comment), method: "delete",
                   data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>

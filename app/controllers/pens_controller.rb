@@ -1,9 +1,9 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new, :edit, :show]
-  
+
   before_action :authenticate_user!
   # impressionist :actions=>[:edit]
-  
+
 
   def index
     # pens tab / all or search
@@ -12,14 +12,14 @@ class PensController < ApplicationController
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
-    
+
     # for Comment
     # @comments = current_pen.comments.all.order(id: :desc)
     # @comments_counts = @comments.count
     @comment = current_user.comments.new
 
   end
-  
+
   def new
     @pen = Pen.new
   end
@@ -65,7 +65,7 @@ class PensController < ApplicationController
 
   def current_pen
     @pen = current_user.pens.find_by(random_url: params[:random_url])
-    # Need confirm! 
+    # Need confirm!
     # redirect_to pens_path if @pen.nil? #
     if @pen
       return @pen

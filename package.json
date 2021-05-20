@@ -29,7 +29,7 @@
   },
   "scripts": {
     "patch": "patch-package",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package"
   },
   "version": "0.1.0",
   "devDependencies": {

@@ -1,12 +1,11 @@
-<%= notice %><%= alert %>
 <div class="login-container">
   <div class="login-header">
     <h1 class="login-logo">CodePain Login</h1>
     <h2 class="login-title">Log In!</h2>
   </div>
   <div class="login-flex-grid">
-    
     <div class="login-email-left">
+      <div class="user-auth-error"><%= notice %><%= alert %></div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email, "Username or Email", class: "login-field-title" %>
@@ -21,9 +20,9 @@
         </div>
       <% end %>
 
-      <a href="#" class="forgot-password-title">Forgot Password?</a>
+      <div class="forgot-password-link" id="forgot-password-link"><span>Forgot Password?</span></div>
 
-      <div class="password-reset-wrap">
+      <div class="password-reset-form hide">
         <h3 class="password-reset-header">Reset Your Password</h3>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name),    html: { method: :post }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>

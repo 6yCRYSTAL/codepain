@@ -1,11 +1,13 @@
+.user-auth-error {
+  color: red;
+}
 
-
-a {
+a, #forgot-password-link span {
   text-decoration: none;
   color: #76daff;
 }
 
-a:hover {
+a:hover, #forgot-password-link span:hover {
   color: white;
 }
 
@@ -151,7 +153,9 @@ p {
 
 .email-signup-form {
   padding-top: 1rem;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  max-height: 560px;
+  overflow: hidden;
 }
 
 .email-signup-form label, .login-email-left label {
@@ -384,25 +388,32 @@ label {
   text-align: center;
   border-radius: 4px;
   display: block;
+  cursor: pointer;
 }
 
 .button-email-login-submit:hover {
   background-color: #2fb45a;
 }
 
-.forgot-password-title {
+.forgot-password-link {
   text-align: center;
-  display: block;
-  margin: 40px 0;
+  margin: 40px 0 0;
 }
 
-.password-reset-wrap {
+.forgot-password-link span{
+  cursor: pointer;
+}
+
+.password-reset-form {
   padding: 20px;
   position: relative;
   background-color: #2c303a;
   border-radius: 6px;
-  margin: 0 0 20px 0;
+  margin: 40px 0 20px 0;
   box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+  max-height: 270px;
+  overflow: hidden;
 }
 
 .password-reset-header {
@@ -426,4 +437,12 @@ label {
   background-color: #2c303a;
   border-radius: 6px;
   box-sizing: border-box;
+}
+
+.hide {
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
 }

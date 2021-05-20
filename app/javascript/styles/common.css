@@ -12,10 +12,10 @@ ul, ol {
   list-style:none;
   padding-left:0;
 }
-.container{
+.container-left{
   padding-left: 200px;
 }
-.container.close-sidebar{
+.container-left.close-sidebar{
   padding-left: 0px;
 }
 button{

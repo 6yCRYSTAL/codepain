@@ -2,7 +2,7 @@ document.addEventListener('turbolinks:load',function(){
   const UserMenuBtn = document.getElementById('userMenu-btn');
   const SideBtn = document.querySelector('.sidebar-toggle-btn button');
   const MainSidebar = document.querySelector('.main-sidebar');
-  const Container = document.querySelector('.container');
+  const Container = document.querySelector('.container-left');
   const OnClose = localStorage.getItem('onClose');
 
   // 登入頁-使用者選單
@@ -33,7 +33,7 @@ document.addEventListener('turbolinks:load',function(){
     SideBtn.addEventListener('click',(e)=>{
       e.currentTarget.lastElementChild.classList.toggle('rotate-arrow');
       // 判斷有關掉
-      if (Container.className === 'container close-sidebar') {
+      if (Container.className === 'container-left close-sidebar') {
         sidebarOpen();
         MainSidebar.classList.add('main-sidebar-an');
         localStorage.setItem('onClose','');

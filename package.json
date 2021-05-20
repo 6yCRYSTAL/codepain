@@ -28,7 +28,8 @@
     "turbolinks": "^5.2.0"
   },
   "scripts": {
-    "patch": "patch-package"
+    "patch": "patch-package",
+    "postinstall": "patch-package",
   },
   "version": "0.1.0",
   "devDependencies": {

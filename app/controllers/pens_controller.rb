@@ -13,8 +13,6 @@ class PensController < ApplicationController
     @deleted_pens = current_user.pens.deleted_in_1_hour
 
     # for Comment
-    # @comments = current_pen.comments.all.order(id: :desc)
-    # @comments_counts = @comments.count
     @comment = current_user.comments.new
   end
 
@@ -46,6 +44,10 @@ class PensController < ApplicationController
   end
 
   private
+
+  def clear_search_params
+    params.permit(:search)
+  end
 
   def search_pen(keyword)
     # 如果沒搜尋 那就給他user所有的pens

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @comment = current_user.comments.new(comment_params)
     pen = current_pen
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     pen = current_comment.pen
     current_comment.destroy
     redirect_to pen_path(pen, username: current_user.username)
-  end 
+  end
 
 
   private

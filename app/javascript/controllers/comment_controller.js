@@ -1,5 +1,5 @@
 import { Controller } from "stimulus"
- import Rails from '@rails/ujs'
+import Rails from '@rails/ujs'
 export default class extends Controller {
 
   static targets = [ "editBtn", "cancelBtn", "commentBlock", "textarea", "commentShow", "updateBtn"]
@@ -11,7 +11,7 @@ export default class extends Controller {
   edit() {
     this.commentBlockTarget.classList.add("appear")
     this.textareaTarget.value = this.commentShowTarget.textContent
-    this.comment_id = this.editBtnTarget.dataset["id"]
+    this.comment_id = this.editBtnTarget.dataset.id
   }
 
   update() {

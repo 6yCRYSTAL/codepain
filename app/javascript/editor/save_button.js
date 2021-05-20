@@ -15,7 +15,8 @@ document.addEventListener('turbolinks:load', () => {
       editBtn.style.display="none";
       input.focus();
     })
-    let allEvent = 0;
+
+    let allEvent = 0; // TODO:要加註解或改變數名
     input.addEventListener('keyup', (e) => {
       allEvent =  allEvent + 1;
       if(e.keyCode === 13 && (allEvent !== 3)){
@@ -24,6 +25,7 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
+
     input.addEventListener('blur', (e) => {
       allEvent = allEvent + 2;
       if(allEvent !== 3){
@@ -32,7 +34,8 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
-    let eventContent = (e)=>{
+
+    let eventContent = (e) => {
       title.style.display="inline";
       input.style.display="none";
       editBtn.style.display="inline";
@@ -40,7 +43,7 @@ document.addEventListener('turbolinks:load', () => {
       titleNew = title.textContent = inputValue;
       console.log(titleNew);
     }
-    
+
     let titleNew
     let username = document.querySelector('#username').textContent
     let html = ace.edit("editor--html")
@@ -49,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
     let htmlValue
     let cssValue
     let jsValue
+
     let paramsFromNewPen = () => {
       return `user[username]=${username}&pen[title]=${titleNew}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
     }

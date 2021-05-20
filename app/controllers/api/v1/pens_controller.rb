@@ -5,10 +5,9 @@ class Api::V1::PensController < ApplicationController
 
   def index
     @pens = current_user.pens
-    p "YOU GOOD!! GET PENS DATA!!"
     render(json: @pens)
   end
-  
+
   def create
     @pen = current_user.pens.new(pen_params)
     if @pen.save
@@ -45,10 +44,10 @@ class Api::V1::PensController < ApplicationController
   def love_params
     params.permit(:random_url)
   end
-  
+
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
-    
+
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else

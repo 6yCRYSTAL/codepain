@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load',function(){
-  const UserMenuBtn = document.getElementById('userMenu-btn');
+  const UserMenuBtn = document.querySelector('#userMenu-btn');
   const SideBtn = document.querySelector('.sidebar-toggle-btn button');
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container');
@@ -11,6 +11,7 @@ document.addEventListener('turbolinks:load',function(){
       e.currentTarget.nextElementSibling.classList.toggle('active');
     });
   }
+
   // 全站-側選單
   if (Container) {
     let sidebarOpen = ()=>{
@@ -18,6 +19,7 @@ document.addEventListener('turbolinks:load',function(){
       Container.classList.add('open-sidebar');
       document.querySelector('.sidebar-line').classList.remove('sidebar-line-active');
     }
+
     let sidebarClose = ()=>{
       Container.classList.add('close-sidebar');
       Container.classList.remove('open-sidebar');
@@ -26,7 +28,7 @@ document.addEventListener('turbolinks:load',function(){
 
     if (OnClose) {
       sidebarClose();
-    }else{
+    } else {
       sidebarOpen();
     }
 
@@ -42,7 +44,6 @@ document.addEventListener('turbolinks:load',function(){
         MainSidebar.classList.add('main-sidebar-an');
         localStorage.setItem('onClose','yes');
       }
-    });
+    })
   }
-
 })

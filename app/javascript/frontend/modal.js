@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
   // listen for outside click
   function closeModal(e) {
     if (e.target === this) {
-      this.style.display = 'none'
+      e.target.style.display = 'none'
       // back to your-work
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
     }

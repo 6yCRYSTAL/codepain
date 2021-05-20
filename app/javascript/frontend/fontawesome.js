@@ -1,12 +1,12 @@
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 
-import { 
+import {
   faFacebook,
   faGithub,
   faGoogle
  } from '@fortawesome/free-brands-svg-icons'
 
-import { 
+import {
   faSearch,
   faChevronLeft,
   faPencilAlt,
@@ -36,5 +36,5 @@ library.add(
   faGithub,
   faGoogle
   )
-  
+
 dom.watch()

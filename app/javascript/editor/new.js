@@ -29,7 +29,8 @@ document.addEventListener('turbolinks:load', () => {
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
       enableSnippets: true,
-    })  
+    })
+
     editorCSS.setOptions({
       mode: "ace/mode/css",
       theme: "ace/theme/twilight",
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
       enableLiveAutocompletion: true,
       enableSnippets: true,
     })
+
     editorJS.setOptions({
       mode: "ace/mode/javascript",
       theme: "ace/theme/twilight",
@@ -53,12 +55,15 @@ document.addEventListener('turbolinks:load', () => {
       enableLiveAutocompletion: true,
       enableSnippets: true,
     })
+
     editorHTML.getSession().on('change',() => {
       renderToiframe()
     })
+
     editorCSS.getSession().on('change',() => {
       renderToiframe()
     })
+
     editorJS.getSession().on('change',() => {
       renderToiframe()
     })
@@ -81,7 +86,7 @@ document.addEventListener('turbolinks:load', () => {
   const clearConsoleBtn = document.querySelector('.edit-console-clear')
   const closeConsoleBtn = document.querySelector('.edit-console-close')
   const resultContainer = document.querySelector('.edit-result-container')
-  
+
   consoleBtn.addEventListener('click', () => {
     consolecontainer.classList.toggle('on')
     resultContainer.classList.toggle('on')
@@ -102,8 +107,9 @@ document.addEventListener('turbolinks:load', () => {
           stdoutMsg += `${msg}\n`
         }
       }
-  
+
       try{
+        // TODO: 要小心這個
         eval(editorJS.session.getValue())
         consoleResult.innerText = stdoutMsg
       } catch (e) {
@@ -114,6 +120,7 @@ document.addEventListener('turbolinks:load', () => {
       window.console = oldConsole
     })
   }
+  
   // clear console
   function clearConsole() {
     clearConsoleBtn.addEventListener('click', () => {
@@ -128,7 +135,7 @@ document.addEventListener('turbolinks:load', () => {
       resultContainer.classList.toggle('on')
     })
   }
- 
+
   // share btn get url
   function shareURL() {
     const shareBtn = document.querySelector('#edit-share-btn')
@@ -155,7 +162,7 @@ document.addEventListener('turbolinks:load', () => {
       closeBox.setAttribute('class', 'share-box-close')
       closeBox.textContent = "x"
       shareBox.appendChild(closeBox)
-      
+
       closeBox.addEventListener('click', () => {
         shareBox.remove()
       })

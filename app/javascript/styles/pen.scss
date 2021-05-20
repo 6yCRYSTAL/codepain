@@ -301,6 +301,9 @@
         color: var(--light-gray);
       }
     }
+    &:hover{
+      @apply transition-all opacity-100 transform scale-100;
+    }
   }
 }
 .title-wrap:hover + .modal-wrap{

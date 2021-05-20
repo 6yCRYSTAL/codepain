@@ -1,14 +1,11 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new, :edit, :show]
-
   before_action :authenticate_user!
   # impressionist :actions=>[:edit]
-
 
   def index
     # pens tab / all or search
     @pens = search_pen(clear_search_params)
-    p @pens
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
@@ -17,7 +14,6 @@ class PensController < ApplicationController
     # @comments = current_pen.comments.all.order(id: :desc)
     # @comments_counts = @comments.count
     @comment = current_user.comments.new
-
   end
 
   def new
@@ -38,7 +34,6 @@ class PensController < ApplicationController
 
   def edit
     current_pen
-    puts @pen.id
     impressionist(@pen)
   end
 

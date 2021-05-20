@@ -58,9 +58,6 @@ main{
 
 /* set */
 /* main-sidebar */
-.container-left.close-sidebar{
-  padding-left: 0px;
-}
 .main-sidebar{
   background-color: var(--primary-gray-6);
   top: 0;
@@ -117,7 +114,7 @@ main{
       height: 2px;
       background-color: white;
     }
-    ::after{
+    &::after{
       bottom: 0;
       box-shadow: 0 -6px 0 var(--light-gray);
     }
@@ -129,6 +126,7 @@ main{
   }
 }
 .close-sidebar{
+  padding-left: 0;
   .main-sidebar{
     left: -200px;
     .sidebar-toggle-btn{
@@ -169,11 +167,72 @@ main{
   }
 }
 .sidebar-content{
-  p{
-    font-size: var(--text-s-p);
-    color: var(--primary-gray-1);
-    padding: 0 1.375rem 0;
-    margin: .5rem 0;
+  .sidebar-item{
+    a{
+      color: var(--light-gray);
+      display: block;
+      padding: .25rem 1.375rem .3rem 2.125rem;
+      &:hover{
+        background-color: var( --primary-gray-8);
+      }
+    }
+    .create-link{
+      @apply flex flex-row align-middle;
+      svg{
+        @apply mr-2;
+        fill: var(--primary-gray-3);
+      }
+      &:hover svg{
+        fill: var(--info-blue);
+      }
+    }
+    .sidebar-title{
+      font-size: var(--text-s-p);
+      color: var(--primary-gray-1);
+      padding: 0 1.5rem;
+    }     
+  }
+  .sidebar-item-line{
+    &::before{
+      border-radius: 5px/3px;
+      background: linear-gradient(70deg
+      ,#0ebeff,#ffdd40,#ae63e4,#47cf73);
+      content: "";
+      display: block;
+      height: 3px;
+      margin: .35rem 1.5rem .8rem 1.5rem;
+    }
+    &:nth-of-type(2){
+      &::before{
+        background: var(--info-blue);
+        margin: .8rem 1.5rem .8rem 1.5rem;
+      }
+    }
+    &:nth-of-type(3){
+      &::before{
+        background: var(--success-green);
+        margin: .8rem 1.5rem .8rem 1.5rem;
+      }
+    }
+  }
+  .sidebar-advertise{
+    margin: .8rem 1.5rem .8rem 1.5rem;
+    .advertise-img{
+      position: relative;
+      width: 100%;
+      height: 100px;
+      img{
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+    figcaption{
+      padding-top: .5rem;
+      font-size: var(--text-s-p);
+      color: var(--primary-gray-1);
+    }
   }
 }
 /* main-sidebar end */

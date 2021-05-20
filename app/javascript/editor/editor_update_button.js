@@ -1,5 +1,5 @@
 import Rails from '@rails/ujs'
-import axios from 'axios'
+// import axios from 'axios'
 
 document.addEventListener('turbolinks:load', () => {
   let updateBtn = document.querySelector('#btn-update')

@@ -1,38 +1,32 @@
 // import Rails from '@rails/ujs'
 import axios from 'axios'
+import { init } from './new.js'
 
 document.addEventListener('turbolinks:load', () => {
-  const randomurl = location.href.split('/pen/')[1]
-  const username = document.querySelector('#username').textContent
-  const html = document.querySelector('#editor--html')
-  const css = document.querySelector('#editor--css')
-  const js = document.querySelector('#editor--js')
-  // axios({
-  //   method: 'get',
-  //   url: `${randomurl}`,
-  // })
-  // .then( (response) => {
-  //   console.log(response)
-  //   // data = response.data
-  // })
-  // .catch( (error) => {
-  //   console.log(error)
-  // })
-  // title = data.title
-  //  html.textContent = data.html
-  //  css.textContent = data.css
-  //  js.textContent = data.js
+  let updateBtn = document.querySelector('#btn-update')
+  let randomurl = location.href.split('/pen/')[1]
+  let title = document.querySelector('#edit-title')
+  let html = document.querySelector('#editor--html')
+  let css = document.querySelector('#editor--css')
+  let js = document.querySelector('#editor--js')
 
-  axios({
-    method: 'get',
-    url: 'api/v1/pens'
-  })
-  .then( (response) => {
-      // console.log(response)
-      let data = response.data
-      console.log(data);
+  if (updateBtn){
+    axios({
+      method: 'get',
+      url: `/api/v1/pens/${randomurl}/edit`
     })
-    .catch( (error) => {
-      console.log(error)
-    })
+    .then( (response) => {
+        let data = response.data
+        console.log(data);
+        title.textContent = data.title
+        html.innerText = data.html
+        css.innerText = data.css
+        js.textContent = data.js
+      })
+      .catch( (error) => {
+        return `${error.name}: ${error.message}`
+      })
+  }
+
+
 })

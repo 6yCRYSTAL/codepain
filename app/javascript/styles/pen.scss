@@ -292,22 +292,26 @@
     }
   }
   .modal-wrap{
-    @apply flex justify-center p-0 opacity-0 transform scale-50;
+    display: flex;
+    justify-content: center;
+    padding: 0;
     .modal-btn{
-      @apply p-1 rounded-sm;
+      @apply p-1 opacity-0 rounded-sm;
       background-color: var(--primary-gray-3);
       svg{
-        font-size: var(--text-h6);
+        font-size: var(--text-h5);
         color: var(--light-gray);
       }
-    }
-    &:hover{
-      @apply transition-all opacity-100 transform scale-100;
+      &:hover{
+        @apply transition-all opacity-100 transform scale-100;
+      }
     }
   }
 }
 .title-wrap:hover + .modal-wrap{
-  @apply transition-all opacity-100 transform scale-100;
+  .modal-btn{
+    @apply transition-all opacity-100 transform scale-100;
+  }
 }
 /* pen-list end */
 

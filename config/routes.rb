@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     post 'login', to: 'users/sessions#create'
     delete 'logout', to: 'users/sessions#destroy'
-    
+
   end
 
   # pens
@@ -18,14 +18,14 @@ Rails.application.routes.draw do
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
   resources :comments, only: [:update, :destroy]
- 
+
   # static pages
   root 'statics#index'
 
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :update], param: :random_url do
+      resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
         member do
           post :love, action: 'love_list'
         end

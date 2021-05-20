@@ -5,10 +5,9 @@ class Api::V1::PensController < ApplicationController
 
   def index
     @pens = current_user.pens
-    p "YOU GOOD!! GET PENS DATA!!"
     render(json: @pens)
   end
-  
+
   def create
     @pen = current_user.pens.new(clear_params)
 
@@ -30,7 +29,7 @@ class Api::V1::PensController < ApplicationController
   end
 
   private
-  
+
   def clear_params
     params.require(:pen).permit(:title, :html, :css, :js)
   end

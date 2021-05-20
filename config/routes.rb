@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     delete 'logout', to: 'users/sessions#destroy'
   end
 
+  # orders
+  get '/accounts/pro', to: 'products#index', as: 'products'
+  get '/accounts/pro/billing/:plan/:period', to: 'products#show', as: 'product'
+
   # pens
   get '/your-work', to: 'pens#index', as: 'pens'
   get '/pen', to: 'pens#new', as: 'new_pen'
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
   resources :comments, only: [:update, :destroy]
- 
+
   # static pages
   root 'statics#index'
 

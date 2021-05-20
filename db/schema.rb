@@ -99,8 +99,10 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.string "plan"
     t.string "desc"
     t.integer "price"
+    t.string "period"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["period"], name: "index_products_on_period"
     t.index ["plan"], name: "index_products_on_plan"
   end
 

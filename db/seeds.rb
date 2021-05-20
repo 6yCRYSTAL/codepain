@@ -39,33 +39,39 @@ require 'date'
 
 Product.create(
   [{
-    plan: 'Annual Starter',
+    plan: 'starter',
     desc: 'CodePain membership: Annual Starter',
+    period: 'year',
     price: 96
   },
   {
-    plan: 'Annual Developer',
+    plan: 'developer',
     desc: 'CodePain membership: Annual Developer',
+    period: 'year',
     price: 144
   },
   {
-    plan: 'Annual Super',
+    plan: 'super',
     desc: 'CodePain membership: Annual Super',
+    period: 'year',
     price: 312
   },
   {
-    plan: 'Starter',
+    plan: 'starter',
     desc: 'CodePain membership: Starter',
+    period: 'month',
     price: 12
   },
   {
-    plan: 'Developer',
+    plan: 'developer',
     desc: 'CodePain membership: Developer',
+    period: 'month',
     price: 19
   },
   {
-    plan: 'Super',
+    plan: 'super',
     desc: 'CodePain membership: Super',
+    period: 'month',
     price: 39
   }]
 )

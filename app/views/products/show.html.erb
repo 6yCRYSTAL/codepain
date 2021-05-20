@@ -1,0 +1,8 @@
+
+<% if @product.plan == 'starter' %>
+  <%= render 'starter' %>
+<% elsif @product.plan == 'developer' %>
+  <%= render 'developer' %>
+<% else @product.plan == 'super' %>
+  <%= render 'super' %>
+<% end %>

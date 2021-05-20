@@ -18,9 +18,9 @@
     </MerchantInfo>
 
     <IgnorePayment>
-<!--   <Method>Credit</Method>
+        <Method>Credit</Method>
         <Method>WebATM</Method>
-        <Method>ATM</Method>
+<!--    <Method>ATM</Method>
         <Method>BARCODE</Method>
         <Method>CVS</Method>-->
 

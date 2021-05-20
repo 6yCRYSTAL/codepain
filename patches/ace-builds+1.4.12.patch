@@ -1,15 +1,16 @@
 diff --git a/node_modules/ace-builds/src-noconflict/snippets/javascript.js b/node_modules/ace-builds/src-noconflict/snippets/javascript.js
-index bcfaf5c..29bc484 100644
+index bcfaf5c..0b45f34 100644
 --- a/node_modules/ace-builds/src-noconflict/snippets/javascript.js
 +++ b/node_modules/ace-builds/src-noconflict/snippets/javascript.js
-@@ -6,6 +6,16 @@ snippet proto\n\
+@@ -6,6 +6,17 @@ snippet proto\n\
  	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {\n\
  		${4:// body...}\n\
  	};\n\
 +# addEventListener\n\
 +snippet add\n\
-+	addEventListener('${1:event}', function () {\n\
-+	)\n\
++	addEventListener('${1:event}', function() {\n\
++	\n\
++	})\n\
 +# console\n\
 +snippet con\n\
 +	console.log()\n\

@@ -38,7 +38,7 @@ document.addEventListener('turbolinks:load', () => {
       editBtn.style.display="inline";
       let inputValue = e.target.value;
       titleNew = title.textContent = inputValue;
-      console.log(titleNew);
+      // console.log(titleNew);
     }
     
     let titleNew

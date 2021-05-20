@@ -15,4 +15,5 @@ ActiveStorage.start()
 import 'styles'
 import 'editor'
 import 'frontend'
-import "controllers"
+import 'controllers'
+import 'orders'

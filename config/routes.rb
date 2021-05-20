@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'users/sessions#destroy'
   end
 
-  # orders
+  # products
   get '/accounts/pro', to: 'products#index', as: 'products'
   get '/accounts/pro/billing/:plan/:period', to: 'products#show', as: 'product'
 
@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pens, only: [:index, :create, :update], param: :random_url
       resources :deleted_pens, only: [:update, :destroy]
+      # orders
+      resources :orders, only: [:create]
     end
   end
 end

@@ -1,6 +1,6 @@
 import './variables.css'
 import './tailwind.css'
 import './common.css'
-import './edit.css'
+import './edit.scss'
 import './new.css'
 import './modal.css'

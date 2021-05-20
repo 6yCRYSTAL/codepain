@@ -1,4 +1,5 @@
 import './variables.css'
+import './tailwind.css'
 import './common.css'
 import './edit.css'
 import './new.css'

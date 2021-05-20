@@ -308,20 +308,45 @@ main{
   padding: .5rem 0;
   margin: 0;
   background-color: var(--primary-gray-5);
-  display: none;
   border-radius: 6px 0 6px 6px;
   z-index: 50;
+  opacity: 0;
+  transform: scale(.9);
+  transform-origin: top right;
+  transition: all .2s ease-in-out;
   a{
     color: var(--light-gray);
     font-weight: bold;
     text-decoration: none;
     padding: .5rem 1rem;
     display: block;
+    font-size: var(--text-s-p);
     &:hover{
       background: var(--a-hover-gray);
       cursor: pointer;
     }
   }
+  .userMenu-line{
+    &::after{
+      content: "";
+      display: block;
+      border-bottom: 1px solid #444857;
+      @apply mx-4 my-2;
+    }
+  }
+  .userMenu-icon{
+    display: flex;
+    svg{
+      padding-right: .5rem;
+      fill: var(--primary-gray-3);
+    }
+  }
+ 
+}
+.userMenu-topnav.active{
+  display: block;
+  transform: scale(1);
+  opacity: 1;
 }
 .line-before::before{
   content: '';
@@ -330,9 +355,7 @@ main{
   opacity: .2;
   margin: 0.5rem 1rem;
 }
-.active{
-  display: block;
-}
+
 /* search-userMenu-box end */
 
 /* footer */

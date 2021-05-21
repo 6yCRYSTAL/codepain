@@ -33,7 +33,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # User authentication
 # https://github.com/heartcombo/devise
 gem 'devise', '~> 4.8'
-gem 'activerecord-session_store', '~> 2.0'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'omniauth-github', '~> 2.0'
@@ -43,10 +42,6 @@ gem 'omniauth-facebook', '~> 8.0'
 # soft deletion
 # https://github.com/rubysherpas/paranoia
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
-
-# protect sensitive information
-# https://github.com/laserlemon/figaro
-# gem 'figaro', '~> 1.2'
 
 # react on rails
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial

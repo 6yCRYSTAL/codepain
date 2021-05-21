@@ -5,10 +5,9 @@ A [CODEPEN](https://codepen.io) clone project by [6yCRYSTAL](https://github.com/
 Please run the commands below to get started
 ```
 yarn install
-yarn patch
+yarn patch // to reset ace-builds & emmet-core
 bundle install
-rails db:migrate
-rails db:seed
+rails db:prepare
 ```
 # 6yCRYSTAL members
 ## frontend

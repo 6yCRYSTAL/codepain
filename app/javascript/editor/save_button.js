@@ -40,36 +40,22 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="none";
       editBtn.style.display="inline";
       let inputValue = e.target.value;
+      // TODO: 要fixed
       titleNew = title.textContent = inputValue;
-      console.log(titleNew);
     }
-
-    let titleNew
-    let username = document.querySelector('#username').textContent
-    let html = ace.edit("editor--html")
-    let css = ace.edit("editor--css")
-    let js = ace.edit("editor--js")
-    let htmlValue
-    let cssValue
-    let jsValue
-
-    let paramsFromNewPen = () => {
-      return `user[username]=${username}&pen[title]=${titleNew}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
-    }
-
-    html.getSession().on('change',function(){
-      htmlValue = html.session.getValue()
-    })
-
-    css.getSession().on('change',function(){
-      cssValue = css.session.getValue()
-    })
-
-    js.getSession().on('change',function(){
-      jsValue = js.session.getValue()
-    })
 
     saveBtn.addEventListener('click', () => {
+      let titleNew = document.querySelector('#edit-title').textContent
+      let username = document.querySelector('#username').textContent
+      let html = ace.edit("editor--html")
+      let css = ace.edit("editor--css")
+      let js = ace.edit("editor--js")
+      let htmlValue = html.session.getValue()
+      let cssValue = css.session.getValue()
+      let jsValue = js.session.getValue()
+      let paramsFromNewPen = () => {
+        return `user[username]=${username}&pen[title]=${titleNew}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
+      }
       Rails.ajax({
         url: '/api/v1/pens',
         type: 'POST',

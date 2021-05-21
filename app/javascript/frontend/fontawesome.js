@@ -12,11 +12,13 @@ import {
   faPencilAlt,
   faHeart,
   faCloud,
+  faComment,
   faCog,
   faThumbtack,
   faChevronDown,
   faAngleDown,
   faExpandArrowsAlt,
+  faChevronRight,
   faEye,
  } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,6 +28,7 @@ library.add(
   faPencilAlt,
   faHeart,
   faCloud,
+  faComment,
   faCog,
   faThumbtack,
   faChevronDown,
@@ -34,7 +37,8 @@ library.add(
   faEye,
   faFacebook,
   faGithub,
-  faGoogle
+  faGoogle,
+  faChevronRight
   )
 
 dom.watch()

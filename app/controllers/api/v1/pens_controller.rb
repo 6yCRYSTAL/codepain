@@ -24,9 +24,9 @@ class Api::V1::PensController < ApplicationController
 
   def update
     if @pen.update(pen_params)
-      redirect_to edit_pen_path(@pen, username: current_user.username), notice: 'UPDATED!'
+      render json: { status: 'updat succeeded' }
     else
-      redirect_to pens_path
+      render json: { status: 'update failed' }
     end
   end
 

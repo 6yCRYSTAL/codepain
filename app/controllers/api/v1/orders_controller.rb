@@ -15,8 +15,8 @@ class Api::V1::OrdersController < ApplicationController
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'localhost:3000/accounts/pro',
-        'OrderResultURL' => 'localhost:3000/accounts/pro'
+        'ReturnURL' => 'https://5aebeb8fa837.ngrok.io/accounts/pro', # 使用 ngrok 測試
+        'OrderResultURL' => 'https://5aebeb8fa837.ngrok.io/accounts/pro' # # 使用 ngrok 測試
         # 'NeedExtraPaidInfo' => 'Y'
       }
       # 先不帶入發票

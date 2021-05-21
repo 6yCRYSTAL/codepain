@@ -58,15 +58,31 @@ document.addEventListener('turbolinks:load', () => {
         enableLiveAutocompletion: true,
         enableSnippets: true,
       })
-      editorHTML.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorCSS.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorJS.getSession().on('change',() => {
-        renderToiframe()
-      })
+    }
+
+    // when session change excute renderToiframe()
+    editorHTML.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorCSS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorJS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+
+    //debounce: render to iframe late
+    function debounce( fn, delay = 1000){
+      let timeout = null
+      return () => {
+        let context = this //editor session
+        let args = arguments //keyboardEvent
+        clearTimeout(timeout)
+    
+        timeout = setTimeout( () => {
+          fn.apply(context, args)
+        }, delay)
+      }
     }
 
     // render to iframe
@@ -86,7 +102,10 @@ document.addEventListener('turbolinks:load', () => {
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
     const resultContainer = document.querySelector('.edit-result-container')
+<<<<<<< HEAD
     
+=======
+>>>>>>> feat/build-new.html
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
       resultContainer.classList.toggle('on')
@@ -107,7 +126,10 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
+<<<<<<< HEAD
     
+=======
+>>>>>>> feat/build-new.html
         try{
           eval(editorJS.session.getValue())
           consoleResult.innerText = stdoutMsg
@@ -133,7 +155,11 @@ document.addEventListener('turbolinks:load', () => {
         resultContainer.classList.toggle('on')
       })
     }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> feat/build-new.html
     // share btn get url
     function shareURL() {
       const shareBtn = document.querySelector('#edit-share-btn')
@@ -160,7 +186,10 @@ document.addEventListener('turbolinks:load', () => {
         closeBox.setAttribute('class', 'share-box-close')
         closeBox.textContent = "x"
         shareBox.appendChild(closeBox)
+<<<<<<< HEAD
         
+=======
+>>>>>>> feat/build-new.html
         closeBox.addEventListener('click', () => {
           shareBox.remove()
         })

@@ -1,9 +1,7 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new, :edit, :show]
-
   before_action :authenticate_user!
   # impressionist :actions=>[:edit]
-
 
   def index
     # pens tab / all or search
@@ -16,7 +14,6 @@ class PensController < ApplicationController
     # @comments = current_pen.comments.all.order(id: :desc)
     # @comments_counts = @comments.count
     @comment = current_user.comments.new
-
   end
 
   def new

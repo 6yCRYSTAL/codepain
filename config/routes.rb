@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     post 'login', to: 'users/sessions#create'
     delete 'logout', to: 'users/sessions#destroy'
-
   end
 
   # pens
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
-  resources :comments, only: [:update, :destroy]
+  resources :comments, only: [:destroy]
 
   # static pages
   root 'statics#index'
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
         end
       end
       resources :deleted_pens, only: [:update, :destroy]
+      resources :comments, only: [:update]
     end
   end
 end

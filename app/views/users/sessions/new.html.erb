@@ -1,29 +1,65 @@
-<h2>Log in</h2>
-<div class="login-wrap">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+<div class="login-container">
+  <div class="login-header">
+    <h1 class="login-logo">CodePain Login</h1>
+    <h2 class="login-title">Log In!</h2>
+  </div>
+  <div class="login-flex-grid">
+    <div class="login-email-left">
+      <div class="user-auth-error"><%= notice %><%= alert %></div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email, "Username or Email", class: "login-field-title" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field">
+          <%= f.label :password, class: "login-field-title" %>
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+        <div class="actions button-email-login-submit">
+          <%= f.submit "Log in", class: "button button-email-login-submit" %>
+        </div>
+      <% end %>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
+      <div class="forgot-password-link" id="forgot-password-link"><span>Forgot Password?</span></div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="password-reset-form hide">
+        <h3 class="password-reset-header">Reset Your Password</h3>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name),    html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field">
+            <%= f.label :email, "Username Or Email", class: "login-field-title" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "your@email.com" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Send Password Reset Email", class: "button button-password-reset-submit" %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-
-    <div class="actions">
-      <%= f.submit "Log in" %>
     </div>
-  <% end %>
+    
+    <div class="login-divider">
+      <div class="bar bar-top"></div>
+      <span class="login-or">OR</span>
+      <div class="bar bar-bottom"></div>
+    </div>
+  
+    <div class="login-3party-right">
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to omniauth_authorize_path(resource_name, provider), class: "button #{provider}-button button-3party" do %>
+          <%= "<i class='fab fa-#{provider}'></i>".html_safe %>
+          <%= "Log In with #{OmniAuth::Utils.camelize(provider)}" %>
+          <br />
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    
+  </div>
 
-  <%= render "users/shared/links" %>
-
+  <div class="signup-subbutton">
+    Need an account? <%= link_to "Sign up now!", new_user_registration_path, class: 'sign-up-link' %> 
+  </div>
 </div>
+
 

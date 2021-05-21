@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'john@mail.codepain.live'
+  config.mailer_sender = 'supports@mail.codepain.live'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -271,8 +271,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, Rails.application.credentials.dig(:github, :client_id), Rails.application.credentials.dig(:github, :client_secret), scope: 'user'
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :client_id), Rails.application.credentials.dig(:google, :client_secret), {scope: 'userinfo.email, userinfo.profile', name: 'google'}
+  config.omniauth :github, Rails.application.credentials.dig(:github, :client_id), Rails.application.credentials.dig(:github, :client_secret), scope: 'user'
   config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :client_id), Rails.application.credentials.dig(:facebook, :client_secret), scope: 'email', info_fields: 'name,email', token_params: { parse: :json }
 
   # ==> Warden configuration
@@ -309,5 +309,5 @@ Devise.setup do |config|
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
-  # config.sign_in_after_change_password = true
+  config.sign_in_after_change_password = true
 end

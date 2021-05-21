@@ -7,7 +7,14 @@
         <input placeholder="Search ..." type="search" value="">
       </label>
     </form>
-    <a href="/accounts/sign_up" class="login-signup-Buttons" data-buttons="signup">Sign Up</a>
-    <a href="/login" class="login-signup-Buttons" data-buttons="login">Log In</a>
+
+    <% if controller_name != 'registrations'%>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'login-signup-Buttons', data: {buttons: 'signup'} %> 
+    <% end %>
+
+    <% if controller_name != 'sessions'%>
+      <%= link_to "Log In", login_path, class: 'login-signup-Buttons', data: {buttons: 'login'} %> 
+    <% end %>
+    
   </div>
 </section>

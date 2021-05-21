@@ -1,17 +1,25 @@
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 
-import { 
+import {
+  faFacebook,
+  faGithub,
+  faGoogle
+ } from '@fortawesome/free-brands-svg-icons'
+
+import {
   faSearch,
   faChevronLeft,
   faPencilAlt,
   faHeart,
   faCloud,
+  faComment,
   faCog,
   faThumbtack,
   faChevronDown,
   faAngleDown,
   faExpandArrowsAlt,
-  faEye
+  faChevronRight,
+  faEye,
  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -20,11 +28,17 @@ library.add(
   faPencilAlt,
   faHeart,
   faCloud,
+  faComment,
   faCog,
   faThumbtack,
   faChevronDown,
   faAngleDown,
   faExpandArrowsAlt,
-  faEye
+  faEye,
+  faFacebook,
+  faGithub,
+  faGoogle,
+  faChevronRight
   )
+
 dom.watch()

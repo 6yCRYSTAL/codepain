@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations', passwords: 'users/passwords', registrations: 'users/registrations', unlocks: 'users/unlocks', sessions: 'users/sessions' }
+  # static pages
+  root 'statics#index'
 
+  # users
+  devise_for :users, path: 'accounts', controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    unlocks: 'users/unlocks',
+    sessions: 'users/sessions'
+  }
+
+  # customize user routes for matching codepen
   devise_scope :user do
     get 'login', to: 'users/sessions#new'
+    post 'login', to: 'users/sessions#create'
     delete 'logout', to: 'users/sessions#destroy'
   end
 
@@ -19,21 +32,24 @@ Rails.application.routes.draw do
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
-  resources :comments, only: [:update, :destroy]
+  resources :comments, only: [:destroy]
 
   # orders
   resources :orders, only: [:new]
 
-  # static pages
-  root 'statics#index'
-
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :update], param: :random_url
+      resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
+        member do
+          post :love, action: 'love_list'
+        end
+      end
       resources :deleted_pens, only: [:update, :destroy]
       # orders
       resources :orders, only: [:create]
+      # comments
+      resources :comments, only: [:update]
     end
   end
 end

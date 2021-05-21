@@ -1,39 +1,131 @@
-<h2>Sign up</h2>
+<%= notice %><%= alert %>
+<div class="form-wrap user-form">
+  <header class="signup-header">
+    <h1>Free</h1>
+    <p>Welcome to CodePain.</p>
+  </header>
+  
+  <div class="user-container">
+    <div class="signup-form">
+      <div class="user-auth-error"><%= notice %><%= alert %></div>
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to omniauth_authorize_path(resource_name, provider), class: "button #{provider}-button button-3party" do %>
+          <%= "<i class='fab fa-#{provider}'></i>".html_safe %>
+          <%= "Sign Up with #{OmniAuth::Utils.camelize(provider)}" %>
+          <br />
+          <% end %>
+        <% end %>
+      <% end %>
+      
+      <p>Or,</p>
+      <div class="email-signup" data-controller="signup">
+        
+        <button class="button button-email-signup">Sign Up with Email</button>
+        
+        <div class="email-signup-form hide">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+        
+            <div class="field">
+              <%= f.label :display_name, "Your Name" %>
+              <%= f.text_field :display_name %>
+            </div>
+        
+            <div class="field">
+              <%= f.label :username, "Choose a username" %>
+              <%= f.text_field :username, autocomplete: "username" %>
+              <small>codepain.live/username</small>
+            </div>
+        
+            <div class="field">
+              <%= f.label :email, "Email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+        
+            <div class="field">
+              <%= f.label :password, "Choose Password" %>
+              <% if @minimum_password_length %>
+              <!-- <em>(<%= @minimum_password_length %> characters minimum)</em> -->
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+        
+            <div class="field">
+              <%= f.label :password_confirmation, "Confirm Password" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+        
+            <div class="actions">
+              <%= f.submit "Submit", class: "button button-email-signup-submit" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      
+      <p class="signup-agreement">By signing up, you agree to CodePain's <a href="#">Terms of Service</a>, <a href="#">Code of Conduct</a> , and <a href="#">Privacy Policy</a> .</p>
+    </div>
+    
+    <div class="signup-feature-list tier-name-free">
+      <h3>FREE</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Project Count</dt>
+            <dd class="data">1</dd>
+            <dt>Files per Project</dt>
+            <dd class="data">10</dd>
+            <dt>Deploys</dt>
+            <dd class="data">0</dd>
+            <dt>Custom Domains</dt>
+            <dd class="data">0</dd>
+          </dl>
+      </div>
+      
+      <h3>PEN & PROJECT VIEWS</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Editor View</dt>
+            <dd class="data">✅</dd>
+            <dt>Full View</dt>
+            <dd class="data">✅</dd>
+            <dt>Details View</dt>
+            <dd class="data">✅</dd>
+            <dt>Shareable Debug View</dt>
+            <dd class="data">⛔</dd>
+          </dl>
+      </div>
+      
+      <h3>PEN FEATURES</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Collab Mode</dt>
+            <dd class="data">⛔</dd>
+            <dt>Professor Mode</dt>
+            <dd class="data">⛔</dd>
+            <dt>Presentation View</dt>
+            <dd class="data">⛔</dd>
+          </dl>
+      </div>
+      
+      <h3>ASSET HOSTING</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Storage</dt>
+            <dd class="data">⛔</dd>
+          </dl>
+      </div>
+      
+      <h3>NEED MORE?</h3>
+      <p class="pro-member-ask">Unlock the full power of CodePen <a href="#">with our PRO plans</a>.</p>
+        </div>
+    </div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :display_name %><br />
-    <%= f.text_field :display_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<div class="signup-footer">
+  <a href="#">Terms of Service</a>
+   · 
+  <a href="#">Privacy Policy</a>
+   · 
+  <a href="#">Code of Conduct</a> 
+</div>

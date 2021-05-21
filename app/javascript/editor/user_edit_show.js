@@ -20,15 +20,15 @@ document.addEventListener('turbolinks:load', () => {
         url: `/api/v1/pens/${randomurl}/edit`
       })
       .then( (response) => {
-          let data = response.data
-          title.textContent = data.title
-          editorHTML.session.setValue(data.html)
-          editorCSS.session.setValue(data.css)
-          editorJS.session.setValue(data.js)
-        })
-        .catch( (error) => {
-          return `${error.name}: ${error.message}`
-        })
+        let data = response.data
+        title.textContent = data.title
+        editorHTML.session.setValue(data.html)
+        editorCSS.session.setValue(data.css)
+        editorJS.session.setValue(data.js)
+      })
+      .catch( (error) => {
+        return `${error.name}: ${error.message}`
+      })
     }
   }
 })

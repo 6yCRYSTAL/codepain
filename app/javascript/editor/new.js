@@ -60,7 +60,7 @@ document.addEventListener('turbolinks:load', () => {
       })
     }
 
-    // when session change excute renderToiframe()
+    // when editor session change excute renderToiframe()
     editorHTML.getSession().on('change',debounce( () => {
       renderToiframe()
     }) )
@@ -102,10 +102,6 @@ document.addEventListener('turbolinks:load', () => {
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
     const resultContainer = document.querySelector('.edit-result-container')
-<<<<<<< HEAD
-    
-=======
->>>>>>> feat/build-new.html
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
       resultContainer.classList.toggle('on')
@@ -126,10 +122,6 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
-<<<<<<< HEAD
-    
-=======
->>>>>>> feat/build-new.html
         try{
           eval(editorJS.session.getValue())
           consoleResult.innerText = stdoutMsg
@@ -147,7 +139,6 @@ document.addEventListener('turbolinks:load', () => {
         consoleResult.innerText = ""
       })
     }
-
     // close console
     function closeConsole() {
       closeConsoleBtn.addEventListener('click', () => {
@@ -155,11 +146,7 @@ document.addEventListener('turbolinks:load', () => {
         resultContainer.classList.toggle('on')
       })
     }
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> feat/build-new.html
     // share btn get url
     function shareURL() {
       const shareBtn = document.querySelector('#edit-share-btn')
@@ -186,10 +173,6 @@ document.addEventListener('turbolinks:load', () => {
         closeBox.setAttribute('class', 'share-box-close')
         closeBox.textContent = "x"
         shareBox.appendChild(closeBox)
-<<<<<<< HEAD
-        
-=======
->>>>>>> feat/build-new.html
         closeBox.addEventListener('click', () => {
           shareBox.remove()
         })

@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <div class="container">
+    <%= notice %><%= alert %>
+    <div class="container-left">
       <%= render './shared/sidebar' %>
       <% if current_user %>
         <%= render './shared/usermenu_signin' %>

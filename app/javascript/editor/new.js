@@ -58,31 +58,32 @@ document.addEventListener('turbolinks:load', () => {
         enableLiveAutocompletion: true,
         enableSnippets: true,
       })
-      // editorHTML.getSession().on('change',debounce( renderToiframe(), 2000) )
-      editorHTML.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorCSS.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorJS.getSession().on('change',() => {
-        renderToiframe()
-      })
     }
 
-    // function debounce( fn, delay){
-    //   let timeout = null
-    //   return () => {
-    //     let context = this //editor session
-    //     let args = arguments // keyboardEvent
-    //     clearTimeout(timeout)
-    //     console.log(context);
+    // when session change excute renderToiframe()
+    editorHTML.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorCSS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorJS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+
+    //debounce: render to iframe late
+    function debounce( fn, delay = 1000){
+      let timeout = null
+      return () => {
+        let context = this //editor session
+        let args = arguments //keyboardEvent
+        clearTimeout(timeout)
     
-    //     timeout = setTimeout( () => {
-    //       fn.apply(context, args)
-    //     }, delay)
-    //   }
-    // }
+        timeout = setTimeout( () => {
+          fn.apply(context, args)
+        }, delay)
+      }
+    }
 
     // render to iframe
     function renderToiframe() {

@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load', () => {
       }
       Rails.ajax({
         url: `/api/v1/pens/${randomurl}`,
-        type: 'PUT',
+        type: 'PATCH',
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"

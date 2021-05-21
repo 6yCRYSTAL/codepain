@@ -1,9 +1,17 @@
 const emailFormToggle = () => {
-  document.querySelector('.email-signup-form').classList.toggle('hidden')
-  console.log('123')
+  const emailSignupForm = document.querySelector('.email-signup-form')
+  const passwordResetForm = document.querySelector('.password-reset-form')
+
+  if (emailSignupForm || passwordResetForm) {
+    (emailSignupForm || passwordResetForm).classList.toggle('hide')
+  }
 }
 
-
 document.addEventListener('turbolinks:load', () => {
-  document.querySelector('.button-email-signup').addEventListener('click', emailFormToggle)
+  const emailSignupButton = document.querySelector('.button-email-signup')
+  const passwordResetLink = document.querySelector('.forgot-password-link')
+
+  if (emailSignupButton || passwordResetLink) {
+    (emailSignupButton || passwordResetLink).addEventListener('click', emailFormToggle)
+  }
 })

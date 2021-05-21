@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'accounts', controllers: { omniauth_callbacks: 'users/omniauth_callbacks', confirmations: 'users/confirmations', passwords: 'users/passwords', registrations: 'users/registrations', unlocks: 'users/unlocks', sessions: 'users/sessions' }
+  # static pages
+  root 'statics#index'
+  
+  # users
+  devise_for :users, path: 'accounts', controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    unlocks: 'users/unlocks',
+    sessions: 'users/sessions'
+  }
 
+  # customize user routes for matching codepen
   devise_scope :user do
     get 'login', to: 'users/sessions#new'
     post 'login', to: 'users/sessions#create'
@@ -17,9 +29,6 @@ Rails.application.routes.draw do
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
   resources :comments, only: [:destroy]
-
-  # static pages
-  root 'statics#index'
 
   # api
   namespace :api, default: { format: :json } do

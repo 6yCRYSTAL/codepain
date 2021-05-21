@@ -1,22 +1,29 @@
 import Rails from '@rails/ujs'
+import axios from 'axios'
 
 document.addEventListener('turbolinks:load', () => {
   const saveBtn = document.querySelector('#btn-save');
   const editBtn = document.querySelector('#btn-edit');
   const input = document.querySelector('#inputTitle');
   const title = document.querySelector('#edit-title');
+  let randomURL = location.href.split('/pen/')[1];
+  let inputValue = '';
+  let ax = axios.create();
+  let token = document.querySelector('meta[name=csrf-token]').content;
+  ax.defaults.headers.common['X-CSRF-Token'] = token;
+
 
   // edit 編輯和存取
   if (editBtn && saveBtn){
+
     editBtn.addEventListener('click', () => {
-      title.textContent= '';
       title.style.display="none";
       input.style.display="inline";
       editBtn.style.display="none";
       input.focus();
     })
 
-    let allEvent = 0; // TODO:要加註解或改變數名
+    let allEvent = 0; // allEvent 兩件事件指觸發一件
     input.addEventListener('keyup', (e) => {
       allEvent =  allEvent + 1;
       if(e.keyCode === 13 && (allEvent !== 3)){
@@ -39,13 +46,26 @@ document.addEventListener('turbolinks:load', () => {
       title.style.display="inline";
       input.style.display="none";
       editBtn.style.display="inline";
-      let inputValue = e.target.value;
-      // TODO: 要fixed
-      titleNew = title.textContent = inputValue;
+      inputValue = e.target.value;
+      title.textContent = inputValue;
+      if (input.value === ""){
+        title.textContent= "Untitle";
+      }else{
+        title.textContent= inputValue;
+      }
+      putData();
     }
-
+    let putData = function() {
+      let newTitle = inputValue;
+      let username = document.querySelector('#username').textContent;
+      ax.patch(`/api/v1/pens/${randomURL}`,
+        {
+          pen: { title: newTitle }
+        }
+      )
+    }
     saveBtn.addEventListener('click', () => {
-      let titleNew = document.querySelector('#edit-title').textContent
+      let newTitle = inputValue;
       let username = document.querySelector('#username').textContent
       let html = ace.edit("editor--html")
       let css = ace.edit("editor--css")
@@ -54,11 +74,11 @@ document.addEventListener('turbolinks:load', () => {
       let cssValue = css.session.getValue()
       let jsValue = js.session.getValue()
       let paramsFromNewPen = () => {
-        return `user[username]=${username}&pen[title]=${titleNew}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
+        return `user[username]=${username}&pen[title]=${newTitle}&pen[html]=${htmlValue}&pen[css]=${cssValue}&pen[js]=${jsValue}`
       }
       Rails.ajax({
         url: '/api/v1/pens',
-        type: 'POST',
+        type: 'post',
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"

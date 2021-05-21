@@ -24,9 +24,9 @@ class Api::V1::PensController < ApplicationController
 
   def update
     if @pen.update(pen_params)
-      redirect_to edit_pen_path(@pen, username: current_user.username), notice: 'UPDATED!'
+      render json: { status: 'updat succeeded' }
     else
-      redirect_to pens_path
+      render json: { status: 'update failed' }
     end
   end
 
@@ -50,7 +50,6 @@ class Api::V1::PensController < ApplicationController
 
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
-
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else

@@ -70,15 +70,29 @@
         <% end %>
 
 
-<div id="comment_area">
-  <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
-
+<div id="comment_area" >
+  <%= (pluralize @comments_counts, "comment").upcase %>
   <% @comments.each do |comment| %>
-    <section id="">
-      <%= "#{current_user.display_name} (@#{current_user.username})"  %>
-      <%= comment.content %>
-      <%= time_ago_in_words(comment.created_at) + ' ago'%>
-      <%= link_to "Edit", comment_path(comment), method: "put" %>
+    <section data-controller="comment">
+      <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
+      <span > <%= time_ago_in_words(comment.created_at) + ' ago'%> </span>
+      <div class="comment-edit-block" data-comment-target="commentBlock">
+        <textarea data-comment-target="textarea"><%= comment.content %></textarea>
+        <span
+          data-action="click->comment#update"
+          data-comment-target="updateBtn"
+        > Update </span>
+        <span
+          data-action="click->comment#cancel"
+          data-comment-target="cancelBtn"
+        > Cancel </span>
+      </div>
+      <span data-comment-target="commentShow"><%= comment.content %></span>
+      <span
+        data-action="click->comment#edit"
+        data-comment-target="editBtn"
+        data-id="<%= comment.id %>"
+      > Edit </span>
       <%= link_to "Delete", comment_path(comment), method: "delete",
                   data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
     </section>

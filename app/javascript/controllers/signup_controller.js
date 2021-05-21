@@ -1,7 +1,7 @@
-import { Controller } from "stimulus"
+// import { Controller } from "stimulus"
 
-export default class extends Controller {
-  connect() {
-    console.log('connected'), this.element
-  }
-}
+// export default class extends Controller {
+//   connect() {
+//     console.log('connected'), this.element
+//   }
+// }

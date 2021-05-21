@@ -10,19 +10,21 @@ class Api::V1::OrdersController < ApplicationController
       require 'ecpay_payment'
       # 把指定的參數帶入
       base_param = {
-        'MerchantTradeNo' => 'f0a0dasae1bb72bc93',  #請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
+        'MerchantTradeNo' => order.serial,  #請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
         'MerchantTradeDate' => order.created_at.to_s(:db).gsub('-', '/'), # ex: 2017/02/13 15:45:30
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'http://localhost:3000/your-work'
+        'ReturnURL' => 'localhost:3000/accounts/pro',
+        'OrderResultURL' => 'localhost:3000/accounts/pro'
+        # 'NeedExtraPaidInfo' => 'Y'
       }
       # 先不帶入發票
       inv_params = {}
 
       create = ECpayPayment::ECpayPaymentClient.new
       htm = create.aio_check_out_credit_onetime(params: base_param, invoice: inv_params)
-      # 目前不曉得這坨response要怎麼處理他
+
       render html: htm.html_safe
     else
       render html: '失敗'
@@ -31,14 +33,10 @@ class Api::V1::OrdersController < ApplicationController
 
   private
 
-  def product_params
-    params.require(:product).permit(:period, :plan)
-  end
-
   def find_product
     begin
       @product = Product.find_by!('plan = ? AND period = ?',
-                                   product_params[:plan], product_params[:period])
+                                   params[:plan], params[:period])
     rescue
       redirect_to pens_path
     end

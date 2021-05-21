@@ -1,6 +1,6 @@
 <% if @product.period == 'year' %>
   這是Annual Developer
-  <button id="subBtn" data-period="year" data-plan="developer">確定購買</button>
+  <%= link_to '確定購買', api_v1_orders_path(plan: params[:plan], period: params[:period]), method: 'POST' %>
 
   <% if @htm %>
     <%= @htm %>

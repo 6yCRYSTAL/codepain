@@ -428,6 +428,7 @@ label {
 .button-password-reset-submit {
   padding: 8px 12px;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .signup-subbutton {

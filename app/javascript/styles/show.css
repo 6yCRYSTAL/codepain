@@ -1,0 +1,123 @@
+.embed-nav{
+  padding: 5px;
+  border-spacing: 0;
+  background-color: rgb(44, 44, 53);
+}
+.code-types{
+  line-height: 0px;
+  text-align: center;
+  height: 35px;
+  margin: 2px -2px;
+  padding: 12px;
+  font-size: 13px;
+  color: rgb(231, 231, 233);
+  background-color: var(--primary-gray-4);
+}
+.types_1{
+  margin-left: 5px;
+  border-radius: 3px 0 0 3px;
+}
+.types_2{
+  border-radius: 0px;
+}
+.types_3{
+  border-radius: 0 3px 3px 0;
+}
+.result{
+  line-height: 0px;
+  text-align: center;
+  position:absolute;
+  padding: 12px;
+  margin: 2px -2px;
+  font-size: 13px;
+  border-radius: 3px;
+  color: rgb(231, 231, 233);
+  background-color: var(--primary-gray-4);
+  height: 35px;
+  right: 0px;
+  margin-right: 13px;
+}
+.show_Picture{
+  background-color: rgb(245, 244, 244);
+  height: 460px;
+  width: 100%;
+  /* 可刪 */
+  font-size: 100px; 
+  font-weight: bolder;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.embed-footer{
+  height: 30px;
+  background-color: rgb(44, 44, 53);
+  display: flex;
+}
+.action-button{
+  padding: 3px 10px;
+  background-color: var(--primary-gray-4);
+  border: 1px solid var(--primary-gray-4);
+  border-radius: 3px;
+  color: white;
+  height: 22px;
+  margin-top: 2.5px;
+}
+.external-resources{
+  margin-left: 5px;
+}
+.action{
+  margin-left: 45%;
+}
+.action-button{
+  margin: 2px -2px;
+}
+.action_btn_1{
+  border-radius: 3px 0 0 3px;
+}
+.action_btn_2{
+  border-radius: 0px;
+}
+.action_btn_3{
+  border-radius: 0 3px 3px 0;
+}
+.rerun-button{
+  position:absolute;
+  right: 0px;
+  margin-right: 13px;
+}
+.Stretch{
+  height: 12px;
+  width: 100%;
+  background-color: var(--primary-gray-4);
+}
+.ItemDetailsContent_background{
+  height: 999px;
+  width: 100%;
+  background-color: rgb(44, 44, 53);
+  text-align: center;
+}
+.ItemDetailsContent_content{
+  display: inline-block;
+  text-align: center;
+  background-color: 	#708090;
+  height: 100%;
+  width: 60%;
+  padding: 32px;
+  }
+.aaa{
+  /* background-color: #ffa; */
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(1, 500px 250px);
+  gap: 50px;
+  }
+.bbb{
+  font-size: 25px;
+}
+.ItemDetailsLicense_root-35USN{
+  height: 2%;
+  background-color: #faf;
+}
+.ccc{
+  font-size: 100px;
+  margin-top: 0px;
+}

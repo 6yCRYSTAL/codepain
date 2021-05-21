@@ -15,7 +15,6 @@ class PensController < ApplicationController
     # @comments = current_pen.comments.all.order(id: :desc)
     # @comments_counts = @comments.count
     @comment = current_user.comments.new
-
   end
 
   def new

@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
   resources :comments, only: [:update, :destroy]
 
+  # orders
+  resources :orders, only: [:new]
+
   # static pages
   root 'statics#index'
 

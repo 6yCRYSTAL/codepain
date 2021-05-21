@@ -58,6 +58,7 @@ document.addEventListener('turbolinks:load', () => {
         enableLiveAutocompletion: true,
         enableSnippets: true,
       })
+      // editorHTML.getSession().on('change',debounce( renderToiframe(), 2000) )
       editorHTML.getSession().on('change',() => {
         renderToiframe()
       })
@@ -68,6 +69,20 @@ document.addEventListener('turbolinks:load', () => {
         renderToiframe()
       })
     }
+
+    // function debounce( fn, delay){
+    //   let timeout = null
+    //   return () => {
+    //     let context = this //editor session
+    //     let args = arguments // keyboardEvent
+    //     clearTimeout(timeout)
+    //     console.log(context);
+    
+    //     timeout = setTimeout( () => {
+    //       fn.apply(context, args)
+    //     }, delay)
+    //   }
+    // }
 
     // render to iframe
     function renderToiframe() {

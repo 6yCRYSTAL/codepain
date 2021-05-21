@@ -1,5 +1,7 @@
 class Api::V1::OrdersController < ApplicationController
   before_action :authenticate_user!
+  # 注意!!以下是csrf豁免
+  skip_before_action :verify_authenticity_token, only: [:result]
 
   def create
     find_product
@@ -15,8 +17,8 @@ class Api::V1::OrdersController < ApplicationController
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'https://5aebeb8fa837.ngrok.io/accounts/pro', # 使用 ngrok 測試
-        'OrderResultURL' => 'https://5aebeb8fa837.ngrok.io/accounts/pro' # # 使用 ngrok 測試
+        'ReturnURL' => 'https://5aebeb8fa837.ngrok.io/api/v1/orders/result', # 使用 ngrok 測試
+        'OrderResultURL' => 'https://5aebeb8fa837.ngrok.io/api/v1/orders/result' # 使用 ngrok 測試
         # 'NeedExtraPaidInfo' => 'Y'
       }
       # 先不帶入發票
@@ -31,7 +33,16 @@ class Api::V1::OrdersController < ApplicationController
     end
   end
 
+  def result
+    p "#{ecpay_params}--------------------"
+    return '1|OK'
+  end
+
   private
+
+  def ecpay_params
+    params.permit(:PaymentDate, :PaymentType, :RtnMsg)
+  end
 
   def find_product
     begin

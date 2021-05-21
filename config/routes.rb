@@ -47,7 +47,11 @@ Rails.application.routes.draw do
       end
       resources :deleted_pens, only: [:update, :destroy]
       # orders
-      resources :orders, only: [:create]
+      resources :orders, only: [:create] do
+        collection do
+          post :result
+        end
+      end
       # comments
       resources :comments, only: [:update]
     end

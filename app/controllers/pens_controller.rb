@@ -45,10 +45,6 @@ class PensController < ApplicationController
 
   private
 
-  def clear_search_params
-    params.permit(:search)
-  end
-
   def search_pen(keyword)
     # 如果沒搜尋 那就給他user所有的pens
     return current_user.pens if keyword.nil?
@@ -63,5 +59,4 @@ class PensController < ApplicationController
       redirect_to pens_path
     end
   end
-
 end

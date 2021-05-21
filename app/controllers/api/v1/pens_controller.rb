@@ -2,13 +2,13 @@ class Api::V1::PensController < ApplicationController
   respond_to :json
 
   before_action :authenticate_user!, except: [:new]
+  before_action :find_user_pen, only: [:edit, :update]
 
   def index
     @pens = current_user.pens
-    p "YOU GOOD!! GET PENS DATA!!"
     render(json: @pens)
   end
-  
+
   def create
     @pen = current_user.pens.new(pen_params)
     if @pen.save
@@ -18,9 +18,11 @@ class Api::V1::PensController < ApplicationController
     end
   end
 
-  def update
-    current_pen
+  def edit
+    render(json: @pen)
+  end
 
+  def update
     if @pen.update(pen_params)
       redirect_to edit_pen_path(@pen, username: current_user.username), notice: 'UPDATED!'
     else
@@ -45,10 +47,10 @@ class Api::V1::PensController < ApplicationController
   def love_params
     params.permit(:random_url)
   end
-  
+
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
-    
+
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else
@@ -56,8 +58,11 @@ class Api::V1::PensController < ApplicationController
     end
   end
 
-  def current_pen
-    @pen = current_user.pens.find_by(random_url: params[:random_url])
-    redirect_to pens_path if @pen.nil?
+  def find_user_pen
+    begin
+      @pen = current_user.pens.find_by(random_url: params[:random_url])
+    rescue
+      redirect_to pens_path
+    end
   end
 end

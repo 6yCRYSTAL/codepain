@@ -28,17 +28,18 @@ Rails.application.routes.draw do
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
-  resources :comments, only: [:update, :destroy]
+  resources :comments, only: [:destroy]
 
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :update], param: :random_url do
+      resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
         member do
           post :love, action: 'love_list'
         end
       end
       resources :deleted_pens, only: [:update, :destroy]
+      resources :comments, only: [:update]
     end
   end
 end

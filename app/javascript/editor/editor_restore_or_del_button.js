@@ -31,5 +31,4 @@ document.addEventListener('turbolinks:load', () => {
       }
     })
   })
-
 })

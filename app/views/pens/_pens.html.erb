@@ -1,0 +1,67 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>Last Updated</th>
+      <th>Stats</th>
+      <th>Show </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pens.each do |pen| %>
+      <tr>
+        <th>
+          <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
+
+          <%# modal %>
+          <button class="modal-btn" id="modal-btn">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
+          <div id="modal" class="modal" data-url="<%= pen.random_url %>">
+            <div class="modal-content">
+              <a href="#" id="username"><%= current_user.username %></a>
+              <%= pen.title %>
+              <%= pen.html %>
+              <%= pen.css %>
+              <%= pen.js %>
+              <h3>Comment</h3>
+
+              <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: pen.random_url )) do |form| %>
+                <div>
+                  <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
+                </div>
+                <%= form.submit %>
+              <% end %>
+
+              <div id="comment_area">
+                <%=  pen.comments_count > 1 ? "#{pen.comments_count} COMMENTS" : "#{pen.comments_count} COMMENT" %>
+                <% pen.comments.each do |comment| %>
+                  <section id="">
+                    <%= "#{current_user.display_name} (@#{current_user.username})"  %>
+                    <%= comment.content %>
+                    <%= time_ago_in_words(comment.created_at) + ' ago'%>
+                    <%= link_to "Edit", comment_path(comment), method: "put" %>
+                    <%= link_to "Delete", comment_path(comment), method: "delete",
+                                data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
+                  </section>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+        </th>
+        <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
+        <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
+        <td>
+          <div class="hearts">愛心</div>
+          <div class="comments">評論</div>
+          <div class="views">眼睛</div>
+        </td>
+        <td>三個點</td>
+        <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
+        <td><i class="fas fa-eye"></i><%= pen.edit_view_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

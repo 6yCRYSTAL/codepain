@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
-    t.integer "comments_count", default: 0
     t.integer "edit_view_count", default: 0
+    t.integer "comments_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"
@@ -106,5 +106,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_204238) do
 
   add_foreign_key "comments", "pens"
   add_foreign_key "comments", "users"
+  add_foreign_key "heart_lists", "pens"
+  add_foreign_key "heart_lists", "users"
   add_foreign_key "pens", "users"
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # static pages
   root 'statics#index'
-  
+
   # users
   devise_for :users, path: 'accounts', controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',

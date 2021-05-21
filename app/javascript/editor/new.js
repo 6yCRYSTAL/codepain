@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
-  
+
   if( html && css && js ){
     // set Ace
     let editorHTML = ace.edit("editor--html")
@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-      })  
+      })
       editorCSS.setOptions({
         mode: "ace/mode/css",
         theme: "ace/theme/twilight",
@@ -86,7 +86,7 @@ document.addEventListener('turbolinks:load', () => {
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
     const resultContainer = document.querySelector('.edit-result-container')
-    
+
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
       resultContainer.classList.toggle('on')
@@ -107,7 +107,7 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
-    
+
         try{
           eval(editorJS.session.getValue())
           consoleResult.innerText = stdoutMsg
@@ -133,7 +133,7 @@ document.addEventListener('turbolinks:load', () => {
         resultContainer.classList.toggle('on')
       })
     }
-  
+
     // share btn get url
     function shareURL() {
       const shareBtn = document.querySelector('#edit-share-btn')
@@ -160,7 +160,7 @@ document.addEventListener('turbolinks:load', () => {
         closeBox.setAttribute('class', 'share-box-close')
         closeBox.textContent = "x"
         shareBox.appendChild(closeBox)
-        
+
         closeBox.addEventListener('click', () => {
           shareBox.remove()
         })

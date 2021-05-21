@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-# User authentication 
+# User authentication
 # https://github.com/heartcombo/devise
 gem 'devise', '~> 4.8'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
@@ -43,12 +43,9 @@ gem 'omniauth-facebook', '~> 8.0'
 # https://github.com/rubysherpas/paranoia
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 
-# protect sensitive information
-# https://github.com/laserlemon/figaro
-
 # react on rails
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial
-gem 'react_on_rails', '~> 12.2'
+# gem 'react_on_rails', '~> 12.2'
 
 # view counter
 # https://github.com/charlotte-ruby/impressionist

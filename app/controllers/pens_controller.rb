@@ -1,18 +1,17 @@
 class PensController < ApplicationController
   layout 'edit',only: [:new, :edit, :show]
   before_action :authenticate_user!
+  before_action :find_user_pen, only: [:show, :edit, :destroy]
   # impressionist :actions=>[:edit]
 
   def index
     # pens tab / all or search
-    @pens = search_pen(clear_search_params)
+    @pens = search_pen(params[:search])
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
 
     # for Comment
-    # @comments = current_pen.comments.all.order(id: :desc)
-    # @comments_counts = @comments.count
     @comment = current_user.comments.new
   end
 
@@ -21,9 +20,8 @@ class PensController < ApplicationController
   end
 
   def show
-    current_pen
-    @comments = current_pen.comments.all.order(id: :desc)
-    @comments_counts = current_pen.comments_count
+    @comments = @pen.comments.all.order(id: :desc)
+    @comments_counts = @pen.comments_count
     @comment = current_user.comments.new
 
     respond_to do |format|
@@ -33,40 +31,31 @@ class PensController < ApplicationController
   end
 
   def edit
-    current_pen
     impressionist(@pen)
   end
 
   def destroy
-    current_pen
     # change pen state
-    @pen.update(state: 'soft_deleting')
+    @pen.update(state: 'trashed')
     # soft_delete the pen
     @pen.destroy
     redirect_to pens_path, notice: "DELETED!!!"
   end
 
   private
-  def clear_search_params
-    params.permit(:search)
-  end
 
-  def search_pen(search_params)
+  def search_pen(keyword)
     # 如果沒搜尋 那就給他user所有的pens
-    return current_user.pens if search_params[:search].nil?
+    return current_user.pens if keyword.nil?
     # 有搜尋的話就去db撈資料
-      current_user.pens.find_pen_by_search_keyword(search_params[:search])
+    current_user.pens.search(keyword)
   end
 
-  def current_pen
-    @pen = current_user.pens.find_by(random_url: params[:random_url])
-    # Need confirm!
-    # redirect_to pens_path if @pen.nil? #
-    if @pen
-      return @pen
-    else
+  def find_user_pen
+    begin
+      @pen = current_user.pens.find_by!(random_url: params[:random_url])
+    rescue
       redirect_to pens_path
     end
   end
-
 end

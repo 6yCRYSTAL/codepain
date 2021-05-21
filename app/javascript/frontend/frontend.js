@@ -14,6 +14,7 @@ document.addEventListener('turbolinks:load',function(){
       UserMenuTopNav.classList.toggle('active');
     });
   }
+
   // 全站-側選單
   if (Container) {
     let sidebarOpen = ()=>{
@@ -21,6 +22,7 @@ document.addEventListener('turbolinks:load',function(){
       Container.classList.add('open-sidebar');
       document.querySelector('.sidebar-line').classList.remove('sidebar-line-active');
     }
+
     let sidebarClose = ()=>{
       Container.classList.add('close-sidebar');
       Container.classList.remove('open-sidebar');
@@ -29,7 +31,7 @@ document.addEventListener('turbolinks:load',function(){
 
     if (OnClose) {
       sidebarClose();
-    }else{
+    } else {
       sidebarOpen();
     }
 
@@ -45,7 +47,7 @@ document.addEventListener('turbolinks:load',function(){
         MainSidebar.classList.add('main-sidebar-an');
         localStorage.setItem('onClose','yes');
       }
-    });
+    })
   }
 
   // 偵測網址 tab 樣式

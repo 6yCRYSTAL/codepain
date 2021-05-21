@@ -15,7 +15,8 @@ document.addEventListener('turbolinks:load', () => {
       editBtn.style.display="none";
       input.focus();
     })
-    let allEvent = 0;
+
+    let allEvent = 0; // TODO:要加註解或改變數名
     input.addEventListener('keyup', (e) => {
       allEvent =  allEvent + 1;
       if(e.keyCode === 13 && (allEvent !== 3)){
@@ -24,6 +25,7 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
+
     input.addEventListener('blur', (e) => {
       allEvent = allEvent + 2;
       if(allEvent !== 3){
@@ -32,11 +34,13 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
-    let eventContent = (e)=>{
+
+    let eventContent = (e) => {
       title.style.display="inline";
       input.style.display="none";
       editBtn.style.display="inline";
       let inputValue = e.target.value;
+      // TODO: 要fixed
       titleNew = title.textContent = inputValue;
     }
 

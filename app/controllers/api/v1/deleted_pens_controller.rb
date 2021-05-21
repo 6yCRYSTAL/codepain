@@ -2,9 +2,9 @@ class Api::V1::DeletedPensController < ApplicationController
   respond_to :json
 
   before_action :authenticate_user!
+  before_action :find_trashed_pen
 
   def update
-    find_soft_deleting_pen
     # change pen state to editing
     @pen.restore
     @pen.update(state: 'editing')
@@ -12,7 +12,6 @@ class Api::V1::DeletedPensController < ApplicationController
   end
 
   def destroy
-    find_soft_deleting_pen
     # change pen state to archived
     @pen.update(state: 'archived')
     redirect_to pens_path(item_type: 'deleted_item')
@@ -20,7 +19,7 @@ class Api::V1::DeletedPensController < ApplicationController
 
   private
 
-  def find_soft_deleting_pen
-    @pen = Pen.is_soft_deleting.find_by(id: params[:id])
+  def find_trashed_pen
+    @pen = Pen.is_trashed.find_by(id: params[:id])
   end
 end

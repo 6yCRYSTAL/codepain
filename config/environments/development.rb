@@ -87,7 +87,7 @@ Rails.application.configure do
   # using ngrok to test ecpay response
   config.hosts << "3cd71269e7ef.ngrok.io"
 
-  # add white list ips for ecpay
+  # add white-listed ips for ecpay
   config.web_console.whitelisted_ips = '118.233.67.12'
   config.web_console.whitelisted_ips = '175.99.72.1'
 end

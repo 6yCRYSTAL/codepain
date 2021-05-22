@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.bigint "user_id", null: false
     t.string "payment_method"
     t.string "serial"
-    t.datetime "parchased_at"
+    t.datetime "purchased_at"
     t.integer "total_amount"
     t.string "ecpay_tradeno"
+    t.integer "ecpay_chargefee"
+    t.string "ecpay_check_mac_value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_orders_on_product_id"
@@ -125,12 +127,12 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "membership", default: "free"
-    t.datetime "start_pro_at"
-    t.datetime "expired_pro_at"
-    t.datetime "unsubscribed_pro_at"
+    t.datetime "subscribed_at"
+    t.datetime "expired_at"
+    t.datetime "unsubscribed_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["expired_pro_at"], name: "index_users_on_expired_pro_at"
+    t.index ["expired_at"], name: "index_users_on_expired_at"
     t.index ["membership"], name: "index_users_on_membership"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"

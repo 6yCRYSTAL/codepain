@@ -5,9 +5,11 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.belongs_to :user, null: false, foreign_key: true
       t.string :payment_method
       t.string :serial, unique: true
-      t.datetime :parchased_at
+      t.datetime :purchased_at
       t.integer :total_amount
       t.string :ecpay_tradeno
+      t.integer :ecpay_chargefee
+      t.string :ecpay_check_mac_value
 
       t.timestamps
     end

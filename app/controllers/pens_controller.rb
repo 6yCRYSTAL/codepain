@@ -6,7 +6,7 @@ class PensController < ApplicationController
 
   def index
     # pens tab / all or search
-    @pens = search_pen(params[:search])
+    @pens = search_pen(params[:search]).includes(:comments)
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour

@@ -39,7 +39,7 @@
                 <% end %>
 
                 <div id="comment_area">
-                <%= pen.comments_count> 1 ? "#{pen.comments_count} COMMENTS" : "#{pen.comments_count} COMMENT" %>
+                <div class="uppercase"><%= pluralize pen.comments_count, "comment" %></div>
                 <% pen.comments.each do |comment| %>
                 <section id="">
                 <%= "#{current_user.display_name} (@#{current_user.username})" %>
@@ -51,7 +51,6 @@
                 </section>
                 <% end %>
               </div>
-        
             </div>
           </div>
         </td>

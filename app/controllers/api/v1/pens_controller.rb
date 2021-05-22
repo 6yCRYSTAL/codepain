@@ -24,7 +24,7 @@ class Api::V1::PensController < ApplicationController
 
   def update
     if @pen.update(pen_params)
-      render json: { status: 'updat succeeded' }
+      render json: { status: 'update succeeded' }
     else
       render json: { status: 'update failed' }
     end

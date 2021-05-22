@@ -1,0 +1,19 @@
+// 控制編輯區隱藏
+.comment-edit-block{
+  display: none;
+}
+
+.appear{
+  display: block;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+// 開發用淺色字體
+.comment-text-color{
+  color: var(--light-gray);
+}
+
+

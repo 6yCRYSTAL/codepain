@@ -8,8 +8,8 @@
   <%= form.submit %>
 <% end %>
 
-<div id="comment_area" >
-  <%= (pluralize @comments_counts, "comment").upcase %>
+<div id="comment_area" class="comment-text-color">
+  <div class="uppercase"><%= pluralize @comments_counts, "comment" %></div>
   <% @comments.each do |comment| %>
     <section data-controller="comment">
       <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>

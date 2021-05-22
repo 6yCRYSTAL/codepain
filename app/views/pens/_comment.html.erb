@@ -5,14 +5,29 @@
   <%= form.submit %>
 <% end %>
 
-<div id="comment_area" class="comment-text-color">
+<div id="comment_create_area" data-controller="comment" class="comment-text-color">
+  <textarea class="w-6/12 h-20"
+            placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
+Feeling inspired? Let <%=pen.user.username%> know!
+Want to share how you used this Pen?
+Give the creator a confidence boost!"
+            data-comment-target="createTextArea"
+            ></textarea>
+  <span
+    class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
+    data-action="click->comment#create"
+    data-comment-target="createBtn"
+  > Comment </span>
+</div>
+
+<div id="comment-show-edit-block" class="comment-text-color">
   <div class="uppercase"><%= pluralize comments_count, "comment" %></div>
   <% comments.each do |comment| %>
     <section data-controller="comment">
       <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
       <span > <%= time_ago_in_words(comment.created_at) + ' ago'%> </span>
       <div class="comment-edit-block" data-comment-target="commentBlock">
-        <textarea data-comment-target="textarea"><%= comment.content %></textarea>
+        <textarea data-comment-target="updateTextArea"><%= comment.content %></textarea>
         <span
           data-action="click->comment#update"
           data-comment-target="updateBtn"

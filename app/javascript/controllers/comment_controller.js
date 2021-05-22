@@ -2,7 +2,11 @@ import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
 
-  static targets = ["createBtn", "editBtn", "cancelBtn", "commentBlock", "updateTextArea","createTextArea", "commentShow", "updateBtn"]
+  static targets = [
+    "createBtn", "editBtn", "cancelBtn", "updateBtn",
+    "commentBlock", "creatCommentBlock",
+    "updateTextArea","createTextArea",
+    "commentShow"]
 
   initialize() {
     this.comment_id = ''
@@ -11,6 +15,8 @@ export default class extends Controller {
   create() {
     let content = this.createTextAreaTarget.value
     let randomurl = location.href.split('/').reverse()[0]
+    // let commentElement = this.creatCommentBlockTarget
+    console.log(this)
     Rails.ajax({
       url: `/api/v1/comments`,
       type: 'POST',
@@ -19,9 +25,14 @@ export default class extends Controller {
         "Content-Type": "application/json"
       },
       dataType: 'json',
-      data: `content=${content}&random_url=${randomurl}`
+      data: `content=${content}&random_url=${randomurl}`,
+      // 取回後端資料渲染
+      success: function(data) {
+        console.log(data)
+        // console.log(commentElement)
+        // console.log(commentElement.textContent)
+      }
     })
-    // 取回後端資料渲染
   }
 
   edit() {

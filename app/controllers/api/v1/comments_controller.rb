@@ -9,7 +9,7 @@ class Api::V1::CommentsController < ApplicationController
     @comment = current_user.comments.new({pen_id: pen_id, user_id: user_id, content: content  })
 
     if @comment.save
-      render json: { status: 'saved' }, status: 201
+      render json:  @comment.as_json(include: :user), status: 201
     else
       render json: { status: 'failed' }, status:	403
     end

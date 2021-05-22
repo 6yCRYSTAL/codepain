@@ -22,6 +22,7 @@ Give the creator a confidence boost!"
 
 <div id="comment-show-edit-block" class="comment-text-color">
   <div class="uppercase"><%= pluralize comments_count, "comment" %></div>
+  <div data-comment-target="creatCommentBlock">bbb</div>
   <% comments.each do |comment| %>
     <section data-controller="comment">
       <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>

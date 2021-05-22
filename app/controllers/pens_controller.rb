@@ -21,7 +21,7 @@ class PensController < ApplicationController
 
   def show
     @comments = @pen.comments.all.order(id: :desc)
-    @comments_counts = @pen.comments_count
+    @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 
     respond_to do |format|

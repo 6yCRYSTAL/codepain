@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
     begin
       @product = Product.find_by('plan = ? AND period = ?', params[:plan], params[:period])
     rescue
-      redirect_to pens_path if @product.nil?
+      redirect_to pens_path
     end
   end
 end

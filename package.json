@@ -28,8 +28,8 @@
     "turbolinks": "^5.2.0"
   },
   "scripts": {
-    "patch": "patch-package",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "heroku-postbuild": "webpack -p"
   },
   "version": "0.1.0",
   "devDependencies": {

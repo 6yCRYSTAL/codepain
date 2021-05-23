@@ -15,8 +15,15 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+# gem 'jbuilder', '~> 2.7'
+
+# JSON serializer
+gem 'blueprinter', '~> 0.25.3'
+
+# JSON parser
+gem 'oj', '~> 3.11', '>= 3.11.5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

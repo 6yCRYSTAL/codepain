@@ -4,9 +4,13 @@ class Api::V1::PensController < ApplicationController
   before_action :authenticate_user!, except: [:new]
   before_action :find_user_pen, only: [:edit, :update]
 
+  # TODO username key不會顯示在 api 上
   def index
     @pens = current_user.pens
-    render(json: @pens)
+    render(
+      json: @pens,
+      username: current_user.username
+    )
   end
 
   def create
@@ -30,6 +34,7 @@ class Api::V1::PensController < ApplicationController
     end
   end
 
+  # TODO 要開多少人喜歡(數量)、愛心的狀態(布林)
   def love_list
     @pen = Pen.find_by(random_url: love_params[:random_url])
 

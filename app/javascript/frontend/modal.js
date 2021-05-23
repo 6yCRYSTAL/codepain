@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load', () => {
   function openModal(e) {
     let modal = this.nextElementSibling
     let penURL = modal.dataset['url']
-    let username = modal.children[0].children[0].textContent
+    let username = modal.children[0].children[0].textContent.trim()
     // change URL at window location
     history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
     modal.style.display = 'block'

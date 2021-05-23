@@ -37,10 +37,12 @@ class Api::V1::PensController < Api::ApiController
 
     if current_user.loved?(pen)
       current_user.love_pens.destroy(pen)
-      success!(PenBlueprint.render_as_hash(current_user.love_pens, view: :normal), 'removed')
+      love_pen = HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+      success!(love_pen, 'removed')
     else
       current_user.love_pens << pen
-      success!(PenBlueprint.render_as_hash(current_user.love_pens, view: :normal), 'added')
+      love_pen = HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+      success!(love_pen, 'added')
     end
   end
 

@@ -1,12 +1,12 @@
-class Api::V1::PensController < ApplicationController
+class Api::V1::PensController < Api::ApiController
   respond_to :json
 
   before_action :authenticate_user!, except: [:new]
   before_action :find_user_pen, only: [:edit, :update]
 
   def index
-    pens = PenBlueprint.render(current_user.pens, view: :normal)
-    render json: pens
+    pens = PenBlueprint.render_as_hash(current_user.pens.order(updated_at: :desc), view: :extended)
+    render json: {success: true, payload: pens}, status: :ok
   end
 
   def create

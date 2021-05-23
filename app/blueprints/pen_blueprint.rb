@@ -7,10 +7,7 @@ class PenBlueprint < Blueprinter::Base
 
   view :extended do
     include_view :normal
-    fields :created_at, :updated_at, :comments_count, :edit_view_count
-    field :lovers do |pen, opts|
-      pen.lovers
-    end
+    fields :created_at, :updated_at, :comments_count, :edit_view_count, :heart_lists_count
     association :user, blueprint: UserBlueprint, view: :normal
   end
 end

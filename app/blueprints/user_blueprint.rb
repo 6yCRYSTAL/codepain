@@ -3,6 +3,6 @@ class UserBlueprint < Blueprinter::Base
 
   view :normal do
     fields :username, :display_name, :membership
-    # association :love_pens, blueprint: HeartListBlueprint, view: :user
+    association :love_pens, blueprint: HeartListBlueprint, view: :love_pens
   end
 end

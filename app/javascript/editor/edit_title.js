@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { createElement } from 'react';
 import getSaveBtn from './save_button.js'
 
 document.addEventListener('turbolinks:load', () => {
@@ -59,15 +60,21 @@ document.addEventListener('turbolinks:load', () => {
     // Patch api 
     let dataPatch = function() {
       let newTitle = inputValue;
+      let editHeader = document.querySelector('.edit-header');
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
-        // TODO 黃色標籤未做
-        console.log(res.data.status);
         if(res.data.status === 'update succeeded'){
+          let divEl = document.createElement('div');
+          let spanEl = document.createElement('span');
+          divEl.classList.add('edit-title-alert');
+          spanEl.textContent = 'Pen saved';
+          divEl.appendChild(spanEl)
+          editHeader.insertAdjacentElement('beforebegin', divEl);
+          // 1秒後消失
+          setTimeout(() => {
+            divEl.remove();
+          }, 1000); 
         }
-      }).catch(error => { 
-        // console.log(error.status) 
-        console.log('error');
       })
     }
   }

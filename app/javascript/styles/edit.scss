@@ -69,24 +69,32 @@
   }
   .pinned-btn{
     display: flex;
-    button{
-      &:first-child{
-        border-radius: 4px 0 0 4px;
-        margin: 0;
-        svg{
-          display: block;
-          transform: rotate(45deg);
-        }
+    .btn-pinned{
+      border-radius: 4px 0 0 4px;
+      margin: 0;
+      svg{
+        display: block;
+        transform: rotate(45deg);
       }
-      &:last-child{
-        border-radius: 0 4px 4px 0;
-        padding: 10px 5px;
-        font-size: 8px;
-      }
+    }
+    .btn-pin-arrow{
+      border-radius: 0 4px 4px 0;
+      padding: 10px 5px;
+      font-size: 8px;
     }
   }
 }
 /* header end */
+
+/* edit-title-alert */
+.edit-title-alert{
+  @apply w-full flex justify-center absolute;
+  span{
+    @apply inline-block py-1 px-2 text-gray-800 bg-yellow-300 rounded-b-lg text-sm;
+  }
+}
+/* edit-title-alert end */
+
 /* footer */
 .edit-footer{
   position: fixed;

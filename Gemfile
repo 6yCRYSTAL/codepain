@@ -17,9 +17,11 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 
 # JSON serializer
+# https://github.com/procore/blueprinter
 gem 'blueprinter', '~> 0.25.3'
 
 # JSON parser
+# https://github.com/ohler55/oj
 gem 'oj', '~> 3.11', '>= 3.11.5'
 
 # Use Redis adapter to run Action Cable in production
@@ -54,6 +56,10 @@ gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # view counter
 # https://github.com/charlotte-ruby/impressionist
 gem 'impressionist'
+
+# paginator
+# https://github.com/kaminari/kaminari
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

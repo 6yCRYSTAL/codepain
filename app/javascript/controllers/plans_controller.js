@@ -1,7 +1,14 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  connect() {
-    console.log(this.element);
+  static targets = ['yearTitle', 'monthTitle']
+
+  connect() {}
+
+  switch() {
+    const yearTitle = this.yearTitleTarget
+    const monthTitle = this.monthTitleTarget
+
+    console.log(yearTitle);
   }
 }

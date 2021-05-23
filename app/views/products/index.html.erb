@@ -1,7 +1,7 @@
 <div class="plans-container">
   <header class="plans-header">
     <div class="plans-header-details">
-      <h1>Choose a Plan</h1>
+      <h1 class="text-white">Choose a Plan</h1>
       <p>What do you get for being PRO? A lot!</p>
       <p><a href="#" class="">See PRO Features</a></p>
     </div>
@@ -16,8 +16,8 @@
         <div data-controller="plans">
           <thead>
             <tr>
-              <div data-target="plan.yearTitle">
-                <th>
+              <div>
+                <th data-target="plan.yearTitle">
                   <h3 class="plans-title-free">Free</h3>
                 </th>
                 <th>
@@ -30,18 +30,18 @@
                   <h3 class="plans-title-super">Annual Super</h3>
                 </th>
               </div>
-              <div data-target="plan.monthTitle" class="hidden">
-                <th>
-                  <h3 class="plans-title-free" class="hidden">Free</h3>
+              <div>
+                <th data-target="plan.monthTitle">
+                  <h3 class="plans-title-free">Free</h3>
                 </th>
                 <th>
-                  <h3 class="plans-title-starter" class="hidden">Starter</h3>
+                  <h3 class="plans-title-starter">Starter</h3>
                 </th>
                 <th>
-                  <h3 class="plans-title-developer" class="hidden">Developer</h3>
+                  <h3 class="plans-title-developer">Developer</h3>
                 </th>
                 <th>
-                  <h3 class="plans-title-super" class="hidden">Super</h3>
+                  <h3 class="plans-title-super">Super</h3>
                 </th>
               </div>
             </tr>
@@ -101,9 +101,9 @@
             </tr>
             <tr>
               <td></td>
-              <td data-action="click->plan#switch">Switch to monthly</td>
-              <td data-action="click->plan#switch">Switch to monthly</td>
-              <td data-action="click->plan#switch">Switch to monthly</td>
+              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
+              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
+              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
             </tr>
         </div>
           <tr>

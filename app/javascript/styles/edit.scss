@@ -69,23 +69,31 @@
   }
   .pinned-btn{
     display: flex;
-    button{
-      &:first-child{
+      .btn-pinned{
+        background-color:#131417;
+        border: 3px solid #444857;
         border-radius: 4px 0 0 4px;
         margin: 0;
         svg{
           display: block;
           transform: rotate(45deg);
         }
+        &:hover {
+          border:3px solid #8d9096;
+          background-color:#8d9096;
+        }
       }
-      &:last-child{
+      .btn-pin-arrow{
+        &:hover {
+          background-color:#8d9096;
+        }
         border-radius: 0 4px 4px 0;
         padding: 10px 5px;
-        font-size: 8px;
+        font-size: 10px;
       }
     }
   }
-}
+
 /* header end */
 /* footer */
 .edit-footer{

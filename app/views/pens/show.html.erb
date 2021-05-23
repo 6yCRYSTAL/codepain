@@ -25,6 +25,7 @@
     <div class="aaa">
       <div class="bbb">
         show page of <%= @pen.html%>
+      </div>
         <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url )) do |form| %>
       <!-- <h3>Comment</h3> -->
       <div class="ccc">

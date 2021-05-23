@@ -1,6 +1,5 @@
 class PensController < ApplicationController
-  layout 'edit',only: [:new, :edit]
-  layout 'show',only: [:show]
+  layout false
   before_action :authenticate_user!
   before_action :find_user_pen, only: [:show, :edit, :destroy]
   # impressionist :actions=>[:edit]
@@ -14,10 +13,12 @@ class PensController < ApplicationController
 
     # for Comment
     @comment = current_user.comments.new
+    render layout: "application"
   end
 
   def new
     @pen = Pen.new
+    render layout: "edit"
   end
 
   def show
@@ -25,6 +26,7 @@ class PensController < ApplicationController
     @comments_counts = @pen.comments_count
     @comment = current_user.comments.new
 
+    render layout: "show"
     respond_to do |format|
       format.js
       format.html
@@ -33,6 +35,7 @@ class PensController < ApplicationController
 
   def edit
     impressionist(@pen)
+    render layout: "edit"
   end
 
   def destroy

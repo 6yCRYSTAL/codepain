@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_080436) do
+ActiveRecord::Schema.define(version: 2021_05_17_204238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,21 +62,6 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "user_id", null: false
-    t.string "payment_method"
-    t.string "serial"
-    t.datetime "parchased_at"
-    t.integer "total_amount"
-    t.string "ecpay_tradeno"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_orders_on_product_id"
-    t.index ["serial"], name: "index_orders_on_serial"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -96,17 +81,6 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.index ["user_id"], name: "index_pens_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "plan"
-    t.string "desc"
-    t.integer "price"
-    t.string "period"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["period"], name: "index_products_on_period"
-    t.index ["plan"], name: "index_products_on_plan"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -124,14 +98,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "membership", default: "free"
-    t.datetime "start_pro_at"
-    t.datetime "expired_pro_at"
-    t.datetime "unsubscribed_pro_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["expired_pro_at"], name: "index_users_on_expired_pro_at"
-    t.index ["membership"], name: "index_users_on_membership"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
@@ -140,7 +108,5 @@ ActiveRecord::Schema.define(version: 2021_05_19_080436) do
   add_foreign_key "comments", "users"
   add_foreign_key "heart_lists", "pens"
   add_foreign_key "heart_lists", "users"
-  add_foreign_key "orders", "products"
-  add_foreign_key "orders", "users"
   add_foreign_key "pens", "users"
 end

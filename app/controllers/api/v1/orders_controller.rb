@@ -21,7 +21,8 @@ class Api::V1::OrdersController < ApplicationController
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'https://3cd71269e7ef.ngrok.io/api/v1/orders/result' # 使用 ngrok 測試
+        'ReturnURL' => 'https://fc978461a61a.ngrok.io/api/v1/orders/result' # 使用 ngrok 測試
+        # 'ClientBackURL' => 'https://fc978461a61a.ngrok.io/your-work'
       }
       # 先不帶入發票
       inv_params = {}
@@ -36,58 +37,58 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def result
-    payment_result_details
-
+    # 交易成功
     if ecpay_params[:RtnMsg] == '交易成功'
 
-      succeeded_order.update(result_details)
+      # 整理 ecpay 回傳的資料
+      succeeded_order = Order.find_by(serial: ecpay_params[:MerchantTradeNo]) # 交易成功的訂單
+      purchased_product = succeeded_order.product
+      purchased_plan = purchased_product.plan # 購買的產品
+      paid_user = succeeded_order.user # 購買的 user
 
+      case ecpay_params[:PaymentType]
+      when 'Credit_CreditCard'
+        payment_method = 'credit_onetime' # 付費方式
+      end
+
+      #  update order
+      succeeded_order.update(
+        payment_method: payment_method,
+        purchased_at: ecpay_params[:PaymentDate].to_datetime.to_s(:db),
+        ecpay_tradeno: ecpay_params[:TradeNo],
+        ecpay_chargefee: ecpay_params[:PaymentTypeChargeFee],
+        ecpay_check_mac_value: ecpay_params[:CheckMacValue]
+      )
+
+      # 找出購買產品的 period
+      if purchased_product.period == 'year'
+        expired_date = ecpay_params[:PaymentDate].to_datetime.next_year.to_s(:db)
+      else
+        expired_date = ecpay_params[:PaymentDate].to_datetime.next_month.to_s(:db)
+      end
+
+      # 更新 user
       paid_user.update(
         membership: purchased_plan,
-        subscribed_at: result_details.purchased_at
+        subscribed_at: succeeded_order.purchased_at,
         expired_at: expired_date
       )
+
+      # return '1|OK'
+      # 找出 user 幫他登入 返回 your-work 頁面
+      sign_in paid_user, store: true
+      # byebug
+      redirect_to pens_url
     else
-      redirect_to product_path(
-        plan: purchased_plan,
-        period: purchased_product.period), notice: '交易失敗'
+      # 如果交易失敗 返回產品頁面
+      redirect_to products_url, notice: '交易失敗'
     end
-    byebug
-    redirect_to products_path
   end
 
   private
 
-  def payment_result_details
-    succeeded_order = Order.find_by(serial: ecpay_params[:MerchantTradeNo])
-    purchased_product = succeeded_order.product
-    purchased_plan = purchased_product.plan
-    paid_user = succeeded_order.user
-
-    if purchased_product.period == 'year'
-      expired_date = ecpay_params[:PaymentDate].to_datetime.next_year.to_s(:db)
-    else
-      expired_date = ecpay_params[:PaymentDate].to_datetime.next_month.to_s(:db)
-    end
-
-    result_details = {
-      payment_method: payment_method,
-      purchased_at: ecpay_params[:PaymentDate].to_datetime.to_s(:db),
-      ecpay_tradeno: ecpay_params[:TradeNo],
-      ecpay_chargefee: ecpay_params[:PaymentTypeChargeFee],
-      ecpay_check_mac_value: ecpay_params[:CheckMacValue]
-    }
-  end
-
-  def payment_method
-    case ecpay_params[:PaymentType]
-    when 'Credit_CreditCard'
-      'credit_onetime'
-    end
-  end
-
   def ecpay_params
-    clear_params = params.permit(
+    params.permit(
       :MerchantTradeNo,
       :TradeNo,
       :PaymentDate,
@@ -96,6 +97,14 @@ class Api::V1::OrdersController < ApplicationController
       :CheckMacValue,
       :RtnMsg
     )
+  end
+
+  def storable_location?
+    request.get? && !devise_controller? && !request.xhr?
+  end
+
+  def store_user_location
+    store_location_for(:user, request.fullpath)
   end
 
   def find_product

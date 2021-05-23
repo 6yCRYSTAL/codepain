@@ -6,7 +6,7 @@ class Api::V1::PensController < ApplicationController
 
   def index
     @pens = current_user.pens
-    render(json: @pens)
+    render(json: @pens(include: {user: {only: [:username]}}))
   end
 
   def create

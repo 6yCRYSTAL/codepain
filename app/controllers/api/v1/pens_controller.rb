@@ -46,6 +46,34 @@ class Api::V1::PensController < Api::ApiController
     end
   end
 
+  def grid
+    pens = current_user.pens.order(updated_at: :desc).page(params[:page] || 1).per(6)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
+                                         meta: {
+                                           totalPages: pens.total_pages,
+                                           totalCount: pens.total_count,
+                                           currentPage: pens.current_page,
+                                           lastPage: pens.last_page?,
+                                           nextPage: pens.next_page,
+                                           prevPage: pens.prev_page
+                                         }))
+  end
+
+  def list
+    pens = current_user.pens.order(updated_at: :desc).page(params[:page] || 1).per(20)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
+                                         meta: {
+                                           totalPages: pens.total_pages,
+                                           totalCount: pens.total_count,
+                                           currentPage: pens.current_page,
+                                           lastPage: pens.last_page?,
+                                           nextPage: pens.next_page,
+                                           prevPage: pens.prev_page
+                                         }))
+  end
+
   private
 
   def love_params

@@ -1,53 +1,59 @@
-<%= form_for(comment, url: create_comment_path(username: current_user.username, random_url: pen.random_url )) do |form| %>
-  <div>
-    <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
-  </div>
-  <%= form.submit %>
-<% end %>
-
-<div id="comment_create_area" data-controller="comment" class="comment-text-color">
-  <textarea class="w-6/12 h-20"
-            placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
+<div class="bg-gray-300" data-controller="comcreate">
+<%# 開發用淺色背景 %>
+  <section >
+    <%# 建立該pen評論%>
+    <textarea class="w-6/12 h-20"
+              placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
 Feeling inspired? Let <%=pen.user.username%> know!
 Want to share how you used this Pen?
 Give the creator a confidence boost!"
-            data-comment-target="createTextArea"
-            ></textarea>
-  <span
-    class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
-    data-action="click->comment#create"
-    data-comment-target="createBtn"
-  > Comment </span>
-</div>
-
-<div id="comment-show-edit-block" class="comment-text-color">
-  <div class="uppercase"><%= pluralize comments_count, "comment" %></div>
-  <div data-comment-target="creatCommentBlock">bbb</div>
-  <% comments.each do |comment| %>
-    <section data-controller="comment">
-      <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
-      <span > <%= time_ago_in_words(comment.created_at) + ' ago'%> </span>
-      <div class="comment-edit-block" data-comment-target="commentBlock">
-        <textarea data-comment-target="updateTextArea"><%= comment.content %></textarea>
-        <span
-          data-action="click->comment#update"
-          data-comment-target="updateBtn"
-        > Update </span>
-        <span
-          data-action="click->comment#cancel"
-          data-comment-target="cancelBtn"
-        > Cancel </span>
-      </div>
-      <span data-comment-target="commentShow"><%= comment.content %></span>
-      <span
-        data-action="click->comment#edit"
-        data-comment-target="editBtn"
-        data-id="<%= comment.id %>"
-      > Edit </span>
-      <%= link_to "Delete", comment_path(comment), method: "delete",
-                  data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
-    </section>
-  <% end %>
+              data-comcreate-target="createTextArea"
+              ></textarea>
+    <span
+      class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
+      data-action="click->comcreate#create"
+      data-comcreate-target="createBtn"
+    > Comment </span>
+  </section>
+  <%# 顯示該pen評論%>
+  <section >
+    <p class="uppercase"><%= pluralize comments_count, "comment" %></p>
+    <ol data-comcreate-target="list">
+      <% comments.each do |comment| %>
+      <li data-controller="comupdate">
+        <div>
+          <span><%="#{current_user.display_name} (@#{current_user.username})"%></span>
+          <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
+        </div>
+        <div class="comment-edit-block" data-comupdate-target="commentBlock">
+          <textarea data-comupdate-target="updateTextArea"><%= comment.content %></textarea>
+          <button
+            data-action="click->comupdate#update"
+            data-comupdate-target="updateBtn"
+          > Update </button>
+          <button
+            data-action="click->comupdate#cancel"
+            data-comupdate-target="cancelBtn"
+          > Cancel </button>
+        </div>
+        <div>
+          <p data-comupdate-target="commentShow"><%= comment.content %></p>
+        </div>
+        <button
+          data-action="click->comupdate#edit"
+          data-comupdate-target="editBtn"
+          data-id="<%= comment.id %>"
+        > Edit </button>
+        <button
+          data-action=""
+          data-comupdate-target="deleteBtn">
+          <%= link_to "Delete", comment_path(comment), method: "delete",
+                            data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
+        </button>
+      </li>
+      <% end %>
+    </ol>
+  </section>
 </div>
 <%# 下方觀看次數codepen無，是否需要?%>
 <% if pen.edit_view_count != 0 %>

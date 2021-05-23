@@ -12,100 +12,150 @@
   </header>
   <div class="plans-content">
     <div class="plans-content-choose">
-      <table class="plans-table">
-        <div data-controller="plans">
-          <thead>
-            <tr>
-              <div>
-                <th data-target="plan.yearTitle">
-                  <h3 class="plans-title-free">Free</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-starter">Annual Starter</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-developer">Annual Developer</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-super">Annual Super</h3>
-                </th>
+      <table data-controller="plans" class="plans-table">
+        <thead>
+          <tr data-plans-target="yearTitles">
+            <th>
+              <h3 class="plans-title-free">Free</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-starter">Annual Starter</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-developer">Annual Developer</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-super">Annual Super</h3>
+            </th>
+          </tr>
+          <tr data-plans-target="monthTitles" class="hidden">
+            <th>
+              <h3 class="plans-title-free">Free</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-starter">Starter</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-developer">Developer</h3>
+            </th>
+            <th>
+              <h3 class="plans-title-super">Super</h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-plans-target="yearDetails">
+            <td class="plans-price-free">
+              <div class="plans-price">
+                <span class="plans-price-sign">$</span>
+                <span class="plans-price-amount">0</span>
+                <span class="plans-interval">/month</span>
+                <p>Forever</p>
               </div>
-              <div>
-                <th data-target="plan.monthTitle">
-                  <h3 class="plans-title-free">Free</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-starter">Starter</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-developer">Developer</h3>
-                </th>
-                <th>
-                  <h3 class="plans-title-super">Super</h3>
-                </th>
+            </td>
+            <td class="plans-price-starter">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">8</span>
+                <span class="plans-interval">/month</span>
+                <p>Billed at $96/year.</p>
               </div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="plans-price-free">
-                <div class="plans-price">
-                  <span class="plans-price-sign">$</span>
-                  <span class="plans-price-amount">0</span>
-                  <span class="plans-interval">/month</span>
-                  <p>Forever</p>
-                </div>
-              </td>
-              <td class="plans-price-starter">
-                <div class="plans-price">
-                  <span class="Pplans-price-sign">$</span>
-                  <span class="plans-price-amount">8</span>
-                  <span class="plans-interval">/month</span>
-                  <p>Billed at $96/year.</p>
-                </div>
-                <div class="plans-annual-savings">You’re
-                  <span class="plans-annual-savings-hightlight">
-                    saving<strong>$48</strong></span><br>by  annually.
-                </div>
-              </td>
-              <td class="plans-price-developer">
-                <div class="plans-price">
-                  <span class="Pplans-price-sign">$</span>
-                  <span class="plans-price-amount">12</span>
-                  <span class="plans-interval">/month</span>
-                  <p>Billed at $144/year.</p>
-                </div>
-                <div class="plans-annual-savings">You’re
-                  <span class="plans-annual-savings-hightlight">
-                    saving<strong>$84</strong></span><br>by  annually.
-                </div>
-              </td>
-              <td class="plans-price-super">
-                <div class="plans-price">
-                  <span class="Pplans-price-sign">$</span>
-                  <span class="plans-price-amount">26</span>
-                  <span class="plans-interval">/month</span>
-                  <p>Billed at $312/year.</p>
-                </div>
-                <div class="plans-annual-savings">You’re
-                  <span class="plans-annual-savings-hightlight">
-                    saving<strong>$156</strong></span><br>by  annually.
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'year') %></td>
-              <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'year') %></td>
-              <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'year') %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
-              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
-              <td data-action="click->plan#switch" class="text-white">Switch to monthly</td>
-            </tr>
-        </div>
+              <div class="plans-annual-savings">You’re
+                <span class="plans-annual-savings-hightlight">
+                  saving<strong>$48</strong></span><br>by  annually.
+              </div>
+            </td>
+            <td class="plans-price-developer">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">12</span>
+                <span class="plans-interval">/month</span>
+                <p>Billed at $144/year.</p>
+              </div>
+              <div class="plans-annual-savings">You’re
+                <span class="plans-annual-savings-hightlight">
+                  saving<strong>$84</strong></span><br>by  annually.
+              </div>
+            </td>
+            <td class="plans-price-super">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">26</span>
+                <span class="plans-interval">/month</span>
+                <p>Billed at $312/year.</p>
+              </div>
+              <div class="plans-annual-savings">You’re
+                <span class="plans-annual-savings-hightlight">
+                  saving<strong>$156</strong></span><br>by  annually.
+              </div>
+            </td>
+          </tr>
+          <tr data-plans-target="monthDetails" class="hidden">
+            <td class="plans-price-free">
+              <div class="plans-price">
+                <span class="plans-price-sign">$</span>
+                <span class="plans-price-amount">0</span>
+                <span class="plans-interval">/month</span>
+              </div>
+            </td>
+            <td class="plans-price-starter">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">12</span>
+                <span class="plans-interval">/month</span>
+              </div>
+              <div>Go annual instead<br>
+                <span> and <br>
+                <strong>save $48</strong> a year.</span>
+              </div>
+            </td>
+            <td class="plans-price-developer">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">19</span>
+                <span class="plans-interval">/month</span>
+              </div>
+              <div>Go annual instead<br>
+                <span> and <br>
+                <strong>save $84</strong> a year.</span>
+              </div>
+            </td>
+            <td class="plans-price-super">
+              <div class="plans-price">
+                <span class="Pplans-price-sign">$</span>
+                <span class="plans-price-amount">39</span>
+                <span class="plans-interval">/month</span>
+              </div>
+              <div>Go annual instead<br>
+                <span> and <br>
+                <strong>save $156</strong> a year.</span>
+              </div>
+            </td>
+          </tr>
+          <tr data-plans-target="yearLinks">
+            <td></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'year') %></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'year') %></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'year') %></td>
+          </tr>
+          <tr data-plans-target="monthLinks" class="hidden">
+            <td></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'month') %></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'month') %></td>
+            <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'month') %></td>
+          </tr>
+          <tr data-plans-target="yearSwitchers">
+            <td></td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to monthly billing</td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to monthly billing</td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to monthly billing</td>
+          </tr>
+          <tr data-plans-target="monthSwitchers" class="hidden">
+            <td></td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+            <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+          </tr>
           <tr>
             <td class="plans-features">
               <ul class="plans-features-list">

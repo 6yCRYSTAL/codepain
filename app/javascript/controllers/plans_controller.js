@@ -1,14 +1,25 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['yearTitle', 'monthTitle']
-
-  connect() {}
+  static targets = ['yearTitles', 'monthTitles',
+                    'yearDetails', 'monthDetails',
+                    'yearLinks', 'monthLinks',
+                    'yearSwitchers', 'monthSwitchers']
 
   switch() {
-    const yearTitle = this.yearTitleTarget
-    const monthTitle = this.monthTitleTarget
+    const yearTitles = this.yearTitlesTarget
+    const monthTitles = this.monthTitlesTarget
+    const yearDetails = this.yearDetailsTarget
+    const monthDetails = this.monthDetailsTarget
+    const yearLinks = this.yearLinksTarget
+    const monthLinks = this.monthLinksTarget
+    const yearSwitchers = this.yearSwitchersTarget
+    const monthSwitchers = this.monthSwitchersTarget
 
-    console.log(yearTitle);
+    const year = [yearTitles, yearDetails, yearLinks, yearSwitchers]
+    const month = [monthTitles, monthDetails, monthLinks, monthSwitchers]
+
+    year.forEach(e => e.classList.toggle('hidden'))
+    month.forEach(e => e.classList.toggle('hidden'))
   }
 }

@@ -5,12 +5,14 @@ class Api::V1::PensController < Api::ApiController
   before_action :find_user_pen, only: [:edit, :update]
 
   def index
-    pens = PenBlueprint.render_as_hash(current_user.pens.order(updated_at: :desc), view: :extended)
-    render json: {success: true, payload: pens}, status: :ok
+    pens = current_user.pens.order(updated_at: :desc)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended))
   end
 
   def create
     pen = current_user.pens.new(pen_params)
+
     if pen.save
       redirect_to edit_pen_path(pen, username: current_user.username)
     else
@@ -19,14 +21,14 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def edit
-    render(json: pen)
+    success!(PenBlueprint.render_as_hash(pen, view: :normal))
   end
 
   def update
     if pen.update(pen_params)
-      redirect_to edit_pen_path(pen, username: current_user.username), notice: 'UPDATED!'
+      success!(PenBlueprint.render_as_hash(pen, view: :normal))
     else
-      redirect_to pens_path
+      fail!(pen.errors.full_messages, 'update failed')
     end
   end
 
@@ -35,10 +37,10 @@ class Api::V1::PensController < Api::ApiController
 
     if current_user.loved?(pen)
       current_user.love_pens.destroy(pen)
-      render json: { status: 'removed' }
+      success!(PenBlueprint.render_as_hash(current_user.love_pens, view: :normal), 'removed')
     else
       current_user.love_pens << pen
-      render json: { status: 'added' }
+      success!(PenBlueprint.render_as_hash(current_user.love_pens, view: :normal), 'added')
     end
   end
 

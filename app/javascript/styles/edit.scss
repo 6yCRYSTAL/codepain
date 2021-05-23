@@ -70,6 +70,7 @@
   .pinned-btn{
     display: flex;
       .btn-pinned{
+        width: 60%;
         background-color:#131417;
         border: 3px solid #444857;
         border-radius: 4px 0 0 4px;
@@ -88,12 +89,53 @@
           background-color:#8d9096;
         }
         border-radius: 0 4px 4px 0;
+        width: 40%;
         padding: 10px 5px;
         font-size: 10px;
       }
     }
   }
-
+  .extend{
+    position:absolute;
+    z-index: 15;
+    width: 400px;
+    background-color: #131417;
+    padding: 2rem;
+    height: auto;
+    max-height: 80vh;
+    top: 63px;
+    right: 60px;
+    display: none;
+    .Pinned-Items{
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    ul{
+      padding-top: 10px;
+      li{
+        height: auto;
+        padding: 13px 13px 17px;
+        margin-bottom: 15px;
+        background: #2c303a;
+        border-radius: 6px;
+        // position: relative;
+        .icon-a{
+          margin: 0, 100%, 0, 100%;
+        }
+        .delete{
+          width: 20px;
+          background-color:transparent;
+          font-size: 30px;
+          margin-left: auto;
+          // display: block;
+          .appear{
+            display: block;
+          }
+        }
+      }
+    }
+  }
 /* header end */
 /* footer */
 .edit-footer{

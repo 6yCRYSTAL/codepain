@@ -22,21 +22,20 @@
 
 <div class="ItemDetailsContent_background">
   <div class="ItemDetailsContent_content">
-    <div class="aaa">
-      <div class="bbb">
-        show page of <%= @pen.html%>
-      </div>
-        <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url )) do |form| %>
-      <!-- <h3>Comment</h3> -->
-      <div class="ccc">
+      <div class="aaa">
+        <!-- show page of <%= @pen.html%> -->
+        <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url  )) do |form| %>
+        <!-- <h3>Comment</h3> -->
         <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
-      </div>
         <%= form.submit %>
         <% end %>
+      </div>
       <div id="comment_area">
         <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
         <% @comments.each do |comment| %>
-        <section id="">
+      </div>
+
+        <!-- <section id="">
           <%= "#{current_user.display_name} (@#{current_user.username})"  %>
           <%= comment.content %>
           <%= time_ago_in_words(comment.created_at) + ' ago'%>
@@ -45,14 +44,12 @@
             data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
         </section>
         <% end %>
-      </div>
+      
       <% if @pen.edit_view_count != 0 %>
       <div id="view_count"><i class="fas fa-eye"></i> <%= @pen.edit_view_count %> Views</div>
       <% end %>
       <%= link_to '回到your_work', pens_path%>
-    </div>
-        <!-- <div class="ItemDetailsLicense_root-35USN">
-        
+        <div class="ItemDetailsLicense_root-35USN">
       </div> -->
     </div>
   </div>

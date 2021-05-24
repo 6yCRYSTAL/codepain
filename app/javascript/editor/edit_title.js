@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { createElement } from 'react';
 import getSaveBtn from './save_button.js'
 
 document.addEventListener('turbolinks:load', () => {
-  const editTitleBtn = document.querySelector('#btn-edit');
+  const editTitleBtn = document.querySelector('#btn-edit-title');
   const input = document.querySelector('#input-title');
   const title = document.querySelector('#edit-title');
   let randomURL = location.href.split('/pen/')[1];

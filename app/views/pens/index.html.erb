@@ -1,7 +1,7 @@
 <div class="your-work-title">
   <h1 class="big-title">Your Work</h1>
 </div>
-<div class="test">TESTTEST</div>
+
 <nav class="your-work-tab">
   <%= link_to 'Pens' , pens_path %>
   <%= link_to 'Deleted' , pens_path(item_type: 'deleted_item' ),id: 'btn-delete' %>
@@ -43,16 +43,16 @@
   </div>
 
   <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
-    <% if @pens.count==0 %>
-      <p>No results for <%= params[:search] %>
-      </p>
+  <% if @pens.count==0 %>
+    <p>No results for <%= params[:search] %>
+    </p>
+  <% else %>
+    <% if params[:grid_type] !='grid' %>
+      <%= render 'pens_list' , pens: @pens %>
     <% else %>
-      <% if params[:grid_type] !='grid' %>
-        <%= render 'pens_list' , pens: @pens %>
-      <% else %>
-        <%= render 'pens_grid' %>
-      <% end %>
+      <%= render 'pens_grid' %>
     <% end %>
+  <% end %>
 <% else %>
   <%= render 'deleted_pens' , deleted_pens: @deleted_pens %>
 <% end %>

@@ -37,17 +37,15 @@ class Api::V1::PensController < Api::ApiController
 
     if current_user.loved?(pen)
       current_user.love_pens.destroy(pen)
-      love_pen = HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
-      success!(love_pen, 'removed')
+      success!({ boolean: love_pen? }, 'removed')
     else
       current_user.love_pens << pen
-      love_pen = HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
-      success!(love_pen, 'added')
+      success!({ boolean: love_pen? }, 'added')
     end
   end
 
   def grid
-    pens = current_user.pens.order(updated_at: :desc).page(params[:page] || 1).per(6)
+    pens_per_page(params[:page], 6)
 
     success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
                                          meta: {
@@ -61,7 +59,7 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def list
-    pens = current_user.pens.order(updated_at: :desc).page(params[:page] || 1).per(20)
+    pens_per_page(params[:page], 20)
 
     success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
                                          meta: {
@@ -75,6 +73,14 @@ class Api::V1::PensController < Api::ApiController
   end
 
   private
+
+  def pens_per_page(page, per)
+    pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
+  end
+
+  def love_pen?
+    HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+  end
 
   def love_params
     params.permit(:random_url)

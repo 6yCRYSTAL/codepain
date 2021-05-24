@@ -1,22 +1,18 @@
 class Api::ApiController < ApplicationController
 
-  def success!(payload = {}, status = nil)
-    status ||= :ok # 可overwrite 如果沒給就是 ok
-
+  def success!(payload = {}, code = :ok) # 可overwrite 如果沒給就是 ok
     render json: {
       success: true,
       payload: payload,
-      status: status
+      status: code
     }
   end
 
-  def fail!(errors, status = nil)
-    status ||= :unprocessable_entity
-
+  def fail!(errors, code = :unprocessable_entity) # 可overwrite 如果沒給就是 unprocessable_entity
     render json: {
       success: false,
       errors: errors,
-      status: status
+      status: code
     }
   end
 end

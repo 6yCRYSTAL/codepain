@@ -6,17 +6,8 @@ class Api::V1::PensController < Api::ApiController
 
   # TODO username key不會顯示在 api 上
   def index
-<<<<<<< HEAD
-    @pens = current_user.pens
-    render(
-      json: @pens,
-      username: current_user.username
-    )
-=======
     @pens = current_user.pens.order(updated_at: :desc)
-
     success_render!(@pens, :extended)
->>>>>>> dev
   end
 
   def create

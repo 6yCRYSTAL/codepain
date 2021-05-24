@@ -26,7 +26,7 @@ class Api::V1::PensController < Api::ApiController
 
   def update
     if pen.update(pen_params)
-      success!(PenBlueprint.render_as_hash(pen, view: :normal))
+      success!(PenBlueprint.render_as_hash(pen, view: :normal), 'update succeeded')
     else
       fail!(pen.errors.full_messages, 'update failed')
     end

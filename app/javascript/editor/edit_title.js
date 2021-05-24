@@ -4,7 +4,7 @@ import getSaveBtn from './save_button.js'
 
 document.addEventListener('turbolinks:load', () => {
   const editTitleBtn = document.querySelector('#btn-edit');
-  const input = document.querySelector('#inputTitle');
+  const input = document.querySelector('#input-title');
   const title = document.querySelector('#edit-title');
   let randomURL = location.href.split('/pen/')[1];
   let LastTwoURL = location.href.split('/').slice(-2)
@@ -64,15 +64,15 @@ document.addEventListener('turbolinks:load', () => {
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
         if(res.data.status === 'update succeeded'){
-          let divEl = document.createElement('div');
-          let spanEl = document.createElement('span');
-          divEl.classList.add('edit-title-alert');
-          spanEl.textContent = 'Pen saved';
-          divEl.appendChild(spanEl)
-          editHeader.insertAdjacentElement('beforebegin', divEl);
+          let noticeDivEl = document.createElement('div');
+          let noticeTextEl = document.createElement('span');
+          noticeDivEl.classList.add('edit-title-alert');
+          noticeTextEl.textContent = 'Pen saved';
+          noticeDivEl.appendChild(noticeTextEl)
+          editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
           // 1秒後消失
           setTimeout(() => {
-            divEl.remove();
+            noticeDivEl.remove();
           }, 1000); 
         }
       })

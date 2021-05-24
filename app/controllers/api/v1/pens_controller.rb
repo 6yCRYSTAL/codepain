@@ -5,30 +5,30 @@ class Api::V1::PensController < Api::ApiController
   before_action :find_user_pen, only: [:edit, :update]
 
   def index
-    pens = current_user.pens.order(updated_at: :desc)
+    @pens = current_user.pens.order(updated_at: :desc)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended))
+    success_render!(@pens, :extended)
   end
 
   def create
-    pen = current_user.pens.new(pen_params)
+    @pen = current_user.pens.new(pen_params)
 
-    if pen.save
-      redirect_to edit_pen_path(pen, username: current_user.username)
+    if @pen.save
+      redirect_to edit_pen_path(@pen, username: current_user.username)
     else
       redirect_to pens_path
     end
   end
 
   def edit
-    success!(PenBlueprint.render_as_hash(pen, view: :normal))
+    success_render!(@pen, :normal)
   end
 
   def update
-    if pen.update(pen_params)
-      success!(PenBlueprint.render_as_hash(pen, view: :normal), 'update succeeded')
+    if @pen.update(pen_params)
+      success_render!(@pen, :normal, 'update succeeded')
     else
-      fail!(pen.errors.full_messages, 'update failed')
+      fail_render!(@pen.errors.full_messages, 'update failed')
     end
   end
 
@@ -47,35 +47,29 @@ class Api::V1::PensController < Api::ApiController
   def grid
     pens_per_page(params[:page], 6)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
-                                         meta: {
-                                           totalPages: pens.total_pages,
-                                           totalCount: pens.total_count,
-                                           currentPage: pens.current_page,
-                                           lastPage: pens.last_page?,
-                                           nextPage: pens.next_page,
-                                           prevPage: pens.prev_page
-                                         }))
+    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
+                                                  totalCount: pens.total_count,
+                                                  currentPage: pens.current_page,
+                                                  lastPage: pens.last_page?,
+                                                  nextPage: pens.next_page,
+                                                  prevPage: pens.prev_page})
   end
 
   def list
     pens_per_page(params[:page], 20)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
-                                         meta: {
-                                           totalPages: pens.total_pages,
-                                           totalCount: pens.total_count,
-                                           currentPage: pens.current_page,
-                                           lastPage: pens.last_page?,
-                                           nextPage: pens.next_page,
-                                           prevPage: pens.prev_page
-                                         }))
+    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
+                                                  totalCount: pens.total_count,
+                                                  currentPage: pens.current_page,
+                                                  lastPage: pens.last_page?,
+                                                  nextPage: pens.next_page,
+                                                  prevPage: pens.prev_page})
   end
 
   private
 
   def pens_per_page(page, per)
-    pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
+    @pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
   end
 
   def love_pen?
@@ -88,6 +82,7 @@ class Api::V1::PensController < Api::ApiController
 
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
+
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else
@@ -97,7 +92,7 @@ class Api::V1::PensController < Api::ApiController
 
   def find_user_pen
     begin
-      pen = current_user.pens.find_by(random_url: params[:random_url])
+      @pen = current_user.pens.find_by(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

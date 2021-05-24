@@ -39,11 +39,15 @@ class PensController < ApplicationController
   end
 
   def destroy
-    # change pen state
-    @pen.update(state: 'trashed')
-    # soft_delete the pen
-    @pen.destroy
-    redirect_to pens_path, notice: "DELETED!!!"
+    if current_user && current_user == @pen.user
+      # change pen state
+      @pen.update(state: 'trashed')
+      # soft_delete the pen
+      @pen.destroy
+      redirect_to pens_path, notice: "DELETED!!!"
+    else
+      redirect_to :root
+    end
   end
 
   private

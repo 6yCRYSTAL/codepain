@@ -39,7 +39,7 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
-    // 事件後執行內容
+ // 事件後執行內容
     let eventContent = (e) => {
       title.style.display="inline";
       input.style.display="none";
@@ -51,14 +51,17 @@ document.addEventListener('turbolinks:load', () => {
       }else{
         title.textContent= inputValue;
       }
-      getSaveBtn(inputValue);
+      // 判斷 新 pen 不更新，舊 pen 更新
       if(LastTwoURL .join('/') === `pen/${randomURL}`){
         dataPatch();
       }
     }
-    // Patch api 
+    // SaveBtn 入口處
+    getSaveBtn();
+    
+    // Patch api - 成功黃色提示框
     let dataPatch = function() {
-      let newTitle = inputValue;
+      let newTitle = document.querySelector('#edit-title').textContent;
       let editHeader = document.querySelector('.edit-header');
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
@@ -69,7 +72,6 @@ document.addEventListener('turbolinks:load', () => {
           noticeTextEl.textContent = 'Pen saved';
           noticeDivEl.appendChild(noticeTextEl)
           editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
-          // 1秒後消失
           setTimeout(() => {
             noticeDivEl.remove();
           }, 1000); 

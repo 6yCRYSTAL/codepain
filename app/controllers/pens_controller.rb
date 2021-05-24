@@ -6,6 +6,9 @@ class PensController < ApplicationController
 
   def index
     # pens tab / all or search
+    if !current_user
+      redirect_to :root
+    else
     @pens = search_pen(params[:search])
 
     # deleted tab
@@ -13,6 +16,7 @@ class PensController < ApplicationController
 
     # for Comment
     @comment = current_user.comments.new
+    end
   end
 
   def new
@@ -53,7 +57,7 @@ class PensController < ApplicationController
 
   def find_user_pen
     begin
-      @pen = current_user.pens.find_by!(random_url: params[:random_url])
+      @pen = Pen.find_by!(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

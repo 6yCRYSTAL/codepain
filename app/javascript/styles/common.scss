@@ -478,10 +478,18 @@ main{
 /* button */
 .next-btn,.prev-btn{
   @include gray-btn
-  @apply mx-3 w-20 hover:bg-gray-500 
+  @apply mx-3 w-20 hover:bg-gray-500;
 }
 .arrow-left{
   svg{
-    @apply transform -rotate-180
+    @apply transform -rotate-180;
   }
+}
+
+/* comment */
+.comment-edit-block{
+  display: none;
+}
+.appear{
+  display: block;
 }

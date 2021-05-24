@@ -62,6 +62,26 @@ ActiveRecord::Schema.define(version: 2021_05_23_093831) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "orders", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.string "payment_method"
+    t.string "serial"
+    t.datetime "purchased_at"
+    t.integer "total_amount"
+    t.string "ecpay_tradeno"
+    t.integer "ecpay_chargefee"
+    t.string "ecpay_check_mac_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["serial"], name: "index_orders_on_serial"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+>>>>>>> dev
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -99,8 +119,14 @@ ActiveRecord::Schema.define(version: 2021_05_23_093831) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "membership", default: "free"
+    t.datetime "subscribed_at"
+    t.datetime "expired_at"
+    t.datetime "unsubscribed_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["expired_at"], name: "index_users_on_expired_at"
+    t.index ["membership"], name: "index_users_on_membership"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end

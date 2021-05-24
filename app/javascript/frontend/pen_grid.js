@@ -67,8 +67,13 @@ function renderView(pen) {
     `
   });
   itemsWrap.innerHTML = result;
+<<<<<<< HEAD
 
 }
+=======
+}
+// 按下愛心取得 data-url
+>>>>>>> dev
 let getLike = ()=>{
   const loveBtn = document.querySelectorAll('[data-btn="love"]')
   loveBtn.forEach( btn => {
@@ -80,6 +85,7 @@ let getLike = ()=>{
     })
   });
 }
+<<<<<<< HEAD
 
 function likeStatus(url) {
   const cc = document.querySelector(`[data-url="${url}"]`)
@@ -98,5 +104,24 @@ function likeStatus(url) {
   .catch(error => {
     console.log('qwoijqodwijqoidw')
   })
+=======
+// 針對 url 傳送，回傳狀態更新 style
+function likeStatus(url) {
+  const everyBtnUrl = document.querySelector(`[data-url="${url}"]`)
+  if(everyBtnUrl){
+    ax.post(`/api/v1/pens/${url}/love`)
+    .then(response => {
+      console.log(response.data.status);
+      if(response.data.status === "added"){
+        console.log('yes');
+        document.querySelector(`[data-url="${url}"] .fa-heart`).style.color = 'red';
+        everyBtnUrl.style.backgroundColor = 'white'
+      }else{
+        console.log('no');
+        document.querySelector(`[data-url="${url}"] .fa-heart`).style.color = 'white';
+        everyBtnUrl.style.backgroundColor = '#010101'
+      }
+    })
+>>>>>>> dev
   }
 }

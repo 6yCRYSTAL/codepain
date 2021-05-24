@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load',function(){
   const SideBtn = document.querySelector('.sidebar-toggle-btn button');
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container-left');
-  const DeleteBtn = document.querySelector('#btn-delete');
+  const DeleteTab = document.querySelector('#tab-delete');
   const OnClose = localStorage.getItem('onClose');
 
 
@@ -51,7 +51,7 @@ document.addEventListener('turbolinks:load',function(){
   }
 
   // 偵測網址 tab 樣式
-  if (DeleteBtn) {
+  if (DeleteTab) {
     let hashName = window.location.search;
     const YourWorkTab = document.querySelector('.your-work-tab');
     const GridBtn = document.querySelector('.grid-btn button');

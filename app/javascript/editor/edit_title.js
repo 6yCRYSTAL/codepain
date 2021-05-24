@@ -39,7 +39,7 @@ document.addEventListener('turbolinks:load', () => {
         allEvent = 0;
       }
     })
- // 事件後執行內容
+    // 事件後執行內容
     let eventContent = (e) => {
       title.style.display="inline";
       input.style.display="none";
@@ -51,7 +51,6 @@ document.addEventListener('turbolinks:load', () => {
       }else{
         title.textContent= inputValue;
       }
-      // 判斷 新 pen 不更新，舊 pen 更新
       if(LastTwoURL .join('/') === `pen/${randomURL}`){
         dataPatch();
       }

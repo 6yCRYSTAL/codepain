@@ -83,13 +83,13 @@
 .action-button{
   margin: 2px -2px;
 }
-.action_btn_1{
+.action-btn-1x{
   border-radius: 3px 0 0 3px;
 }
-.action_btn_2{
+.action-btn-0.5x{
   border-radius: 0px;
 }
-.action_btn_3{
+.action-btn-0.25x{
   border-radius: 0 3px 3px 0;
 }
 .rerun-button{

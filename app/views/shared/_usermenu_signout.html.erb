@@ -8,12 +8,8 @@
       </label>
     </form>
 
-    <% if controller_name != 'registrations'%>
-      <%= link_to "Sign Up", new_user_registration_path, class: 'login-signup-Buttons', data: {buttons: 'signup'} %> 
-    <% end %>
+    <%= signup_button %>
+    <%= login_button %>
 
-    <% if controller_name != 'sessions'%>
-      <%= link_to "Log In", login_path, class: 'login-signup-Buttons', data: {buttons: 'login'} %> 
-    <% end %>
   </div>
 </section>

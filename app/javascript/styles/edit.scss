@@ -129,7 +129,6 @@
         margin-bottom: 15px;
         background: #2c303a;
         border-radius: 6px;
-        // position: relative;
         .icon-a{
           margin: 0, 100%, 0, 100%;
         }
@@ -146,8 +145,23 @@
         }
       }
     }
+    .btn-pin-arrow{
+      border-radius: 0 4px 4px 0;
+      padding: 10px 5px;
+      font-size: 8px;
+    }
   }
 /* header end */
+
+/* edit-title-alert */
+.edit-title-alert{
+  @apply w-full flex justify-center absolute;
+  span{
+    @apply inline-block py-1 px-2 text-gray-800 bg-yellow-300 rounded-b-lg text-sm;
+  }
+}
+/* edit-title-alert end */
+
 /* footer */
 .edit-footer{
   position: fixed;

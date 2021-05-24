@@ -35,6 +35,7 @@ class PensController < ApplicationController
   end
 
   def destroy
+    p '成功'
     # change pen state
     @pen.update(state: 'trashed')
     # soft_delete the pen

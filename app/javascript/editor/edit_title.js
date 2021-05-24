@@ -62,7 +62,7 @@ document.addEventListener('turbolinks:load', () => {
       let editHeader = document.querySelector('.edit-header');
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
-        console.log(res.data.status);
+        console.log(res.data.payload.status);
         // if(res.data.status === 'update succeeded'){
         //   let noticeDivEl = document.createElement('div');
         //   let noticeTextEl = document.createElement('span');

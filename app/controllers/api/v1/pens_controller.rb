@@ -88,7 +88,6 @@ class Api::V1::PensController < Api::ApiController
 
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
-
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else

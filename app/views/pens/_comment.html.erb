@@ -45,11 +45,15 @@ Give the creator a confidence boost!"
           data-id="<%= comment.id %>"
         > Edit </button>
         <button
-          data-action=""
+          data-action="click->comupdate#destroy"
           data-comupdate-target="deleteBtn">
-          <%= link_to "Delete", comment_path(comment), method: "delete",
-                            data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
-        </button>
+          Delete</button>
+        <div class="warning-wrap hidden" data-comupdate-target="warningBlock">
+          <%# modal %>
+            <div class="warning-content">
+              Alert!
+            </div>
+        </div>
       </li>
       <% end %>
     </ol>

@@ -3,7 +3,8 @@ import Rails from '@rails/ujs'
 export default class extends Controller {
   static targets = [
     "editBtn", "cancelBtn", "updateBtn", "deleteBtn",
-    "commentBlock", "updateTextArea", "commentShow"]
+    "commentBlock", "updateTextArea", "commentShow",
+    "warningBlock"]
 
   initialize() {
     this.comment_id = ''
@@ -43,5 +44,9 @@ export default class extends Controller {
 
   cancel() {
     this.commentBlockToggle()
+  }
+
+  destroy() {
+    this.warningBlockTarget.classList.toggle("hidden")
   }
 }

@@ -52,7 +52,7 @@ export default class extends Controller {
           data-id=${data.id}
         > Edit </button>
         <button
-          data-action=""
+          data-action="click->comupdate#destroy"
           data-comupdate-target="deleteBtn"
         > Delete
         </button>

@@ -3,11 +3,16 @@
   display: none;
 }
 
-.appear{
-  display: block;
-}
-
 .uppercase{
   text-transform: uppercase;
 }
 
+.warning-wrap{
+  justify-content: center;
+  padding: 0;
+  @apply transition-all opacity-100 transform scale-100;
+}
+
+.appear{
+  display: block;
+}

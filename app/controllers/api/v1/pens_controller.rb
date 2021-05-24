@@ -1,53 +1,86 @@
-class Api::V1::PensController < ApplicationController
+class Api::V1::PensController < Api::ApiController
   respond_to :json
 
   before_action :authenticate_user!, except: [:new]
   before_action :find_user_pen, only: [:edit, :update]
 
-  # TODO username key不會顯示在 api 上
   def index
-    @pens = current_user.pens
-    render(
-      json: @pens,
-      username: current_user.username
-    )
+    pens = current_user.pens.order(updated_at: :desc)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended))
   end
 
   def create
-    @pen = current_user.pens.new(pen_params)
-    if @pen.save
-      redirect_to edit_pen_path(@pen, username: current_user.username)
+    pen = current_user.pens.new(pen_params)
+
+    if pen.save
+      redirect_to edit_pen_path(pen, username: current_user.username)
     else
       redirect_to pens_path
     end
   end
 
   def edit
-    render(json: @pen)
+    success!(PenBlueprint.render_as_hash(pen, view: :normal))
   end
 
   def update
-    if @pen.update(pen_params)
-      render json: { status: 'update succeeded' }
+    if pen.update(pen_params)
+      success!(PenBlueprint.render_as_hash(pen, view: :normal), 'update succeeded')
     else
-      render json: { status: 'update failed' }
+      fail!(pen.errors.full_messages, 'update failed')
     end
   end
 
-  # TODO 要開多少人喜歡(數量)、愛心的狀態(布林)
   def love_list
-    @pen = Pen.find_by(random_url: love_params[:random_url])
+    pen = Pen.find_by(random_url: love_params[:random_url])
 
-    if current_user.loved?(@pen)
-      current_user.love_pens.destroy(@pen)
-      render json: { status: 'removed' }
+    if current_user.loved?(pen)
+      current_user.love_pens.destroy(pen)
+      success!({ boolean: love_pen? }, 'removed')
     else
-      current_user.love_pens << @pen
-      render json: { status: 'added' }
+      current_user.love_pens << pen
+      success!({ boolean: love_pen? }, 'added')
     end
+  end
+
+  def grid
+    pens_per_page(params[:page], 6)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
+                                         meta: {
+                                           totalPages: pens.total_pages,
+                                           totalCount: pens.total_count,
+                                           currentPage: pens.current_page,
+                                           lastPage: pens.last_page?,
+                                           nextPage: pens.next_page,
+                                           prevPage: pens.prev_page
+                                         }))
+  end
+
+  def list
+    pens_per_page(params[:page], 20)
+
+    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
+                                         meta: {
+                                           totalPages: pens.total_pages,
+                                           totalCount: pens.total_count,
+                                           currentPage: pens.current_page,
+                                           lastPage: pens.last_page?,
+                                           nextPage: pens.next_page,
+                                           prevPage: pens.prev_page
+                                         }))
   end
 
   private
+
+  def pens_per_page(page, per)
+    pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
+  end
+
+  def love_pen?
+    HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+  end
 
   def love_params
     params.permit(:random_url)
@@ -64,7 +97,7 @@ class Api::V1::PensController < ApplicationController
 
   def find_user_pen
     begin
-      @pen = current_user.pens.find_by(random_url: params[:random_url])
+      pen = current_user.pens.find_by(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

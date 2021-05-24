@@ -7,18 +7,18 @@
         </path>
       </svg>
     <% end %>
-    
+
     <div class="edit-title-area">
       <h1 id='edit-title'>Untitle</h1>
       <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
       <input type="text" id="input-title" value="" style='display: none;'>
-      
+
       <div cclass="edit-author" id="username"><%= current_user.username %></div>
     </div>
   </div>
   <div class="edit-btn-header">
     <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
-    
+
     <% if action_name == "new" %>
       <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
     <% elsif action_name == "edit" %>
@@ -41,7 +41,7 @@
       <button class="btn-pinned"><span><i  class="fas fa-thumbtack"></i></span></button>
       <button class="btn-pin-arrow"><span class="fas fa-chevron-down"></span></button>
     </div>
-    
+
   </div>
   <div class="userMenu-box">
     <button class="userMenu-img" id="userMenu-btn">

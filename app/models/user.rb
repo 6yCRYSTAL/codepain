@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :heart_list
   has_many :love_pens, through: :heart_list, source: :pen
+  has_many :pins
 
   def self.from_omniauth_provider(auth)
     data = auth.info

@@ -21,10 +21,13 @@ document.addEventListener('turbolinks:load', () => {
       })
       .then( (response) => {
         let data = response.data
-        title.textContent = data.title
-        editorHTML.session.setValue(data.html)
-        editorCSS.session.setValue(data.css)
-        editorJS.session.setValue(data.js)
+        if(data.status === "ok"){
+          console.log(data)
+          title.textContent = data.payload.title
+          editorHTML.session.setValue(data.payload.html)
+          editorCSS.session.setValue(data.payload.css)
+          editorJS.session.setValue(data.payload.js)
+        }
       })
       .catch( (error) => {
         return `${error.name}: ${error.message}`

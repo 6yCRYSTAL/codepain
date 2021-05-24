@@ -18,8 +18,12 @@
   </div>
   <div class="edit-btn-header">
     <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
-    <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
-    <div id="btn-update" style="color: white; cursor: pointer;">update</div>
+    
+    <% if action_name == "new" %>
+      <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
+    <% elsif action_name == "edit" %>
+      <button class="btn-save" id="btn-update"><span><i class="fas fa-cloud"></i></span>Save</button>
+    <% end %>
     <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
     <button class="btn-changeView">
       <span>

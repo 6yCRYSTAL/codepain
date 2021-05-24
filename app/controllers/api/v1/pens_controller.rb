@@ -7,7 +7,7 @@ class Api::V1::PensController < Api::ApiController
   def index
     pens = current_user.pens.order(updated_at: :desc)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended))
+    success_render!(pens, :extended)
   end
 
   def create
@@ -21,14 +21,14 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def edit
-    success!(PenBlueprint.render_as_hash(pen, view: :normal))
+    success_render!(pen, :normal)
   end
 
   def update
     if pen.update(pen_params)
-      success!(PenBlueprint.render_as_hash(pen, view: :normal), 'update succeeded')
+      success_render!(pen, :normal, 'update succeeded')
     else
-      fail!(pen.errors.full_messages, 'update failed')
+      fail_render!(pen.errors.full_messages, 'update failed')
     end
   end
 
@@ -47,29 +47,23 @@ class Api::V1::PensController < Api::ApiController
   def grid
     pens_per_page(params[:page], 6)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
-                                         meta: {
-                                           totalPages: pens.total_pages,
-                                           totalCount: pens.total_count,
-                                           currentPage: pens.current_page,
-                                           lastPage: pens.last_page?,
-                                           nextPage: pens.next_page,
-                                           prevPage: pens.prev_page
-                                         }))
+    success_meta_render!(pens, :extended, :pens, {totalPages: pens.total_pages,
+                                                  totalCount: pens.total_count,
+                                                  currentPage: pens.current_page,
+                                                  lastPage: pens.last_page?,
+                                                  nextPage: pens.next_page,
+                                                  prevPage: pens.prev_page})
   end
 
   def list
     pens_per_page(params[:page], 20)
 
-    success!(PenBlueprint.render_as_hash(pens, view: :extended, root: :pens,
-                                         meta: {
-                                           totalPages: pens.total_pages,
-                                           totalCount: pens.total_count,
-                                           currentPage: pens.current_page,
-                                           lastPage: pens.last_page?,
-                                           nextPage: pens.next_page,
-                                           prevPage: pens.prev_page
-                                         }))
+    success_meta_render!(pens, :extended, :pens, {totalPages: pens.total_pages,
+                                                  totalCount: pens.total_count,
+                                                  currentPage: pens.current_page,
+                                                  lastPage: pens.last_page?,
+                                                  nextPage: pens.next_page,
+                                                  prevPage: pens.prev_page})
   end
 
   private
@@ -88,6 +82,7 @@ class Api::V1::PensController < Api::ApiController
 
   def pen_params
     clean_params = params.require(:pen).permit(:title, :html, :css, :js)
+
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else

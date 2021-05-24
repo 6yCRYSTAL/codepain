@@ -17,7 +17,6 @@ document.addEventListener('turbolinks:load' , function(){
   document.querySelectorAll('.delete').forEach((x)=>{
     x.addEventListener('click',function(e){
       e.target.parentNode.remove('li')
-      
     })
   })
 })

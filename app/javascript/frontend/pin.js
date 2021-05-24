@@ -1,9 +1,9 @@
 document.addEventListener('turbolinks:load', () => {
   document.querySelector('.btn-pinned').addEventListener('click', function(){
-    // console.log('123')
-    
-    // document.querySelector('.btn-pinned').classList.toggle('')
-    // btn-pinned.classList.toggle('')
+    document.querySelector('.btn-pinned').classList.add('btn-pinned-blue')
+  })
+  document.querySelector('.btn-pinned').addEventListener('click', function(){
+    document.querySelector('.btn-pinedd').classList.remove('btn-pinned-blue')
   })
 })
 

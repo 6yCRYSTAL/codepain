@@ -18,16 +18,25 @@
   color: rgb(231, 231, 233);
   background-color: var(--primary-gray-4);
 }
-.types_1{
+.types-html{
   margin-left: 5px;
   border-radius: 3px 0 0 3px;
 }
-.types_2{
+
+.types-html:hover {background-color: red;}
+
+.types-css{
   border-radius: 0px;
 }
-.types_3{
+
+.types-css:hover {background-color: blue;}
+
+.types-js{
   border-radius: 0 3px 3px 0;
 }
+
+.types-js:hover {background-color: pink;}
+
 .result{
   line-height: 0px;
   text-align: center;

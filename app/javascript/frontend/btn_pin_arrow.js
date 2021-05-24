@@ -1,8 +1,8 @@
 document.addEventListener('turbolinks:load' , function(){
   let isClose = true
   document.querySelector('.btn-pin-arrow').addEventListener('click', function(){
-    
     let listDiv = document.querySelector('.extend')
+    console.log('123')
     
     if (isClose){
       listDiv.classList.add('appear')
@@ -11,7 +11,6 @@ document.addEventListener('turbolinks:load' , function(){
       listDiv.classList.remove('appear')
       isClose = true
     }
-
   })
   
   document.querySelectorAll('.delete').forEach((x)=>{

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {savedNotice} from './popup_notice.js'
+import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   let updateBtn = document.querySelector('#btn-update')

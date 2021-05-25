@@ -1,6 +1,6 @@
 import axios from 'axios'
 import getSaveBtn from './save_button.js'
-import {savedNotice} from './popup_notice.js'
+import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   const editTitleBtn = document.querySelector('#btn-edit-title');

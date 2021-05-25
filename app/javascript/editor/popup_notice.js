@@ -11,6 +11,4 @@ const savedNotice = () => {
   }, 1000);
 }
 
-
-
-export { savedNotice}
+export default savedNotice

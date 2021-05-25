@@ -1,29 +1,32 @@
 class PensController < ApplicationController
-  layout 'edit',only: [:new, :edit, :show]
+  layout false
   before_action :authenticate_user!
   before_action :find_user_pen, only: [:show, :edit, :destroy]
   # impressionist :actions=>[:edit]
 
   def index
     # pens tab / all or search
-    @pens = search_pen(params[:search])
+    @pens = search_pen(params[:search]).includes(:comments)
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
 
     # for Comment
     @comment = current_user.comments.new
+    render layout: "application"
   end
 
   def new
     @pen = Pen.new
+    render layout: "edit"
   end
 
   def show
     @comments = @pen.comments.all.order(id: :desc)
-    @comments_counts = @pen.comments_count
+    @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 
+    render layout: "show"
     respond_to do |format|
       format.js
       format.html
@@ -32,6 +35,7 @@ class PensController < ApplicationController
 
   def edit
     impressionist(@pen)
+    render layout: "edit"
   end
 
   def destroy

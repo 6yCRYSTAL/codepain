@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         end
       end
       resources :deleted_pens, only: [:update, :destroy]
-      resources :comments, only: [:update]
+      resources :comments, only: [:create, :update, :destroy]
     end
   end
 end

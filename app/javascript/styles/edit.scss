@@ -69,12 +69,77 @@
   }
   .pinned-btn{
     display: flex;
-    .btn-pinned{
-      border-radius: 4px 0 0 4px;
-      margin: 0;
-      svg{
-        display: block;
-        transform: rotate(45deg);
+      .btn-pinned{
+        width: 60%;
+        background-color:#131417;
+        border: 3px solid #444857;
+        border-radius: 4px 0 0 4px;
+        margin: 0;
+        svg{
+          display: block;
+          transform: rotate(45deg);
+        }
+        &:hover {
+          border:3px solid #8d9096;
+          background-color:#8d9096;
+        }
+      }
+      .btn-pin-arrow{
+        &:hover {
+          background-color:#8d9096;
+        }
+        border-radius: 0 4px 4px 0;
+        width: 40%;
+        padding: 10px 5px;
+        font-size: 10px;
+      }
+      .btn-pinned-blue{
+        width: 60%;
+        color: rgb(83, 106, 197);
+        background-color:#131417;
+        border: 3px solid #444857;
+        border-radius: 4px 0 0 4px;
+        margin: 0;
+      }
+    }
+  }
+  .extend{
+    position:absolute;
+    z-index: 15;
+    width: 400px;
+    background-color: #131417;
+    border-radius: 5px;
+    padding: 2rem;
+    height: auto;
+    max-height: 80vh;
+    top: 63px;
+    right: 60px;
+    display: none;
+    .Pinned-Items{
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    ul{
+      padding-top: 10px;
+      li{
+        color: #faa;
+        height: auto;
+        padding: 13px 13px 17px;
+        margin-bottom: 15px;
+        background: #2c303a;
+        border-radius: 6px;
+        .icon-a{
+          margin: 0, 100%, 0, 100%;
+        }
+        .delete{
+          color: gray;
+          text-align:right;
+          padding: 0px 0px 0px;
+          width: 20px;
+          background-color:transparent;
+          font-size: 30px;
+        }
       }
     }
     .btn-pin-arrow{
@@ -83,7 +148,6 @@
       font-size: 8px;
     }
   }
-}
 /* header end */
 
 /* edit-title-alert */
@@ -131,3 +195,6 @@
   }
 }
 /* footer end */
+.appear{
+  display: block;
+}

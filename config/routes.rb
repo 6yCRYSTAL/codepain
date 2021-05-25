@@ -44,12 +44,18 @@ Rails.application.routes.draw do
         member do
           post :love, action: 'love_list'
         end
+
+        collection do
+          get 'grid/:page', action: 'grid'
+          get 'list/:page', action: 'list'
+        end
       end
       resources :deleted_pens, only: [:update, :destroy]
       # orders
       resources :orders, only: [:create] do
         collection do
           post :result
+          post :client
         end
       end
       # comments

@@ -16,8 +16,8 @@ class PensController < ApplicationController
 
       # for Comment
       @comment = current_user.comments.new
+      render layout: "application"
     end
-    render layout: "application"
   end
 
   def new

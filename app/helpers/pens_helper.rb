@@ -12,7 +12,7 @@ module PensHelper
       @pen.user.username
     end
   end
-  
+
   # login/signup buttons
   def signup_button
     if controller_name != 'registrations'
@@ -28,12 +28,11 @@ module PensHelper
 
   # save button on edit_header
   def save_button
-    if current_user && current_user == @pen.user
-      if action_name == "new"
-        "<button class='btn-save' id='btn-save'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
-      elsif action_name == 'edit'
+    :authenticate_user!
+    if action_name == "new"
+      "<button class='btn-save' id='btn-save'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
+    elsif action_name == 'edit' && current_user == @pen.user
         "<button class='btn-save' id='btn-update'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
-      end
     end
   end
 

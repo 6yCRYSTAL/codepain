@@ -99,17 +99,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_093831) do
     t.index ["user_id"], name: "index_pens_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "plan"
-    t.string "desc"
-    t.integer "price"
-    t.string "period"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["period"], name: "index_products_on_period"
-    t.index ["plan"], name: "index_products_on_plan"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

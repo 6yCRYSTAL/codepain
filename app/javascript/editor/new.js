@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
-
+  
   if( html && css && js ){
     // set Ace
     let editorHTML = ace.edit("editor--html")
@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-      })
+      })  
       editorCSS.setOptions({
         mode: "ace/mode/css",
         theme: "ace/theme/twilight",
@@ -58,15 +58,31 @@ document.addEventListener('turbolinks:load', () => {
         enableLiveAutocompletion: true,
         enableSnippets: true,
       })
-      editorHTML.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorCSS.getSession().on('change',() => {
-        renderToiframe()
-      })
-      editorJS.getSession().on('change',() => {
-        renderToiframe()
-      })
+    }
+
+    // when editor session change excute renderToiframe()
+    editorHTML.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorCSS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+    editorJS.getSession().on('change',debounce( () => {
+      renderToiframe()
+    }) )
+
+    //debounce: render to iframe late
+    function debounce( fn, delay = 1000){
+      let timeout = null
+      return () => {
+        let context = this //editor session
+        let args = arguments //keyboardEvent
+        clearTimeout(timeout)
+    
+        timeout = setTimeout( () => {
+          fn.apply(context, args)
+        }, delay)
+      }
     }
 
     // render to iframe
@@ -86,7 +102,6 @@ document.addEventListener('turbolinks:load', () => {
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
     const resultContainer = document.querySelector('.edit-result-container')
-
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
       resultContainer.classList.toggle('on')
@@ -107,7 +122,6 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
-
         try{
           eval(editorJS.session.getValue())
           consoleResult.innerText = stdoutMsg
@@ -125,7 +139,6 @@ document.addEventListener('turbolinks:load', () => {
         consoleResult.innerText = ""
       })
     }
-
     // close console
     function closeConsole() {
       closeConsoleBtn.addEventListener('click', () => {
@@ -160,7 +173,6 @@ document.addEventListener('turbolinks:load', () => {
         closeBox.setAttribute('class', 'share-box-close')
         closeBox.textContent = "x"
         shareBox.appendChild(closeBox)
-
         closeBox.addEventListener('click', () => {
           shareBox.remove()
         })

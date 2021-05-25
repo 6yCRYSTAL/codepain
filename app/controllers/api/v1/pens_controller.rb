@@ -88,8 +88,11 @@ class Api::V1::PensController < Api::ApiController
 
   private
 
-  def pens_per_page(page, per)
-    @pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
+  def pens_per_page(page = 1, per)
+    find_user_pens
+    @pens = @pens.page(page).per(per)
+
+    pens_per_page(1, per) if @pens.current_page >= @pens.total_pages
   end
 
   def love_pen?

@@ -67,23 +67,23 @@ class Api::V1::PensController < Api::ApiController
   def grid
     pens_per_page(params[:page], 6)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
-                                                  totalCount: pens.total_count,
-                                                  currentPage: pens.current_page,
-                                                  lastPage: pens.last_page?,
-                                                  nextPage: pens.next_page,
-                                                  prevPage: pens.prev_page})
+    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+                                                  totalCount: @pens.total_count,
+                                                  currentPage: @pens.current_page,
+                                                  lastPage: @pens.last_page?,
+                                                  nextPage: @pens.next_page,
+                                                  prevPage: @pens.prev_page})
   end
 
   def list
     pens_per_page(params[:page], 20)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
-                                                  totalCount: pens.total_count,
-                                                  currentPage: pens.current_page,
-                                                  lastPage: pens.last_page?,
-                                                  nextPage: pens.next_page,
-                                                  prevPage: pens.prev_page})
+    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+                                                  totalCount: @pens.total_count,
+                                                  currentPage: @pens.current_page,
+                                                  lastPage: @pens.last_page?,
+                                                  nextPage: @pens.next_page,
+                                                  prevPage: @pens.prev_page})
   end
 
   private

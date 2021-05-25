@@ -1,7 +1,9 @@
+
 import axios from 'axios'
 let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;
 ax.defaults.headers.common['X-CSRF-Token'] = token;
+
 
 document.addEventListener('turbolinks:load',function(){
   const penGrid = document.querySelector('.pen-items-wrap')
@@ -13,7 +15,6 @@ function axiosData() {
   let getData= ax.get("/api/v1/pens")
   .then(res =>{
     return res.data.payload
-    
   })
   return getData
 }

@@ -1,5 +1,5 @@
 class PensController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:search_all_users]
   layout false
   before_action :find_user_pen, only: [:show, :edit, :destroy]
   # impressionist :actions=>[:edit]
@@ -52,6 +52,11 @@ class PensController < ApplicationController
     else
       redirect_to :root
     end
+  end
+
+  def search_all_users
+    @pens = Pen.search(params[:q]).includes(:user)
+    render layout: "application"
   end
 
   private

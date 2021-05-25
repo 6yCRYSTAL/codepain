@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
-  
+
   if(html && css && js){
     let updateBtn = document.querySelector('#btn-update')
     let randomurl = location.href.split('/pen/')[1]

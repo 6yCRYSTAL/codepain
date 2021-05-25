@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_093831) do
+ActiveRecord::Schema.define(version: 2021_05_24_065236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,13 +73,22 @@ ActiveRecord::Schema.define(version: 2021_05_23_093831) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
-    t.integer "edit_view_count", default: 0
     t.integer "comments_count", default: 0
+    t.integer "edit_view_count", default: 0
     t.integer "heart_lists_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true
     t.index ["title"], name: "index_pens_on_title"
     t.index ["user_id"], name: "index_pens_on_user_id"
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.bigint "pen_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pen_id"], name: "index_pins_on_pen_id"
+    t.index ["user_id"], name: "index_pins_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,4 +119,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_093831) do
   add_foreign_key "heart_lists", "pens"
   add_foreign_key "heart_lists", "users"
   add_foreign_key "pens", "users"
+  add_foreign_key "pins", "pens"
+  add_foreign_key "pins", "users"
 end

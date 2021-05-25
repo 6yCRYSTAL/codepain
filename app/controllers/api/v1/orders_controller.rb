@@ -1,5 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:result]
   # 注意!!以下是csrf豁免
   skip_before_action :verify_authenticity_token, only: [:result, :client]
 

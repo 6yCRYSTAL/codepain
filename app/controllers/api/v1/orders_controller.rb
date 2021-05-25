@@ -1,5 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:result]
+  before_action :authenticate_user!
   # 注意!!以下是csrf豁免
   skip_before_action :verify_authenticity_token, only: [:result, :client]
 
@@ -21,16 +21,16 @@ class Api::V1::OrdersController < ApplicationController
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'https://2f9bde966ced.ngrok.io/api/v1/orders/result', # 使用 ngrok 測試
-        'OrderResultURL' => 'https://2f9bde966ced.ngrok.io/api/v1/orders/client'# 使用 ngrok 測試
+        'ReturnURL' => 'https://c09324c8aea2.ngrok.io/api/v1/orders/result', # 使用 ngrok 測試
+        'ClientBackURL' => 'https://c09324c8aea2.ngrok.io/api/v1/orders/client'# 使用 ngrok 測試
       }
       # 先不帶入發票
       inv_params = {}
 
       create = ECpayPayment::ECpayPaymentClient.new
-      htm = create.aio_check_out_credit_onetime(params: base_param, invoice: inv_params)
+      order_details = create.aio_check_out_credit_onetime(params: base_param, invoice: inv_params)
 
-      render html: htm.html_safe and return
+      render html: order_details.html_safe
     else
       redirect_to product_path(plan: @product.plan, period: @product.period)
     end
@@ -38,7 +38,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def result
     # 交易成功
-    if ecpay_params[:RtnMsg] == '交易成功'
+    if params[:RtnCode] == '1'
 
       # 整理 ecpay 回傳的資料
       succeeded_order = Order.find_by(serial: ecpay_params[:MerchantTradeNo]) # 交易成功的訂單
@@ -51,7 +51,6 @@ class Api::V1::OrdersController < ApplicationController
         payment_method = 'credit_onetime' # 付費方式
       end
 
-      #  update order
       succeeded_order.update(
         payment_method: payment_method,
         purchased_at: ecpay_params[:PaymentDate].to_datetime.to_s(:db),
@@ -67,36 +66,21 @@ class Api::V1::OrdersController < ApplicationController
         expired_date = ecpay_params[:PaymentDate].to_datetime.next_month.to_s(:db)
       end
 
-      # 更新 user
       paid_user.update(
         membership: purchased_plan,
         subscribed_at: succeeded_order.purchased_at,
         expired_at: expired_date
       )
-      # 原本想要在這一步就直接轉址回codepen的your-work頁面 但被打回sign_in page
-      # 嘗試過以下轉址的方法，
-      # 找出 user 幫他登入 返回 your-work 頁面
-      # sign_in paid_user, store: true # 嘗試幫user直接登入 devise內建方法
-      # 從外網轉址回codepain 會停留在綠界的付款完成畫面
-      # 但從terminal中看 是devise的401錯誤訊息 被自動轉址回sign_in page
-      # 以下都是試過的轉址方式
-      # 因為一直不成功所以在create action 裡丟給綠界的那包base params新增一個參數'OrderResultURL'
-      # 'OrderResultURL'是指定網址再由綠界幫我們轉址，對應的action是client
-      # redirect_to pens_url
-      # redirect_to 'https://2f9bde966ced.ngrok.io/your-work'
-      # respond_to do |format|
-      #   format.js { render js: 'result'}
-      # end
-      # render js: 'orders/result.js.erb'
+
+      render plain: '1|OK'
     else
       redirect_to products_url, notice: '交易失敗'
     end
   end
-  # 綠界OrderResultURL是打到這邊
-  # 結果一樣會打回sign_in page
+
+  # 綠界轉址到這邊
   def client
-    sign_in paid_user, store: true
-    redirect_to 'https://2f9bde966ced.ngrok.io/your-work'
+    redirect_to 'https://c09324c8aea2.ngrok.io/your-work'
   end
 
   private
@@ -108,17 +92,8 @@ class Api::V1::OrdersController < ApplicationController
       :PaymentDate,
       :PaymentType,
       :PaymentTypeChargeFee,
-      :CheckMacValue,
-      :RtnMsg
+      :CheckMacValue
     )
-  end
-
-  def storable_location?
-    request.get? && !devise_controller? && !request.xhr?
-  end
-
-  def store_user_location
-    store_location_for(:user, request.fullpath)
   end
 
   def find_product

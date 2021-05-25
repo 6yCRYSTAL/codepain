@@ -55,7 +55,7 @@ Rails.application.routes.draw do
       resources :orders, only: [:create] do
         collection do
           post :result
-          post :client
+          get :client
         end
       end
       # comments

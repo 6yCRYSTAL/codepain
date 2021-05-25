@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {savedNotice} from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   let updateBtn = document.querySelector('#btn-update')
@@ -13,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
     updateBtn.addEventListener('click', () => {
       let randomurl = location.href.split('/pen/')[1]
       let token = document.querySelector('meta[name = csrf-token]').content
-      
+
       let titleNew = title.textContent
       let htmlValue = html.session.getValue()
       let cssValue = css.session.getValue()
@@ -25,10 +26,15 @@ document.addEventListener('turbolinks:load', () => {
       axios({
         method: 'patch',
         url: `/api/v1/pens/${randomurl}`,
-        data: 
+        data:
           paramsFromNewPen(),
         headers: {
           'X-CSRF-Token': `${token}`
+        }
+      })
+      .then( (response) => {
+        if( response.data.status === "update succeeded"){
+          savedNotice()
         }
       })
     })

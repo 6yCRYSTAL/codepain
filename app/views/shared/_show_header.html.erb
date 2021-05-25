@@ -7,23 +7,19 @@
         </path>
       </svg>
     <% end %>
-
+    
     <div class="edit-title-area">
       <h1 id='edit-title'>Untitle</h1>
-      <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
-      <input type="text" id="input-title" value="" style='display: none;'>
-
-      <div class="edit-author" id="username"><%= current_user.username %></div>
+      <span id='btn-edit'><i class="fas fa-pencil-alt"></i></span>
+      <input type="text" id="inputTitle" value='Untitle' style='display: none;'>
+      
+      <div cclass="edit-author" id="username"><%= current_user.username %></div>
     </div>
   </div>
   <div class="edit-btn-header">
     <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
-
-    <% if action_name == "new" %>
-      <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
-    <% elsif action_name == "edit" %>
-      <button class="btn-save" id="btn-update"><span><i class="fas fa-cloud"></i></span>Save</button>
-    <% end %>
+    <%# <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button> %>
+    <%# <div id="btn-update" style="color: white; cursor: pointer;">update</div> %>
     <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
     <button class="btn-changeView">
       <span>
@@ -37,11 +33,27 @@
         </svg>
       </span>
       Change View</button>
-    <div class="pinned-btn">
-      <button class="btn-pinned"><span><i class="fas fa-thumbtack"></i></span></button>
-      <button class="btn-pin-arrow"><span class="fas fa-chevron-down"></span></button>
-    </div>
 
+    <div class="pinned-btn">
+      <button class="btn-pinned">
+        <span><i  class="fas fa-thumbtack"></i></span>
+      </button>
+      <button class="btn-pin-arrow">
+        <span class="fas fa-chevron-down"></span>
+      </button>
+    </div>
+    <div class="extend">
+      <div class="Pinned-Items">
+      Pinned Items
+      </div>
+      <div class="list">
+        <ul>
+        <li class="my-pin"><i class="fas fa-th-large icon-a"></i>嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎<button class="delete 1">x</button></li>
+        <li class="my-pin"><i class="fas fa-th-large icon-a"></i>嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎<button class="delete 2">x</button></li>
+        <li class="my-pin"><i class="fas fa-th-large icon-a"></i>嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎<button class="delete 3">x</button></li>
+      </ul>
+      </div>
+    </div>
   </div>
   <div class="userMenu-box">
     <button class="userMenu-img" id="userMenu-btn">
@@ -65,3 +77,6 @@
     </ul>
   </div>
 </header>
+<!-- <i class="fas fa-times"></i>
+<i class="fas fa-times"></i>
+<i class="fas fa-times"></i> -->

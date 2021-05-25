@@ -19,6 +19,9 @@
   font-size: var(--text-p);
   @apply px-4 py-0 rounded-lg;
 }
+*{
+  box-sizing: border-box;
+}
 button{
   margin: 0;
   padding: 0;

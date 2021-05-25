@@ -22,89 +22,13 @@
 
 <div class="ItemDetailsContent_background">
   <div class="ItemDetailsContent_content">
-      <div class="aaa">
+      <div class="comment-wrap">
         <!-- show page of <%= @pen.html%> -->
-        <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url  )) do |form| %>
-        <!-- <h3>Comment</h3> -->
-        <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
-        <%= form.submit %>
-        <% end %>
-      </div>
-      <div id="comment_area">
-        <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
-        <% @comments.each do |comment| %>
-      </div>
-
-        <section id="">
-          <%= "#{current_user.display_name} (@#{current_user.username})"  %>
-          <%= comment.content %>
-          <%= time_ago_in_words(comment.created_at) + ' ago'%>
-          <%= link_to "Edit", comment_path(comment), method: "put" %>
-          <%= link_to "Delete", comment_path(comment), method: "delete",
-            data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
-        </section>
-        <% end %>
-      
-      <% if @pen.edit_view_count != 0 %>
-      <div id="view_count"><i class="fas fa-eye"></i> <%= @pen.edit_view_count %> Views</div>
-      <% end %>
-      <%= link_to '回到your_work', pens_path%>
+        <%= render 'comment' , pen: @pen, comments: @comments, comment: @comment, comments_count: @comments_count %>
         <div class="ItemDetailsLicense_root-35USN">
       </div>
     </div>
   </div>
 </div>
 
-<!-- <div class="ItemDetailsContent_background">
-  <div class="ItemDetailsContent_content">
-    <div class="aaa">
-      <div class="bbb">show page of <%= @pen.html%> </div>
-        <h3>Comment</h3>
-        <%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url )) do |form| %>
-        <div>
-        <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
-        </div>
-        <%= form.submit %>
-        <% end %>
-
-
-<div id="comment_area" >
-  <%= (pluralize @comments_counts, "comment").upcase %>
-  <% @comments.each do |comment| %>
-    <section data-controller="comment">
-      <span > <%= "#{current_user.display_name} (@#{current_user.username})"  %> </span>
-      <span > <%= time_ago_in_words(comment.created_at) + ' ago'%> </span>
-      <div class="comment-edit-block" data-comment-target="commentBlock">
-        <textarea data-comment-target="textarea"><%= comment.content %></textarea>
-        <span
-          data-action="click->comment#update"
-          data-comment-target="updateBtn"
-        > Update </span>
-        <span
-          data-action="click->comment#cancel"
-          data-comment-target="cancelBtn"
-        > Cancel </span>
-      </div>
-      <span data-comment-target="commentShow"><%= comment.content %></span>
-      <span
-        data-action="click->comment#edit"
-        data-comment-target="editBtn"
-        data-id="<%= comment.id %>"
-      > Edit </span>
-      <%= link_to "Delete", comment_path(comment), method: "delete",
-                  data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
-    </section>
-  <% end %>
-</div>
-<% if @pen.edit_view_count != 0 %>
-  <div id="view_count"><i class="fas fa-eye"></i> <%= @pen.edit_view_count %> Views</div>
-<% end %>
-<%= link_to '回到your_work', pens_path%>
-    </div>
-
-<div class="ItemDetailsLicense_root-35USN">
-  
-</div>
-</div>
-</div> -->
 

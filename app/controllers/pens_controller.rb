@@ -6,7 +6,7 @@ class PensController < ApplicationController
 
   def index
     # pens tab / all or search
-    @pens = search_pen(params[:search])
+    @pens = search_pen(params[:search]).includes(:comments)
 
     # deleted tab
     @deleted_pens = current_user.pens.deleted_in_1_hour
@@ -23,7 +23,7 @@ class PensController < ApplicationController
 
   def show
     @comments = @pen.comments.all.order(id: :desc)
-    @comments_counts = @pen.comments_count
+    @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 
     render layout: "show"

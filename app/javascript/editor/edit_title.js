@@ -19,18 +19,20 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="inline";
       editTitleBtn.style.display="none";
       input.focus();
+      // 舊 pen 文字 Untitle 預設字，按下為空
+      if(input.value === "Untitle"){
+        input.value = "";
+      }
     })
-
     let allEvent = 0; // allEvent 兩件事件指觸發一件
     input.addEventListener('keyup', (e) => {
       allEvent =  allEvent + 1;
-      if(e.keyCode === 13 && (allEvent !== 3)){
+      if(e.keyCode === 13){
         eventContent(e);
       }else{
         allEvent = 0;
       }
     })
-
     input.addEventListener('blur', (e) => {
       allEvent = allEvent + 2;
       if(allEvent !== 3){
@@ -45,20 +47,22 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="none";
       editTitleBtn.style.display="inline";
       inputValue = e.target.value;
-      title.textContent = inputValue;
+      // 判斷 預設空：Untitle ; 其他: 輸入值
       if (input.value === ""){
         title.textContent= "Untitle";
       }else{
         title.textContent= inputValue;
       }
-      getSaveBtn(inputValue);
+      // 舊 pen 可執行 Patch api
       if(LastTwoURL .join('/') === `pen/${randomURL}`){
         dataPatch();
       }
     }
-    // Patch api 
+    // SaveBtn 入口處
+    getSaveBtn();
+    // Patch api - 成功黃色提示框
     let dataPatch = function() {
-      let newTitle = inputValue;
+      let newTitle = document.querySelector('#edit-title').textContent;
       let editHeader = document.querySelector('.edit-header');
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
@@ -69,10 +73,9 @@ document.addEventListener('turbolinks:load', () => {
           noticeTextEl.textContent = 'Pen saved';
           noticeDivEl.appendChild(noticeTextEl)
           editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
-          // 1秒後消失
           setTimeout(() => {
             noticeDivEl.remove();
-          }, 1000); 
+          }, 1000);
         }
       })
     }

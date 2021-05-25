@@ -43,11 +43,14 @@ Rails.application.routes.draw do
       resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
         member do
           post :love, action: 'love_list'
+          post :pin, action: 'pin_create'
+          # resources :pins, only: [:index, :create]
         end
 
         collection do
           get 'grid/:page', action: 'grid'
           get 'list/:page', action: 'list'
+          get :pins, action: 'pin_list'
         end
       end
       resources :deleted_pens, only: [:update, :destroy]
@@ -59,7 +62,7 @@ Rails.application.routes.draw do
         end
       end
       # comments
-      resources :comments, only: [:update]
+      resources :comments, only: [:create, :update, :destroy]
     end
   end
 end

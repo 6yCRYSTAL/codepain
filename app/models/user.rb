@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :orders
   has_many :heart_list
   has_many :love_pens, through: :heart_list, source: :pen
+  has_many :pins
+  has_many :pined_pens, through: :pins, source: :pen
 
   def self.from_omniauth_provider(auth)
     data = auth.info
@@ -23,5 +25,9 @@ class User < ApplicationRecord
 
   def loved?(pen)
     love_pens.exists?(pen.id)
+  end
+
+  def pined?(pen)
+    pined_pens.exists?(pen.id)
   end
 end

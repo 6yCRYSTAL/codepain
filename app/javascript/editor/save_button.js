@@ -1,11 +1,11 @@
 import Rails from '@rails/ujs'
 
-function getSaveBtn(inputValue) {
+function getSaveBtn() {
   const saveBtn = document.querySelector('#btn-save');
   if (saveBtn){
     saveBtn.addEventListener('click', () => {
-      let newTitle = inputValue;
-      let username = document.querySelector('#username').textContent
+      let newTitle = document.querySelector('#edit-title').textContent;
+      let username = document.querySelector('#username').textContent;
       let html = ace.edit("editor--html")
       let css = ace.edit("editor--css")
       let js = ace.edit("editor--js")

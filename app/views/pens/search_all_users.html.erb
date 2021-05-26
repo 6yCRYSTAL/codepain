@@ -1,51 +1,51 @@
-<% @pens.each do |pen| %>
-  <div class="pen-items-wrap">
-    <article class="col">
-      <div class="pen-item">
-        <header class="pen-header">
-          <h2><%= pen.title %></h2>
-          <button class="pen-more">
-            <svg viewBox="0 0 29 7" title="more">
-              <circle cx="3.5" cy="3.5" r="3.5"></circle>
-              <circle cx="14.5" cy="3.5" r="3.5"></circle>
-              <circle cx="25.5" cy="3.5" r="3.5"></circle>
-            </svg>
-          </button>
-        </header>
-        <div class="pen-img">
-            <iframe frameborder="0"></iframe>
-            <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
-            <a class="prompt-link" href="<%= pen_path(pen, username: pen.user.username) %>">
-              <button>
-                <i class="fas fa-expand-arrows-alt"></i>
-              </button>
+<div class="search-users-features">
+  <div class="features-item">
+    <div class="search-users-sort">SORT BY</div>
+    <div class="search-users-depth">SEARCH DEPTH</div>
+  </div>
+</div>
+
+<div class="pen-items-wrap">
+  <% @pens.each do |pen| %>
+      <article class="col">
+        <div class="pen-item">
+          <header class="pen-header">
+            <h2><%= pen.title %></h2>
+            <button class="pen-more">
+              <svg viewBox="0 0 29 7" title="more">
+                <circle cx="3.5" cy="3.5" r="3.5"></circle>
+                <circle cx="14.5" cy="3.5" r="3.5"></circle>
+                <circle cx="25.5" cy="3.5" r="3.5"></circle>
+              </svg>
+            </button>
+          </header>
+          <div class="pen-img">
+              <iframe frameborder="0"></iframe>
+              <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
+              <a class="prompt-link" href="<%= pen_path(pen, username: pen.user.username) %>">
+                <button>
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+              </a>
+          </div>
+          <footer class="pen-footer">
+            <button class="pen-footer-style" data-btn="love">
+              <i class="fas fa-heart"></i>
+              <span><%= pen.heart_lists_count %></span>
+            </button>
+            <a href="#" class="pen-footer-style" data-btn="comments">
+              <i class="fas fa-comment"></i>
+              <span><%= pen.comments.size %></span>
             </a>
+            <a href="#" class="pen-footer-style" data-btn="views">
+              <i class="fas fa-eye"></i>
+              <span><%= pen.edit_view_count %></span>
+            </a>
+          </footer>
         </div>
-        <footer class="pen-footer">
-          <button class="pen-footer-style" data-btn="love">
-            <i class="fas fa-heart"></i>
-            <span><%= pen.heart_lists_count %></span>
-          </button>
-          <a href="#" class="pen-footer-style" data-btn="comments">
-            <i class="fas fa-comment"></i>
-            <span><%= pen.comments.size %></span>
-          </a>
-          <a href="#" class="pen-footer-style" data-btn="views">
-            <i class="fas fa-eye"></i>
-            <span><%= pen.edit_view_count %></span>
-          </a>
-        </footer>
-      </div>
-    </article>
-  </div>
-<% end %>
-  <div class="next-prev-btn">
-    <button class="prev-btn">
-      <span class="arrow-left"><i class="fas fa-chevron-right"></i></span>
-      <span>Prev</span>
-    </button>
-    <button class="next-btn">
-      <span>Next</span>
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
+      </article>
+  <% end %>
+</div>
+<div class="next-prev-btn">
+  <%= page_buttons(@pens) %>
+</div>

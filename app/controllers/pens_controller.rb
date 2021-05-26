@@ -55,7 +55,11 @@ class PensController < ApplicationController
   end
 
   def search_all_users
-    @pens = Pen.search(params[:q]).includes(:user)
+    begin
+      @pens = Pen.search(params[:q]).includes(:user).page(params[:page]).per(6)
+    rescue
+      @pens = Pen.includes(:user).page(params[:page]).per(6)
+    end
     render layout: "application"
   end
 

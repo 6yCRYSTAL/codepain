@@ -26,7 +26,7 @@ button{
   margin: 0;
   padding: 0;
   border: none;
-  outline: none; 
+  outline: none;
   background-color: transparent;
   cursor: pointer;
 }
@@ -139,7 +139,7 @@ main{
         right: -30px;
       }
     }
-  }  
+  }
 }
 .main-sidebar-an{
   transition: .3s linear;
@@ -196,7 +196,7 @@ main{
       padding: 0 1.5rem;
       text-transform: uppercase;
       white-space: nowrap;
-    }     
+    }
   }
   .sidebar-advertise{
     margin: .8rem 1.5rem .8rem 1.5rem;
@@ -322,7 +322,7 @@ main{
     position: absolute;
     top: 12px;
     left: 10px;
-    color: var(--primary-gray-2); 
+    color: var(--primary-gray-2);
   }
   input,input:focus{
     background-color: var(--primary-gray-6);
@@ -336,7 +336,7 @@ main{
     outline: none;
     font-weight: bold;
     &::placeholder{
-      color: var(--primary-gray-2); 
+      color: var(--primary-gray-2);
     }
   }
 }

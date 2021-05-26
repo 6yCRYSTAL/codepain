@@ -55,4 +55,34 @@ module PensHelper
       login_button
     end
   end
+
+  def prev_page_button(pens)
+    link_to path_to_prev_page(pens) do
+      "<button class='prev-btn'>
+        <span class='arrow-left'><i class='fas fa-chevron-right'></i></span>
+        <span>Prev</span>
+      </button>".html_safe
+    end
+  end
+
+  def next_page_button(pens)
+    link_to path_to_next_page(pens) do
+      "<button class='next-btn'>
+        <span>Next</span>
+        <i class='fas fa-chevron-right'></i>
+      </button>".html_safe
+    end
+  end
+
+  # prev and next page button
+  def page_buttons(pens)
+    if pens.first_page?
+      next_page_button(pens)
+    elsif pens.last_page?
+      prev_page_button(pens)
+    else
+      prev_page_button(pens) +
+      next_page_button(pens)
+    end
+  end
 end

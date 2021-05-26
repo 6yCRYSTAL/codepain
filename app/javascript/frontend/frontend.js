@@ -4,6 +4,7 @@ document.addEventListener('turbolinks:load',function(){
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container-left');
   const DeleteTab = document.querySelector('#tab-delete');
+  const searchUsersFeatures = document.querySelector('.search-users-features')
   const OnClose = localStorage.getItem('onClose');
 
 
@@ -70,7 +71,10 @@ document.addEventListener('turbolinks:load',function(){
       ListBtn.style.backgroundColor = "#717790";
       ListBtn.firstElementChild.style.fill = "#f1f1f3";
     }
-
   }
 
+  // 全站搜尋頁面
+  if (searchUsersFeatures) {
+    searchUsersFeatures.parentElement.style.maxWidth = '1280px'
+  }
 })

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import getSaveBtn from './save_button.js'
+import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   const editTitleBtn = document.querySelector('#btn-edit-title');
@@ -63,19 +64,21 @@ document.addEventListener('turbolinks:load', () => {
     // Patch api - 成功黃色提示框
     let dataPatch = function() {
       let newTitle = document.querySelector('#edit-title').textContent;
-      let editHeader = document.querySelector('.edit-header');
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
         if(res.data.status === 'update succeeded'){
-          let noticeDivEl = document.createElement('div');
-          let noticeTextEl = document.createElement('span');
-          noticeDivEl.classList.add('edit-title-alert');
-          noticeTextEl.textContent = 'Pen saved';
-          noticeDivEl.appendChild(noticeTextEl)
-          editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
-          setTimeout(() => {
-            noticeDivEl.remove();
-          }, 1000); 
+          //將這段拉出來放在popup_notice讓saved和updated共用
+
+          // let noticeDivEl = document.createElement('div');
+          // let noticeTextEl = document.createElement('span');
+          // noticeDivEl.classList.add('edit-title-alert');
+          // noticeTextEl.textContent = 'Pen saved';
+          // noticeDivEl.appendChild(noticeTextEl)
+          // editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
+          // setTimeout(() => {
+          //   noticeDivEl.remove();
+          // }, 1000);
+          savedNotice()
         }
       })
     }

@@ -15,7 +15,7 @@ class Api::V1::OrdersController < ApplicationController
       # 引入 ecpay
       require 'ecpay_payment'
       # 把指定的參數帶入
-      base_param = {
+      order_params = {
         'MerchantTradeNo' => order.serial,  #請帶20碼uid, ex: f0a0d7e9fae1bb72bc93
         'MerchantTradeDate' => order.created_at.to_s(:db).gsub('-', '/'), # ex: 2017/02/13 15:45:30
         'TotalAmount' => order.total_amount,
@@ -28,7 +28,7 @@ class Api::V1::OrdersController < ApplicationController
       inv_params = {}
 
       create = ECpayPayment::ECpayPaymentClient.new
-      order_details = create.aio_check_out_credit_onetime(params: base_param, invoice: inv_params)
+      order_details = create.aio_check_out_credit_onetime(params: order_params, invoice: inv_params)
 
       render html: order_details.html_safe
     else
@@ -80,6 +80,7 @@ class Api::V1::OrdersController < ApplicationController
 
   # 綠界轉址到這邊
   def client
+    # 待上線後改成codepain.live/your-work
     redirect_to 'https://c09324c8aea2.ngrok.io/your-work'
   end
 

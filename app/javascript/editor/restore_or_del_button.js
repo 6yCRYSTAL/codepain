@@ -13,7 +13,6 @@ function sendParamsToRails(method, params) {
   })
 }
 
-// TODO:測試要改
 document.addEventListener('turbolinks:load', () => {
   const restoreOrDelBtn = document.querySelectorAll('#restore-or-del-btn')
 

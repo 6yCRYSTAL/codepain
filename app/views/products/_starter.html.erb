@@ -1,0 +1,11 @@
+<% if @product.period == 'year' %>
+  這是Annual Starter
+  <%= link_to '確定購買',
+    api_v1_orders_path(plan: params[:plan], period: params[:period]),
+    method: 'POST' %>
+<% else %>
+  這是 Starter
+    <%= link_to '確定購買',
+    api_v1_orders_path(plan: params[:plan], period: params[:period]),
+    method: 'POST' %>
+<% end %>

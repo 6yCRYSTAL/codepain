@@ -1,3 +1,22 @@
+diff --git a/node_modules/ace-builds/src-noconflict/ace.js b/node_modules/ace-builds/src-noconflict/ace.js
+index 94519df..1f0c4bf 100644
+--- a/node_modules/ace-builds/src-noconflict/ace.js
++++ b/node_modules/ace-builds/src-noconflict/ace.js
+@@ -3593,7 +3593,7 @@ var optionsProvider = {
+ };
+ 
+ function warn(message) {
+-    if (typeof console != "undefined" && console.warn)
++    // if (typeof console != "undefined" && console.warn)
+         console.warn.apply(console, arguments);
+ }
+ 
+@@ -21335,4 +21335,3 @@ exports.version = exports.config.version;
+                     }
+                 });
+             })();
+-        
+\ No newline at end of file
 diff --git a/node_modules/ace-builds/src-noconflict/snippets/javascript.js b/node_modules/ace-builds/src-noconflict/snippets/javascript.js
 index bcfaf5c..0b45f34 100644
 --- a/node_modules/ace-builds/src-noconflict/snippets/javascript.js

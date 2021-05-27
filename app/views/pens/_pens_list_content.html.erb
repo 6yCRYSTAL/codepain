@@ -16,7 +16,7 @@
           <%= pen.html %>
           <%= pen.css %>
           <%= pen.js %>
-        <%= RenderCommentJob.perform_later(pen) %>
+          <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
       </div>
     </div>
   </td>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import getSavePrivateBtn from './save_as_private_button.js';
 import getSaveBtn from './save_button.js'
 
 document.addEventListener('turbolinks:load', () => {
@@ -60,6 +61,7 @@ document.addEventListener('turbolinks:load', () => {
     }
     // SaveBtn 入口處
     getSaveBtn();
+    getSavePrivateBtn();
     // Patch api - 成功黃色提示框
     let dataPatch = function() {
       let newTitle = document.querySelector('#edit-title').textContent;

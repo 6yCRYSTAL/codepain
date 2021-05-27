@@ -75,7 +75,7 @@ document.addEventListener('turbolinks:load', () => {
           editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
           setTimeout(() => {
             noticeDivEl.remove();
-          }, 1000); 
+          }, 1000);
         }
       })
     }

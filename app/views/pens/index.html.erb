@@ -44,8 +44,7 @@
 
   <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
   <% if @pens.count==0 %>
-    <p>No results for <%= params[:search] %>
-    </p>
+    <p>No results for <%= params[:search] %></p>
   <% else %>
     <% if params[:grid_type] !='grid' %>
       <%= render 'pens_list' , pens: @pens %>

@@ -104,10 +104,9 @@ document.addEventListener('turbolinks:load', () => {
     const consoleBtn = document.querySelector('#console-btn')
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
-    const resultContainer = document.querySelector('.edit-result-container')
+
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
-      resultContainer.classList.toggle('on')
       consoleMsg()
       clearConsole()
     })
@@ -144,9 +143,10 @@ document.addEventListener('turbolinks:load', () => {
     }
     // close console
     function closeConsole() {
+      let iframeDisspear = document.querySelector('.edit-render-result100')
       closeConsoleBtn.addEventListener('click', () => {
         consolecontainer.classList.toggle('on')
-        resultContainer.classList.toggle('on')
+        iframeDisspear.style.display = "none"
       })
     }
 
@@ -159,8 +159,8 @@ document.addEventListener('turbolinks:load', () => {
         shareBox.setAttribute('class', 'share-box')
         shareBox.textContent = "Share The URL"
 
-        const editContainer = document.querySelector('.iframe-console-container')
-        editContainer.appendChild(shareBox)
+        const indexEditor = document.querySelector('#index-editor')
+        indexEditor.appendChild(shareBox)
 
         const shareBtnInput = document.createElement('input')
         shareBtnInput.setAttribute('class', 'share-btn-input')

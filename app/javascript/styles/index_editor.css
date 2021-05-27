@@ -27,6 +27,7 @@
   border: 8px solid #333642;
 }
 
+
 .Resizer.vertical {
   margin: 0 -5px;
   cursor: col-resize;

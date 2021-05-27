@@ -1,12 +1,8 @@
-function PenModal() {
+document.addEventListener('turbolinks:load',function(){
   // Get modal element
   const modalAll = document.querySelectorAll('#modal')
   // Get open modal button
   const modalBtnAll = document.querySelectorAll('#modal-btn')
-
-  console.log(modalBtnAll);
-
-
   modalBtnAll.forEach(btn => {
     btn.addEventListener('click', openModal)
   })
@@ -27,5 +23,4 @@ function PenModal() {
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
     }
   }
-}
-export default PenModal
+})

@@ -163,7 +163,7 @@ p {
   letter-spacing: 0.5px;
 }
 
-.email-signup-form input:not(:first-child), 
+.email-signup-form input:not(:first-child),
 .login-email-left input:not(:first-child)
 {
   width: 100%;
@@ -297,7 +297,7 @@ label {
 
 .login-logo {
   font: 0/0 a;
-  background: url(/logo_gray.png) no-repeat;
+  background: url(/images/logo-gray.svg) no-repeat;
   background-size: auto 31px;
   width: auto;
   height: 31px;

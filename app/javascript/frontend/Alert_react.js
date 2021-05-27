@@ -1,28 +1,33 @@
 import React from 'react'
 
+// 彈跳視窗功能
 export default function Alert(props) {
-  const { setToggle, AtToggle } = props
-  const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = props.data
+  const { setToggle } = props;
+  const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = props.data;
+
+  // 關掉彈跳視窗
   function closeAlert(e){
     if (e.target === e.currentTarget) {
-      setToggle(false)
-      document.querySelector('body').classList.remove('fixe')
-    }
-  }
-
-
+      setToggle(false);
+      document.querySelector('body').classList.remove('fixe');
+    };
+  };
+  // 修改網址列的內容，而不會刷新頁面
+  React.useEffect(() =>{
+    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
+  })
   return(
     <div id="modal" className="modal-container" onClick={ closeAlert }>
       <div className="modal-content">
         <a href="#" id="username">
           <h1>{user_name}</h1>
         </a>
-          <p>{title}</p>
-          <p>{html}</p>
-          <p>{css}</p>
-          <p>{js}</p>
-          <div className="bg-gray-300" data-controller="comcreate">
-          <section >
+        <p>{title}</p>
+        <p>{html}</p>
+        <p>{css}</p>
+        <p>{js}</p>
+        <div className="bg-gray-300" data-controller="comcreate">
+          <section>
             <textarea className="w-6/12 h-20"
             placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
             Feeling inspired? Let <%=pen.user.username%> know!
@@ -36,13 +41,12 @@ export default function Alert(props) {
             > Comment
             </span>
           </section>
-
           <div>
-            <div id="view_count"><i className="fas fa-eye"></i>{view_count}</div>
+            <div id="view_count"><i className="fas fa-eye" />{view_count}</div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 

@@ -2,13 +2,13 @@ import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 
 export default class extends Controller {
-  static targets = ['clearSearch', 'searchInput', 'sortByASC', 'sortByDESC', 'sortBySelected']
+  static targets = ['clearSearch', 'searchInput', 'sortOrderASC', 'sortOrderDESC', 'sortBySelected']
 
   connect() {
     if (window.location.href.includes('sort_order')) {
-      this.sortByASCTarget.classList.add('text-white')
+      this.sortOrderASCTarget.classList.add('text-white')
     } else {
-      this.sortByDESCTarget.classList.add('text-white')
+      this.sortOrderDESCTarget.classList.add('text-white')
     }
     if (this.searchInputTarget.value) {
       this.clearSearchTarget.classList.remove('hidden')
@@ -32,14 +32,14 @@ export default class extends Controller {
 
   changeSortOrder(e) {
     e.preventDefault()
-    const sortByASC = this.sortByASCTarget
-    const sortByDESC = this.sortByDESCTarget
+    const sortOrderASC = this.sortOrderASCTarget
+    const sortOrderDESC = this.sortOrderDESCTarget
     const URL = window.location.href
     const newURL = URL.replace('&sort_order=asc', '')
 
     if (URL.includes('sort_order')) {
-      sortByASC.classList.add('text-white')
-      sortByDESC.classList.remove('text-white')
+      sortOrderASC.classList.add('text-white')
+      sortOrderDESC.classList.remove('text-white')
     }
 
     window.location.replace(newURL)

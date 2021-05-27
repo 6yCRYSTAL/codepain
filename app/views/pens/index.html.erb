@@ -45,11 +45,11 @@
                                                    'Date Updated',
                                                    'Popularity'], selected: params[:sort_by]),
                                                    data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
-      <button data-action="click->search#changeSortOrder" data-search-target="sortByDESC">
+      <button data-action="click->search#changeSortOrder" data-search-target="sortOrderDESC">
         DESC
       </button>
       <%= button_tag 'ASC', name: :sort_order, type: 'submit', value: :asc,
-                                                  data: { "search-target": "sortByASC" } %>
+                                                  data: { "search-target": "sortOrderASC" } %>
     </nav>
   </div>
   <% end %>

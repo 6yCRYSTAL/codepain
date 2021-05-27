@@ -9,8 +9,8 @@
 
 <% if params[:item_type] !='deleted_item' %>
   <%# search bar %>
-  <div class="your-work-features">
-    <div class="features-item" data-controller="search">
+  <div class="your-work-features" data-controller="search">
+    <div class="features-item">
       <%# search bar %>
       <%= form_tag pens_path, method: 'get', class: 'your-work-search' do %>
 
@@ -44,10 +44,12 @@
       <%= select_tag :sort_by, options_for_select(['Date Created',
                                                    'Date Updated',
                                                    'Popularity'], selected: params[:sort_by]),
-                                                   onchange: 'this.form.submit()' %>
-      <%= check_box_tag :sort_order, :asc, false,
-                                     checked: params[:sort_order].present?,
-                                     onchange: 'this.form.submit()' %>
+                                                   data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
+      <button data-action="click->search#changeSortOrder" data-search-target="sortByDESC">
+        DESC
+      </button>
+      <%= button_tag 'ASC', name: :sort_order, type: 'submit', value: :asc,
+                                                  data: { "search-target": "sortByASC" } %>
     </nav>
   </div>
   <% end %>

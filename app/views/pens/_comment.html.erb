@@ -17,19 +17,26 @@ Give the creator a confidence boost!"
   </section>
   <%# 顯示該pen評論%>
   <section >
-    <p class="uppercase"><%= pluralize comments_count, "comment" %></p>
+    <p class="uppercase"
+      data-comments-count=<%= comments_count %>
+      data-comment-create-target="commentsCount"
+      data-comment-update-target="commentsCount"
+    >
+      <%= pluralize comments_count, "comment" %></p>
     <ol data-comment-create-target="list">
       <% comments.each do |comment| %>
-      <li data-controller="comment-update">
+      <li data-controller="comment-update" data-comment-update-target="commentLi" >
         <div>
           <span><%="#{comment.user.display_name} (@#{comment.user.username})"%></span>
           <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
         </div>
-        <div class="comment-edit-block" data-comment-update-target="commentBlock">
+        <div class="comment-edit-block"
+          data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
           <button
             data-action="click->comment-update#update"
             data-comment-update-target="updateBtn"
+            data-id="<%= comment.id %>"
           > Update </button>
           <button
             data-action="click->comment-update#cancel"
@@ -42,17 +49,25 @@ Give the creator a confidence boost!"
         <button
           data-action="click->comment-update#edit"
           data-comment-update-target="editBtn"
-          data-id="<%= comment.id %>"
         > Edit </button>
         <button
-          data-action="click->comment-update#destroy"
-          data-comment-update-target="deleteBtn">
-          Delete</button>
-        <div class="warning-wrap hidden" data-comment-update-target="warningBlock">
-          <%# modal %>
-            <div class="warning-content">
-              Alert!
-            </div>
+          data-action="click->comment-update#delete"
+          data-comment-update-target="deleteBtn"
+        > Delete</button>
+        <div class="warning-wrap hidden border-solid border-4" data-comment-update-target="warningBlock">
+          <div class="warning-content">
+            <h2>Delete Confirmation</h2>
+            <p>This will permanently delete this Comment.</p>
+            <button
+              data-action="click->comment-update#realDelete"
+              data-comment-update-target="realDeleteBtn"
+              data-id="<%= comment.id %>"
+            > I understand, delete the Comment</button>
+            <button
+              data-action="click->comment-update#deleteCancel"
+              data-comment-update-target="deleteCancelBtn"
+            >Cancel</button>
+          </div>
         </div>
       </li>
       <% end %>

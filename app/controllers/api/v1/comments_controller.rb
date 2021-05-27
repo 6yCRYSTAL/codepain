@@ -9,9 +9,9 @@ class Api::V1::CommentsController < ApplicationController
     @comment = current_user.comments.new({pen_id: pen_id, user_id: user_id, content: content  })
 
     if @comment.save
-      render json: @comment.as_json(include: :user), status: 201
+      render json: @comment.as_json(include: :user), status: :created
     else
-      render json: { status: 'failed' }, status:	403
+      render json: { status: 'failed' }, status: :expectation_failed
     end
   end
 
@@ -19,5 +19,24 @@ class Api::V1::CommentsController < ApplicationController
     new_content = params.permit(:content)
     comment = Comment.find(params[:id])
     comment.update(new_content)
+  end
+
+  def destroy
+    comment = Comment.find_by(id: params[:id])
+    if current_user && current_user == comment.user
+      comment.destroy
+      render json: { status: 'Destroied' }, status: :ok
+    else
+      render json: { status: 'Delete failed' }, status: :expectation_failed
+    end
+  end
+end
+
+
+def find_user_pen
+  begin
+    @pen = Pen.find_by!(random_url: params[:random_url])
+  rescue
+    redirect_to pens_path
   end
 end

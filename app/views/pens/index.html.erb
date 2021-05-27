@@ -12,14 +12,14 @@
   <div class="your-work-features">
     <div class="features-item">
       <%# search bar %>
-        <%= form_tag pens_path, method: 'get' ,class: 'your-work-search' do %>
-          <%= label_tag :search, 'SEARCH' %>
-          <%= text_field_tag :search, params[:search], placeholder: 'Search for...' , class: 'search-text' %>
-          <%= submit_tag :search, title: nil %>
-      <% end %>
+      <%= form_tag pens_path, method: 'get', class: 'your-work-search' do %>
+
+        <%= label_tag :search_term, 'SEARCH' %>
+        <%= text_field_tag :search_term, params[:search_term],placeholder: 'Search for...' , class: 'search-text' %>
+        <%= submit_tag :Search, name: nil %>
     </div>
     <nav class="features-item">
-      <%= link_to pens_path(grid_type: 'grid' ),class: "grid-btn" do%>
+      <%= link_to pens_path(grid_type: 'grid' ), class: "grid-btn" do%>
         <span>grid</span>
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="-60.741 20.407 74.148 45.778" width="19">
@@ -29,7 +29,7 @@
           </svg>
         </button>
       <% end %>
-      <%= link_to pens_path(grid_type: 'list' ),class: "list-btn" do%>
+      <%= link_to pens_path(grid_type: 'list' ), class: "list-btn" do%>
         <button>
           <svg viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg" width="16.5">
             <path clip-rule="evenodd"
@@ -39,7 +39,16 @@
         </button>
         <span>list</span>
       <% end %>
+      <%= label_tag :sort_by, 'SORT BY' %>
+        <%= select_tag :sort_by, options_for_select(['Date Created',
+                                                    'Date Updated',
+                                                    'Popularity'], selected: params[:sort_by]),
+                                                    onchange: 'this.form.submit()' %>
+      <%= check_box_tag :sort_order, :asc, false,
+                                     checked: params[:sort_order].present?,
+                                     onchange: 'this.form.submit()' %>
     </nav>
+    <% end %>
   </div>
 
   <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>

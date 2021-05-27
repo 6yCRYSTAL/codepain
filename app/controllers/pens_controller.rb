@@ -9,7 +9,7 @@ class PensController < ApplicationController
     if !current_user
       redirect_to :root
     else
-      @pens = search_pen(params[:search]).includes(:comments)
+      @pens = search_pen.includes(:comments)
 
       # deleted tab
       @deleted_pens = current_user.pens.deleted_in_1_hour
@@ -56,11 +56,35 @@ class PensController < ApplicationController
 
   private
 
-  def search_pen(keyword)
-    # 如果沒搜尋 那就給他user所有的pens
-    return current_user.pens if keyword.nil?
-    # 有搜尋的話就去db撈資料
-    current_user.pens.search(keyword)
+  # 將排序及搜尋功能放在一個方法中
+  def search_pen
+
+    if params.has_key?(:search_term || :sort_by || :sort_order)
+      case
+      when params[:search_term].present? && params[:sort_by].present? && params[:sort_order].present?
+        current_user.pens.search(params[:search_term]).sort_by_asc(params[:sort_by])
+
+      when params[:search_term].present? && params[:sort_by].present?
+        current_user.pens.search(params[:search_term]).sort_by_desc(params[:sort_by])
+
+      when params[:search_term].present? && params[:sort_order].present?
+        current_user.pens.search(params[:search_term]).order(updated_at: :asc)
+
+      when params[:sort_by].present? && params[:sort_order].present?
+        current_user.pens.sort_by_asc(params[:sort_by])
+
+      when params[:search_term].present?
+        current_user.pens.search(params[:search_term]).order(updated_at: :desc)
+
+      when params[:sort_by].present?
+        current_user.pens.sort_by_desc(params[:sort_by])
+
+      when params[:sort_order].present?
+        current_user.pens.order(updated_at: :asc)
+      end
+    else
+      current_user.pens.order(created_at: :desc)
+    end
   end
 
   def find_user_pen

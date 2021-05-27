@@ -2,7 +2,7 @@ document.addEventListener('turbolinks:load' , function(){
   let isClose = true
   document.querySelector('.btn-pin-arrow').addEventListener('click', function(){
     let listDiv = document.querySelector('.extend')
-    
+
     if (isClose){
       listDiv.classList.add('appear')
       isClose = false
@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load' , function(){
       isClose = true
     }
   })
-  
+
   document.querySelectorAll('.delete').forEach((x)=>{
     x.addEventListener('click',function(e){
       e.target.parentNode.remove('li')

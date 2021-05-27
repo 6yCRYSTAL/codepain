@@ -69,7 +69,5 @@ document.addEventListener('turbolinks:load',function(){
       ListBtn.style.backgroundColor = "#717790";
       ListBtn.firstElementChild.style.fill = "#f1f1f3";
     }
-
   }
-
 })

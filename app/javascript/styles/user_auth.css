@@ -129,9 +129,10 @@ p {
   color: #4464a2;
 }
 
-.button svg {
+.button.button-3party svg.svg-inline--fa {
   font-size: 1.5rem;
   padding-right: 30px;
+  width: auto;
 }
 
 

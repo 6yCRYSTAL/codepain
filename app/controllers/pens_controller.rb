@@ -1,19 +1,23 @@
 class PensController < ApplicationController
+  # before_action :authenticate_user!
   layout false
-  before_action :authenticate_user!
   before_action :find_user_pen, only: [:show, :edit, :destroy]
   # impressionist :actions=>[:edit]
 
   def index
     # pens tab / all or search
-    @pens = search_pen(params[:search]).includes(:comments)
+    if !current_user
+      redirect_to :root
+    else
+      @pens = search_pen(params[:search]).includes(:comments)
 
-    # deleted tab
-    @deleted_pens = current_user.pens.deleted_in_1_hour
+      # deleted tab
+      @deleted_pens = current_user.pens.deleted_in_1_hour
 
-    # for Comment
-    @comment = current_user.comments.new
-    render layout: "application"
+      # for Comment
+      @comment = current_user.comments.new
+      render layout: "application"
+    end
   end
 
   def new
@@ -39,12 +43,15 @@ class PensController < ApplicationController
   end
 
   def destroy
-    p '成功'
-    # change pen state
-    @pen.update(state: 'trashed')
-    # soft_delete the pen
-    @pen.destroy
-    redirect_to pens_path, notice: "DELETED!!!"
+    if current_user && current_user == @pen.user
+      # change pen state
+      @pen.update(state: 'trashed')
+      # soft_delete the pen
+      @pen.destroy
+      redirect_to pens_path, notice: "DELETED!!!"
+    else
+      redirect_to :root
+    end
   end
 
   private
@@ -58,7 +65,7 @@ class PensController < ApplicationController
 
   def find_user_pen
     begin
-      @pen = current_user.pens.find_by!(random_url: params[:random_url])
+      @pen = Pen.find_by!(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

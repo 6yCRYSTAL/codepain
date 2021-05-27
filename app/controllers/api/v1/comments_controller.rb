@@ -13,7 +13,6 @@ class Api::V1::CommentsController < ApplicationController
     else
       render json: { status: 'failed' }, status:	403
     end
-
   end
 
   def update
@@ -21,5 +20,4 @@ class Api::V1::CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.update(new_content)
   end
-
 end

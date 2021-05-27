@@ -44,22 +44,19 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def pin_list
-    pin_list = current_user.pined_pens.select(:title, :updated_at, :id, :user_id).reverse
-    # 繞路做法，為了排序pin及查出每個被pin的pen的作者，有 N + 1 效能問題
-    user_list =[]
-    pin_list.each_with_index do |pin ,i|
-      user_list << User.where("id = ?", pin.user_id).select(:username, :display_name)
-    end
-    success!({ pined_pens: pin_list, user_list: user_list})
+    pin_list = current_user.pinned_pens.select(:title, :updated_at, :id, :user_id).reverse
+    # order by pin 的 created_at 這部分還需測試
+    user_list = User.joins(pens: :pinners).where(pins: { user_id: current_user.id }).select(:username, :display_name)
+    success!({ pinned_pens: pin_list, user_list: user_list})
   end
 
   def pin_create
     pen = Pen.find_by(random_url: params.permit(:random_url)[:random_url])
-    if current_user.pined?(pen)
-      current_user.pined_pens.destroy(pen)
+    if current_user.pinned?(pen)
+      current_user.pinned_pens.destroy(pen)
       success!({ boolean: pin_pen?(pen) }, 'removed')
     else
-      current_user.pined_pens << pen
+      current_user.pinned_pens << pen
       success!({ boolean: pin_pen?(pen) }, 'added')
     end
   end

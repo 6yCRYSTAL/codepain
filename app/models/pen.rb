@@ -9,6 +9,8 @@ class Pen < ApplicationRecord
   has_many :comments
   has_many :heart_list
   has_many :lovers, through: :heart_list, source: :user
+  has_many :pins
+  has_many :pinners, through: :pins, source: :user
 
   scope :is_trashed, -> { only_deleted.where(state: 'trashed') }
   scope :deleted_in_1_hour, -> { is_trashed.where('deleted_at > ?', 1.hour.ago) }

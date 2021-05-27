@@ -12,18 +12,12 @@
       <h1 id='edit-title'>Untitle</h1>
       <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
       <input type="text" id="input-title" value="" style='display: none;'>
-
-      <div class="edit-author" id="username"><%= current_user.username %></div>
+      <div class="edit-author" id="username"><%= show_username %></div>
     </div>
   </div>
   <div class="edit-btn-header">
     <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
-
-    <% if action_name == "new" %>
-      <button class="btn-save" id="btn-save"><span><i class="fas fa-cloud"></i></span>Save</button>
-    <% elsif action_name == "edit" %>
-      <button class="btn-save" id="btn-update"><span><i class="fas fa-cloud"></i></span>Save</button>
-    <% end %>
+    <%= save_button %>
     <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
     <button class="btn-changeView">
       <span>
@@ -36,32 +30,9 @@
           </path>
         </svg>
       </span>
-      Change View</button>
-    <div class="pinned-btn">
-      <button class="btn-pinned"><span><i  class="fas fa-thumbtack"></i></span></button>
-      <button class="btn-pin-arrow"><span class="fas fa-chevron-down"></span></button>
-    </div>
-
-  </div>
-  <div class="userMenu-box">
-    <button class="userMenu-img" id="userMenu-btn">
-      <img
-        src="https://gravatar.com/avatar/2b1915d0982115d83fa2d2c09ae3c4af?d=https%3A%2F%2Fassets.codepen.io%2Finternal%2Favatars%2Fusers%2Fdefault.png&fit=crop&format=auto&height=80&version=0&width=80"
-        alt="使用者圖像">
+      Change View
     </button>
-    <ul class="userMenu-topnav">
-      <li><a href="#">Your Work</a></li>
-      <li><a href="#">Profile</a></li>
-      <li class="divider_before"><a href="#">New Pen</a>
-      <li><a href="#">New Project</a></li>
-      <li><a href="#">New Collection</a></li>
-      <li class="divider_before"><a href="#">Asset Manager</a>
-      <li><a href="#">Embed Theme Builder</a></li>
-      <li class="divider_before"><a href="#">Upgrade to</a>
-      <li><a href="#">Documentation</a></li>
-      <li><a href="#">Support</a></li>
-      <li class="divider_before"><a href="#">Settings</a>
-      <li><a href="#">LogOut</a></li>
-    </ul>
+    <%= pin_button %>
   </div>
+  <%= user_menu_button %>
 </header>

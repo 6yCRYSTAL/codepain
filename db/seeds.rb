@@ -36,3 +36,42 @@ require 'date'
 #   )
 #   user.save
 # end
+
+Product.create(
+  [{
+    plan: 'starter',
+    desc: 'CodePain membership: Annual Starter',
+    period: 'year',
+    price: 96
+  },
+  {
+    plan: 'developer',
+    desc: 'CodePain membership: Annual Developer',
+    period: 'year',
+    price: 144
+  },
+  {
+    plan: 'super',
+    desc: 'CodePain membership: Annual Super',
+    period: 'year',
+    price: 312
+  },
+  {
+    plan: 'starter',
+    desc: 'CodePain membership: Starter',
+    period: 'month',
+    price: 12
+  },
+  {
+    plan: 'developer',
+    desc: 'CodePain membership: Developer',
+    period: 'month',
+    price: 19
+  },
+  {
+    plan: 'super',
+    desc: 'CodePain membership: Super',
+    period: 'month',
+    price: 39
+  }]
+)

@@ -1,4 +1,4 @@
-<div class="bg-gray-300" data-controller="comcreate">
+<div class="bg-gray-300" data-controller="comment-create">
 <%# 開發用淺色背景 %>
   <section >
     <%# 建立該pen評論%>
@@ -7,48 +7,48 @@
 Feeling inspired? Let <%=pen.user.username%> know!
 Want to share how you used this Pen?
 Give the creator a confidence boost!"
-              data-comcreate-target="createTextArea"
+              data-comment-create-target="createTextArea"
               ></textarea>
     <span
       class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
-      data-action="click->comcreate#create"
-      data-comcreate-target="createBtn"
+      data-action="click->comment-create#create"
+      data-comment-create-target="createBtn"
     > Comment </span>
   </section>
   <%# 顯示該pen評論%>
   <section >
     <p class="uppercase"><%= pluralize comments_count, "comment" %></p>
-    <ol data-comcreate-target="list">
+    <ol data-comment-create-target="list">
       <% comments.each do |comment| %>
-      <li data-controller="comupdate">
+      <li data-controller="comment-update">
         <div>
-          <span><%="#{current_user.display_name} (@#{current_user.username})"%></span>
+          <span><%="#{comment.user.display_name} (@#{comment.user.username})"%></span>
           <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
         </div>
-        <div class="comment-edit-block" data-comupdate-target="commentBlock">
-          <textarea data-comupdate-target="updateTextArea"><%= comment.content %></textarea>
+        <div class="comment-edit-block" data-comment-update-target="commentBlock">
+          <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
           <button
-            data-action="click->comupdate#update"
-            data-comupdate-target="updateBtn"
+            data-action="click->comment-update#update"
+            data-comment-update-target="updateBtn"
           > Update </button>
           <button
-            data-action="click->comupdate#cancel"
-            data-comupdate-target="cancelBtn"
+            data-action="click->comment-update#cancel"
+            data-comment-update-target="cancelBtn"
           > Cancel </button>
         </div>
         <div>
-          <p data-comupdate-target="commentShow"><%= comment.content %></p>
+          <p data-comment-update-target="commentShow"><%= comment.content %></p>
         </div>
         <button
-          data-action="click->comupdate#edit"
-          data-comupdate-target="editBtn"
+          data-action="click->comment-update#edit"
+          data-comment-update-target="editBtn"
           data-id="<%= comment.id %>"
         > Edit </button>
         <button
-          data-action="click->comupdate#destroy"
-          data-comupdate-target="deleteBtn">
+          data-action="click->comment-update#destroy"
+          data-comment-update-target="deleteBtn">
           Delete</button>
-        <div class="warning-wrap hidden" data-comupdate-target="warningBlock">
+        <div class="warning-wrap hidden" data-comment-update-target="warningBlock">
           <%# modal %>
             <div class="warning-content">
               Alert!

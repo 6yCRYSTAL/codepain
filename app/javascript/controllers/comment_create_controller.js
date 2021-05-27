@@ -13,7 +13,7 @@ export default class extends Controller {
     let randomurl = location.href.split('/').reverse()[0]
     let list = this.listTarget
     let listElement = document.createElement('li')
-    listElement.setAttribute("data-controller", "comupdate")
+    listElement.setAttribute("data-controller", "comment-update")
     this.createTextAreaTarget.value = ''
 
     Rails.ajax({
@@ -32,28 +32,28 @@ export default class extends Controller {
           <span>${data.user.display_name} (@${data.user.username})</span>
           <span>${moment(data.created_at).fromNow()} ago</span>
         </div>
-        <div class="comment-edit-block" data-comupdate-target="commentBlock">
-          <textarea data-comupdate-target="updateTextArea">${data.content}</textarea>
+        <div class="comment-edit-block" data-comment-update-target="commentBlock">
+          <textarea data-comment-update-target="updateTextArea">${data.content}</textarea>
           <button
-            data-action="click->comupdate#update"
-            data-comupdate-target="updateBtn"
+            data-action="click->comment-update#update"
+            data-comment-update-target="updateBtn"
           > Update </button>
           <button
-            data-action="click->comupdate#cancel"
-            data-comupdate-target="cancelBtn"
+            data-action="click->comment-update#cancel"
+            data-comment-update-target="cancelBtn"
           > Cancel </button>
         </div>
         <div>
-          <p data-comupdate-target="commentShow">${data.content}</p>
+          <p data-comment-update-target="commentShow">${data.content}</p>
         </div>
         <button
-          data-action="click->comupdate#edit"
-          data-comupdate-target="editBtn"
+          data-action="click->comment-update#edit"
+          data-comment-update-target="editBtn"
           data-id=${data.id}
         > Edit </button>
         <button
-          data-action="click->comupdate#destroy"
-          data-comupdate-target="deleteBtn"
+          data-action="click->comment-update#destroy"
+          data-comment-update-target="deleteBtn"
         > Delete
         </button>
         `

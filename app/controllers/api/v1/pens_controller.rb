@@ -5,7 +5,7 @@ class Api::V1::PensController < Api::ApiController
   before_action :find_user_pen, only: [:edit, :update]
 
   def index
-    @pens = current_user.pens.order(updated_at: :desc)
+    find_user_pens
     success_render!(@pens, :extended)
   end
 
@@ -67,29 +67,32 @@ class Api::V1::PensController < Api::ApiController
   def grid
     pens_per_page(params[:page], 6)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
-                                                  totalCount: pens.total_count,
-                                                  currentPage: pens.current_page,
-                                                  lastPage: pens.last_page?,
-                                                  nextPage: pens.next_page,
-                                                  prevPage: pens.prev_page})
+    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+                                                  totalCount: @pens.total_count,
+                                                  currentPage: @pens.current_page,
+                                                  lastPage: @pens.last_page?,
+                                                  nextPage: @pens.next_page,
+                                                  prevPage: @pens.prev_page})
   end
 
   def list
     pens_per_page(params[:page], 20)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: pens.total_pages,
-                                                  totalCount: pens.total_count,
-                                                  currentPage: pens.current_page,
-                                                  lastPage: pens.last_page?,
-                                                  nextPage: pens.next_page,
-                                                  prevPage: pens.prev_page})
+    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+                                                  totalCount: @pens.total_count,
+                                                  currentPage: @pens.current_page,
+                                                  lastPage: @pens.last_page?,
+                                                  nextPage: @pens.next_page,
+                                                  prevPage: @pens.prev_page})
   end
 
   private
 
-  def pens_per_page(page, per)
-    @pens = current_user.pens.order(updated_at: :desc).page(page = 1).per(per)
+  def pens_per_page(page = 1, per)
+    find_user_pens
+    @pens = @pens.page(page).per(per)
+
+    pens_per_page(1, per) if @pens.current_page > @pens.total_pages
   end
 
   def love_pen?
@@ -119,5 +122,9 @@ class Api::V1::PensController < Api::ApiController
     rescue
       redirect_to pens_path
     end
+  end
+
+  def find_user_pens
+    @pens = current_user.pens.order(updated_at: :desc)
   end
 end

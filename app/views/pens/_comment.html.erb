@@ -2,18 +2,18 @@
 <%# 開發用淺色背景 %>
   <section >
     <%# 建立該pen評論%>
-    <textarea class="w-6/12 h-20"
-              placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
-Feeling inspired? Let <%=pen.user.username%> know!
-Want to share how you used this Pen?
-Give the creator a confidence boost!"
-              data-comcreate-target="createTextArea"
-              ></textarea>
-    <span
-      class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
-      data-action="click->comcreate#create"
-      data-comcreate-target="createBtn"
-    > Comment </span>
+      <textarea class="w-6/12 h-20"
+                placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
+  Feeling inspired? Let <%=pen.user.username%> know!
+  Want to share how you used this Pen?
+  Give the creator a confidence boost!"
+                data-comcreate-target="createTextArea"
+                ></textarea>
+      <span
+        class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
+        data-action="click->comcreate#create"
+        data-comcreate-target="createBtn"
+      > Comment </span>
   </section>
   <%# 顯示該pen評論%>
   <section >

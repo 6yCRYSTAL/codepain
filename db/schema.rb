@@ -61,22 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_065236) do
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
-  create_table "orders", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "user_id", null: false
-    t.string "payment_method"
-    t.string "serial"
-    t.datetime "purchased_at"
-    t.integer "total_amount"
-    t.string "ecpay_tradeno"
-    t.integer "ecpay_chargefee"
-    t.string "ecpay_check_mac_value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_orders_on_product_id"
-    t.index ["serial"], name: "index_orders_on_serial"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
+
   create_table "pens", force: :cascade do |t|
     t.string "title", default: "Untitled", null: false
     t.text "html", default: ""
@@ -88,8 +73,8 @@ ActiveRecord::Schema.define(version: 2021_05_24_065236) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
-    t.integer "comments_count", default: 0
     t.integer "edit_view_count", default: 0
+    t.integer "comments_count", default: 0
     t.integer "heart_lists_count", default: 0
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
     t.index ["random_url"], name: "index_pens_on_random_url", unique: true

@@ -1,3 +1,4 @@
+import PenModal from './modal.js'
 document.addEventListener('turbolinks:load',function(){
   const UserMenuBtn = document.querySelector('#userMenu-btn');
   const SideBtn = document.querySelector('.sidebar-toggle-btn button');
@@ -5,7 +6,7 @@ document.addEventListener('turbolinks:load',function(){
   const Container = document.querySelector('.container-left');
   const DeleteTab = document.querySelector('#tab-delete');
   const OnClose = localStorage.getItem('onClose');
-
+  PenModal()
 
   // 登入頁-使用者選單
   if (UserMenuBtn) {

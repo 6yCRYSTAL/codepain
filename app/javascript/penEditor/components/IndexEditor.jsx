@@ -2,41 +2,40 @@ import React from 'react'
 import SplitPane from 'react-split-pane'
 import '../../styles/index_editor.css'
 
+import Editor from './Editor'
+import EditorConsole from './EditorConsole';
+
 const IndexEditor = () => {
   return(
-    <SplitPane split="horizontal" minSize={"50%"} className="SplitPane-horizontal">
+
+      <SplitPane split="horizontal" minSize={"50%"} className="SplitPane-horizontal">
+
       <SplitPane split="vertical" minSize={"33%"}>
-        <div className="edit-zone edit-html-zone">
-          <div className="edit-zone-bar">
-            <button className="edit-setting"><span><i className="fas fa-cog"></i></span></button>
-            <div>HTML</div>
-            <button className="edit-selector"><span><i className="fas fa-angle-down"></i></span></button>
-          </div>
-          <div id="editor--html" className="editor-code editor-html"></div>
-        </div>
+        {/* editor html */}
+        <Editor editorTitle={"HTML"} editorId={"editor--html"} editorClass={"editor-code editor-html"}/>
         <SplitPane split="vertical" minSize={"50%"}>
-          <div className="edit-zone edit-css-zone">
-            <div className="edit-zone-bar">
-              <button className="edit-setting"><span><i className="fas fa-cog"></i></span></button>
-              <div>CSS</div>
-              <button className="edit-selector"><span><i className="fas fa-angle-down"></i></span></button>
-            </div>
-            <div id="editor--css" className="editor-code editor-css"></div>
-          </div>
+          {/* editor css */}
+          <Editor editorTitle={"CSS"} editorId={"editor--css"} editorClass={"editor-code editor-css"}/>
+          {/* editor js */}
+          <Editor editorTitle={"JavaScript"} editorId={"editor--js"} editorClass={"editor-code editor-js"}/>
+        </ SplitPane>
+      </ SplitPane>
 
-          <div className="edit-zone edit-js-zone">
-            <div className="edit-zone-bar">
-              <button className="edit-setting"><span><i className="fas fa-cog"></i></span></button>
-              <div>JS</div>
-              <button className="edit-selector"><span><i className="fas fa-angle-down"></i></span></button>
-            </div>
-            <div id="editor--js" className="editor-code editor-js"></div>
-          </div>
-        </SplitPane>
-
+      <SplitPane split="horizontal">
+          <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+          <EditorConsole initialSize="100px" />
       </SplitPane>
-      <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
-    </SplitPane>
+
+      {/* <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe> */}
+      {/* <div class="edit-console-container">
+        <div class="edit-console-bar">
+          Console
+          <button class="edit-console-clear">clear</button>
+          <button class="edit-console-close">X</button>
+        </div>
+        <div class="edit-console"></div>
+      </div> */}
+      </ SplitPane>
   )
 }
 

@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
-  
+
   if( html && css && js ){
     // set Ace
     let editorHTML = ace.edit("editor--html")
@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-      })  
+      })
       editorCSS.setOptions({
         mode: "ace/mode/css",
         theme: "ace/theme/twilight",
@@ -78,7 +78,7 @@ document.addEventListener('turbolinks:load', () => {
         let context = this //editor session
         let args = arguments //keyboardEvent
         clearTimeout(timeout)
-    
+
         timeout = setTimeout( () => {
           fn.apply(context, args)
         }, delay)
@@ -87,12 +87,15 @@ document.addEventListener('turbolinks:load', () => {
 
     // render to iframe
     function renderToiframe() {
-      let result = document.querySelector('#edit--result').contentWindow.document
-      result.open()
-      result.write(`${editorHTML.getValue()}`)
-      result.write(`<style>${editorCSS.getValue()}</style>`)
-      result.write(`<script>${editorJS.getValue()}</script>`)
-      result.close()
+      let result = document.querySelector('#edit--result')
+      result.srcdoc = `
+        <html>
+          <style>${editorCSS.getValue()}</style>
+          <body>
+              ${editorHTML.getValue()}
+            <script type="text/javascript">${editorJS.getValue()}</script>
+          </body>
+        </html>`
     }
 
     // show console

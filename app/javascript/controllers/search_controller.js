@@ -16,7 +16,13 @@ export default class extends Controller {
     const inputValue = this.searchInputTarget.value
     this.searchInputTarget.value = ''
     const URL = window.location.href
-    const newURL = URL.replace(`search_term=${inputValue}`, '')
+
+    if (URL.includes('&')) {
+      var newURL = URL.replace(`search_term=${inputValue}&`, '')
+    } else {
+      var newURL = URL.replace(`search_term=${inputValue}`, '')
+    }
+
     window.location.replace(newURL)
   }
 }

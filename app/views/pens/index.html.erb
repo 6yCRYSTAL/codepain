@@ -41,27 +41,27 @@
         <span>list</span>
       <% end %>
       <%= label_tag :sort_by, 'SORT BY' %>
-        <%= select_tag :sort_by, options_for_select(['Date Created',
-                                                    'Date Updated',
-                                                    'Popularity'], selected: params[:sort_by]),
-                                                    onchange: 'this.form.submit()' %>
+      <%= select_tag :sort_by, options_for_select(['Date Created',
+                                                   'Date Updated',
+                                                   'Popularity'], selected: params[:sort_by]),
+                                                   onchange: 'this.form.submit()' %>
       <%= check_box_tag :sort_order, :asc, false,
                                      checked: params[:sort_order].present?,
                                      onchange: 'this.form.submit()' %>
     </nav>
-    <% end %>
   </div>
-
-  <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
-  <% if @pens.count==0 %>
-    <p>No results for <%= params[:search] %></p>
-  <% else %>
-    <% if params[:grid_type] !='grid' %>
-      <%= render 'pens_list' , pens: @pens %>
-    <% else %>
-      <%= render 'pens_grid' %>
-    <% end %>
   <% end %>
+    <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
+    <% if @pens.count == 0 %>
+      <p>No results for <%= params[:search] %></p>
+    <% else %>
+      <% if params[:grid_type] !='grid' %>
+        <%= render 'pens_list' , pens: @pens %>
+      <% else %>
+        <%= render 'pens_grid' %>
+      <% end %>
+    <% end %>
 <% else %>
   <%= render 'deleted_pens' , deleted_pens: @deleted_pens %>
 <% end %>
+

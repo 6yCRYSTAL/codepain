@@ -10,7 +10,7 @@ class PensController < ApplicationController
       redirect_to :root
     else
       @pens = search_pen.includes(:comments)
-
+      puts @pens
       # deleted tab
       @deleted_pens = current_user.pens.deleted_in_1_hour
 
@@ -58,9 +58,7 @@ class PensController < ApplicationController
 
   # 將排序及搜尋功能放在一個方法中
   def search_pen
-
-    if params.has_key?(:search_term || :sort_by || :sort_order)
-
+    if params.keys.count > 0
       case
       when params[:search_term].present? && params[:sort_by].present? && params[:sort_order].present?
         current_user.pens.search(params[:search_term]).sort_by_asc(params[:sort_by])

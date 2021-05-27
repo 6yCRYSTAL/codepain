@@ -4,7 +4,7 @@ import Rails from '@rails/ujs'
 export default class extends Controller {
   static targets = ['clearSearch', 'searchInput']
 
-  initialize() {
+  connect() {
     const clearSearch = this.clearSearchTarget
     if (this.searchInputTarget.value) {
       clearSearch.classList.remove('hidden')
@@ -22,7 +22,7 @@ export default class extends Controller {
     } else {
       var newURL = URL.replace(`search_term=${inputValue}`, '')
     }
-
+    
     window.location.replace(newURL)
   }
 }

@@ -194,4 +194,3 @@ document.addEventListener('turbolinks:load', () => {
     shareURL()
   }
 })
-

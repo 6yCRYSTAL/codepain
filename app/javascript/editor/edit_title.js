@@ -67,17 +67,6 @@ document.addEventListener('turbolinks:load', () => {
       ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
       .then(res =>{
         if(res.data.status === 'update succeeded'){
-          //將這段拉出來放在popup_notice讓saved和updated共用
-
-          // let noticeDivEl = document.createElement('div');
-          // let noticeTextEl = document.createElement('span');
-          // noticeDivEl.classList.add('edit-title-alert');
-          // noticeTextEl.textContent = 'Pen saved';
-          // noticeDivEl.appendChild(noticeTextEl)
-          // editHeader.insertAdjacentElement('beforebegin', noticeDivEl);
-          // setTimeout(() => {
-          //   noticeDivEl.remove();
-          // }, 1000);
           savedNotice()
         }
       })

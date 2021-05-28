@@ -28,13 +28,29 @@ module PensHelper
 
   # save button on edit_header
   def save_button
-    :authenticate_user!
-    if action_name == "new"
-      "<button class='btn-save' id='btn-save'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
-    elsif action_name == 'edit' && current_user == @pen.user
+    if current_user
+      if action_name == "new"
+        "<button class='btn-save' id='btn-save'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
+      elsif action_name == 'edit' && current_user == @pen.user
         "<button class='btn-save' id='btn-update'><span><i class='fas fa-cloud'></i></span>Save</button>".html_safe
+      end
     end
   end
+
+  # save as private button on edit_header(new)
+  def save_as_private_button
+    begin
+      if current_user.membership != "free" && action_name == "new"
+        "<button class='btn-save' id='btn-save-as-private'><span><i class='fas fa-cloud'></i></span>Save as Private</button>".html_safe
+      end
+    rescue
+    end
+  end
+
+  # def private_switch
+  #   if current_user.membership != "free" && action_name == "edit"
+
+  # end
 
   # pin button on edit_header
   def pin_button
@@ -53,6 +69,36 @@ module PensHelper
     else
       signup_button +
       login_button
+    end
+  end
+
+  def prev_page_button(pens)
+    link_to path_to_prev_page(pens) do
+      "<button class='prev-btn'>
+        <span class='arrow-left'><i class='fas fa-chevron-right'></i></span>
+        <span>Prev</span>
+      </button>".html_safe
+    end
+  end
+
+  def next_page_button(pens)
+    link_to path_to_next_page(pens) do
+      "<button class='next-btn'>
+        <span>Next</span>
+        <i class='fas fa-chevron-right'></i>
+      </button>".html_safe
+    end
+  end
+
+  # prev and next page button
+  def page_buttons(pens)
+    if pens.first_page?
+      next_page_button(pens)
+    elsif pens.last_page?
+      prev_page_button(pens)
+    else
+      prev_page_button(pens) +
+      next_page_button(pens)
     end
   end
 end

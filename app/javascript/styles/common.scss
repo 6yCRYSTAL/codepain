@@ -9,6 +9,9 @@
   white-space: nowrap;
   font-size: var(--text-p);
   @apply px-4 py-0 rounded-lg;
+  &:hover{
+    background-color: var(--btn-hover-green-dark);
+  }
 }
 @mixin gray-btn{
   height: 45px;
@@ -18,6 +21,9 @@
   white-space: nowrap;
   font-size: var(--text-p);
   @apply px-4 py-0 rounded-lg;
+  &:hover{
+    background-color: var(--primary-gray-3);
+  }
 }
 *{
   box-sizing: border-box;
@@ -48,18 +54,22 @@ body, html{
   font-family: "Alata", sans-serif;
 }
 .container-left{
-  padding-left: 200px;
+  margin-left: 200px;
 }
 .wrap{
   max-width: 1200px;
   margin: 0 auto;
-  /* background-color: gray; */
+  position: relative;
+  z-index: 100;
 }
 main{
   width: 100%;
   height: 100%;
 }
-
+.fixe{
+  position: fixed;
+  width: 100%;
+}
 /* set */
 /* main-sidebar */
 .main-sidebar{
@@ -130,7 +140,7 @@ main{
   }
 }
 .close-sidebar{
-  padding-left: 0;
+  margin-left: 0;
   .main-sidebar{
     left: -200px;
     .sidebar-toggle-btn{
@@ -436,6 +446,9 @@ main{
   background-color: var(--primary-gray-8);
   padding: 2rem 6rem;
   color: var(--light-gray);
+  // position: absolute;
+  // width: 100%;
+  // bottom: 0;
 }
 .footer-menu{
   > nav{

@@ -1,13 +1,11 @@
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbolinks:load',function(){
   // Get modal element
   const modalAll = document.querySelectorAll('#modal')
   // Get open modal button
   const modalBtnAll = document.querySelectorAll('#modal-btn')
-
   modalBtnAll.forEach(btn => {
     btn.addEventListener('click', openModal)
   })
-
   function openModal(e) {
     let modal = this.nextElementSibling
     let penURL = modal.dataset['url']

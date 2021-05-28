@@ -1,4 +1,5 @@
 import axios from 'axios'
+import getSavePrivateBtn from './save_as_private_button.js';
 import getSaveBtn from './save_button.js'
 
 document.addEventListener('turbolinks:load', () => {
@@ -19,8 +20,8 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="inline";
       editTitleBtn.style.display="none";
       input.focus();
-      // 舊 pen 文字 Untitle 預設字，按下為空
-      if(input.value === "Untitle"){
+      // 舊 pen 文字 Untitled 預設字，按下為空
+      if(input.value === "Untitled"){
         input.value = "";
       }
     })
@@ -49,7 +50,7 @@ document.addEventListener('turbolinks:load', () => {
       inputValue = e.target.value;
       // 判斷 預設空：Untitle ; 其他: 輸入值
       if (input.value === ""){
-        title.textContent= "Untitle";
+        title.textContent= "Untitled";
       }else{
         title.textContent= inputValue;
       }
@@ -60,6 +61,7 @@ document.addEventListener('turbolinks:load', () => {
     }
     // SaveBtn 入口處
     getSaveBtn();
+    getSavePrivateBtn();
     // Patch api - 成功黃色提示框
     let dataPatch = function() {
       let newTitle = document.querySelector('#edit-title').textContent;

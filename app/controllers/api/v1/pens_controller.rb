@@ -2,10 +2,9 @@ class Api::V1::PensController < Api::ApiController
   respond_to :json
 
   before_action :authenticate_user!, except: [:new]
-  before_action :find_user_pen, only: [:edit, :update]
+  before_action :find_user_pen, only: [:index, :edit, :update]
 
   def index
-    find_user_pens
     success_render!(@pens, :extended)
   end
 
@@ -105,7 +104,7 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def pen_params
-    clean_params = params.require(:pen).permit(:title, :html, :css, :js)
+    clean_params = params.require(:pen).permit(:title, :html, :css, :js, :private)
     if clean_params[:title] == "Untitled"
       clean_params.merge(title: "A Pen by #{current_user.display_name}")
     else

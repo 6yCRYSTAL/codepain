@@ -59,20 +59,20 @@ export default class extends Controller {
           data-comment-update-target="deleteBtn"
         > Delete</button>
         <div class="warning-wrap hidden border-solid border-4" data-comment-update-target="warningBlock">
-        <div class="warning-content">
-          <h2>Delete Confirmation</h2>
-          <p>This will permanently delete this Comment.</p>
-          <button
-            data-action="click->comment-update#realDelete"
-            data-comment-update-target="realDeleteBtn"
-            data-id="${data.id}"
-          > I understand, delete the Comment</button>
-          <button
-            data-action="click->comment-update#deleteCancel"
-            data-comment-update-target="deleteCancelBtn"
-          >Cancel</button>
+          <div class="warning-content">
+            <h2>Delete Confirmation</h2>
+            <p>This will permanently delete this Comment.</p>
+            <button
+              data-action="click->comment-update#realDelete"
+              data-comment-update-target="realDeleteBtn"
+              data-id="${data.id}"
+            > I understand, delete the Comment</button>
+            <button
+              data-action="click->comment-update#deleteCancel"
+              data-comment-update-target="deleteCancelBtn"
+            >Cancel</button>
+          </div>
         </div>
-      </div>
         `
         list.insertAdjacentElement('afterbegin', listElement)
       }

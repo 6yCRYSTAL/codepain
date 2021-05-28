@@ -1,0 +1,24 @@
+.search-users-features {
+  background-color: var(--primary-gray-6);
+  border-top: 2px solid var(--info-blue);
+  .features-item{
+    border-bottom: 1px solid black;
+    @apply py-3 px-4 flex;
+  }
+}
+.search-users-sort {
+  height: 30px;
+  color: var(--primary-gray-1);
+  font-size: var(--text-s-p);
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+.search-users-depth {
+  height: 30px;
+  color: var(--primary-gray-1);
+  font-size: var(--text-s-p);
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}

@@ -1,7 +1,7 @@
 class PensController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:search_all_users]
   layout false
-  before_action :find_user_pen, only: [:show, :edit, :destroy]
+  before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]
 
   def index
@@ -9,7 +9,11 @@ class PensController < ApplicationController
     if !current_user
       redirect_to :root
     else
-      @pens = search_pen(params[:search]).includes(:comments)
+      begin
+        @pens = search_pen.includes(:comments)
+      rescue NoMethodError
+        @pens = current_user.pens.order(created_at: :desc)
+      end
 
       # deleted tab
       @deleted_pens = current_user.pens.deleted_in_1_hour
@@ -38,8 +42,15 @@ class PensController < ApplicationController
   end
 
   def edit
-    impressionist(@pen)
-    render layout: "edit"
+    if @pen.private && current_user != @pen.user
+      redirect_to pens_path, alert: "This is a private pen. Please contact the owner for more information."
+    else
+      render layout: "edit"
+      begin
+        impressionist(@pen)
+      rescue
+      end
+    end
   end
 
   def destroy
@@ -54,13 +65,49 @@ class PensController < ApplicationController
     end
   end
 
+  def make_private
+    unless current_user.membership == 'free'
+      @pen.toggle(:private)
+    else
+      alert("Upgrade to PRO and unlock Privacy and more.")
+    end
+  end
+
+  def search_all_users
+    begin
+      @pens = Pen.search(params[:q]).includes(:user).page(params[:page]).per(6)
+    rescue
+      @pens = Pen.includes(:user).page(params[:page]).per(6)
+    end
+    render layout: "application"
+  end
+
   private
 
-  def search_pen(keyword)
-    # 如果沒搜尋 那就給他user所有的pens
-    return current_user.pens if keyword.nil?
-    # 有搜尋的話就去db撈資料
-    current_user.pens.search(keyword)
+  # 將排序及搜尋功能放在一個方法中
+  def search_pen
+    case
+    when params[:search_term].present? && params[:sort_by].present? && params[:sort_order].present?
+      current_user.pens.search(params[:search_term]).sort_by_asc(params[:sort_by])
+
+    when params[:search_term].present? && params[:sort_by].present?
+      current_user.pens.search(params[:search_term]).sort_by_desc(params[:sort_by])
+
+    when params[:search_term].present? && params[:sort_order].present?
+      current_user.pens.search(params[:search_term]).order(created_at: :asc)
+
+    when params[:sort_by].present? && params[:sort_order].present?
+      current_user.pens.sort_by_asc(params[:sort_by])
+
+    when params[:search_term].present?
+      current_user.pens.search(params[:search_term]).order(created_at: :desc)
+
+    when params[:sort_by].present?
+      current_user.pens.sort_by_desc(params[:sort_by])
+
+    when params[:sort_order].present?
+      current_user.pens.order(created_at: :asc)
+    end
   end
 
   def find_user_pen

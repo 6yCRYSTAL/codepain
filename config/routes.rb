@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   get '/pen', to: 'pens#new', as: 'new_pen'
   get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
+  get '/search/pens',  to: 'pens#search_all_users', as: 'search_all_users_pens'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
+  patch '/:username/pen/:random_url/private', to: 'pens#make_private', as: 'make_private_pen'
+
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'

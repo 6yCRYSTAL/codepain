@@ -208,7 +208,8 @@ label {
   border-radius: 3px;
   transform: translateZ(0);
   font-size: 1.6em;
-  padding: 0.8rem 2.8rem;
+  padding: 0.8rem 0.8rem;
+  display: block;
 }
 
 .button-email-signup-submit:hover {
@@ -298,7 +299,7 @@ label {
 
 .login-logo {
   font: 0/0 a;
-  background: url(/logo_gray.png) no-repeat;
+  background: url(/images/logo-gray.svg) no-repeat;
   background-size: auto 31px;
   width: auto;
   height: 31px;
@@ -430,6 +431,7 @@ label {
   padding: 8px 12px;
   font-size: 1.3rem;
   cursor: pointer;
+  width: 100%;
 }
 
 .signup-subbutton {
@@ -447,4 +449,17 @@ label {
   padding-top: 0;
   padding-bottom: 0;
   margin: 0;
+}
+
+.logo-pro {
+  border-radius: 2px;
+  padding: 1px 6px 2px 5px;
+  color: #000;
+  background: var(--yellow);
+  white-space: nowrap;
+  text-shadow: none;
+  letter-spacing: 0;
+  font-size: 71%;
+  position: relative;
+  top: -1px;
 }

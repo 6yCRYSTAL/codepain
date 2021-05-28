@@ -7,7 +7,6 @@ document.addEventListener('turbolinks:load',function(){
   const searchUsersFeatures = document.querySelector('.search-users-features')
   const OnClose = localStorage.getItem('onClose');
 
-
   // 登入頁-使用者選單
   if (UserMenuBtn) {
     UserMenuBtn.addEventListener('click',(e)=>{

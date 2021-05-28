@@ -31,14 +31,14 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def love_list
-    pen = Pen.find_by(random_url: love_params[:random_url])
+    @pen = Pen.find_by(random_url: love_params[:random_url])
 
-    if current_user.loved?(pen)
-      current_user.love_pens.destroy(pen)
-      success!({ boolean: love_pen? }, 'removed')
+    if current_user.loved?(@pen)
+      current_user.love_pens.destroy(@pen)
+      success!({ boolean: love_pen?(@pen) }, 'removed')
     else
-      current_user.love_pens << pen
-      success!({ boolean: love_pen? }, 'added')
+      current_user.love_pens << @pen
+      success!({ boolean: love_pen?(@pen) }, 'added')
     end
   end
 
@@ -91,7 +91,7 @@ class Api::V1::PensController < Api::ApiController
     pens_per_page(1, per) if @pens.current_page > @pens.total_pages
   end
 
-  def love_pen?
+  def love_pen?(pen)
     HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
   end
 

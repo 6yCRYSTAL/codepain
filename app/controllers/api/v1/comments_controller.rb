@@ -27,7 +27,7 @@ class Api::V1::CommentsController < ApplicationController
       comment.destroy
       render json: { status: 'Destroied' }, status: :ok
     else
-      render json: { status: 'Delete failed' }, status: :expectation_failed
+      render json: { status: 'Destroy failed' }, status: :expectation_failed
     end
   end
 end

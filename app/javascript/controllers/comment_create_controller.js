@@ -1,6 +1,5 @@
 import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
-import moment from 'moment';
 export default class extends Controller {
   static targets = ["createBtn", "createTextArea", "list", "commentsCount"]
 
@@ -12,7 +11,6 @@ export default class extends Controller {
   create() {
     let content = this.createTextAreaTarget.value
     let randomurl = location.href.split('/').reverse()[0]
-    let list = this.listTarget
     let listElement = document.createElement('li')
     listElement.setAttribute("data-controller", "comment-update")
     listElement.setAttribute("data-comment-update-target", "commentLi")
@@ -28,11 +26,11 @@ export default class extends Controller {
       dataType: 'json',
       data: `content=${content}&random_url=${randomurl}`,
       // 取回後端資料渲染
-      success: function(data) {
+      success: (data) => {
         listElement.innerHTML = `
         <div>
           <span>${data.user.display_name} (@${data.user.username})</span>
-          <span>${moment(data.created_at).fromNow()} ago</span>
+          <span> less than a minute ago </span>
         </div>
         <div class="comment-edit-block"
           data-comment-update-target="commentBlock">
@@ -74,7 +72,7 @@ export default class extends Controller {
           </div>
         </div>
         `
-        list.insertAdjacentElement('afterbegin', listElement)
+        this.listTarget.insertAdjacentElement('afterbegin', listElement)
       }
     })
     if (this.comments_count === 0) {

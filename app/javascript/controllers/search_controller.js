@@ -49,15 +49,17 @@ export default class extends Controller {
     const sortBySelected = this.sortBySelectedTarget
     const URL = window.location.href
     const paramsLength = window.location.search.split('&').length
+    const prevSelected = window.location.search.split('&').filter(param => param.includes('sort_by')).toString()
 
     if (URL.includes('sort_by') && (paramsLength === 1)) {
-      const prevSelected = window.location.search.split('&').filter(param => param.includes('sort_by')).toString()
-
       var newURL = URL.replace(prevSelected, `?sort_by=${sortBySelected.options[sortBySelected.selectedIndex].value}`)
+
     } else if ((URL.includes('sort_by')) && (paramsLength > 1)) {
-      var newURL = URL.replace(prevSelected, `&sort_by=${sortBySelected.options[sortBySelected.selectedIndex].value}`)
+      var newURL = URL.replace(prevSelected, `sort_by=${sortBySelected.options[sortBySelected.selectedIndex].value}`)
+
     } else if ((!URL.includes('sort_by')) && (paramsLength > 1)) {
       var newURL = `${URL}&sort_by=${sortBySelected.options[sortBySelected.selectedIndex].value}`
+
     } else {
       var newURL = `${URL}?sort_by=${sortBySelected.options[sortBySelected.selectedIndex].value}`
     }

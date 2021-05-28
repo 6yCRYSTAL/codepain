@@ -1,14 +1,14 @@
-import "ace-builds/src-noconflict/ace.js"
+import "ace-builds/src-min-noconflict/ace.js"
 import "ace-builds/webpack-resolver.js"
-import "ace-builds/src-noconflict/ext-language_tools.js"
-import "ace-builds/src-noconflict/mode-html.js"
-import "ace-builds/src-noconflict/mode-css.js"
-import "ace-builds/src-noconflict/mode-javascript.js"
+import "ace-builds/src-min-noconflict/ext-language_tools.js"
+import "ace-builds/src-min-noconflict/mode-html.js"
+import "ace-builds/src-min-noconflict/mode-css.js"
+import "ace-builds/src-min-noconflict/mode-javascript.js"
 import "emmet-core/emmet.js"
-import "ace-builds/src-noconflict/ext-emmet.js"
-import "ace-builds/src-noconflict/theme-twilight.js"
-import "ace-builds/src-noconflict/ext-error_marker.js"
-import "ace-builds/src-noconflict/snippets/javascript.js"
+import "ace-builds/src-min-noconflict/ext-emmet.js"
+import "ace-builds/src-min-noconflict/theme-twilight.js"
+import "ace-builds/src-min-noconflict/ext-error_marker.js"
+import "ace-builds/src-min-noconflict/snippets/javascript.js"
 
 document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
@@ -105,8 +105,13 @@ document.addEventListener('turbolinks:load', () => {
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
 
+    // const iframeResult = document.querySelector('.iframe-result')
+    const iframeConsole = document.querySelector('.iframe-and-console')
+
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
+      iframeConsole.classList.toggle('on')
+      // iframeResult.classList.toggle('off')
       consoleMsg()
       clearConsole()
     })
@@ -143,10 +148,9 @@ document.addEventListener('turbolinks:load', () => {
     }
     // close console
     function closeConsole() {
-      let iframeDisspear = document.querySelector('.edit-render-result100')
       closeConsoleBtn.addEventListener('click', () => {
         consolecontainer.classList.toggle('on')
-        iframeDisspear.style.display = "none"
+        iframeConsole.classList.toggle('on')
       })
     }
 
@@ -159,8 +163,8 @@ document.addEventListener('turbolinks:load', () => {
         shareBox.setAttribute('class', 'share-box')
         shareBox.textContent = "Share The URL"
 
-        const indexEditor = document.querySelector('#index-editor')
-        indexEditor.appendChild(shareBox)
+        const MainEditor = document.querySelector('#index-editor')
+        MainEditor.appendChild(shareBox)
 
         const shareBtnInput = document.createElement('input')
         shareBtnInput.setAttribute('class', 'share-btn-input')

@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import IndexEditor from './components/IndexEditor'
+import MainEditor from '../../components/penEditor/MainEditor'
 
 document.addEventListener('turbolinks:load', () => {
   const indexEditor = document.querySelector('#index-editor')
-  if( indexEditor ){
+  if( MainEditor ){
     ReactDOM.render(
-      <IndexEditor />,
+      <MainEditor />,
       indexEditor
     )
   }
 })
-
-

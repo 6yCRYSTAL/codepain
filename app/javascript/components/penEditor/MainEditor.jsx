@@ -3,10 +3,9 @@ import SplitPane from 'react-split-pane'
 import '../../styles/index_editor.css'
 
 import Editor from './Editor'
-import EditorConsole from './EditorConsole';
+// import EditorConsole from './EditorConsole';
 
-const IndexEditor = () => {
-
+const MainEditor = () => {
 
   return(
       <SplitPane split="horizontal" minSize={"50%"} className="SplitPane-horizontal">
@@ -22,14 +21,14 @@ const IndexEditor = () => {
           </ SplitPane>
         </ SplitPane>
 
-        {/* <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe> */}
+        <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
 
-        <SplitPane split="horizontal" minSize={"50%"}>
+        {/* <SplitPane split="horizontal" minSize={"50%"}>
           <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
           <EditorConsole />
-        </SplitPane>
+        </SplitPane> */}
       </ SplitPane>
   )
 }
 
-export default IndexEditor
+export default MainEditor

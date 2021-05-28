@@ -154,47 +154,8 @@ document.addEventListener('turbolinks:load', () => {
       })
     }
 
-    // share btn get url
-    function shareURL() {
-      const shareBtn = document.querySelector('#edit-share-btn')
-
-      shareBtn.addEventListener('click', () => {
-        const shareBox = document.createElement('div')
-        shareBox.setAttribute('class', 'share-box')
-        shareBox.textContent = "Share The URL"
-
-        const MainEditor = document.querySelector('#index-editor')
-        MainEditor.appendChild(shareBox)
-
-        const shareBtnInput = document.createElement('input')
-        shareBtnInput.setAttribute('class', 'share-btn-input')
-        shareBox.appendChild(shareBtnInput)
-        shareBtnInput.value = window.location.href
-
-        const shareBtnCopy = document.createElement('div')
-        shareBtnCopy.setAttribute('class', 'share-btn-copy')
-        shareBox.appendChild(shareBtnCopy)
-        shareBtnCopy.textContent = "Copy Link"
-
-        const closeBox = document.createElement('span')
-        closeBox.setAttribute('class', 'share-box-close')
-        closeBox.textContent = "x"
-        shareBox.appendChild(closeBox)
-        closeBox.addEventListener('click', () => {
-          shareBox.remove()
-        })
-
-        shareBtnCopy.addEventListener('click', ()=> {
-          shareBtnInput.select()
-          document.execCommand('copy')
-
-        })
-      })
-    }
-
     init()
     renderToiframe()
     closeConsole()
-    shareURL()
   }
 })

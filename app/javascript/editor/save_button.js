@@ -1,4 +1,5 @@
 import Rails from '@rails/ujs'
+import savedNotice from './popup_notice';
 
 function getSaveBtn() {
   const saveBtn = document.querySelector('#btn-save');
@@ -25,6 +26,7 @@ function getSaveBtn() {
         dataType: 'json',
         data: paramsFromNewPen()
       })
+      savedNotice()
     })
   }
 }

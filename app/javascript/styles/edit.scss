@@ -66,6 +66,9 @@
         width: 100% !important;
       }
     }
+    &:hover{
+      background-color: var(--primary-gray-3);
+    }
   }
   .pinned-btn{
     display: flex;

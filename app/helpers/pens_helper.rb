@@ -101,4 +101,17 @@ module PensHelper
       next_page_button(pens)
     end
   end
+
+  # comment counts
+  def comments_count_text(comments_count)
+    if comments_count == 0
+      "<p>
+        <strong>No Comments</strong>
+        <br>
+        You can be the first!
+      </p>".html_safe
+    else
+      pluralize comments_count, "comment"
+    end
+  end
 end

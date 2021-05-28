@@ -20,9 +20,8 @@ Give the creator a confidence boost!"
     <p class="uppercase"
       data-comments-count=<%= comments_count %>
       data-comment-create-target="commentsCount"
-      data-comment-update-target="commentsCount"
     >
-      <%= pluralize comments_count, "comment" %></p>
+      <%= comments_count_text(comments_count) %></p>
     <ol data-comment-create-target="list">
       <% comments.each do |comment| %>
       <li data-controller="comment-update" data-comment-update-target="commentLi" >

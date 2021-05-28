@@ -5,7 +5,7 @@ export default class extends Controller {
     "editBtn", "cancelBtn", "updateBtn", "deleteBtn",
     "realDeleteBtn", "deleteCancelBtn", "commentLi",
     "commentBlock", "updateTextArea", "commentShow",
-    "warningBlock"]
+    "warningBlock", "commentsCount"]
 
   initialize() {
     this.commentBlockToggle = () => {
@@ -64,6 +64,7 @@ export default class extends Controller {
       success: function(data) {
         if(data.status === "Destroied") {
           comment_li.remove()
+
         }
       }
     })

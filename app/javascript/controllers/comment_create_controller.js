@@ -8,6 +8,43 @@ export default class extends Controller {
     this.comments_count = parseInt(this.commentsCountTarget.dataset.commentsCount)
   }
 
+  // 偵測 ol 子元素變化，更新顯示評論數
+  // 詳見 https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+  connect() {
+    let commentCountP = this.commentsCountTarget
+    let comments_count = this.comments_count
+    let targetNode = document.querySelector('ol');
+    let config = { attributes: true, childList: true };
+    let callback = function(mutationsList) {
+          for(let mutation of mutationsList) {
+            if (mutation.addedNodes.length === 1){
+              if (comments_count === 0) {
+                comments_count += 1
+                commentCountP.innerText = `${comments_count} comment`
+                console.log(commentCountP.nextElementSibling)
+                commentCountP.nextElementSibling.classList.add("hidden")
+              } else {
+                comments_count += 1
+                commentCountP.innerText = `${comments_count} comments`
+              }
+            }if (mutation.removedNodes.length === 1){
+              if (comments_count === 2) {
+                comments_count -= 1
+                commentCountP.innerText = `${comments_count} comment`
+              } else if (comments_count === 1) {
+                comments_count -= 1
+                commentCountP.innerText =''
+              } else {
+                comments_count -= 1
+                commentCountP.innerText = `${comments_count} comments`
+              }
+            }
+          }
+        }
+    let observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+  }
+
   create() {
     let content = this.createTextAreaTarget.value
     let randomurl = location.href.split('/').reverse()[0]
@@ -15,7 +52,6 @@ export default class extends Controller {
     listElement.setAttribute("data-controller", "comment-update")
     listElement.setAttribute("data-comment-update-target", "commentLi")
     this.createTextAreaTarget.value = ''
-    let commentCountP = this.commentsCountTarget
     Rails.ajax({
       url: `/api/v1/comments`,
       type: 'POST',
@@ -75,12 +111,6 @@ export default class extends Controller {
         this.listTarget.insertAdjacentElement('afterbegin', listElement)
       }
     })
-    if (this.comments_count === 0) {
-      this.comments_count += 1
-      commentCountP.innerText = `${this.comments_count} comment`
-    } else {
-      this.comments_count += 1
-      commentCountP.innerText = `${this.comments_count} comments`
-    }
+
   }
 }

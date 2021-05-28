@@ -19,8 +19,8 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="inline";
       editTitleBtn.style.display="none";
       input.focus();
-      // 舊 pen 文字 Untitle 預設字，按下為空
-      if(input.value === "Untitle"){
+      // 舊 pen 文字 Untitled 預設字，按下為空
+      if(input.value === "Untitled"){
         input.value = "";
       }
     })
@@ -49,7 +49,7 @@ document.addEventListener('turbolinks:load', () => {
       inputValue = e.target.value;
       // 判斷 預設空：Untitle ; 其他: 輸入值
       if (input.value === ""){
-        title.textContent= "Untitle";
+        title.textContent= "Untitled";
       }else{
         title.textContent= inputValue;
       }

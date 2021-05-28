@@ -9,9 +9,13 @@ document.addEventListener('turbolinks:load',function(){
 
   // 登入頁-使用者選單
   if (UserMenuBtn) {
-    UserMenuBtn.addEventListener('click',(e)=>{
-      const UserMenuTopNav = e.currentTarget.nextElementSibling;
-      UserMenuTopNav.classList.toggle('active');
+    const UserMenuTopNav = document.querySelector('.userMenu-topnav');
+    window.addEventListener('click', function(e){
+      if (UserMenuBtn.contains(e.target)){
+        UserMenuTopNav.classList.toggle('active');
+      } else{
+        UserMenuTopNav.classList.remove('active');
+      }
     });
   }
 

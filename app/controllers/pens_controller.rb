@@ -1,7 +1,7 @@
 class PensController < ApplicationController
   before_action :authenticate_user!, except: [:search_all_users]
   layout false
-  before_action :find_user_pen, only: [:show, :edit, :destroy]
+  before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]
 
   def index
@@ -38,8 +38,15 @@ class PensController < ApplicationController
   end
 
   def edit
-    impressionist(@pen)
-    render layout: "edit"
+    if @pen.private && current_user != @pen.user
+      redirect_to pens_path, alert: "This is a private pen. Please contact the owner for more information."
+    else
+      render layout: "edit"
+      begin
+        impressionist(@pen)
+      rescue
+      end
+    end
   end
 
   def destroy
@@ -51,6 +58,14 @@ class PensController < ApplicationController
       redirect_to pens_path, notice: "DELETED!!!"
     else
       redirect_to :root
+    end
+  end
+
+  def make_private
+    unless current_user.membership == 'free'
+      @pen.toggle(:private)
+    else
+      alert("Upgrade to PRO and unlock Privacy and more.")
     end
   end
 

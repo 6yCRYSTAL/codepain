@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import Turbolinks from "turbolinks"
 
 export default class extends Controller {
-  static targets = ['searchInput', 'searchBtn','clearSearch', 'sortBySelected']
+  static targets = ['searchInput','clearSearch', 'sortBySelected']
 
   connect() {
     if (this.searchInputTarget.value) {
@@ -12,7 +12,6 @@ export default class extends Controller {
 
   submitSearch(e) {
     e.preventDefault()
-    const searchBtn = this.searchBtnTarget
     const searchInput = this.searchInputTarget.value
     const url = new URL(window.location.href)
     const params = url.searchParams

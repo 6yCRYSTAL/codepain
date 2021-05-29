@@ -18,8 +18,7 @@
                          placeholder: 'Search for...',
                          class: 'search-text',
                          data: { "search-target": "searchInput" } %>
-      <%#= submit_tag :Search, name: nil%>
-      <button data-action="click->search#submitSearch" data-search-target="searchBtn">Search</button>
+      <button data-action="click->search#submitSearch">Search</button>
       <%= link_to 'Clear Search', request.params.except(:search_term),
                                   class: 'hidden',
                                   data: { "search-target": "clearSearch" } %>

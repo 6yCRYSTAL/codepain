@@ -1,14 +1,14 @@
-import "ace-builds/src-noconflict/ace.js"
+import "ace-builds/src-min-noconflict/ace.js"
 import "ace-builds/webpack-resolver.js"
-import "ace-builds/src-noconflict/ext-language_tools.js"
-import "ace-builds/src-noconflict/mode-html.js"
-import "ace-builds/src-noconflict/mode-css.js"
-import "ace-builds/src-noconflict/mode-javascript.js"
+import "ace-builds/src-min-noconflict/ext-language_tools.js"
+import "ace-builds/src-min-noconflict/mode-html.js"
+import "ace-builds/src-min-noconflict/mode-css.js"
+import "ace-builds/src-min-noconflict/mode-javascript.js"
 import "emmet-core/emmet.js"
-import "ace-builds/src-noconflict/ext-emmet.js"
-import "ace-builds/src-noconflict/theme-twilight.js"
-import "ace-builds/src-noconflict/ext-error_marker.js"
-import "ace-builds/src-noconflict/snippets/javascript.js"
+import "ace-builds/src-min-noconflict/ext-emmet.js"
+import "ace-builds/src-min-noconflict/theme-twilight.js"
+import "ace-builds/src-min-noconflict/ext-error_marker.js"
+import "ace-builds/src-min-noconflict/snippets/javascript.js"
 
 document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
@@ -87,12 +87,15 @@ document.addEventListener('turbolinks:load', () => {
 
     // render to iframe
     function renderToiframe() {
-      let result = document.querySelector('#edit--result').contentWindow.document
-      result.open()
-      result.write(`${editorHTML.getValue()}`)
-      result.write(`<style>${editorCSS.getValue()}</style>`)
-      result.write(`<script>${editorJS.getValue()}</script>`)
-      result.close()
+      let result = document.querySelector('#edit--result')
+      result.srcdoc = `
+        <html>
+          <style>${editorCSS.getValue()}</style>
+          <body>
+              ${editorHTML.getValue()}
+            <script type="text/javascript">${editorJS.getValue()}</script>
+          </body>
+        </html>`
     }
 
     // show console
@@ -101,10 +104,14 @@ document.addEventListener('turbolinks:load', () => {
     const consoleBtn = document.querySelector('#console-btn')
     const clearConsoleBtn = document.querySelector('.edit-console-clear')
     const closeConsoleBtn = document.querySelector('.edit-console-close')
-    const resultContainer = document.querySelector('.edit-result-container')
+
+    // const iframeResult = document.querySelector('.iframe-result')
+    const iframeConsole = document.querySelector('.iframe-and-console')
+
     consoleBtn.addEventListener('click', () => {
       consolecontainer.classList.toggle('on')
-      resultContainer.classList.toggle('on')
+      iframeConsole.classList.toggle('on')
+      // iframeResult.classList.toggle('off')
       consoleMsg()
       clearConsole()
     })
@@ -143,51 +150,12 @@ document.addEventListener('turbolinks:load', () => {
     function closeConsole() {
       closeConsoleBtn.addEventListener('click', () => {
         consolecontainer.classList.toggle('on')
-        resultContainer.classList.toggle('on')
-      })
-    }
-
-    // share btn get url
-    function shareURL() {
-      const shareBtn = document.querySelector('#edit-share-btn')
-
-      shareBtn.addEventListener('click', () => {
-        const shareBox = document.createElement('div')
-        shareBox.setAttribute('class', 'share-box')
-        shareBox.textContent = "Share The URL"
-
-        const editContainer = document.querySelector('.iframe-console-container')
-        editContainer.appendChild(shareBox)
-
-        const shareBtnInput = document.createElement('input')
-        shareBtnInput.setAttribute('class', 'share-btn-input')
-        shareBox.appendChild(shareBtnInput)
-        shareBtnInput.value = window.location.href
-
-        const shareBtnCopy = document.createElement('div')
-        shareBtnCopy.setAttribute('class', 'share-btn-copy')
-        shareBox.appendChild(shareBtnCopy)
-        shareBtnCopy.textContent = "Copy Link"
-
-        const closeBox = document.createElement('span')
-        closeBox.setAttribute('class', 'share-box-close')
-        closeBox.textContent = "x"
-        shareBox.appendChild(closeBox)
-        closeBox.addEventListener('click', () => {
-          shareBox.remove()
-        })
-
-        shareBtnCopy.addEventListener('click', ()=> {
-          shareBtnInput.select()
-          document.execCommand('copy')
-
-        })
+        iframeConsole.classList.toggle('on')
       })
     }
 
     init()
     renderToiframe()
     closeConsole()
-    shareURL()
   }
 })

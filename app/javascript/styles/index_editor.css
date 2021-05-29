@@ -1,0 +1,43 @@
+.SplitPane-horizontal{
+  padding-top: 60px;
+}
+
+.Resizer {
+  background: #000;
+  z-index: 10;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.Resizer:hover {
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
+  border: 10px solid #333642;
+}
+
+.Resizer.horizontal {
+  height: 11px;
+  margin: -5px 0;
+  cursor: row-resize;
+  width: 100%;
+  border: 8px solid #333642;
+}
+
+
+.Resizer.vertical {
+  margin: 0 -5px;
+  cursor: col-resize;
+  border: 8px solid #333642;
+}
+
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+
+.Resizer.disabled:hover {
+  border-color: transparent;
+}

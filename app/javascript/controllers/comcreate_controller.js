@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 import moment from 'moment';
 export default class extends Controller {
-  static targets = ["createBtn", "createTextArea", "list"]
+  static targets = [ "createBtn", "createTextArea", "list" ]
 
   initialize() {
     this.comment_id = ''

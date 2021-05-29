@@ -1,10 +1,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['yearTitles', 'monthTitles',
-                    'yearDetails', 'monthDetails',
-                    'yearLinks', 'monthLinks',
-                    'yearSwitchers', 'monthSwitchers']
+  static targets = [ 'yearTitles', 'monthTitles',
+                     'yearDetails', 'monthDetails',
+                     'yearLinks', 'monthLinks',
+                     'yearSwitchers', 'monthSwitchers' ]
 
   switch() {
     const yearTitles = this.yearTitlesTarget

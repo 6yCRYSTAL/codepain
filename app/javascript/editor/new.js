@@ -99,63 +99,57 @@ document.addEventListener('turbolinks:load', () => {
     }
 
     // show console
-    const consolecontainer = document.querySelector('.edit-console-container')
-    const consoleResult = document.querySelector('.edit-console')
-    const consoleBtn = document.querySelector('#console-btn')
-    const clearConsoleBtn = document.querySelector('.edit-console-clear')
-    const closeConsoleBtn = document.querySelector('.edit-console-close')
+    // const consolecontainer = document.querySelector('.edit-console-container')
+    // const consoleResult = document.querySelector('.edit-console')
+    // const consoleBtn = document.querySelector('#console-btn')
+    // const clearConsoleBtn = document.querySelector('.edit-console-clear')
+    // const closeConsoleBtn = document.querySelector('.edit-console-close')
 
-    // const iframeResult = document.querySelector('.iframe-result')
-    const iframeConsole = document.querySelector('.iframe-and-console')
-
-    consoleBtn.addEventListener('click', () => {
-      consolecontainer.classList.toggle('on')
-      iframeConsole.classList.toggle('on')
-      // iframeResult.classList.toggle('off')
-      consoleMsg()
-      clearConsole()
-    })
+    // consoleBtn.addEventListener('click', () => {
+    //   consolecontainer.classList.toggle('on')
+    //   consoleMsg()
+    //   clearConsole()
+    // })
 
     // get console msg
-    function consoleMsg() {
-      // 先把原本的console 備份起來
-      let oldConsole = console
+    // function consoleMsg() {
+    //   // 先把原本的console 備份起來
+    //   let oldConsole = console
 
-      editorJS.getSession().on('change', ()=>{
-        let stdoutMsg = ""
-        // 改寫 console
-        window.console = {
-          log: function(msg) {
-            stdoutMsg += `${msg}\n`
-          }
-        }
-        try{
-          eval(editorJS.session.getValue())
-          consoleResult.innerText = stdoutMsg
-        } catch (e) {
-          let msg = `${e.name}: ${e.message}`
-          consoleResult.innerText = msg
-        }
-        // 恢復原本的 console.log
-        window.console = oldConsole
-      })
-    }
+    //   editorJS.getSession().on('change', ()=>{
+    //     let stdoutMsg = ""
+    //     // 改寫 console
+    //     window.console = {
+    //       log: function(msg) {
+    //         stdoutMsg += `${msg}\n`
+    //       }
+    //     }
+    //     try{
+    //       eval(editorJS.session.getValue())
+    //       consoleResult.innerText = stdoutMsg
+    //     } catch (e) {
+    //       let msg = `${e.name}: ${e.message}`
+    //       consoleResult.innerText = msg
+    //     }
+    //     // 恢復原本的 console.log
+    //     window.console = oldConsole
+    //   })
+    // }
     // clear console
-    function clearConsole() {
-      clearConsoleBtn.addEventListener('click', () => {
-        consoleResult.innerText = ""
-      })
-    }
-    // close console
-    function closeConsole() {
-      closeConsoleBtn.addEventListener('click', () => {
-        consolecontainer.classList.toggle('on')
-        iframeConsole.classList.toggle('on')
-      })
-    }
+    // function clearConsole() {
+    //   clearConsoleBtn.addEventListener('click', () => {
+    //     consoleResult.innerText = ""
+    //   })
+    // }
+    // // close console
+    // function closeConsole() {
+    //   closeConsoleBtn.addEventListener('click', () => {
+    //     consolecontainer.classList.toggle('on')
+    //   })
+    // }
 
     init()
     renderToiframe()
-    closeConsole()
+    // closeConsole()
   }
 })

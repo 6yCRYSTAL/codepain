@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../styles/index_editor.css'
 
-
 const Editor = ( { editorTitle, editorId, editorClass }) => {
 
   return (

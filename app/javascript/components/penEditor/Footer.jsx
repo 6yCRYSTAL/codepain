@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ShareUrlBox from './ShareUrlBox'
 
 const MainFooter = () => {
-  const [show, setShow] = React.useState(false)
+  const [showURL, setShowURL] = useState(false)
 
   const showShareBox = () => {
-    setShow(!show)
+    setShowURL(!showURL)
   }
+
   return (
     <div className="edit-footer-btn">
       <div className="footer-left">
@@ -21,7 +22,7 @@ const MainFooter = () => {
         <button id="btn-delet" className="btn-delete"> Delete </button>
         <button className="btn-collection"> Add to Collection </button>
         <button id="edit-share-btn" className="btn-Share" onClick={showShareBox}> Share </button>
-        { show &&  <ShareUrlBox/> }
+        { showURL &&  <ShareUrlBox/> }
       </div>
     </div>
   )

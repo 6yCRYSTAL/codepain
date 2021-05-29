@@ -1,2 +1,2 @@
 import './penEditor'
-import './footer'
+// import './footer'

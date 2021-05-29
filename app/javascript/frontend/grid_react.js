@@ -33,7 +33,6 @@ function PenItemContent(props){
       </header>
         <img src="./name.svg" alt="" />
       <div className="pen-img">
-        {/* <img src="/images/pen-img-default.jpg" /> */}
         <iframe id="grid-iframe" frameborder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
         <div className="prompt-link">

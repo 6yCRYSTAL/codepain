@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
+      resources :pens, only: [:create, :edit, :update], param: :random_url do
         member do
           post :love, action: 'love_list'
           post :pin, action: 'pin_create'
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
 
         collection do
           get 'grid/:page', action: 'grid'
-          get 'list/:page', action: 'list'
+          get 'search/grid/:page', action: 'grid_search'
           get :pins, action: 'pin_list'
         end
       end

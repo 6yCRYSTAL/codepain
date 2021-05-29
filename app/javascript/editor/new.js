@@ -88,8 +88,8 @@ document.addEventListener('turbolinks:load', () => {
     // render to iframe
     function renderToiframe() {
       let result = document.querySelector('#edit--result')
-      result.srcdoc = `
-        <html>
+      result.srcdoc =
+        `<html>
           <style>${editorCSS.getValue()}</style>
           <body>
               ${editorHTML.getValue()}

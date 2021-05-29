@@ -73,21 +73,19 @@ module PensHelper
   end
 
   def prev_page_button(pens)
-    link_to path_to_prev_page(pens) do
+    link_to_prev_page pens,
       "<button class='prev-btn'>
         <span class='arrow-left'><i class='fas fa-chevron-right'></i></span>
         <span>Prev</span>
       </button>".html_safe
-    end
   end
 
   def next_page_button(pens)
-    link_to path_to_next_page(pens) do
+    link_to_next_page pens,
       "<button class='next-btn'>
         <span>Next</span>
         <i class='fas fa-chevron-right'></i>
       </button>".html_safe
-    end
   end
 
   # prev and next page button

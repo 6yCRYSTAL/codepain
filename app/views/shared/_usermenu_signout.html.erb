@@ -1,20 +1,18 @@
 <!-- 登出 -->
 <section class="search-userMenu-container">
   <div class="search-userMenu">
-    <form action="" class="search-box">
+    <%# search all users' pens bar %>
+    <%= form_tag search_all_users_pens_path, method: 'get', class: 'search-box' do %>
       <label>
         <div class="fas fa-search"></div>
-        <input placeholder="Search ..." type="search" value="">
+        <%= text_field_tag :search_all_users, params[:q],
+                               placeholder: 'Search CodePain...',
+                               class: 'search-text' %>
       </label>
-    </form>
-
-    <% if controller_name != 'registrations'%>
-      <%= link_to "Sign Up", new_user_registration_path, class: 'login-signup-Buttons', data: {buttons: 'signup'} %> 
     <% end %>
 
-    <% if controller_name != 'sessions'%>
-      <%= link_to "Log In", login_path, class: 'login-signup-Buttons', data: {buttons: 'login'} %> 
-    <% end %>
-    
+    <%= signup_button %>
+    <%= login_button %>
+
   </div>
 </section>

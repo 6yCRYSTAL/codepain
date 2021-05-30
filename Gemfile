@@ -15,8 +15,14 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+
+# JSON serializer
+# https://github.com/procore/blueprinter
+gem 'blueprinter', '~> 0.25.3'
+
+# JSON parser
+# https://github.com/ohler55/oj
+gem 'oj', '~> 3.11', '>= 3.11.5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -30,10 +36,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-# User authentication 
+# User authentication
 # https://github.com/heartcombo/devise
 gem 'devise', '~> 4.8'
-gem 'activerecord-session_store', '~> 2.0'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'omniauth-github', '~> 2.0'
@@ -44,10 +49,6 @@ gem 'omniauth-facebook', '~> 8.0'
 # https://github.com/rubysherpas/paranoia
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 
-# protect sensitive information
-# https://github.com/laserlemon/figaro
-gem 'figaro', '~> 1.2'
-
 # react on rails
 # https://www.shakacode.com/react-on-rails/docs/basics/tutorial
 gem 'react_on_rails', '~> 12.2'
@@ -55,6 +56,10 @@ gem 'react_on_rails', '~> 12.2'
 # view counter
 # https://github.com/charlotte-ruby/impressionist
 gem 'impressionist'
+
+# paginator
+# https://github.com/kaminari/kaminari
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

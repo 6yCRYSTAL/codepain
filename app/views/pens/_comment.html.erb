@@ -1,0 +1,66 @@
+<div class="bg-gray-300" data-controller="comcreate">
+<%# 開發用淺色背景 %>
+  <section >
+    <%# 建立該pen評論%>
+      <textarea
+        class="w-6/12 h-20"
+        placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
+        Feeling inspired? Let <%=pen.user.username%> know!
+        Want to share how you used this Pen?
+        Give the creator a confidence boost!"
+        data-comcreate-target="createTextArea"
+        ></textarea>
+      <span
+        class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
+        data-action="click->comcreate#create"
+        data-comcreate-target="createBtn"
+      > Comment </span>
+  </section>
+  <%# 顯示該pen評論%>
+  <section >
+    <p class="uppercase"><%= pluralize comments_count, "comment" %></p>
+    <ol data-comcreate-target="list">
+      <% comments.each do |comment| %>
+      <li data-controller="comupdate">
+        <div>
+          <span><%="#{current_user.display_name} (@#{current_user.username})"%></span>
+          <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
+        </div>
+        <div class="comment-edit-block" data-comupdate-target="commentBlock">
+          <textarea data-comupdate-target="updateTextArea"><%= comment.content %></textarea>
+          <button
+            data-action="click->comupdate#update"
+            data-comupdate-target="updateBtn"
+          > Update </button>
+          <button
+            data-action="click->comupdate#cancel"
+            data-comupdate-target="cancelBtn"
+          > Cancel </button>
+        </div>
+        <div>
+          <p data-comupdate-target="commentShow"><%= comment.content %></p>
+        </div>
+        <button
+          data-action="click->comupdate#edit"
+          data-comupdate-target="editBtn"
+          data-id="<%= comment.id %>"
+        > Edit </button>
+        <button
+          data-action="click->comupdate#destroy"
+          data-comupdate-target="deleteBtn">
+          Delete</button>
+        <div class="warning-wrap hidden" data-comupdate-target="warningBlock">
+          <%# modal %>
+            <div class="warning-content">
+              Alert!
+            </div>
+        </div>
+      </li>
+      <% end %>
+    </ol>
+  </section>
+</div>
+<%# 下方觀看次數codepen無，是否需要?%>
+<% if pen.edit_view_count != 0 %>
+  <div id="view_count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
+<% end %>

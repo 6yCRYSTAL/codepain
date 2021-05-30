@@ -9,10 +9,34 @@ class Pen < ApplicationRecord
   has_many :comments
   has_many :heart_list
   has_many :lovers, through: :heart_list, source: :user
+  has_many :pins
+  has_many :pinners, through: :pins, source: :user
 
-  scope :is_soft_deleting, -> { only_deleted.where(state: 'soft_deleting') }
-  scope :deleted_in_1_hour, -> { is_soft_deleting.where('deleted_at > ?', 1.hour.ago) }
-  scope :find_pen_by_search_keyword, -> search_params { where('title Ilike ?', "%#{search_params}%") }
+  scope :is_trashed, -> { only_deleted.where(state: 'trashed') }
+  scope :deleted_in_1_hour, -> { is_trashed.where('deleted_at > ?', 1.hour.ago) }
+  scope :search, -> keyword { where('title Ilike ?', "%#{keyword}%") }
+
+  def self.sort_by_desc(sort)
+    case sort
+    when 'Date Created'
+      order(created_at: :desc)
+    when 'Date Updated'
+      order(updated_at: :desc)
+    when 'Popularity'
+      order(edit_view_count: :desc)
+    end
+  end
+
+  def self.sort_by_asc(sort)
+    case sort
+    when 'Date Created'
+      order(created_at: :asc)
+    when 'Date Updated'
+      order(updated_at: :asc)
+    when 'Popularity'
+      order(edit_view_count: :asc)
+    end
+  end
 
   def generate_random_url
     require 'securerandom'

@@ -7,6 +7,7 @@
   
   <div class="user-container">
     <div class="signup-form">
+      <div class="user-auth-error"><%= notice %><%= alert %></div>
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
           <%= button_to omniauth_authorize_path(resource_name, provider), class: "button #{provider}-button button-3party" do %>
@@ -22,7 +23,7 @@
         
         <button class="button button-email-signup">Sign Up with Email</button>
         
-        <div class="email-signup-form">
+        <div class="email-signup-form hide">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
         

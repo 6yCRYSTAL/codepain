@@ -1,28 +1,32 @@
-<h1>show page of <%= @pen.html%> </h1>
-
-<h3>Comment</h3>
-<%= form_for(@comment, url: create_comment_path(username: current_user.username, random_url: @pen.random_url )) do |form| %>
-  <div>
-    <%= form.text_area :content, placeholder: "placeholder text from show.html.erb" %>
-  </div>
-  <%= form.submit %>
-<% end %>
-
-<div id="comment_area">
-  <%=  @comments_counts > 1 ? "#{@comments_counts} COMMENTS" : "#{@comments_counts} COMMENT" %>
-
-  <% @comments.each do |comment| %>
-    <section id="">
-      <%= "#{current_user.display_name} (@#{current_user.username})"  %>
-      <%= comment.content %>
-      <%= time_ago_in_words(comment.created_at) + ' ago'%>
-      <%= link_to "Edit", comment_path(comment), method: "put" %>
-      <%= link_to "Delete", comment_path(comment), method: "delete",
-                  data: {confirm: "Delete Confirmation\nThis will permanently delete this Comment."} %>
-    </section>
-  <% end %>
+<div class="embed-nav">
+  <button class="code-types types-html">HTML</button>
+  <button class="code-types types-css">CSS</button>
+  <button class="code-types types-js">JS</button>
+  <button class="result">Result</button>
 </div>
-<% if @pen.edit_view_count != 0 %>
-  <div id="view_count"><i class="fas fa-eye"></i> <%= @pen.edit_view_count %> Views</div>
-<% end %>
-<%= link_to '回到your_work', pens_path%>
+<div class="show_Picture">
+  hello word
+</div>
+<div class="embed-footer">
+  <button class="action-button external-resources">Resources</button>
+    <div class="action">
+      <button class="action-button action-btn-1x">1× </button>
+      <button class="action-button action-btn-05x">0.5× </button>
+      <button class="action-button action-btn-025x">0.25× </button>
+    </div>
+  <button class="action-button rerun-button">Rerun</button>
+</div>
+<div class="Stretch">
+  <!-- 伸縮不會做誰來教教我 -->
+</div>
+
+<div class="ItemDetailsContent_background">
+  <div class="ItemDetailsContent_content">
+      <div class="comment-wrap">
+        <!-- show page of <%= @pen.html%> -->
+        <%= render 'comment' , pen: @pen, comments: @comments, comment: @comment, comments_count: @comments_count %>
+        <div class="ItemDetailsLicense_root-35USN">
+      </div>
+    </div>
+  </div>
+</div>

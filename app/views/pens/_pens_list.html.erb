@@ -1,0 +1,24 @@
+<table class="pen-list">
+  <thead class="pen-list-title">
+    <tr>
+      <th scope="row">Title</th>
+      <th scope="row"></th>
+      <th scope="row">Created</th>
+      <th scope="row">Last Updated</th>
+      <th scope="row">Stats</th>
+    </tr>
+  </thead>
+  <tbody class="pen-list-content">
+    <%= render partial: "pens_list_content", collection: pens, as: :pen%>
+  </tbody>
+</table>
+<div class="next-prev-btn">
+    <button class="prev-btn">
+      <span class="arrow-left"><i class="fas fa-chevron-right"></i></span>
+      <span>Prev</span>
+    </button>
+  <button class="next-btn">
+    <span>Next</span>
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>

@@ -1,32 +1,15 @@
 <!-- 登入 -->
 <section class="search-userMenu-container">
   <div class="search-userMenu">
-    <form action="" class="search-box">
+    <%= form_tag search_all_users_pens_path, method: 'get', class: 'search-box' do %>
       <label>
         <div class="fas fa-search"></div>
-        <input placeholder="Search ..." type="search" value="">
+        <%= text_field_tag :search_all_users, params[:q],
+                               placeholder: 'Search CodePain...',
+                               class: 'search-text' %>
       </label>
-    </form>
-    <div class="userMenu-box">
-      <button class="userMenu-img" id="userMenu-btn">
-        <img
-          src="https://gravatar.com/avatar/2b1915d0982115d83fa2d2c09ae3c4af?d=https%3A%2F%2Fassets.codepen.io%2Finternal%2Favatars%2Fusers%2Fdefault.png&fit=crop&format=auto&height=80&version=0&width=80"
-          alt="使用者圖像">
-      </button>
-      <ul class="userMenu-topnav">
-        <li><%= link_to  "Your Work", "/your-work" %></li>
-        <li><a href="#">Profile</a></li>
-        <li class="divider_before"><a href="#">New Pen</a></li>
-        <li><a href="#">New Project</a></li>
-        <li><a href="#">New Collection</a></li>
-        <li class="divider_before"><a href="#">Asset Manager</a></li>
-        <li><a href="#">Embed Theme Builder</a></li>
-        <li class="divider_before"><a href="#">Upgrade to</a></li>
-        <li><a href="#">Documentation</a></li>
-        <li><a href="#">Support</a></li>
-        <li class="divider_before"><%= link_to  "Settings", edit_user_registration_path %></li>
-        <%= link_to  "Log Out", logout_path, method: :delete %>
-      </ul>
-    </div>
+    <% end %>
+
+    <%= render 'shared/user_menu_box' %>
   </div>
 </section>

@@ -1,2 +1,1 @@
-import './user_auth.css'
-import './user_hidden.js'
+import './form_hidden.js'

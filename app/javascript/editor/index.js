@@ -1,6 +1,7 @@
 // import your editor js here
 import './new'
-import './editor_save_button'
-import './editor_delete_button'
-import './editor_show_button'
-import './editor_restore_or_del_button'
+import './edit_title'
+import './delete_button'
+import './restore_or_del_button'
+import './update_button'
+import './user_edit_show'

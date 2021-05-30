@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <%=  stylesheet_pack_tag  'application',  media: 'all',  'data-turbolinks-track': 'reload'  %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="container">
-      <%= render './shared/sidebar' %>
+    <div class="container-left">
+      <%= render 'shared/sidebar' %>
       <% if current_user %>
-        <%= render './shared/usermenu_signin' %>
+        <%= render 'shared/usermenu_signin' %>
       <% else %>
-        <%= render './shared/usermenu_signout' %>
+        <%= render 'shared/usermenu_signout' %>
       <% end %>
-      <main>
+      <main class="wrap">
         <%= yield %>
       </main>
-      <%= render './shared/footer' %>
+      <%= render 'shared/footer' %>
     </div>
   </body>
 </html>

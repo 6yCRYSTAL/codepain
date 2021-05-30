@@ -1,0 +1,203 @@
+/* header */
+.edit{
+  background-color: var(--primary-gray-6);
+}
+.container-edit{
+  height: 100vh;
+  overflow: hidden;
+}
+.edit-header{
+  padding: .5rem 1rem;
+  justify-content: space-between;
+}
+.edit-title-header{
+  display: flex;
+  align-items: center;
+  svg{
+    width: 30px;
+    fill: white;
+  }
+  .edit-title-area{
+    padding-left: .5rem;
+    color: var(--light-gray);
+    h1,input{
+      font-size: var(--text-h6);
+      letter-spacing: .2px;
+      margin: 0;
+      padding: .2rem 0;
+      display: inline-block;
+      color: var(--light-gray);
+    }
+    input{
+      background-color: transparent;
+      border: none;
+      outline: medium;
+      font-weight: bold;
+      padding: 0;
+    }
+    span{
+      padding-left: 2px;
+      padding-bottom: 2px;
+    }
+    .edit-author{
+      font-size: var(--text-s-p);
+      color: var(--primary-gray-1);
+    }
+  }
+}
+.edit-btn-header{
+  margin-left: auto;
+  display: flex;
+  button{
+    border-radius: 4px;
+    height: 45px;
+    font-size: var(--text-p);
+    color: white;
+    display: inline-block;
+    padding: 10px 16px;
+    margin-right: .5rem;
+    background-color: var(--primary-gray-4);
+    span{
+      display: inline-block;
+      margin-right: .2rem;
+      width: 1rem;
+      fill: white;
+      svg{
+        width: 100% !important;
+      }
+    }
+    &:hover{
+      background-color: var(--primary-gray-3);
+    }
+  }
+  .pinned-btn{
+    display: flex;
+      .btn-pinned{
+        width: 60%;
+        background-color:#131417;
+        border: 3px solid #444857;
+        border-radius: 4px 0 0 4px;
+        margin: 0;
+        svg{
+          display: block;
+          transform: rotate(45deg);
+        }
+        &:hover {
+          border:3px solid #8d9096;
+          background-color:#8d9096;
+        }
+      }
+      .btn-pin-arrow{
+        &:hover {
+          background-color:#8d9096;
+        }
+        border-radius: 0 4px 4px 0;
+        width: 40%;
+        padding: 10px 5px;
+        font-size: 10px;
+      }
+      .btn-pinned-blue{
+        width: 60%;
+        color: rgb(83, 106, 197);
+        background-color:#131417;
+        border: 3px solid #444857;
+        border-radius: 4px 0 0 4px;
+        margin: 0;
+      }
+    }
+  }
+  .extend{
+    position:absolute;
+    z-index: 15;
+    width: 400px;
+    background-color: #131417;
+    border-radius: 5px;
+    padding: 2rem;
+    height: auto;
+    max-height: 80vh;
+    top: 63px;
+    right: 60px;
+    display: none;
+    .Pinned-Items{
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+    ul{
+      padding-top: 10px;
+      li{
+        color: #faa;
+        height: auto;
+        padding: 13px 13px 17px;
+        margin-bottom: 15px;
+        background: #2c303a;
+        border-radius: 6px;
+        .icon-a{
+          margin: 0, 100%, 0, 100%;
+        }
+        .delete{
+          color: gray;
+          text-align:right;
+          padding: 0px 0px 0px;
+          width: 20px;
+          background-color:transparent;
+          font-size: 30px;
+        }
+      }
+    }
+    .btn-pin-arrow{
+      border-radius: 0 4px 4px 0;
+      padding: 10px 5px;
+      font-size: 8px;
+    }
+  }
+/* header end */
+
+/* edit-title-alert */
+.edit-title-alert{
+  @apply w-full flex justify-center absolute;
+  span{
+    @apply inline-block py-1 px-2 text-gray-800 bg-yellow-300 rounded-b-lg text-sm;
+  }
+}
+/* edit-title-alert end */
+
+/* footer */
+.edit-footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.edit-footer-btn{
+  height: 30px;
+  background-color: var(--primary-gray-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  button{
+    color: var(--light-gray);
+    font-size: var(--text-s-p);
+    padding: 2px 7px;
+    background-color: var(--primary-gray-4);
+    border-radius: 2px;
+    margin-right: 4px;
+    &:last-child{
+      margin-right: 0px;
+    }
+  }
+  > div{
+    display: flex;
+  }
+}
+.save-dateTime{
+  margin-right: 1rem;
+  time{
+    color: var(--light-gray);
+  }
+}
+/* footer end */
+.appear{
+  display: block;
+}

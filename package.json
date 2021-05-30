@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fullhuman/postcss-purgecss": "3.0.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -33,7 +34,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "postcss": "^7",
     "webpack-dev-server": "^3.11.2"
   }
 }

@@ -13,6 +13,9 @@ function PenItemContent(props){
   const data = {title,user_name,random_url,heart_count,comments_count,view_count,html,js,css};
   // 判斷自己 id & 所有喜歡的pen ; 沒有 -1 有陣列數
   let haveUserLike = userLike.indexOf(id);
+  React.useEffect(() =>{
+    document.querySelector('.pens-grid-loading').style.display = "none";
+  })
   // 開啟彈跳視窗
   function atAlert() {
     setToggle(true);
@@ -31,7 +34,6 @@ function PenItemContent(props){
         </svg>
         </button>
       </header>
-        <img src="./name.svg" alt="" />
       <div className="pen-img">
         <img src="/images/pen-img-default.jpg" />
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />

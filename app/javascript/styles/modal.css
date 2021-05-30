@@ -1,32 +1,22 @@
-.modal {
+.modal,.modal-container{
   display: none;
   position: fixed;
-  z-index: 50;
+  z-index: 100;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,.8);
-}
-.modal-container{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(0,0,0,.8);
   backdrop-filter: blur(3px);
+}
+.modal-container{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
 }
 /* test width and height can be changed */
 .modal-content {
-  background-color: #fff;
-  margin: 20% auto;
+  background: hsl(227deg 12% 30% / 85%);
   padding: 1.5rem;
+  margin: 5rem auto;
   width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.13),
               0 7px 20px 0 rgba(0,0,0,0.1);

@@ -40,16 +40,24 @@
         </button>
         <span>list</span>
       <% end %>
-      <%= label_tag :sort_by, 'SORT BY' %>
-      <%= select_tag :sort_by, options_for_select(['Date Created',
-                                                   'Date Updated',
-                                                   'Popularity'], selected: params[:sort_by]),
-                                                   data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
-      <button data-action="click->search#changeSortOrder" data-search-target="sortOrderDESC">
-        DESC
-      </button>
-      <%= button_tag 'ASC', name: :sort_order, type: 'submit', value: :asc,
-                                                  data: { "search-target": "sortOrderASC" } %>
+      <%= label_tag :sort_by, 'SORT BY',class:'sort-by' %>
+      <div class="sort-by-select">
+        <%= select_tag :sort_by, options_for_select(['Date Created',
+                                                    'Date Updated',
+                                                    'Popularity'], selected: params[:sort_by]),
+                                                    data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
+        <div class="sort-by-select-icon"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="sort-by-order-wrap">
+        <span>Sort Direction</span>
+        <button data-action="click->search#changeSortOrder" data-search-target="sortOrderDESC" title="DESC">
+          <div class="sort-by-order"><i class="fas fa-chevron-down"></i></div>
+        </button>
+        <%= button_tag name: :sort_order, type: 'submit', value: :asc,
+                                                    data: { "search-target": "sortOrderASC" },title:"ASC" do%>
+          <div class="sort-by-order asc-icon"><i class="fas fa-chevron-down"></i></div>
+        <% end %>
+      </div>
     </nav>
   </div>
   <% end %>

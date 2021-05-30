@@ -10,9 +10,11 @@ export default function Alert(props) {
     if (e.target === e.currentTarget) {
       setToggle(false);
       document.querySelector('body').classList.remove('fixe');
+      // 修改網址
+      history.replaceState(null, 'your-work', `${window.location.origin}/your-work?grid_type=grid`);
     };
   };
-  // 修改網址列的內容，而不會刷新頁面
+  // 新增網址，而不會刷新頁面
   React.useEffect(() =>{
     history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
   })

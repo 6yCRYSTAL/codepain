@@ -6,9 +6,9 @@ export default class extends Controller {
 
   connect() {
     if (window.location.href.includes('sort_order')) {
-      this.sortOrderASCTarget.classList.add('text-white')
+      this.sortOrderASCTarget.classList.add('order-active')
     } else {
-      this.sortOrderDESCTarget.classList.add('text-white')
+      this.sortOrderDESCTarget.classList.add('order-active')
     }
     if (this.searchInputTarget.value) {
       this.clearSearchTarget.classList.remove('hidden')
@@ -38,8 +38,8 @@ export default class extends Controller {
     const newURL = URL.replace('&sort_order=asc', '')
 
     if (URL.includes('sort_order')) {
-      sortOrderASC.classList.add('text-white')
-      sortOrderDESC.classList.remove('text-white')
+      sortOrderASC.classList.add('order-active')
+      sortOrderDESC.classList.remove('order-active')
     }
 
     window.location.replace(newURL)

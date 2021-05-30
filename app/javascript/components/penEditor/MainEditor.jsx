@@ -16,7 +16,7 @@ const MainEditor = ( ) => {
   }
 
   return(
-    <div >
+    <>
     <SplitPane split="horizontal" minSize={"50%"} className="SplitPane-horizontal">
 
       <SplitPane split="vertical" minSize={"33%"}>
@@ -42,7 +42,7 @@ const MainEditor = ( ) => {
     </ SplitPane>
 
     <button onClick={showConsoleBox} id="console-btn" className="btn-console fake-console" style={{backgroundColor: "gray", position: "absolute", bottom: "10px", zIndex: "100"}}> FakeConsole</button>
-    </div>
+    </>
   )
 }
 

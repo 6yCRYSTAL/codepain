@@ -13,7 +13,7 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import 'styles'
-import 'views'
+import 'components'
 import 'editor'
 import 'frontend'
 import 'controllers'

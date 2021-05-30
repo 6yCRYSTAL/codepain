@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import MainEditor from '../../components/penEditor/MainEditor'
-import MainFooter from '../../components/penEditor/Footer'
+import MainEditor from './MainEditor'
+import MainFooter from './Footer'
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -13,9 +13,7 @@ document.addEventListener('turbolinks:load', () => {
       indexEditor
     )
   }
-})
 
-document.addEventListener('turbolinks:load', () => {
   const editFooter = document.querySelector('.edit-footer')
   if( editFooter ){
     ReactDOM.render(

@@ -13,9 +13,6 @@ function PenItemContent(props){
   const data = {title,user_name,random_url,heart_count,comments_count,view_count,html,js,css};
   // 判斷自己 id & 所有喜歡的pen ; 沒有 -1 有陣列數
   let haveUserLike = userLike.indexOf(id);
-  React.useEffect(() =>{
-    document.querySelector('.pens-grid-loading').style.display = "none";
-  })
   // 開啟彈跳視窗
   function atAlert() {
     setToggle(true);
@@ -100,19 +97,21 @@ function GridItem() {
   const [clickPage, setClickPage] = React.useState(1);
   const [getData, setGetData] = React.useState({});
   const [toggle, setToggle] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   // useEffect 附加 Api 回傳後執行
   React.useEffect(() =>{
     const LikeId = []
     ax.get(`/api/v1/pens/grid/${clickPage}`)
-      .then(res =>{
-        setGrid(res.data.payload.pens);
-        setTotalPage(res.data.payload.meta.totalPages);
-        // 使用者喜歡哪些 pens 的 id
-        res.data.payload.pens[0].user.love_pens.forEach((like) => {
-          LikeId.push(like.id);
-        });
-        setUserLike(LikeId);
+    .then(res =>{
+      setGrid(res.data.payload.pens);
+      setIsLoading(false)
+      setTotalPage(res.data.payload.meta.totalPages);
+      // 使用者喜歡哪些 pens 的 id
+      res.data.payload.pens[0].user.love_pens.forEach((like) => {
+        LikeId.push(like.id);
       });
+      setUserLike(LikeId);
+    });
   }, [clickPage]);
   // 上下頁功能
   function nextBtn() {
@@ -121,6 +120,12 @@ function GridItem() {
   function prevBtn() {
     if (clickPage > 1) { setClickPage(clickPage - 1) };
   };
+  // loading
+  if(isLoading){
+    return(
+      <div className="pens-grid-loading"></div>
+    )
+  }
   return(
     <>
       <div className="pen-items-wrap">

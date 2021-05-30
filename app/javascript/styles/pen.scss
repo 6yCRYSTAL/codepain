@@ -157,7 +157,11 @@
 /* title & features end */
 /* grid-pen-item */
 .pens-grid-loading{
-  padding: 20rem;
+  height: 60rem;
+  @apply flex justify-center;
+  svg{
+    display: inline-block;
+  }
 }
 .pen-items-wrap{
   -webkit-box-align: start;

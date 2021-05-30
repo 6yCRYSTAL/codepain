@@ -1,6 +1,13 @@
-class Api::V1::CommentsController < ApplicationController
+class Api::V1::CommentsController < Api::ApiController
   respond_to :json
   before_action :authenticate_user!
+
+  def index
+    pen = Pen.find_by(random_url: params[:random_url])
+    comments = pen.comments.all.order(id: :desc)
+    comments_count = pen.comments_count
+    success!({ comments: comments, comments_count: comments_count})
+  end
 
   def create
     pen_id = Pen.find_by(random_url: params[:random_url]).id

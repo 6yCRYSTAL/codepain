@@ -1,7 +1,6 @@
 .SplitPane-horizontal{
   padding-top: 60px;
 }
-
 .Resizer {
   background: #000;
   z-index: 10;
@@ -20,18 +19,17 @@
 }
 
 .Resizer.horizontal {
-  height: 11px;
+  height: 10px;
   margin: -5px 0;
   cursor: row-resize;
   width: 100%;
-  border: 8px solid #333642;
+  border: 6px solid #333642;
 }
-
 
 .Resizer.vertical {
   margin: 0 -5px;
   cursor: col-resize;
-  border: 8px solid #333642;
+  border: 6px solid #333642;
 }
 
 .Resizer.disabled {

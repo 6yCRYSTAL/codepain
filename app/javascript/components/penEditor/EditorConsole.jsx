@@ -1,14 +1,20 @@
 import React from 'react';
 import '../../styles/new.css'
 
+
 const EditorConsole = () => {
+
+  const clearConsole = () => {
+    let console = document.querySelector('.edit-console')
+    console.textContent = ""
+  }
 
   return (
     <div className="edit-console-container">
       <div className="edit-console-bar">
         Console
-        <button className="edit-console-clear">clear</button>
-        <button className="edit-console-close">X</button>
+        <button className="edit-console-clear" onClick={clearConsole}>clear</button>
+        {/* <button className="edit-console-close">X</button> */}
       </div>
       <div className="edit-console"></div>
     </div>

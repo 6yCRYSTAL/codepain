@@ -11,7 +11,7 @@ const MainFooter = () => {
   return (
     <div className="edit-footer-btn">
       <div className="footer-left">
-        <button id="console-btn" className="btn-console"> Console </button>
+        <button> Console </button>
         <button id="clear-assets-btn" className="btn-assets"> Assets </button>
         <button className="btn-Comments"> Comments </button>
       </div>

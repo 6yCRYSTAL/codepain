@@ -17,6 +17,14 @@
           <%= pen.css %>
           <%= pen.js %>
           <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
+        <div class = "modal-chage-btn-wrap">
+          <button class = "modal-change-btn ">
+            <span class="arrow-left"><i class="fas fa-chevron-right"></i></span>
+          </button>
+          <button class = "modal-change-btn ">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
     </div>
   </td>
@@ -45,5 +53,6 @@
       </svg>
     </div>
   </td>
+  <%# TODO: 移除下方show連結%>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

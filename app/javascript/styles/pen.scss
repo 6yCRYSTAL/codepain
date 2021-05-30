@@ -312,6 +312,28 @@
       @apply transition-all opacity-100 transform scale-100;
     }
   }
+  .modal-chage-btn-wrap{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 50vh;
+    margin-top: -30px;
+    margin:auto;
+    left: 5%;
+    right: 5%;
+    .modal-change-btn{
+      @apply px-4 py-0 rounded;
+      color: var(--light-gray);
+      background: #2c303a;
+      width: 50px;
+      height: 75px;
+      cursor: pointer;
+      z-index: 101;
+      &:hover{
+        background-color: var(--btn-green);
+      }
+    }
+  }
 }
 .title-wrap:hover + .modal-wrap{
   .modal-btn{

@@ -14,6 +14,7 @@ document.addEventListener('turbolinks:load',function(){
     history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
     modal.style.display = 'block'
     modal.addEventListener('click', closeModal)
+    document.querySelector('body').style.overflow = "hidden"
   }
   // listen for outside click
   function closeModal(e) {
@@ -21,6 +22,7 @@ document.addEventListener('turbolinks:load',function(){
       e.target.style.display = 'none'
       // back to your-work
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
+      document.querySelector('body').style.overflow = "auto"
     }
   }
 })

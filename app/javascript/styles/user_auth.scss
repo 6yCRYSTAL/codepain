@@ -2,13 +2,12 @@
   color: red;
 }
 
-a, #forgot-password-link span {
+#forgot-password-link span {
   text-decoration: none;
   color: #76daff;
-}
-
-a:hover, #forgot-password-link span:hover {
-  color: white;
+  &hover {
+    color: white;
+  }
 }
 
 .user-form {
@@ -20,16 +19,22 @@ a:hover, #forgot-password-link span:hover {
   margin: 20px auto;
   font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
   font-size: 15px;
+  a {
+    text-decoration: none;
+    color: #76daff;
+  }
+  a:hover {
+    color: white;
+  }
+  p {
+    margin: 0 0 1em 0;
+  }
 }
 
 .user-container {
   background-color: #fff;
   display: flex;
   text-align: left;
-}
-
-p {
-  margin: 0 0 1em 0;
 }
 
 .signup-header {
@@ -66,10 +71,87 @@ p {
       color: #0a73b4;
     }
   }
+
+  input {
+    padding: 8px 12px;
+    width: auto;
+  }
+
+  &.pro-form {
+    .button {
+      color: #000;
+      width: 150px;
+    }
+
+    .pricing-radio-wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+      input:checked+label {
+        background-color: #fff;
+      }
+      &+.pricing-radio-wrap{
+        margin-top: 0.25rem;
+      }
+
+      .label-period-selection {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: var(--gray-light-5);
+        padding: 8px 8px 8px 35px;
+        border-radius: 2px;
+        border: 3px solid var(--gray-light-1);
+        box-sizing: border-box;
+      }
+      .btn-period-selection {
+        position: absolute;
+        left: 1rem;
+      }
+    }
+
+    .price-selection {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-left: 1rem;
+      padding: 0.5rem 0.8rem 0.5rem 0;
+    }
+
+    .total-price {
+      margin-left: auto;
+      font-weight: bold;
+      color: var(--primary-gray-2);
+    }
+
+    .span {
+      display: block;
+    }
+
+    .payment-method-type {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 25px 15px;
+      align-items: center;
+      justify-content: flex-start;
+      .payment-method-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        .label-payment-selection {
+          padding: 0 30px 0 10px;
+        }
+      }
+    }
+  }
 }
 
 .signup-agreement {
   line-height: 1.5;
+  &.pro-member {
+    font-size: 12px;
+  }
 }
 
 .button {
@@ -145,23 +227,35 @@ p {
   transition: all 0.5s ease-in-out;
   max-height: 560px;
   overflow: hidden;
+  label {
+    margin: 0 0 3px 0;
+    letter-spacing: 0.5px;
+  }
+  input:not(:first-child) {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    background-color: #d5d7de;
+    border: 3px solid #d5d7de;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
 }
 
-.email-signup-form label, .login-email-left label {
-  margin: 0 0 3px 0;
-  letter-spacing: 0.5px;
-}
-
-.email-signup-form input:not(:first-child),
-.login-email-left input:not(:first-child)
-{
-  width: 100%;
-  font-size: 1.3rem;
-  padding: 8px 12px;
-  background-color: #d5d7de;
-  border: 3px solid #d5d7de;
-  border-radius: 3px;
-  box-sizing: border-box;
+.login-email-left  {
+  label {
+    margin: 0 0 3px 0;
+    letter-spacing: 0.5px;
+  }
+  input:not(:first-child) {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    background-color: #d5d7de;
+    border: 3px solid #d5d7de;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
 }
 
 .signup-feature-list {
@@ -189,22 +283,25 @@ label {
   display: block;
 }
 
-.button-user-form-submit {
-  color: #000;
-  font-weight: bold;
-  line-height: 1;
-  background-color: #47cf73;
-  box-shadow: 0 1px 0 1px #34c864;
-  border-radius: 3px;
-  transform: translateZ(0);
-  font-size: 1.6em;
-  padding: 0.8rem 0.8rem;
-  display: block;
-  &:hover {
-    background-color: #34c864;
-    box-shadow: 0 0 0 1px #34c864;
-    transform: translateY(1px) translateZ(0);
-    cursor: pointer;
+.signup-form, .pro-form {
+  .button-user-form-submit {
+    color: #000;
+    font-weight: bold;
+    line-height: 1;
+    background-color: #47cf73;
+    box-shadow: 0 1px 0 1px #34c864;
+    border-radius: 3px;
+    transform: translateZ(0);
+    font-size: 1.6em;
+    padding: 0.8rem 0.8rem;
+    display: block;
+    width: 150px;
+    &:hover {
+      background-color: #34c864;
+      box-shadow: 0 0 0 1px #34c864;
+      transform: translateY(1px) translateZ(0);
+      cursor: pointer;
+    }
   }
 }
 
@@ -267,7 +364,7 @@ label {
   padding: 0;
   text-align: center;
   padding-bottom: 35px;
-  padding-top: 10px;
+  padding-top: 30px;
   margin: 0;
   box-sizing: border-box;
 }

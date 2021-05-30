@@ -19,11 +19,11 @@
       <% end %>
 
       <p>Or,</p>
-      <div class="email-signup" data-controller="signup">
+      <div class="email-signup">
 
         <button class="button button-email-signup">Sign Up with Email</button>
 
-        <div class="email-signup-form hide">
+        <div class="email-signup-form signup-form hide">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -118,14 +118,14 @@
 
       <h3>NEED MORE?</h3>
       <p class="pro-member-ask">Unlock the full power of CodePen <a href="#">with our PRO plans</a>.</p>
-        </div>
     </div>
-</div>
+  </div>
 
-<div class="signup-footer">
-  <a href="#">Terms of Service</a>
-   ·
-  <a href="#">Privacy Policy</a>
-   ·
-  <a href="#">Code of Conduct</a>
+  <div class="signup-footer">
+    <a href="#">Terms of Service</a>
+    ·
+    <a href="#">Privacy Policy</a>
+    ·
+    <a href="#">Code of Conduct</a>
+  </div>
 </div>

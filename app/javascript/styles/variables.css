@@ -10,6 +10,8 @@
 
   --light-gray: #f1f1f3;
   --dark-gray: #010101;
+  --gray-light-1: #aaaebc;
+  --gray-light-5: #e3e4e8;
   --primary-gray-1: #868ca0;
   --primary-gray-2: #717790;
   --primary-gray-3: #5a5f73;
@@ -18,6 +20,7 @@
   --primary-gray-6: #1e1f26;
   --primary-gray-7: #131417;
   --primary-gray-8: #0a0a0c;
+  --purple: #ae63e4;
   --secondary-purple: #be9fe4;
   --success-green:#47cf73;
   --warning-yellow:#ffdd40;

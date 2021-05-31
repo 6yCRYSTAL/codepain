@@ -49,7 +49,7 @@ document.addEventListener('turbolinks:load', () => {
       input.style.display="none";
       editTitleBtn.style.display="inline";
       inputValue = e.target.value;
-      // 判斷 預設空：Untitle ; 其他: 輸入值
+      // 判斷 預設空：Untitled ; 其他: 輸入值
       if (input.value === ""){
         title.textContent= "Untitled";
       }else{

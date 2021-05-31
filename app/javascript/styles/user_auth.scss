@@ -10,6 +10,44 @@
   }
 }
 
+.pro-form-wrap {
+  .signup-header {
+    h1 {
+      text-transform: capitalize;
+    }
+  }
+  .pro-form {
+    display: flex;
+    flex-direction: column;
+    .payment-wrap {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      .field {
+        margin: 0;
+      }
+    }
+    .monthly-rate-switch {
+      font-size: 10px;
+      text-align: right;
+      color: var(--gray-light-1);
+      cursor: pointer;
+      &:hover {
+        color: var(--gray);
+      }
+    }
+    .total-charge {
+      font-weight: bold;
+      margin-top: auto;
+      margin-bottom: 10px;
+      span {
+        font-weight: normal;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
 .user-form {
   color: white;
   text-align: center;
@@ -88,11 +126,12 @@
       flex-wrap: nowrap;
       align-items: center;
       width: 100%;
+      margin-top: 0.25rem;
+      &.hidden {
+        display: none;
+      }
       input:checked+label {
         background-color: #fff;
-      }
-      &+.pricing-radio-wrap{
-        margin-top: 0.25rem;
       }
 
       .label-period-selection {
@@ -553,6 +592,20 @@ label {
 .starter-form {
   .signup-header {
     background-color: var(--info-blue);
+    color: #000;
+  }
+}
+
+.developer-form {
+  .signup-header {
+    background-color: var(--purple);
+    color: #FFF;
+  }
+}
+
+.super-form {
+  .signup-header {
+    background-color: var(--success-green);
     color: #000;
   }
 }

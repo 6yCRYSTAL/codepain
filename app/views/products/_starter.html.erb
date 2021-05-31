@@ -1,64 +1,12 @@
-<div class="form-wrap user-form starter-form">
+<div class="form-wrap user-form <%= @product.plan %>-form pro-form-wrap">
   <header class="signup-header">
-    <h1>Starter</h1>
-    <p>Starter is the way to go. Welcome to CodePain.</p>
+    <h1><%= @product.plan %></h1>
+    <p><%= @product.subtitle %></p>
   </header>
 
   <div class="user-container">
-    <div class="user-form-left pro-form ">
-      <% if @product.period == 'year' %>
-      <%= form_tag api_v1_orders_path, method: :post do %>
-        <div class="field pricing">
-          <label>Pricing</label>
-            <div class="pricing-radio-wrap">
-              <%= radio_button_tag 'period', 'year', true, class: "btn-period-selection" %>
-              <label for="period_year" class="label-period-selection">
-                <span>$<%= @product.price/12 %>/month Billed annually</span>
-                <span class="total-price">$<%= @product.price %></span>
-              </label>
-            </div>
-            <div class="pricing-radio-wrap">
-              <%= radio_button_tag 'period', 'month', false, class: "btn-period-selection" %>
-              <label for="period_month" class="label-period-selection">
-                <span>$<%= @product.price/12 %>/month Billed annually</span>
-                <span class="total-price">$<%= @product.price %></span>
-              </label>
-            </div>
-        </div>
-        <div class="payment-method-type">
-          <div class="payment-method-wrap">
-            <%= radio_button_tag 'payment_method', 'credit_onetime', true, class: "btn-payment-selection" %>
-            <label for="payment_method_credit_onetime" class="label-payment-selection">
-              Credit Card
-            </label>
-          </div>
-          <div class="payment-method-wrap">
-            <%= radio_button_tag 'payment_method', 'credit_period', false, class: "btn-payment-selection" %>
-            <label for="payment_method_credit_period" class="label-payment-selection">
-              Credit Card Installment
-            </label>
-          </div>
-        </div>
-        <div class="hidden plan">
-          <%= hidden_field_tag 'plan', 'starter' %>
-        </div>
-        <%= submit_tag 'Submit', class: "button button-user-form-submit" %>
-      <% end %>
-
-
-
-        <!-- <%= link_to 'Submit',
-          api_v1_orders_path(plan: params[:plan], period: params[:period]),
-          class: "button button-user-form-submit",
-          method: 'POST' %> -->
-      <% else %>
-        這是 Starter
-        <%= link_to '確定購買',
-          api_v1_orders_path(plan: params[:plan], period: params[:period]),
-          class: "button button-user-form-submit",
-          method: 'POST' %>
-      <% end %>
-
+    <div class="user-form-left pro-form" data-controller="pro-form">
+      <%= pro_form_left %>
       <p class="signup-agreement pro-member">By clicking "Submit", you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> .</p>
     </div>
 

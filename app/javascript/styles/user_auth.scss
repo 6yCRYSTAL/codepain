@@ -1,3 +1,7 @@
+.user-bg{
+  background: #252830 url(/images/user-bg.png) repeat;
+}
+
 .user-auth-error {
   color: red;
 }
@@ -415,7 +419,6 @@ label {
   padding: 20px;
   position: relative;
   color: white;
-  background-color: #1b1c24;
 }
 
 .login-header {
@@ -577,16 +580,9 @@ label {
 }
 
 .logo-pro {
-  border-radius: 2px;
-  padding: 1px 6px 2px 5px;
-  color: #000;
-  background: var(--yellow);
-  white-space: nowrap;
-  text-shadow: none;
-  letter-spacing: 0;
-  font-size: 71%;
-  position: relative;
-  top: -1px;
+  color: var(--primary-gray-7);
+  background: var(--warning-yellow);
+  @apply px-2 py-0.5 text-xs uppercase font-bold rounded-sm inline-block;
 }
 
 .starter-form {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Candal&display=swap');
 
 /* set */
 @mixin green-btn{
@@ -196,6 +196,12 @@ main{
         background-color: var( --primary-gray-8);
       }
     }
+    .codepain-link{
+      @apply flex;
+      p{
+        @apply m-0 pr-2;
+      }
+    }
     .create-link{
       @apply flex flex-row align-middle;
       svg{
@@ -256,6 +262,12 @@ main{
       margin: .8rem 1.5rem .8rem 1.5rem;
     }
   }
+  &:nth-of-type(4){
+    &::before{
+      background: var(--warning-yellow);
+      margin: .8rem 1.5rem .8rem 1.5rem;
+    }
+  }
 }
 .sidebar-item-line2{
   &::before{
@@ -311,14 +323,14 @@ main{
     }
   }
 }
- @keyframes btn-line-an {
-  from {
-    left: 0;
-  }
-  to {
-    left: -100%;
-  }
- }
+@keyframes btn-line-an {
+from {
+  left: 0;
+}
+to {
+  left: -100%;
+}
+}
 /* main-sidebar end */
 
 /* search-userMenu-box */

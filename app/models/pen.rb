@@ -7,6 +7,7 @@ class Pen < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+  has_many :commenters, through: :comments, source: :user
   has_many :heart_list
   has_many :lovers, through: :heart_list, source: :user
   has_many :pins
@@ -15,6 +16,7 @@ class Pen < ApplicationRecord
   scope :is_trashed, -> { only_deleted.where(state: 'trashed') }
   scope :deleted_in_1_hour, -> { is_trashed.where('deleted_at > ?', 1.hour.ago) }
   scope :search, -> keyword { where('title Ilike ?', "%#{keyword}%") }
+  scope :includes_comments_and_page, -> page { includes(:comments).page(page).per(20) }
 
   def self.sort_by_desc(sort)
     case sort

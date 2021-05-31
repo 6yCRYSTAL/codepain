@@ -15,7 +15,7 @@ document.addEventListener('turbolinks:load',function(){
     modal.style.display = 'flex'
     modal.addEventListener('click', closeModal)
     // add lock body bg
-    document.querySelector('body').classList.add('fixe');
+    document.querySelector('body').classList.add('fixed');
   }
   // listen for outside click
   function closeModal(e) {
@@ -24,7 +24,7 @@ document.addEventListener('turbolinks:load',function(){
       // back to your-work
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
       // remove lock body bg
-      document.querySelector('body').classList.remove('fixe');
+      document.querySelector('body').classList.remove('fixed');
     }
   }
 })

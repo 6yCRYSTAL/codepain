@@ -158,10 +158,6 @@
 /* grid-pen-item */
 .pens-grid-loading{
   height: 60rem;
-  @apply flex justify-center;
-  svg{
-    display: inline-block;
-  }
 }
 .pen-items-wrap{
   -webkit-box-align: start;

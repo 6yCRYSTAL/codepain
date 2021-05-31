@@ -17,7 +17,7 @@ function PenItemContent(props){
   function atAlert() {
     setToggle(true);
     setData(data);
-    document.querySelector('body').classList.add('fixe');
+    document.querySelector('body').classList.add('fixed');
   };
   return(
     <div className="pen-item">

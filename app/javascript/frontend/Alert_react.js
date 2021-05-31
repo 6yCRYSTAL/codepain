@@ -9,7 +9,7 @@ export default function Alert(props) {
   function closeAlert(e){
     if (e.target === e.currentTarget) {
       setToggle(false);
-      document.querySelector('body').classList.remove('fixe');
+      document.querySelector('body').classList.remove('fixed');
       // 修改網址
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work?grid_type=grid`);
     };

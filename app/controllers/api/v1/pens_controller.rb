@@ -1,7 +1,7 @@
 class Api::V1::PensController < Api::ApiController
   respond_to :json
 
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!, except: [:new, :edit]
   before_action :find_user_pen, only: [:index, :edit, :update]
 
   def index
@@ -114,7 +114,7 @@ class Api::V1::PensController < Api::ApiController
 
   def find_user_pen
     begin
-      @pen = current_user.pens.find_by(random_url: params[:random_url])
+      @pen = Pen.find_by(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

@@ -1,5 +1,5 @@
 import React from 'react'
-import getLike from '../frontend/get_like.js'
+import getLike from '../../frontend/get_like.js'
 // 每個 pen
 export default function PenItemContent(props) {
   const {html,js,css,title,user_name,random_url,heart_count,comments_count,view_count,setToggle,setData,id,userLike} = props;

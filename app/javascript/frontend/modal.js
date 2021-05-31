@@ -12,8 +12,10 @@ document.addEventListener('turbolinks:load',function(){
     let username = modal.children[0].children[0].textContent.trim()
     // change URL at window location
     history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
-    modal.style.display = 'block'
+    modal.style.display = 'flex'
     modal.addEventListener('click', closeModal)
+    // add lock body bg
+    document.querySelector('body').classList.add('fixed');
   }
   // listen for outside click
   function closeModal(e) {
@@ -21,6 +23,8 @@ document.addEventListener('turbolinks:load',function(){
       e.target.style.display = 'none'
       // back to your-work
       history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
+      // remove lock body bg
+      document.querySelector('body').classList.remove('fixed');
     }
   }
 })

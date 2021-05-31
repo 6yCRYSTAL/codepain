@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load',function(){
     if (e.target === this) {
       e.target.style.display = 'none'
       // back to your-work
-      history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
+      history.replaceState(null, 'your-work', `${location.origin}/your-work`)
       // remove lock body bg
       document.querySelector('body').classList.remove('fixed');
     }

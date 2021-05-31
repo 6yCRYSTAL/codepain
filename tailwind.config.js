@@ -5,10 +5,7 @@ module.exports = {
       "app/**/*.html.erb",
       "app/**/**/*.html.erb",
       "app/helpers/**/*.rb"
-    ],
-    options: {
-      keyframes: true,
-    },
+    ]
   },
   darkMode: false,
   theme: {

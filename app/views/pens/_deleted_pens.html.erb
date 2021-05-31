@@ -1,11 +1,49 @@
-<% deleted_pens.each do |pen| %>
-  <div style="color:#fff;font-size:20px"><%= pen.title %></div>
-  <div><button id="restore-or-del-btn"
-              data-undo="<%= pen.id %>"
-              style="color:#fff;font-size:20px;cursor:pointer;">
-              Restore</button></div>
-  <div><button id="restore-or-del-btn"
-              data-forever-delete="<%= pen.id %>"
-              style="color:#fff;font-size:20px;cursor:pointer;">
-              Really Delete</button></div>
+<div class="deleted-pen-content">
+<% if deleted_pens.count == 0 %>
+  <div class="no-deleted-pen">
+    <h2>You don't have any deleted Pens.</h2>
+    <blockquote style="max-width: 25em; margin: 2rem auto;">
+      If you want to save our world, you must hurry. We don't know how much longer we can withstand the nothing.<br><br><cite>— Southern Oracle, The Neverending Story</cite>
+    </blockquote>
+  </div>
+<% else %>
+  <div class="deleted-pen-item">
+    <% deleted_pens.each do |pen| %>
+    <div class="deleted-pen-wrap" data-controller="delete-pen"
+                                  data-delete-pen-id-value="<%= pen.id %>"
+                                  data-delete-pen-target="trashedPen">
+      <h2 data-delete-pen-target="trashedPenTitle">
+        <%= pen.title %>
+      </h2>
+      <div class="deleted-pen-button">
+        <span class="hidden" data-delete-pen-target="restoreNotice">
+          Restoring...
+        </span>
+        <span class="hidden" data-delete-pen-target="deleteNotice">
+          Deleting...
+        </span>
+        <button data-delete-pen-target="restoreBtn"
+                data-action="click->delete-pen#restore">
+          Restore
+        </button>
+        <button data-delete-pen-target="reallyDeleteBtn"
+                data-action="click->delete-pen#trashPopup">
+          Really Delete
+        </button>
+      </div>
+    </div>
+    <% end %>
+  </div>
 <% end %>
+  <div class="deleted-pen-notice">
+    <div>
+      <h3>🕖 1 hour</h3>
+      <p>You’ll be able to restore a Pen for 1 hour after you delete it. After that, it’s gone forever.</p>
+    </div>
+    <div>
+      <h3>✍️ Just the Code</h3>
+      <p>When you restore a Pen, it's just the code and all settings. You don't get the hearts, view count, or comments.</p>
+    </div>
+  </div>
+</div>
+

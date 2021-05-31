@@ -1,10 +1,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['yearTitles', 'monthTitles',
-                    'yearDetails', 'monthDetails',
-                    'yearLinks', 'monthLinks',
-                    'yearSwitchers', 'monthSwitchers']
+  static targets = [ 'yearTitles', 'monthTitles',
+                     'yearDetails', 'monthDetails',
+                     'yearLinks', 'monthLinks',
+                     'yearSwitchers', 'monthSwitchers' ]
 
   switch() {
     const yearTitles = this.yearTitlesTarget
@@ -19,7 +19,7 @@ export default class extends Controller {
     const year = [yearTitles, yearDetails, yearLinks, yearSwitchers]
     const month = [monthTitles, monthDetails, monthLinks, monthSwitchers]
 
-    year.forEach(e => e.classList.toggle('hidden'))
-    month.forEach(e => e.classList.toggle('hidden'))
+    year.forEach(e => e.classList.toggle('plans-table-hidden'))
+    month.forEach(e => e.classList.toggle('plans-table-hidden'))
   }
 }

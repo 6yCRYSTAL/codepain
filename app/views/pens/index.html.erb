@@ -18,7 +18,7 @@
                          placeholder: 'Search for...',
                          class: 'search-text',
                          data: { "search-target": "searchInput" } %>
-      <button data-action="click->search#submitSearch">Search</button>
+      <button data-action="click->search#submitSearch" class="search-btn">Search</button>
       <%= link_to 'Clear Search', request.params.except(:search_term),
                                   class: 'hidden',
                                   data: { "search-target": "clearSearch" } %>
@@ -44,14 +44,24 @@
         </button>
         <span>list</span>
       <% end %>
-      <%= label_tag :sort_by, 'SORT BY' %>
-      <%= select_tag :sort_by, options_for_select(['Date Created',
-                                                   'Date Updated',
-                                                   'Popularity'], selected: params[:sort_by]),
-                                                   data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
-      <%= link_to 'DESC', request.params.except(:sort_order) %>
-      <%= link_to 'ASC', request.params.merge(sort_order: :asc) %>
-    </nav>
+
+    <%= label_tag :sort_by, 'SORT BY',class:'sort-by' %>
+      <div class="sort-by-select">
+        <%= select_tag :sort_by, options_for_select(['Date Created',
+                                                    'Date Updated',
+                                                    'Popularity'], selected: params[:sort_by]),
+                                                    data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" }%>
+        <div class="sort-by-select-icon"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="sort-by-order-wrap">
+        <span>Sort Direction</span>
+        <%= link_to request.params.except(:sort_order),class: 'sortOrderDESC' do %>
+          <div class="sort-by-order"><i class="fas fa-chevron-down"></i></div>
+        <% end %>
+        <%= link_to request.params.merge(sort_order: :asc),class: 'sortOrderASC' do%>
+          <div class="sort-by-order asc-icon"><i class="fas fa-chevron-down"></i></div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 

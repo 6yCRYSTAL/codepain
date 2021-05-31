@@ -1,22 +1,55 @@
 .user-bg{
   background: #252830 url(/images/user-bg.png) repeat;
 }
+
 .user-auth-error {
   color: red;
 }
 
-a, #forgot-password-link span {
+#forgot-password-link span {
   text-decoration: none;
   color: #76daff;
+  &hover {
+    color: white;
+  }
 }
 
-a:hover, #forgot-password-link span:hover {
-  color: white;
-}
-
-.signup-form {
-  color: #9b9dad;
-  box-sizing: border-box;
+.pro-form-wrap {
+  .signup-header {
+    h1 {
+      text-transform: capitalize;
+    }
+  }
+  .pro-form {
+    display: flex;
+    flex-direction: column;
+    .payment-wrap {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      .field {
+        margin: 0;
+      }
+    }
+    .monthly-rate-switch {
+      font-size: 10px;
+      text-align: right;
+      color: var(--gray-light-1);
+      cursor: pointer;
+      &:hover {
+        color: var(--gray);
+      }
+    }
+    .total-charge {
+      font-weight: bold;
+      margin-top: auto;
+      margin-bottom: 10px;
+      span {
+        font-weight: normal;
+        font-size: 15px;
+      }
+    }
+  }
 }
 
 .user-form {
@@ -28,6 +61,16 @@ a:hover, #forgot-password-link span:hover {
   margin: 20px auto;
   font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
   font-size: 15px;
+  a {
+    text-decoration: none;
+    color: #76daff;
+  }
+  a:hover {
+    color: white;
+  }
+  p {
+    margin: 0 0 1em 0;
+  }
 }
 
 .user-container {
@@ -36,17 +79,13 @@ a:hover, #forgot-password-link span:hover {
   text-align: left;
 }
 
-p {
-  margin: 0 0 1em 0;
-}
-
 .signup-header {
   position: relative;
   background: #5a5f73;
   padding: 60px 0 30px;
 }
 
-.signup-header::after {
+.signup-header-free::after {
   content: "";
   height: 3px;
   position: absolute;
@@ -63,28 +102,99 @@ p {
   margin: 0 0 10px 0;
 }
 
-.signup-form {
+.user-form-left {
   padding: 20px;
   flex: 2;
-}
+  color: #9b9dad;
+  box-sizing: border-box;
+  a {
+    color: #30a9f4;
+    &:hover {
+      color: #0a73b4;
+    }
+  }
 
-.signup-form a {
-  color: #30a9f4;
-}
+  input {
+    padding: 8px 12px;
+    width: auto;
+  }
 
-.signup-form a:hover {
-  color: #0a73b4;
+  &.pro-form {
+    .button {
+      color: #000;
+      width: 150px;
+    }
+
+    .pricing-radio-wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+      margin-top: 0.25rem;
+      &.hidden {
+        display: none;
+      }
+      input:checked+label {
+        background-color: #fff;
+      }
+
+      .label-period-selection {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: var(--gray-light-5);
+        padding: 8px 8px 8px 35px;
+        border-radius: 2px;
+        border: 3px solid var(--gray-light-1);
+        box-sizing: border-box;
+      }
+      .btn-period-selection {
+        position: absolute;
+        left: 1rem;
+      }
+    }
+
+    .price-selection {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-left: 1rem;
+      padding: 0.5rem 0.8rem 0.5rem 0;
+    }
+
+    .total-price {
+      margin-left: auto;
+      font-weight: bold;
+      color: var(--primary-gray-2);
+    }
+
+    .span {
+      display: block;
+    }
+
+    .payment-method-type {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 25px 15px;
+      align-items: center;
+      justify-content: flex-start;
+      .payment-method-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        .label-payment-selection {
+          padding: 0 30px 0 10px;
+        }
+      }
+    }
+  }
 }
 
 .signup-agreement {
   line-height: 1.5;
-}
-
-.signup-feature-list {
-  flex: 1;
-  padding: 20px;
-  border-left: 6px solid #868ca0;
-  background: #444857;
+  &.pro-member {
+    font-size: 12px;
+  }
 }
 
 .button {
@@ -160,41 +270,55 @@ p {
   transition: all 0.5s ease-in-out;
   max-height: 560px;
   overflow: hidden;
+  label {
+    margin: 0 0 3px 0;
+    letter-spacing: 0.5px;
+  }
+  input:not(:first-child) {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    background-color: #d5d7de;
+    border: 3px solid #d5d7de;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
 }
 
-.email-signup-form label, .login-email-left label {
-  margin: 0 0 3px 0;
-  letter-spacing: 0.5px;
-}
-
-.email-signup-form input:not(:first-child),
-.login-email-left input:not(:first-child)
-{
-  width: 100%;
-  font-size: 1.3rem;
-  padding: 8px 12px;
-  background-color: #d5d7de;
-  border: 3px solid #d5d7de;
-  border-radius: 3px;
-  box-sizing: border-box;
+.login-email-left  {
+  label {
+    margin: 0 0 3px 0;
+    letter-spacing: 0.5px;
+  }
+  input:not(:first-child) {
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    background-color: #d5d7de;
+    border: 3px solid #d5d7de;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
 }
 
 .signup-feature-list {
   color: #aaaebc;
-}
-
-.signup-feature-list h3:not(:first-of-type) {
-  margin-top: 1.25rem;
-}
-
-.signup-feature-list h3 {
-  color: white;
-  letter-spacing: 0.025em;
-  font-size: 1rem;
-  border-bottom: 2px solid #9b9dad;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
-  line-height: 1.2;
+  flex: 1;
+  padding: 20px;
+  border-left: 6px solid #868ca0;
+  background: #444857;
+  h3:not(:first-of-type) {
+    margin-top: 1.25rem;
+  }
+  h3 {
+    color: white;
+    letter-spacing: 0.025em;
+    font-size: 1rem;
+    border-bottom: 2px solid #9b9dad;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 1.2;
+  }
 }
 
 label {
@@ -202,24 +326,26 @@ label {
   display: block;
 }
 
-.button-email-signup-submit {
-  color: #000;
-  font-weight: bold;
-  line-height: 1;
-  background-color: #47cf73;
-  box-shadow: 0 1px 0 1px #34c864;
-  border-radius: 3px;
-  transform: translateZ(0);
-  font-size: 1.6em;
-  padding: 0.8rem 0.8rem;
-  display: block;
-}
-
-.button-email-signup-submit:hover {
-  background-color: #34c864;
-  box-shadow: 0 0 0 1px #34c864;
-  transform: translateY(1px) translateZ(0);
-  cursor: pointer;
+.signup-form, .pro-form {
+  .button-user-form-submit {
+    color: #000;
+    font-weight: bold;
+    line-height: 1;
+    background-color: #47cf73;
+    box-shadow: 0 1px 0 1px #34c864;
+    border-radius: 3px;
+    transform: translateZ(0);
+    font-size: 1.6em;
+    padding: 0.8rem 0.8rem;
+    display: block;
+    width: 150px;
+    &:hover {
+      background-color: #34c864;
+      box-shadow: 0 0 0 1px #34c864;
+      transform: translateY(1px) translateZ(0);
+      cursor: pointer;
+    }
+  }
 }
 
 .user-right-info dl {
@@ -281,7 +407,7 @@ label {
   padding: 0;
   text-align: center;
   padding-bottom: 35px;
-  padding-top: 10px;
+  padding-top: 30px;
   margin: 0;
   box-sizing: border-box;
 }
@@ -293,7 +419,6 @@ label {
   padding: 20px;
   position: relative;
   color: white;
-  /* background-color: #1b1c24; */
 }
 
 .login-header {
@@ -458,4 +583,25 @@ label {
   color: var(--primary-gray-7);
   background: var(--warning-yellow);
   @apply px-2 py-0.5 text-xs uppercase font-bold rounded-sm inline-block;
+}
+
+.starter-form {
+  .signup-header {
+    background-color: var(--info-blue);
+    color: #000;
+  }
+}
+
+.developer-form {
+  .signup-header {
+    background-color: var(--purple);
+    color: #FFF;
+  }
+}
+
+.super-form {
+  .signup-header {
+    background-color: var(--success-green);
+    color: #000;
+  }
 }

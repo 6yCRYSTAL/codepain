@@ -12,10 +12,6 @@
         <a href="#" id="username">
           <%= current_user.username %>
         </a>
-          <%= pen.title %>
-          <%= pen.html %>
-          <%= pen.css %>
-          <%= pen.js %>
           <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
       </div>
     </div>

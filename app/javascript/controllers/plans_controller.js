@@ -19,7 +19,7 @@ export default class extends Controller {
     const year = [yearTitles, yearDetails, yearLinks, yearSwitchers]
     const month = [monthTitles, monthDetails, monthLinks, monthSwitchers]
 
-    year.forEach(e => e.classList.toggle('hidden'))
-    month.forEach(e => e.classList.toggle('hidden'))
+    year.forEach(e => e.classList.toggle('plans-table-hidden'))
+    month.forEach(e => e.classList.toggle('plans-table-hidden'))
   }
 }

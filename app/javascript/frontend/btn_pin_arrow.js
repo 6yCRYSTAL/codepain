@@ -20,5 +20,5 @@ const closeBtns = document.querySelectorAll('.item')
         console.log(e.target.parentNode.parentNode)
         e.currentTarget.parentNode.remove()
     })
-  })
+  }
 })

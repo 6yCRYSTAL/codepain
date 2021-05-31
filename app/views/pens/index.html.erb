@@ -11,16 +11,17 @@
   <%# search bar %>
   <div class="your-work-features" data-controller="search">
     <div class="features-item">
+    <%= form_tag pens_path, method: 'get', class: 'your-work-search' do %>
       <%# search bar %>
-      <%= form_tag pens_path, method: 'get', class: 'your-work-search' do %>
-
-        <%= label_tag :search_term, 'SEARCH' %>
-        <%= text_field_tag :search_term, params[:search_term],
-                                         placeholder: 'Search for...',
-                                         class: 'search-text',
-                                         data: { "search-target": "searchInput" } %>
-        <%= submit_tag :Search, name: nil%>
-        <button class="hidden" data-search-target="clearSearch" data-action="click->search#clearSearchInput">Clear Search</button>
+      <%= label_tag :search_term, 'SEARCH' %>
+      <%= text_field_tag :search_term, params[:search_term],
+                         placeholder: 'Search for...',
+                         class: 'search-text',
+                         data: { "search-target": "searchInput" } %>
+      <button data-action="click->search#submitSearch">Search</button>
+      <%= link_to 'Clear Search', request.params.except(:search_term),
+                                  class: 'hidden',
+                                  data: { "search-target": "clearSearch" } %>
     </div>
     <nav class="features-item">
       <%= link_to pens_path(grid_type: 'grid'), class: "grid-btn" do%>
@@ -46,19 +47,14 @@
       <%= label_tag :sort_by, 'SORT BY' %>
       <%= select_tag :sort_by, options_for_select(['Date Created',
                                                    'Date Updated',
-                                                   'Popularity'],
-                                                   selected: params[:sort_by]),
-                                                   data: {
-                                                     "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
-      <button data-action="click->search#changeSortOrder" data-search-target="sortOrderDESC">
-        DESC
-      </button>
-      <%= button_tag 'ASC', name: :sort_order, type: 'submit',
-                                               value: :asc,
-                                               data: { "search-target": "sortOrderASC" } %>
+                                                   'Popularity'], selected: params[:sort_by]),
+                                                   data: { "action": "change->search#submitSelected", "search-target": "sortBySelected" } %>
+      <%= link_to 'DESC', request.params.except(:sort_order) %>
+      <%= link_to 'ASC', request.params.merge(sort_order: :asc) %>
     </nav>
+    <% end %>
   </div>
-  <% end %>
+
     <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
     <% if @pens.count == 0 %>
       <p>No results for <%= params[:search] %></p>

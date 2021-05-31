@@ -1,5 +1,4 @@
 class PensController < ApplicationController
-  before_action :authenticate_user!, except: [:search_all_users]
   layout false
   before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]

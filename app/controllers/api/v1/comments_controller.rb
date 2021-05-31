@@ -6,7 +6,9 @@ class Api::V1::CommentsController < Api::ApiController
     pen = Pen.find_by(random_url: params[:random_url])
     comments = pen.comments.all.order(id: :desc)
     comments_count = pen.comments_count
-    success!({ comments: comments, comments_count: comments_count})
+    user_list = User.joins(pens: :commenters).where(comments: { pen_id: pen.id }).select(:id, :username, :display_name)
+    # 將評論者 id 一併回傳前端，以正確連結評論-評論者
+    success!({ comments: comments, comments_count: comments_count, user_list: user_list })
   end
 
   def create

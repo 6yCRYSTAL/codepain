@@ -32,7 +32,12 @@ export default class extends Controller {
                 commentCountP.innerText = `${comments_count} comment`
               } else if (comments_count === 1) {
                 comments_count -= 1
-                commentCountP.innerText =''
+                commentCountP.innerText =`
+                <p>
+                  <strong>No Comments</strong>
+                  <br>
+                  You can be the first!
+                </p>`
               } else {
                 comments_count -= 1
                 commentCountP.innerText = `${comments_count} comments`

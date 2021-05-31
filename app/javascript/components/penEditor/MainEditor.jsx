@@ -31,11 +31,11 @@ const MainEditor = ( ) => {
       </ SplitPane>
 
       { closeIframe &&
-        <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+        <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
       }
       { showConsole &&
         <SplitPane split="horizontal" minSize={"50%"}>
-          <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+          <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
           <EditorConsole />
         </ SplitPane>
       }

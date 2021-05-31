@@ -25,7 +25,7 @@ export default function PenItemContent(props) {
         </button>
       </header>
       <div className="pen-img">
-        <iframe id="grid-iframe" sandbox="allow-scripts" frameborder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
+        <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" frameborder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
         <div className="prompt-link">
           <button id="modal-btn" className="modal-btn" onClick={ atAlert }>

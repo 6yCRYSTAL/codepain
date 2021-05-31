@@ -1,18 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import SplitPane from 'react-split-pane'
 import '../../styles/index_editor.css'
 
 import Editor from './Editor'
 import EditorConsole from './EditorConsole'
+import Iframe from './Iframe'
 
 const MainEditor = ( ) => {
 
-  const [showConsole, setShowConsole] = React.useState(true)
-  const [closeIframe, setCloseIframe] = React.useState(false)
+  const [showConsole, setShowConsole] = useState(true)
+  const [closeIframe, setCloseIframe] = useState(false)
 
   const showConsoleBox = () => {
     setShowConsole(!showConsole)
     setCloseIframe(!closeIframe)
+  }
+  const consoleBtnStlye = {
+    position: "absolute",
+    bottom: "5px",
+    left: "15px",
+    zIndex: "100",
+    color: "var(--light-gray)",
+    fontSize: "var(--text-s-p)",
+    padding: "2px 7px",
+    backgroundColor: "var(--primary-gray-4)",
+    borderRadius: "2px",
   }
 
   return(
@@ -30,18 +42,19 @@ const MainEditor = ( ) => {
         </ SplitPane>
       </ SplitPane>
 
-      { closeIframe &&
-        <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+      {
+        closeIframe && <Iframe />
       }
-      { showConsole &&
+      {
+        showConsole &&
         <SplitPane split="horizontal" minSize={"50%"}>
-          <iframe id="edit--result" className="edit-render-result" sandbox="allow-downloads allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+          <Iframe />
           <EditorConsole />
         </ SplitPane>
       }
     </ SplitPane>
 
-    <button onClick={showConsoleBox} id="console-btn" className="btn-console fake-console" style={{backgroundColor: "gray", position: "absolute", bottom: "10px", zIndex: "100"}}> FakeConsole</button>
+    <button onClick={showConsoleBox} id="console-btn" className="btn-console fake-console" style={consoleBtnStlye}> Console </button>
     </>
   )
 }

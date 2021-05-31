@@ -41,37 +41,49 @@ Product.create(
   [{
     plan: 'starter',
     desc: 'CodePain membership: Annual Starter',
+    subtitle: 'Starter is the way to go. Welcome to CodePen.',
     period: 'year',
-    price: 96
+    price: 300,
+    monthly_rate: 30
   },
   {
     plan: 'developer',
     desc: 'CodePain membership: Annual Developer',
+    subtitle: 'Developer is our most popular plan. Good choice!',
     period: 'year',
-    price: 144
+    price: 450,
+    monthly_rate: 45
   },
   {
     plan: 'super',
     desc: 'CodePain membership: Annual Super',
+    subtitle: 'Super is loaded with super power. Well played.',
     period: 'year',
-    price: 312
+    price: 600,
+    monthly_rate: 60
   },
   {
     plan: 'starter',
     desc: 'CodePain membership: Starter',
+    subtitle: 'Starter is the way to go. Welcome to CodePen.',
     period: 'month',
-    price: 12
+    price: 30,
+    annual_rate: 300
   },
   {
     plan: 'developer',
     desc: 'CodePain membership: Developer',
+    subtitle: 'Developer is our most popular plan. Good choice!',
     period: 'month',
-    price: 19
+    price: 45,
+    annual_rate: 450
   },
   {
     plan: 'super',
     desc: 'CodePain membership: Super',
+    subtitle: 'Super is loaded with super power. Well played.',
     period: 'month',
-    price: 39
+    price: 60,
+    annual_rate: 600
   }]
 )

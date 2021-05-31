@@ -7,6 +7,7 @@ class Pen < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+  has_many :commenters, through: :comments, source: :user
   has_many :heart_list
   has_many :lovers, through: :heart_list, source: :user
   has_many :pins

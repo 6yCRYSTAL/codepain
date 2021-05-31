@@ -2,15 +2,39 @@
 .comment-edit-block{
   display: none;
 }
-
 .uppercase{
   text-transform: uppercase;
 }
-
 .warning-wrap{
   //TODO:彈跳視窗CSS
 }
-
 .appear{
   display: block;
+}
+.comment-info-area{
+  color: var(--light-gray);
+  section textarea{
+    background-color: var(--primary-gray-7);
+    width:80%;
+    resize : none;
+    border: none;
+    outline: none;
+    @apply rounded;
+    color: var(--light-gray);
+  }
+  .comment-submit-block{
+    @apply rounded;
+    background-color: var(--primary-gray-7);
+    display: flex;
+    width:80%;
+    margin-top: -20px;
+    .comment-submit-btn{
+      margin-left: auto;
+      display: block;
+      @apply bg-gray-500 text-white font-bold py-2 px-4 rounded
+    }
+  }
+  section .comment-user-info{
+    display: block;
+  }
 }

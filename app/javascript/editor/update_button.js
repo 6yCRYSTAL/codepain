@@ -1,4 +1,5 @@
 import axios from 'axios'
+import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   let updateBtn = document.querySelector('#btn-update')
@@ -27,6 +28,11 @@ document.addEventListener('turbolinks:load', () => {
           paramsFromNewPen,
         headers: {
           'X-CSRF-Token': `${token}`
+        }
+      })
+      .then( (response) => {
+        if( response.data.status === "update succeeded"){
+          savedNotice()
         }
       })
     })

@@ -87,28 +87,24 @@ document.addEventListener('turbolinks:load', () => {
 
     // render to iframe
     function renderToiframe() {
-      let result = document.querySelector('#edit--result').contentWindow.document
-      result.open()
-      result.write(`${editorHTML.getValue()}`)
-      result.write(`<style>${editorCSS.getValue()}</style>`)
-      result.write(`<script>${editorJS.getValue()}</script>`)
-      result.close()
+      let result = document.querySelector('#edit--result')
+      result.srcdoc =
+        `<html>
+          <style>${editorCSS.getValue()}</style>
+          <body>
+              ${editorHTML.getValue()}
+            <script type="text/javascript">${editorJS.getValue()}</script>
+          </body>
+        </html>`
     }
 
     // show console
     const consolecontainer = document.querySelector('.edit-console-container')
     const consoleResult = document.querySelector('.edit-console')
-    const consoleBtn = document.querySelector('#console-btn')
-    const clearConsoleBtn = document.querySelector('.edit-console-clear')
-    const closeConsoleBtn = document.querySelector('.edit-console-close')
-    const resultContainer = document.querySelector('.edit-result-container')
-    consoleBtn.addEventListener('click', () => {
-      consolecontainer.classList.toggle('on')
-      resultContainer.classList.toggle('on')
-      consoleMsg()
-      clearConsole()
-    })
 
+    if(consolecontainer){
+      consoleMsg()
+    }
     // get console msg
     function consoleMsg() {
       // 先把原本的console 備份起來
@@ -133,61 +129,8 @@ document.addEventListener('turbolinks:load', () => {
         window.console = oldConsole
       })
     }
-    // clear console
-    function clearConsole() {
-      clearConsoleBtn.addEventListener('click', () => {
-        consoleResult.innerText = ""
-      })
-    }
-    // close console
-    function closeConsole() {
-      closeConsoleBtn.addEventListener('click', () => {
-        consolecontainer.classList.toggle('on')
-        resultContainer.classList.toggle('on')
-      })
-    }
-
-    // share btn get url
-    function shareURL() {
-      const shareBtn = document.querySelector('#edit-share-btn')
-
-      shareBtn.addEventListener('click', () => {
-        const shareBox = document.createElement('div')
-        shareBox.setAttribute('class', 'share-box')
-        shareBox.textContent = "Share The URL"
-
-        const editContainer = document.querySelector('.iframe-console-container')
-        editContainer.appendChild(shareBox)
-
-        const shareBtnInput = document.createElement('input')
-        shareBtnInput.setAttribute('class', 'share-btn-input')
-        shareBox.appendChild(shareBtnInput)
-        shareBtnInput.value = window.location.href
-
-        const shareBtnCopy = document.createElement('div')
-        shareBtnCopy.setAttribute('class', 'share-btn-copy')
-        shareBox.appendChild(shareBtnCopy)
-        shareBtnCopy.textContent = "Copy Link"
-
-        const closeBox = document.createElement('span')
-        closeBox.setAttribute('class', 'share-box-close')
-        closeBox.textContent = "x"
-        shareBox.appendChild(closeBox)
-        closeBox.addEventListener('click', () => {
-          shareBox.remove()
-        })
-
-        shareBtnCopy.addEventListener('click', ()=> {
-          shareBtnInput.select()
-          document.execCommand('copy')
-
-        })
-      })
-    }
 
     init()
     renderToiframe()
-    closeConsole()
-    shareURL()
   }
 })

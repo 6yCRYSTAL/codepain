@@ -1,0 +1,51 @@
+<%= form_tag api_v1_orders_path, method: :post, class: 'payment-wrap' do %>
+  <div class="field pricing">
+    <label>Pricing</label>
+    <div class="pricing-radio-wrap"
+        data-action="click->pro-form#monthlyToAnnual"
+        data-pro-form-target="annual"
+        data-annual-rate=<%= @product.price %>>
+      <%= radio_button_tag 'period', 'year', true, class: "btn-period-selection" %>
+      <label for="period_year" class="label-period-selection">
+        <span>$<%= @product.price/12 %>/month Billed annually</span>
+        <span class="total-price">$<%= @product.price %></span>
+      </label>
+    </div>
+    <div class="monthly-rate-switch"
+        data-action="click->pro-form#switch"
+        data-pro-form-target="switcher">
+      Switch to Monthly
+    </div>
+    <div class="pricing-radio-wrap hidden"
+        data-action="click->pro-form#annualToMonthly"
+        data-pro-form-target="monthly"
+        data-monthly-rate=<%= @product.monthly_rate %>>
+      <%= radio_button_tag 'period', 'month', false, class: "btn-period-selection" %>
+      <label for="period_month" class="label-period-selection">
+        <span>$<%= @product.monthly_rate %>/month</span>
+        <span class="total-price">$<%= @product.monthly_rate %></span>
+      </label>
+    </div>
+  </div>
+  <div class="payment-method-type">
+    <div class="payment-method-wrap">
+      <%= radio_button_tag 'payment_method', 'credit_onetime', true, class: "btn-payment-selection" %>
+      <label for="payment_method_credit_onetime" class="label-payment-selection">
+        Credit Card
+      </label>
+    </div>
+    <div class="payment-method-wrap">
+      <%= radio_button_tag 'payment_method', 'credit_period', false, class: "btn-payment-selection" %>
+      <label for="payment_method_credit_period" class="label-payment-selection">
+        Credit Card Installment
+      </label>
+    </div>
+  </div>
+  <div class="hidden plan">
+    <%= hidden_field_tag 'plan', @product.plan %>
+  </div>
+  <div class="total-charge" data-pro-form-target="totalCharge">
+    <span>Total Charge:</span> $ <%= @product.price %>
+  </div>
+  <%= submit_tag 'Submit', class: "button button-user-form-submit" %>
+<% end %>

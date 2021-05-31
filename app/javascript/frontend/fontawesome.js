@@ -38,7 +38,7 @@ library.add(
   faFacebook,
   faGithub,
   faGoogle,
-  faChevronRight
+  faChevronRight,
   )
 
 dom.watch()

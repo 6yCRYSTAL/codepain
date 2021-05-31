@@ -35,7 +35,7 @@ export default class extends Controller {
       setTimeout(() => {
         this.trashedPenTarget.remove()
         Turbolinks.visit(`${location.origin}/${username}/pen/${randomURL}`)
-      }, 1600)
+      }, 1800)
     }, 1000)
   }
 
@@ -78,8 +78,7 @@ export default class extends Controller {
               data: `pen[id]=${this.idValue}`
             })
             this.trashedPenTarget.remove()
-            Turbolinks.visit(`${location.origin}/your-work?item_type=deleted_item`)
-          }, 1600)
+          }, 1800)
         }, 1000)
       }
     })

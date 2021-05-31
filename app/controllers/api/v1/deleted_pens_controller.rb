@@ -6,9 +6,12 @@ class Api::V1::DeletedPensController < Api::ApiController
 
   def update
     # change pen state to editing
-    @pen.restore
-    @pen.update(state: 'editing')
-    success!({ username: @pen.user.username, random_url: @pen.random_url }, 'restore succeeded')
+    if @pen.restore
+      @pen.update(state: 'editing')
+      success!({ username: @pen.user.username, random_url: @pen.random_url }, 'restore succeeded')
+    else
+      fail!(@pen.errors.full_messages, 'restore failed')
+    end
   end
 
   def destroy

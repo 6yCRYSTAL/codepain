@@ -15,5 +15,4 @@ ActiveStorage.start()
 import 'styles'
 import 'editor'
 import 'controllers'
-import 'frontend'
 import 'user'

@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 2021_05_27_070032) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
-    t.integer "comments_count", default: 0
     t.integer "edit_view_count", default: 0
+    t.integer "comments_count", default: 0
     t.integer "heart_lists_count", default: 0
     t.boolean "private", default: false
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"

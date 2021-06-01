@@ -55,10 +55,10 @@
       </div>
       <div class="sort-by-order-wrap">
         <span>Sort Direction</span>
-        <%= link_to request.params.except(:sort_order),class: 'sortOrderDESC' do %>
+        <%= link_to request.params.except(:sort_order), class: 'sortOrderDESC' do %>
           <div class="sort-by-order"><i class="fas fa-chevron-down"></i></div>
         <% end %>
-        <%= link_to request.params.merge(sort_order: :asc),class: 'sortOrderASC' do%>
+        <%= link_to request.params.merge(sort_order: :asc), class: 'sortOrderASC' do %>
           <div class="sort-by-order asc-icon"><i class="fas fa-chevron-down"></i></div>
         <% end %>
       </div>

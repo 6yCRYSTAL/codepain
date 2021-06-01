@@ -56,7 +56,7 @@ document.addEventListener('turbolinks:load',function(){
 
   // 偵測網址 tab 樣式
   if (DeleteTab) {
-    let hashName = window.location.search;
+    let hashName = location.search;
     const YourWorkTab = document.querySelector('.your-work-tab');
     const GridBtn = document.querySelector('.grid-btn button');
     const ListBtn = document.querySelector('.list-btn button');

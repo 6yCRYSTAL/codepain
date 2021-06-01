@@ -1,11 +1,11 @@
 class Api::V1::PensController < Api::ApiController
   respond_to :json
 
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!, except: [:new, :edit]
   before_action :find_user_pen, only: [:index, :edit, :update]
 
   def index
-    success_render!(@pens, :extended)
+    success_blueprint!(@pens, :extended)
   end
 
   def create
@@ -19,14 +19,14 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def edit
-    success_render!(@pen, :normal)
+    success_blueprint!(@pen, :normal)
   end
 
   def update
     if @pen.update(pen_params)
-      success_render!(@pen, :normal, 'update succeeded')
+      success_blueprint!(@pen, :normal, 'update succeeded')
     else
-      fail_render!(@pen.errors.full_messages, 'update failed')
+      fail!(@pen.errors.full_messages, 'update failed')
     end
   end
 
@@ -63,7 +63,7 @@ class Api::V1::PensController < Api::ApiController
   def grid
     pens_per_page(params[:page], 6)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+    success_meta_blueprint!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
                                                    totalCount: @pens.total_count,
                                                    currentPage: @pens.current_page,
                                                    lastPage: @pens.last_page?,
@@ -74,7 +74,7 @@ class Api::V1::PensController < Api::ApiController
   def list
     pens_per_page(params[:page], 20)
 
-    success_meta_render!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
+    success_meta_blueprint!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
                                                    totalCount: @pens.total_count,
                                                    currentPage: @pens.current_page,
                                                    lastPage: @pens.last_page?,
@@ -114,7 +114,7 @@ class Api::V1::PensController < Api::ApiController
 
   def find_user_pen
     begin
-      @pen = current_user.pens.find_by(random_url: params[:random_url])
+      @pen = Pen.find_by(random_url: params[:random_url])
     rescue
       redirect_to pens_path
     end

@@ -20,6 +20,8 @@ import {
   faExpandArrowsAlt,
   faChevronRight,
   faEye,
+  faTrash,
+  faLock,
  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -39,6 +41,8 @@ library.add(
   faGithub,
   faGoogle,
   faChevronRight,
+  faTrash,
+  faLock,
   )
 
 dom.watch()

@@ -12,13 +12,19 @@
         <a href="#" id="username">
           <%= current_user.username %>
         </a>
-          <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
+          <div class="points-wrap alert-points-wrap" data-url="<%= pen.random_url %>"></div>
+          <%= render 'comment' , pen: pen,
+                                 comments: pen.comments,
+                                 comment: @comment,
+                                 comments_count: pen.comments_count %>
       </div>
     </div>
   </td>
   <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
   <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
-  <td class="stats" data-controller="stats" data-stats-loved-class="text-red-600" data-stats-heart-value="<%= current_user.loved? pen %>" data-stats-random-value="<%= pen.random_url %>" data-stats-heart-lists-count-value="<%= pen.heart_lists_count %>">
+  <td class="stats" data-controller="stats"
+                    data-stats-loved-class="text-red-600"
+                    data-stats-heart-value="<%= current_user.loved? pen %>" data-stats-random-value="<%= pen.random_url %>" data-stats-heart-lists-count-value="<%= pen.heart_lists_count %>">
     <div class="hearts">
       <i class="fas fa-heart cursor-pointer stroke-current" data-stats-target="heart" data-action="click->stats#toggleHeart"></i>
       <span data-stats-target="heartListsCount"></span>
@@ -32,14 +38,7 @@
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="more">
-    <div class="more-icon">
-      <svg viewBox="0 0 29 7" width="28" title="more">
-        <circle cx="3.5" cy="3.5" r="3.5"></circle>
-        <circle cx="14.5" cy="3.5" r="3.5"></circle>
-        <circle cx="25.5" cy="3.5" r="3.5"></circle>
-      </svg>
-    </div>
+  <td class="points-wrap list-points-wrap" data-url="<%= pen.random_url %>">
   </td>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

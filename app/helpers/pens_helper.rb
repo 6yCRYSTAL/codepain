@@ -103,11 +103,7 @@ module PensHelper
   # comment counts
   def comments_count_text(comments_count)
     if comments_count == 0
-      "<p>
-        <strong>No Comments</strong>
-        <br>
-        You can be the first!
-      </p>".html_safe
+      "<strong>No Comments</strong><br>You can be the first!".html_safe
     else
       pluralize comments_count, "comment"
     end

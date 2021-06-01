@@ -41,7 +41,6 @@ class Api::V1::CommentsController < Api::ApiController
   end
 end
 
-
 def find_user_pen
   begin
     @pen = Pen.find_by!(random_url: params[:random_url])

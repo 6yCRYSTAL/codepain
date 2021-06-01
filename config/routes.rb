@@ -55,6 +55,7 @@ Rails.application.routes.draw do
           get 'grid/:page', action: 'grid'
           get 'search/grid/:page', action: 'grid_search'
           get :pins, action: 'pin_list'
+          get :love, action: 'loved_list'
         end
       end
       resources :deleted_pens, only: [:update, :destroy]

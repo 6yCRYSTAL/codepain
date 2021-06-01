@@ -3,14 +3,22 @@ import Rails from '@rails/ujs'
 
 export default class extends Controller {
   static targets = [ 'heart', "heartListsCount" ]
-  static values = { heart: Boolean, random: String, heartListsCount: Number }
+  static values = { random: String, heartListsCount: Number }
   static classes = [ 'loved' ]
 
   initialize() {
     this.heartListsCountTarget.textContent = this.heartListsCountValue
-    if (this.heartValue) {
-      this.heartTarget.classList.add(this.lovedClass)
-    }
+    
+    Rails.ajax({
+      url: '/api/v1/pens/love',
+      type: 'GET',
+      success: (data) => {
+        let found = data.payload.randomURL.find(element => element.random_url == this.randomValue)
+        if (!!found) {
+          this.heartTarget.classList.add(this.lovedClass)
+        }
+      }
+    })
   }
 
   toggleHeart() {
@@ -20,7 +28,6 @@ export default class extends Controller {
     Rails.ajax({
       url: `/api/v1/pens/${this.randomValue}/love`,
       type: 'post'
-      // TODO
     })
 
     heart.classList.toggle(this.lovedClass)

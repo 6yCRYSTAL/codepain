@@ -24,7 +24,7 @@
   <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
   <td class="stats" data-controller="stats"
                     data-stats-loved-class="text-red-600"
-                    data-stats-heart-value="<%= current_user.loved? pen %>" data-stats-random-value="<%= pen.random_url %>" data-stats-heart-lists-count-value="<%= pen.heart_lists_count %>">
+                    data-stats-random-value="<%= pen.random_url %>" data-stats-heart-lists-count-value="<%= pen.heart_lists_count %>">
     <div class="hearts">
       <i class="fas fa-heart cursor-pointer stroke-current" data-stats-target="heart" data-action="click->stats#toggleHeart"></i>
       <span data-stats-target="heartListsCount"></span>

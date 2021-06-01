@@ -47,6 +47,11 @@ class Api::V1::PensController < Api::ApiController
     end
   end
 
+  def loved_list
+    @pens = Pen.joins(:heart_list).where(user_id: current_user.id).distinct.select(:random_url)
+    success!({ randomURL: @pens }) if current_user
+  end
+
   def pin_list
     pin_list = current_user.pinned_pens.select(:title, :updated_at, :id, :user_id).reverse
     # order by pin 的 created_at 這部分還需測試

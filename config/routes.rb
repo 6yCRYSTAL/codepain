@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   get '/search/pens',  to: 'pens#search_all_users', as: 'search_all_users_pens'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-  patch '/:username/pen/:random_url/private', to: 'pens#make_private', as: 'make_private_pen'
+
 
 
   # comments
@@ -43,16 +43,17 @@ Rails.application.routes.draw do
   # api
   namespace :api, default: { format: :json } do
     namespace :v1 do
-      resources :pens, only: [:index, :create, :edit, :update], param: :random_url do
+      resources :pens, only: [:create, :edit, :update], param: :random_url do
         member do
           post :love, action: 'love_list'
           post :pin, action: 'pin_create'
+          post :private, action: 'private_toggle'
           # resources :pins, only: [:index, :create]
         end
 
         collection do
           get 'grid/:page', action: 'grid'
-          get 'list/:page', action: 'list'
+          get 'search/grid/:page', action: 'grid_search'
           get :pins, action: 'pin_list'
         end
       end
@@ -65,7 +66,7 @@ Rails.application.routes.draw do
         end
       end
       # comments
-      resources :comments, only: [:create, :update, :destroy]
+      resources :comments, only: [:index, :create, :update, :destroy]
     end
   end
 end

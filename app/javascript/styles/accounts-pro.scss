@@ -1,0 +1,187 @@
+
+.plans-container{
+  @apply p-4 mt-4 mb-40;
+}
+@mixin title-font-family {
+  font-family: 'Candal', sans-serif;
+}
+/* plans-header */
+.plans-header-details{
+  h1{
+    font-size: var(--text-h2);
+    @include title-font-family;
+    @apply font-bold text-white tracking-tight mb-4;
+  }
+  p,a{
+    font-size: var(--text-s-p);
+    @apply text-white mb-4;
+  }
+  .plans-header-btn{
+    font-size: var(--text-h6);
+    background-color: var(--btn-gray);
+    @apply no-underline py-3 px-4 rounded;
+  }
+}
+/* plans-header end */
+/* plans-content */
+.plans-content{
+  background-color: var(--light-gray);
+  @apply rounded mt-4 p-4;
+}
+.plans-table{
+  @apply block;
+  tr{
+    @apply flex space-x-2;
+    th,td{
+      @apply inline-block w-full;
+    }
+  }
+  .plans-table-hidden{
+    @apply hidden;
+  }
+}
+.plans-table-thead{
+  tr{
+    th{
+      @apply block;
+      h3{
+        font-size: var(--text-h5);
+        @include title-font-family;
+        @apply font-black pt-4 pb-2;
+      }
+    }
+    th:nth-of-type(1){
+      border-top: 8px solid var(--primary-gray-2);
+    }
+    th:nth-of-type(2){
+      border-top: 8px solid var(--info-blue);
+    }
+    th:nth-of-type(3){
+      border-top: 8px solid var(--secondary-dark-purple);
+    }
+    th:nth-of-type(4){
+      border-top: 8px solid var(--success-green);
+    }
+  }
+}
+.plans-table-tbody{
+  tr{
+    &[data-plans-target="yearDetails"],&[data-plans-target="monthDetails"]{
+      @apply text-center;
+    }
+    &[data-plans-target="yearLinks"],&[data-plans-target="monthLinks"]{
+      @apply text-center;
+    }
+  }
+  .plans-price{
+    .plans-price-sign{
+      vertical-align: .6rem;
+      font-size: var(--text-h6);
+    }
+    .plans-price-amount{
+      font-size: var(--text-h2);
+      @include title-font-family;
+    }
+    .plans-interval,p{
+      font-size: var(--text-p);
+      @apply font-bold m-0;
+    }
+    p{
+      @apply pt-2;
+    }
+  }
+  .plans-annual-savings{
+    @apply font-normal pt-2;
+  }
+}
+[data-plans-target="yearLinks"],[data-plans-target="monthLinks"]{
+  td{
+    @apply py-5;
+    a{
+      font-size: var(--text-h6);
+      color: var(--primary-gray-7);
+      @apply px-5 py-3 inline-block rounded font-bold;
+    }
+    &:nth-of-type(2){
+      a{
+        background-color: var(--info-blue);
+        @apply hover:bg-gray-500 hover:text-gray-300;
+      }
+    }
+    &:nth-of-type(3){
+      a{
+        background-color: var(--secondary-dark-purple);
+        @apply hover:bg-gray-500 hover:text-gray-300;
+      }
+    }
+    &:nth-of-type(4){
+      a{
+        background-color: var(--success-green);
+        @apply hover:bg-gray-500 hover:text-gray-300;
+      }
+    }
+  }
+}
+[data-plans-target="yearSwitchers"],[data-plans-target="monthSwitchers"]{
+  td{
+    font-size: var(--text-s-p);
+    @apply text-center text-blue-500 pb-5 cursor-pointer;
+  }
+}
+.plans-features{
+  border-top: 1px solid var(--primary-gray-1);
+  @apply pt-2 pb-12;
+  .plans-features-item{
+    text-indent: -1.8rem;
+    @apply pl-6;
+    &::before{
+      content: '';
+      background: url('/images/tick-gray.svg') no-repeat;
+      background-position: bottom -4px left;
+      @apply transform scale-100 inline-block w-6 h-8;
+    }
+  }
+  &:nth-of-type(2){
+    .plans-features-item{
+      &:nth-of-type(1){
+        &::before{
+          background: url('/images/arrow-blue.svg') no-repeat;
+          background-position: top 15px left;
+        }
+      }
+      &::before{
+        background: url('/images/tick-blue.svg') no-repeat;
+        background-position: bottom -4px left;
+      }
+    }
+  }
+  &:nth-of-type(3){
+    .plans-features-item{
+      &:nth-of-type(1){
+        &::before{
+          background: url('/images/arrow-purple.svg') no-repeat;
+          background-position: top 15px left;
+        }
+      }
+      &::before{
+        background: url('/images/tick-purple.svg') no-repeat;
+        background-position: bottom -4px left;
+      }
+    }
+  }
+  &:nth-of-type(4){
+    .plans-features-item{
+      &:nth-of-type(1){
+        &::before{
+          background: url('/images/arrow-green.svg') no-repeat;
+          background-position: top 15px left;
+        }
+      }
+      &::before{
+        background: url('/images/tick-green.svg') no-repeat;
+        background-position: bottom -4px left;
+      }
+    }
+  }
+}
+/* plans-content end */

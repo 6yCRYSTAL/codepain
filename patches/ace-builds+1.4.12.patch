@@ -1,16 +1,36 @@
+diff --git a/node_modules/ace-builds/src-noconflict/ace.js b/node_modules/ace-builds/src-noconflict/ace.js
+index 94519df..f74b60b 100644
+--- a/node_modules/ace-builds/src-noconflict/ace.js
++++ b/node_modules/ace-builds/src-noconflict/ace.js
+@@ -3593,8 +3593,8 @@ var optionsProvider = {
+ };
+ 
+ function warn(message) {
+-    if (typeof console != "undefined" && console.warn)
+-        console.warn.apply(console, arguments);
++    // if (typeof console != "undefined" && console.warn)
++    //     console.warn.apply(console, arguments);
+ }
+ 
+ function reportError(msg, data) {
+@@ -21335,4 +21335,3 @@ exports.version = exports.config.version;
+                     }
+                 });
+             })();
+-        
+\ No newline at end of file
 diff --git a/node_modules/ace-builds/src-noconflict/snippets/javascript.js b/node_modules/ace-builds/src-noconflict/snippets/javascript.js
-index bcfaf5c..0b45f34 100644
+index bcfaf5c..1a426ef 100644
 --- a/node_modules/ace-builds/src-noconflict/snippets/javascript.js
 +++ b/node_modules/ace-builds/src-noconflict/snippets/javascript.js
-@@ -6,6 +6,17 @@ snippet proto\n\
+@@ -6,6 +6,16 @@ snippet proto\n\
  	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {\n\
  		${4:// body...}\n\
  	};\n\
 +# addEventListener\n\
 +snippet add\n\
-+	addEventListener('${1:event}', function() {\n\
-+	\n\
-+	})\n\
++	addEventListener('${1:event}', function () {\n\
++	)}\n\
 +# console\n\
 +snippet con\n\
 +	console.log()\n\
@@ -20,3 +40,9 @@ index bcfaf5c..0b45f34 100644
  # Function\n\
  snippet fun\n\
  	function ${1?:function_name}(${2:argument}) {\n\
+@@ -206,4 +216,3 @@ exports.scope = "javascript";
+                         }
+                     });
+                 })();
+-            
+\ No newline at end of file

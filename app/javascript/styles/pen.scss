@@ -134,7 +134,7 @@
 .sortOrderDESC,.sortOrderASC{
   color: var(--primary-gray-2);
   background-color: var(--primary-gray-4);
-  @apply py-1 px-2.5 cursor-pointer h-full rounded-r-none rounded-l-sm;
+  @apply py-1 px-2.5 cursor-pointer h-full rounded-r-none rounded-l-sm flex items-center;
   &:hover{
     color: var(--light-gray);
   }
@@ -305,8 +305,13 @@
 }
 .pen-list-title{
   color: var(--light-gray);
+  width: 100%;
   th{
     @apply px-2 py-3 text-left;
+    &:nth-of-type(1){ width: 30%;}
+    &:nth-of-type(2){ width: 4%;}
+    &:nth-of-type(3),&:nth-of-type(4),&:nth-of-type(5){ width: 18%; }
+    &:nth-of-type(6),&:nth-of-type(7){ width: 6%; }
   }
   th:last-child{
     @apply text-center;

@@ -13,7 +13,7 @@ export default class extends Controller {
   submitSearch(e) {
     e.preventDefault()
     const searchInput = this.searchInputTarget.value
-    const url = new URL(window.location.href)
+    const url = new URL(location.href)
     const params = url.searchParams
 
     params.set('search_term', searchInput)
@@ -26,7 +26,7 @@ export default class extends Controller {
 
   submitSelected() {
     const sortBySelected = this.sortBySelectedTarget
-    const url = new URL(window.location.href)
+    const url = new URL(location.href)
     const params = url.searchParams
 
     params.set('sort_by', sortBySelected.value)

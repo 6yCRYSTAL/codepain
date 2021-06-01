@@ -31,9 +31,9 @@ function GridItem() {
         });
         setUserLike(LikeId);
         // 清除使用者pen js裡的 console.log()
-        setTimeout( () => {
-          console.clear()
-        }, 1000)
+        // setTimeout( () => {
+        //   console.clear()
+        // }, 1000)
       })
   }, [clickPage]);
   // 上下頁功能

@@ -1,11 +1,10 @@
 class PensController < ApplicationController
-  layout false
   before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]
 
   def index
     # pens tab / all or search
-    if !current_user
+    unless current_user
       redirect_to :root
     else
       search_user_pen(params[:page])

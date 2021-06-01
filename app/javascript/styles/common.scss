@@ -25,9 +25,15 @@
     background-color: var(--primary-gray-3);
   }
 }
+
 *{
   box-sizing: border-box;
 }
+
+a {
+  text-decoration: none;
+}
+
 button{
   margin: 0;
   padding: 0;

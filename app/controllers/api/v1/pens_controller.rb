@@ -57,8 +57,8 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def grid
-    search_user_pen(params[:page])
-    search_user_pen(1) if @pens.current_page > @pens.total_pages
+    search_user_pen(params[:page], 6)
+    search_user_pen(1, 6) if @pens.current_page > @pens.total_pages
 
     success_meta_blueprint!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
                                                       totalCount: @pens.total_count,

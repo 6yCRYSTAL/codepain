@@ -63,7 +63,7 @@
       @apply cursor-pointer rounded-l-none rounded-r-sm;
     }
     [data-search-target="clearSearch"]{
-      @apply rounded-sm ml-4;
+      @apply rounded-sm ml-4 leading-8 ;
     }
     .search-text{
       height: 100%;

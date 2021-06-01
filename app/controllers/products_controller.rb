@@ -8,5 +8,6 @@ class ProductsController < ApplicationController
     rescue
       redirect_to pens_path
     end
+    render layout: "user"
   end
 end

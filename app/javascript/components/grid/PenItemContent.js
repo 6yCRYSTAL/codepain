@@ -1,5 +1,7 @@
 import React from 'react'
 import getLike from '../../frontend/get_like.js'
+import points from '../../frontend/points.js'
+
 // 每個 pen
 export default function PenItemContent(props) {
   const {html,js,css,title,user_name,random_url,heart_count,comments_count,view_count,setToggle,setData,id,userLike} = props;
@@ -12,20 +14,18 @@ export default function PenItemContent(props) {
     setData(data);
     document.querySelector('body').classList.add('fixed');
   };
+  React.useEffect(() =>{
+    points();
+  })
   return(
     <div className="pen-item">
       <header className="pen-header">
         <h2>{title}</h2>
-        <button className="pen-more">
-          <svg viewBox="0 0 29 7" title="more">
-          <circle cx="3.5" cy="3.5" r="3.5"></circle>
-          <circle cx="14.5" cy="3.5" r="3.5"></circle>
-          <circle cx="25.5" cy="3.5" r="3.5"></circle>
-        </svg>
-        </button>
+        <div className="points-wrap grid-points-wrap" data-url={`${random_url}`}>
+        </div>
       </header>
       <div className="pen-img">
-        <iframe id="grid-iframe" frameborder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
+        <iframe id="grid-iframe" frameBorder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
         <div className="prompt-link">
           <button id="modal-btn" className="modal-btn" onClick={ atAlert }>

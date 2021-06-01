@@ -344,12 +344,6 @@
     }
   }
 }
-.more-icon{
-  @apply flex justify-center;
-  svg{
-    fill: var(--primary-gray-1);
-  }
-}
 .modal-wrap{
   padding: 0;
   .modal-btn{

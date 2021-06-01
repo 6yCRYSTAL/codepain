@@ -56,11 +56,6 @@ export default class extends Controller {
     Rails.ajax({
       url: `/api/v1/comments`,
       type: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      dataType: 'json',
       data: `content=${content}&random_url=${randomurl}`,
       // 取回後端資料渲染
       success: (data) => {

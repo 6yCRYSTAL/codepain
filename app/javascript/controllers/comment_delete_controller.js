@@ -33,13 +33,8 @@ export default class extends Controller {
         Rails.ajax({
           url: `/api/v1/comments/${this.idValue}`,
           type: 'DELETE',
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          dataType: 'json',
           success: (data) => {
-            if(data.status === "Destroied") {
+            if(data.status === "Destroyed") {
               this.commentLiTarget.remove()
             }
           }

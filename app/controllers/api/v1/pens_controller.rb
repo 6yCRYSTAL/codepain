@@ -57,42 +57,18 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def grid
-    pens_per_page(params[:page])
+    search_user_pen(params[:page])
+    search_user_pen(1) if @pens.current_page > @pens.total_pages
 
     success_meta_blueprint!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
-                                                   totalCount: @pens.total_count,
-                                                   currentPage: @pens.current_page,
-                                                   lastPage: @pens.last_page?,
-                                                   nextPage: @pens.next_page,
-                                                   prevPage: @pens.prev_page})
-  end
-
-  def grid_search
-    search_pen(params[:search], params[:page])
-
-    success_meta_blueprint!(@pens, :extended, :pens, {totalPages: @pens.total_pages,
-                                                   totalCount: @pens.total_count,
-                                                   currentPage: @pens.current_page,
-                                                   lastPage: @pens.last_page?,
-                                                   nextPage: @pens.next_page,
-                                                   prevPage: @pens.prev_page})
+                                                      totalCount: @pens.total_count,
+                                                      currentPage: @pens.current_page,
+                                                      lastPage: @pens.last_page?,
+                                                      nextPage: @pens.next_page,
+                                                      prevPage: @pens.prev_page})
   end
 
   private
-
-  def search_pen(keyword, page = 1)
-    find_user_pens
-    @pens = @pens.search(keyword).page(page).per(6)
-
-    search_pen(keyword, 1) if @pens.current_page > @pens.total_pages
-  end
-
-  def pens_per_page(page = 1)
-    find_user_pens
-    @pens = @pens.page(page).per(6)
-
-    pens_per_page(1) if @pens.current_page > @pens.total_pages
-  end
 
   def love_pen?(pen)
     HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
@@ -113,17 +89,5 @@ class Api::V1::PensController < Api::ApiController
     else
       clean_params
     end
-  end
-
-  def find_user_pen
-    begin
-      @pen = Pen.find_by(random_url: params[:random_url])
-    rescue
-      redirect_to pens_path
-    end
-  end
-
-  def find_user_pens
-    @pens = current_user.pens.order(updated_at: :desc)
   end
 end

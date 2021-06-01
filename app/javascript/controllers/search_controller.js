@@ -5,6 +5,11 @@ export default class extends Controller {
   static targets = ['searchInput','clearSearch', 'sortBySelected']
 
   connect() {
+    if (location.href.includes('sort_order')) {
+      document.querySelector('.sortOrderASC').classList.add('order-active')
+    } else {
+      document.querySelector('.sortOrderDESC').classList.add('order-active')
+    }
     if (this.searchInputTarget.value) {
       this.clearSearchTarget.classList.remove('hidden')
     }
@@ -19,7 +24,7 @@ export default class extends Controller {
     params.set('search_term', searchInput)
     params.delete('page')
 
-    if (searchInput) {
+    if (searchInput && !(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }
   }
@@ -31,6 +36,8 @@ export default class extends Controller {
 
     params.set('sort_by', sortBySelected.value)
 
-    Turbolinks.visit(url)
+    if (!(location.href.includes('grid_type=grid'))) {
+      Turbolinks.visit(url)
+    }
   }
 }

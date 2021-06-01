@@ -20,6 +20,7 @@ export default class extends Controller {
     Rails.ajax({
       url: `/api/v1/pens/${this.randomValue}/love`,
       type: 'post'
+      // TODO
     })
 
     heart.classList.toggle(this.lovedClass)

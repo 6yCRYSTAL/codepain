@@ -98,11 +98,7 @@ class Api::V1::OrdersController < Api::ApiController
   end
 
   def find_product
-    begin
       @product = Product.find_by!('plan = ? AND period = ?',
                                    params[:plan], params[:period])
-    rescue
-      redirect_to pens_path
-    end
   end
 end

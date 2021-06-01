@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../styles/new.css'
 
-
 const EditorConsole = () => {
 
-  const clearConsole = () => {
+  function clearConsole() {
     let console = document.querySelector('.edit-console')
     console.textContent = ""
   }
@@ -22,7 +21,3 @@ const EditorConsole = () => {
 }
 
 export default EditorConsole
-
-
-
-

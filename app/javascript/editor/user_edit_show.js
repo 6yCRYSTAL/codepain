@@ -5,7 +5,6 @@ document.addEventListener('turbolinks:load', () => {
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
   if(html && css && js){
-    let updateBtn = document.querySelector('#btn-update')
     let randomurl = location.href.split('/pen/')[1]
     let title = document.querySelector('#edit-title')
     let inputValue = document.querySelector("#input-title")

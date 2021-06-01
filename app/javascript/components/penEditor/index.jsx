@@ -7,7 +7,7 @@ import MainFooter from './Footer'
 
 document.addEventListener('turbolinks:load', () => {
   const indexEditor = document.querySelector('#index-editor')
-  if( MainEditor ){
+  if( indexEditor ){
     ReactDOM.render(
       <MainEditor />,
       indexEditor

@@ -1,6 +1,6 @@
 class Api::ApiController < ApplicationController
 
-  def success_render!(data, view, code = :ok)
+  def success_blueprint!(data, view, code = :ok)
     render json: {
       success: true,
       payload: PenBlueprint.render_as_hash(data, view: view),
@@ -8,7 +8,7 @@ class Api::ApiController < ApplicationController
     }
   end
 
-  def success_meta_render!(data, view, root, meta, code = :ok) # 有需要給meta再用這個方法
+  def success_meta_blueprint!(data, view, root, meta, code = :ok) # 有需要給meta再用這個方法
     render json: {
       success: true,
       payload: PenBlueprint.render_as_hash(data,
@@ -27,7 +27,7 @@ class Api::ApiController < ApplicationController
     }
   end
 
-  def fail_render!(errors, code = :unprocessable_entity)
+  def fail!(errors, code = :unprocessable_entity)
     render json: {
       success: false,
       errors: errors,

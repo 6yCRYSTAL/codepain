@@ -1,7 +1,7 @@
 <header class="edit-header">
   <div class="edit-title-header">
     <%= link_to pens_path do %>
-      <img src="/images/logo-s.svg" alt="codepain">
+      <img src="/images/logo-s.svg" alt="CodePain">
     <% end %>
 
     <div class="edit-title-area">
@@ -12,6 +12,7 @@
     </div>
   </div>
   <div class="edit-btn-header">
+    <%= private_switch %>
     <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
     <%= save_button %>
     <%= save_as_private_button %>

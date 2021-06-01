@@ -31,7 +31,7 @@ document.addEventListener('turbolinks:load', () => {
           editorJS.session.setValue(data.payload.js)
           if (privateSwitch) {
             privateSwitch.checked = data.payload.private
-            privateLock.classList.add(data.payload.private ? "" : "hidden")
+            privateLock.classList.remove(data.payload.private ? "hidden" : "")
           }
         }
       })

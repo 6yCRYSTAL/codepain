@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
     let editorCSS = ace.edit("editor--css")
     let editorJS = ace.edit("editor--js")
 
-    if (updateBtn){
+    if (randomurl){
       axios({
         method: 'get',
         url: `/api/v1/pens/${randomurl}/edit`

@@ -22,9 +22,13 @@ Give the creator a confidence boost!"
       data-comment-create-target="commentsCount"
     >
       <%= comments_count_text(comments_count) %></p>
-    <ol data-comment-create-target="list">
+    <ol data-comment-create-target="list" id="comment-list">
       <% comments.each do |comment| %>
-      <li data-controller="comment-update" data-comment-update-target="commentLi" >
+      <li
+        data-controller="comment-update comment-delete"
+        data-comment-update-target="commentLi"
+        data-comment-delete-target="commentLi"
+        data-comment-delete-id-value="<%= comment.id %>">
         <div>
           <span><%="#{comment.user.display_name} (@#{comment.user.username})"%></span>
           <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
@@ -50,24 +54,9 @@ Give the creator a confidence boost!"
           data-comment-update-target="editBtn"
         > Edit </button>
         <button
-          data-action="click->comment-update#delete"
+          data-action="click->comment-delete#delete"
           data-comment-update-target="deleteBtn"
         > Delete</button>
-        <div class="warning-wrap hidden border-solid border-4" data-comment-update-target="warningBlock">
-          <div class="warning-content">
-            <h2>Delete Confirmation</h2>
-            <p>This will permanently delete this Comment.</p>
-            <button
-              data-action="click->comment-update#realDelete"
-              data-comment-update-target="realDeleteBtn"
-              data-id="<%= comment.id %>"
-            > I understand, delete the Comment</button>
-            <button
-              data-action="click->comment-update#deleteCancel"
-              data-comment-update-target="deleteCancelBtn"
-            >Cancel</button>
-          </div>
-        </div>
       </li>
       <% end %>
     </ol>

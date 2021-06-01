@@ -11,7 +11,7 @@ export default function Alert(props) {
       setToggle(false);
       document.querySelector('body').classList.remove('fixed');
       // 修改網址
-      history.replaceState(null, 'your-work', `${window.location.origin}/your-work?grid_type=grid`);
+      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
     };
   };
   // 新增網址，而不會刷新頁面

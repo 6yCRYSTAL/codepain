@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   def current_pen
     @pen = current_user.pens.find_by(random_url: params[:random_url])
-    return (@pen) || (p params )
+    return @pen
   end
 
   def current_comment

@@ -2,10 +2,9 @@ import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
   static targets = [
-    "editBtn", "cancelBtn", "updateBtn", "deleteBtn",
-    "realDeleteBtn", "deleteCancelBtn", "commentLi",
-    "commentBlock", "updateTextArea", "commentShow",
-    "warningBlock", "commentsCount"]
+    "editBtn", "cancelBtn", "updateBtn", "commentLi",
+    "deleteBtn", "commentBlock", "updateTextArea",
+    "commentShow", "warningBlock", "commentsCount"]
 
   initialize() {
     this.commentBlockToggle = () => {

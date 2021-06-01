@@ -1,6 +1,6 @@
 import './fontawesome'
 import './frontend'
-// import './components/grid_react'
 import './modal'
 import './pin'
 import './btn_pin_arrow'
+import './points'

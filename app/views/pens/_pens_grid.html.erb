@@ -1,2 +1,63 @@
+<div class="your-work-features">
+  <div class="features-item">
+    <%# search bar %>
+    <form class="your-work-search">
+      <label for="search_term">SEARCH</label>
+      <input type="text"
+             name="search_term"
+             id="search_term"
+             placeholder="Search for..."
+             class="search-text">
+      <button class="search-btn">Search</button>
+      <button class="hidden">Clear Search</button>
+    </form>
+  </div>
+  <nav class="features-item">
+    <%# GRID / LIST 按鍵 %>
+    <a class="grid-btn" href="/your-work?grid_type=grid">
+      <span>grid</span>
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-60.741 20.407 74.148 45.778" width="19">
+          <path
+            d="M-47.704 20.407h-8.666a4.332 4.332 0 00-4.37 4.37v8.742c0 2.37 1.925 4.37 4.37 4.37h8.74c2.37 0 4.37-1.926 4.37-4.37v-8.741c-.073-2.445-2-4.37-4.444-4.37zM-47.704 48.704h-8.666c-2.37 0-4.37 1.926-4.37 4.37v8.74c0 2.371 1.925 4.371 4.37 4.371h8.74c2.37 0 4.37-1.926 4.37-4.37v-8.74c-.073-2.371-2-4.371-4.444-4.371zM-19.333 20.407h-8.741c-2.37 0-4.37 1.926-4.37 4.37v8.742c0 2.37 1.925 4.37 4.37 4.37h8.74c2.371 0 4.371-1.926 4.371-4.37v-8.741c0-2.445-2-4.37-4.37-4.37zM-19.333 48.704h-8.741c-2.37 0-4.37 1.926-4.37 4.37v8.74c0 2.371 1.925 4.371 4.37 4.371h8.74c2.371 0 4.371-1.926 4.371-4.37v-8.74c0-2.371-2-4.371-4.37-4.371zM8.963 20.407H.296c-2.37 0-4.37 1.926-4.37 4.37v8.742c0 2.37 1.926 4.37 4.37 4.37h8.741c2.37 0 4.37-1.926 4.37-4.37v-8.741c-.074-2.445-2-4.37-4.444-4.37zM8.963 48.704H.296c-2.37 0-4.37 1.926-4.37 4.37v8.74c0 2.371 1.926 4.371 4.37 4.371h8.741c2.37 0 4.37-1.926 4.37-4.37v-8.74c-.074-2.371-2-4.371-4.444-4.371z">
+          </path>
+        </svg>
+      </button>
+    </a>
+    <a class="list-btn" href="/your-work?grid_type=list">
+      <button>
+        <svg viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg" width="16.5">
+          <path clip-rule="evenodd"
+            d="M.5 1a1 1 0 011-1H16a1 1 0 110 2H1.5a1 1 0 01-1-1zM.5 6.5a1 1 0 011-1H16a1 1 0 110 2H1.5a1 1 0 01-1-1zM.5 12a1 1 0 011-1H16a1 1 0 110 2H1.5a1 1 0 01-1-1z">
+          </path>
+        </svg>
+      </button>
+      <span>list</span>
+    </a>
+
+    <%# sort by 下拉選單 %>
+    <label class="sort-by" for="sort_by">SORT BY</label>
+    <div class="sort-by-select">
+      <select name="sort_by" id="sort_by">
+        <option selected="selected" value="Date Created">Date Created</option>
+        <option value="Date Updated">Date Updated</option>
+        <option value="Popularity">Popularity</option>
+      </select>
+      <div class="sort-by-select-icon"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <%# sord order 上下箭頭 %>
+    <div class="sort-by-order-wrap">
+      <span>Sort Direction</span>
+      <div class="sortOrderDESC order-active">
+        <div class="sort-by-order"><i class="fas fa-chevron-down"></i></div>
+      </div>
+      <div class="sortOrderASC">
+        <div class="sort-by-order asc-icon"><i class="fas fa-chevron-down"></i></div>
+      </div>
+    </div>
+  </nav>
+</div>
+
 <div class="pens-grid">
 </div>

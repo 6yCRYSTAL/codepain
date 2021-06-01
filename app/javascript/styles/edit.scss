@@ -50,6 +50,11 @@
 .edit-btn-header{
   margin-left: auto;
   display: flex;
+  .private-lock {
+    height: inherit;
+    margin-right: .5rem;
+    color: var(--primary-gray-1);
+  }
   button{
     border-radius: 4px;
     height: 45px;

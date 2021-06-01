@@ -58,14 +58,6 @@ class PensController < ApplicationController
     end
   end
 
-  def make_private
-    unless current_user.membership == 'free'
-      @pen.toggle(:private)
-    else
-      alert("Upgrade to PRO and unlock Privacy and more.")
-    end
-  end
-
   def search_all_users
     begin
       @pens = Pen.search(params[:q]).includes(:user).page(params[:page]).per(6)

@@ -2,7 +2,7 @@ class Api::V1::PensController < Api::ApiController
   respond_to :json
 
   before_action :authenticate_user!, except: [:new, :edit]
-  before_action :find_user_pen, only: [:index, :edit, :update]
+  before_action :find_user_pen, only: [:index, :edit, :update, :private_toggle]
 
   def index
     success_blueprint!(@pens, :extended)
@@ -27,6 +27,15 @@ class Api::V1::PensController < Api::ApiController
       success_blueprint!(@pen, :normal, 'update succeeded')
     else
       fail!(@pen.errors.full_messages, 'update failed')
+    end
+  end
+
+  def private_toggle
+    unless current_user.membership == 'free'
+      @pen.toggle!(:private)
+      success!({ boolean: @pen.private }, 'done')
+    else
+      redirect_to pens_path
     end
   end
 

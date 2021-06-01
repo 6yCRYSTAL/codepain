@@ -1,0 +1,18 @@
+<div class="private-switch-wrap" data-controller="private" data-private-random-value="<%= @pen.random_url %>">
+  <div class="private-lock" id="private-lock" data-private-target="privateIcon"><i class="fas fa-lock"></i></div>
+  <div class="private-switch" id="private-switch">
+    Private
+    <label for="btn-private-switch" class="private-switch-label" data-action="click->private#togglePrivate">
+      <div class="relative">
+        <input type="checkbox"
+               id="btn-private-switch"
+               class="sr-only"
+               data-private-target="privateCheck"
+               data-action="click->private#stopPropagation">
+        <div class="block"></div>
+        <div class="dot"></div>
+      </div>
+    </label>
+    Public
+  </div>
+</div>

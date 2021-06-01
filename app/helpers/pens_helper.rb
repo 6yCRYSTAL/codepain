@@ -49,7 +49,7 @@ module PensHelper
   def private_switch
     if current_user
       if current_user.membership != "free" && action_name == "edit"
-        "<button class='btn-save' id='btn-save-as-private'><span><i class='fas fa-cloud'></i></span>Save as Private</button>".html_safe
+        render 'shared/private_switch'
       end
     end
   end

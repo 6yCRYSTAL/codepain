@@ -4,7 +4,7 @@ const ShareBox = () => {
 
   const refInput = useRef()
 
-  const copyLink = () => {
+  function copyLink() {
     const url = refInput.current
     url.select()
     navigator.clipboard.writeText(url.value)

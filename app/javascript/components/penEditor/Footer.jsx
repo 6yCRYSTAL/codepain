@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import ShareUrlBox from './ShareUrlBox'
 
 const MainFooter = () => {
+
   const [showURL, setShowURL] = useState(false)
 
-  const showShareBox = () => {
+  function showShareBox() {
     setShowURL(!showURL)
   }
 

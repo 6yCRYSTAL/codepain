@@ -12,7 +12,7 @@
         <a href="#" id="username">
           <%= current_user.username %>
         </a>
-          <div class="points-wrap alert-points-wrap" data-url="<%= pen.random_url %>"></div>
+          <div class="points-wrap points-content-bottom" data-url="<%= pen.random_url %>"></div>
           <%= render 'comment' , pen: pen,
                                  comments: pen.comments,
                                  comment: @comment,
@@ -38,7 +38,7 @@
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="points-wrap list-points-wrap" data-url="<%= pen.random_url %>">
+  <td class="points-wrap points-content-top" data-url="<%= pen.random_url %>">
   </td>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

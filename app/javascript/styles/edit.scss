@@ -75,7 +75,9 @@
   .pinned-btn{
     display: flex;
       .btn-pinned{
-        width: 60%;
+        display: flex;
+        align-items: center;
+        padding: 5px 12px;
         background-color:#131417;
         border: 3px solid #444857;
         border-radius: 4px 0 0 4px;
@@ -134,9 +136,6 @@
         margin-bottom: 15px;
         background: #2c303a;
         border-radius: 6px;
-        .icon-a{
-          margin: 0, 100%, 0, 100%;
-        }
         .delete{
           color: gray;
           text-align:right;

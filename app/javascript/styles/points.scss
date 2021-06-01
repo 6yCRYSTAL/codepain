@@ -52,8 +52,8 @@
 .points-content{
   @apply relative;
 }
-/* list-points-wrap */
-.list-points-wrap,.grid-points-wrap{
+/* 動態與位置 points-content-top */
+.points-content-top{
   .points-content{
     .points-content-box{
       transform: scale(1);
@@ -63,7 +63,7 @@
     }
   }
 }
-.list-points-wrap,.grid-points-wrap{
+.points-content-top{
   .points-content.points-content-hidden{
     .points-content-box{
       transform: scale(0.6);
@@ -72,19 +72,20 @@
     }
   }
 }
-.list-points-wrap,.grid-points-wrap{
+.points-content-top{
   width: 5%;
 }
-/* list-points-wrap end */
+/* points-content-top end */
 
-.alert-points-wrap{
+/* 動態與位置 points-content-bottom */
+.points-content-bottom{
   @apply inline-block;
   .points-content-box{
     top: 95%;
     @apply bottom-auto;
   }
 }
-.alert-points-wrap{
+.points-content-bottom{
   .points-btn{
     @apply py-5 px-4 rounded-t rounded-b-none;
     &:hover{
@@ -93,7 +94,7 @@
     }
   }
 }
-.alert-points-wrap{
+.points-content-bottom{
   .points-content{
     .points-content-box{
       transform: scale(1);
@@ -103,7 +104,7 @@
     }
   }
 }
-.alert-points-wrap{
+.points-content-bottom{
   .points-content.points-content-hidden{
     .points-content-box{
       transform: scale(0.6);
@@ -112,3 +113,4 @@
     }
   }
 }
+/* points-content-top */

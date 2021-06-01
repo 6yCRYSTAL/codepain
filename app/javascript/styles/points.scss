@@ -1,0 +1,114 @@
+.points-wrap{
+  @apply relative;
+}
+.points-content-wrap{
+  @apply relative flex justify-center;
+}
+.points-btn{
+  @apply flex p-3 justify-center rounded-b-sm;
+  svg{
+    fill: var(--primary-gray-1);
+  }
+  &:hover{
+    svg{
+      fill: var(--light-gray);
+    }
+  }
+}
+.points-content-hidden{
+  @apply invisible;
+}
+.hover-no-color{
+  &:hover{
+    svg{
+      fill: var(--primary-gray-1);
+    }
+  }
+}
+.points-content-box{
+  border-radius: 3px 3px 0px 3px;
+  @apply py-2 absolute right-0 bottom-full bg-white z-50;
+  button{
+    font-size: var(--text-h6);
+    color: var(--primary-gray-2);
+    @apply flex py-2 px-4 items-center w-full hover:bg-gray-200;
+    .lock-icon,.trash-icon{
+      @apply pr-4;
+      &.lock-icon{
+        font-size: var(--text-p);
+      }
+    }
+    span{
+      font-size: var(--text-p);
+      color: var(--primary-gray-8);
+      @apply whitespace-nowrap;
+    }
+    .logo-pro{
+      font-size: var(--text-s-p);
+      @apply px-1 ml-1;
+    }
+  }
+}
+.points-content{
+  @apply relative;
+}
+/* list-points-wrap */
+.list-points-wrap,.grid-points-wrap{
+  .points-content{
+    .points-content-box{
+      transform: scale(1);
+      transform-origin: bottom right;
+      opacity: 1;
+      transition: all .3s ease;
+    }
+  }
+}
+.list-points-wrap,.grid-points-wrap{
+  .points-content.points-content-hidden{
+    .points-content-box{
+      transform: scale(0.6);
+      opacity: 0;
+      transform-origin: bottom right;
+    }
+  }
+}
+.list-points-wrap,.grid-points-wrap{
+  width: 5%;
+}
+/* list-points-wrap end */
+
+.alert-points-wrap{
+  @apply inline-block;
+  .points-content-box{
+    top: 95%;
+    @apply bottom-auto;
+  }
+}
+.alert-points-wrap{
+  .points-btn{
+    @apply py-5 px-4 rounded-t rounded-b-none;
+    &:hover{
+      background-color: var(--primary-gray-3);
+      @apply rounded;
+    }
+  }
+}
+.alert-points-wrap{
+  .points-content{
+    .points-content-box{
+      transform: scale(1);
+      transform-origin: top right;
+      opacity: 1;
+      transition: all .3s ease;
+    }
+  }
+}
+.alert-points-wrap{
+  .points-content.points-content-hidden{
+    .points-content-box{
+      transform: scale(0.6);
+      opacity: 0;
+      transform-origin: top right;
+    }
+  }
+}

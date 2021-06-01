@@ -9,11 +9,13 @@
 .edit-header{
   padding: .5rem 1rem;
   justify-content: space-between;
+  position: relative;
+  z-index: 10;
 }
 .edit-title-header{
   display: flex;
   align-items: center;
-  svg{
+  img{
     width: 30px;
     fill: white;
   }
@@ -155,6 +157,7 @@
 
 /* edit-title-alert */
 .edit-title-alert{
+  z-index: 11;
   @apply w-full flex justify-center absolute;
   span{
     @apply inline-block py-1 px-2 text-gray-800 bg-yellow-300 rounded-b-lg text-sm;

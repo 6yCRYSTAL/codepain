@@ -73,21 +73,19 @@ module PensHelper
   end
 
   def prev_page_button(pens)
-    link_to path_to_prev_page(pens) do
+    link_to_prev_page pens,
       "<button class='prev-btn'>
         <span class='arrow-left'><i class='fas fa-chevron-right'></i></span>
         <span>Prev</span>
       </button>".html_safe
-    end
   end
 
   def next_page_button(pens)
-    link_to path_to_next_page(pens) do
+    link_to_next_page pens,
       "<button class='next-btn'>
         <span>Next</span>
         <i class='fas fa-chevron-right'></i>
       </button>".html_safe
-    end
   end
 
   # prev and next page button
@@ -99,6 +97,15 @@ module PensHelper
     else
       prev_page_button(pens) +
       next_page_button(pens)
+    end
+  end
+
+  # comment counts
+  def comments_count_text(comments_count)
+    if comments_count == 0
+      "<strong>No Comments</strong><br>You can be the first!".html_safe
+    else
+      pluralize comments_count, "comment"
     end
   end
 end

@@ -20,6 +20,7 @@ export default class extends Controller {
     const searchInput = this.searchInputTarget.value
     const url = new URL(location.href)
     const params = url.searchParams
+    console.log(url);
 
     params.set('search_term', searchInput)
     params.delete('page')

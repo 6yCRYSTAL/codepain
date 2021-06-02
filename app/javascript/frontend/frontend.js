@@ -1,3 +1,4 @@
+import GridListStyle from './gridList_btn.js'
 document.addEventListener('turbolinks:load',function(){
   const UserMenuBtn = document.querySelector('#userMenu-btn');
   const SideBtn = document.querySelector('.sidebar-toggle-btn button');
@@ -5,6 +6,7 @@ document.addEventListener('turbolinks:load',function(){
   const Container = document.querySelector('.container-left');
   const DeleteTab = document.querySelector('#tab-delete');
   const searchUsersFeatures = document.querySelector('.search-users-features')
+  const YourWorkFeatures = document.querySelector('.your-work-features')
   const OnClose = localStorage.getItem('onClose');
 
   // 登入頁-使用者選單
@@ -58,8 +60,6 @@ document.addEventListener('turbolinks:load',function(){
   if (DeleteTab) {
     let hashName = location.search;
     const YourWorkTab = document.querySelector('.your-work-tab');
-    const GridBtn = document.querySelector('.grid-btn button');
-    const ListBtn = document.querySelector('.list-btn button');
 
     if(hashName === '?item_type=deleted_item'){
       YourWorkTab.style.borderBottom = "2px solid #ff3c41";
@@ -67,13 +67,10 @@ document.addEventListener('turbolinks:load',function(){
     }else{
       YourWorkTab.firstElementChild.style.color = "#f1f1f3";
     }
-    if(hashName === '?grid_type=grid'){
-      GridBtn.style.backgroundColor = "#717790";
-      GridBtn.firstElementChild.style.fill = "#f1f1f3";
-    }else{
-      ListBtn.style.backgroundColor = "#717790";
-      ListBtn.firstElementChild.style.fill = "#f1f1f3";
-    }
+  }
+  // your-work-features 功能列表
+  if (YourWorkFeatures) {
+    GridListStyle();
   }
 
   // 全站搜尋頁面
@@ -81,10 +78,4 @@ document.addEventListener('turbolinks:load',function(){
     searchUsersFeatures.parentElement.style.maxWidth = '1280px'
   }
 
-  // order
-  if (window.location.href.includes('sort_order')) {
-    document.querySelector('.sortOrderASC').classList.add('order-active')
-  } else {
-    document.querySelector('.sortOrderDESC').classList.add('order-active')
-  }
 })

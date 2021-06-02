@@ -3,17 +3,19 @@ import getLike from '../../frontend/get_like.js'
 import points from '../../frontend/points.js'
 
 // 每個 pen
-export default function PenItemContent(props) {
+const PenItemContent = (props) => {
   const {html,js,css,title,user_name,random_url,heart_count,comments_count,view_count,setToggle,setData,id,userLike} = props;
   const data = {title,user_name,random_url,heart_count,comments_count,view_count,html,js,css};
   // 判斷自己 id & 所有喜歡的pen ; 沒有 -1 有陣列數
   let haveUserLike = userLike.indexOf(id);
+
   // 開啟彈跳視窗
   function atAlert() {
     setToggle(true);
     setData(data);
     document.querySelector('body').classList.add('fixed');
   };
+  // more 按鈕
   React.useEffect(() =>{
     points();
   })
@@ -25,7 +27,7 @@ export default function PenItemContent(props) {
         </div>
       </header>
       <div className="pen-img">
-        <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" frameborder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
+        <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" frameBorder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
         <div className="prompt-link">
           <button id="modal-btn" className="modal-btn" onClick={ atAlert }>
@@ -41,7 +43,7 @@ export default function PenItemContent(props) {
               color: haveUserLike.toString() === '-1'? "white" : "red"
             }}
           />
-          <span>{heart_count}</span>
+          <span className="heart-count">{heart_count}</span>
         </button>
         <a href="#" className="pen-footer-style" data-btn="comments">
           <i className="fas fa-comment" />
@@ -56,3 +58,4 @@ export default function PenItemContent(props) {
   );
 };
 
+export default PenItemContent

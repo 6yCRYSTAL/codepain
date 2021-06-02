@@ -580,9 +580,12 @@ label {
 }
 
 .logo-pro {
-  color: var(--primary-gray-7);
+  color: var(--primary-gray-8);
   background: var(--warning-yellow);
-  @apply px-2 py-0.5 text-xs uppercase font-bold rounded-sm inline-block;
+  @apply px-1 py-0.5 uppercase font-bold rounded-sm inline-block;
+  font-family: arial;
+  font-size: var(--text-s-p);
+  height: 20px;
 }
 
 .starter-form {

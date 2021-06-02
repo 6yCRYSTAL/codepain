@@ -332,16 +332,24 @@
     .title-wrap{
       @apply p-0;
       a{
-        @apply px-2 py-3 block;
+        @apply px-2 py-2 block font-normal;
+        color: var(--light-blue);
+        &:visited {
+          color: var(--light-blue);
+        }
+        &:visited:hover {
+          color: #fff;
+        }
       }
     }
     &:hover{
       background: rgba(0,0,0,0.5);
+      color: #fff
     }
   }
 }
 .stats{
-  @apply grid grid-cols-3 py-4;
+  @apply grid grid-cols-3 py-2;
   >div{
     @apply flex items-center;
     svg{

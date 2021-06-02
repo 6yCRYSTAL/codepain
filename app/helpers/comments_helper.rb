@@ -2,7 +2,7 @@ module CommentsHelper
 
   # comment edit block
   def edit_buttons(comment)
-    if current_user.id == comment.user.id
+    if current_user == comment.user
       "<button
         data-action='click->comment-update#edit'
         data-comment-update-target='editBtn'

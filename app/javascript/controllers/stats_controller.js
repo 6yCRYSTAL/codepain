@@ -51,6 +51,8 @@ export default class extends Controller {
 
   // list分頁中按愛心
   toggleHeart() {
+    Turbolinks.clearCache()
+
     let heart = this.heartTarget
     let heartListsCount = this.heartListsCountTarget
 
@@ -70,6 +72,8 @@ export default class extends Controller {
 
   // editor頁面中按愛心
   toggleEditorHeart() {
+    Turbolinks.clearCache()
+
     let heart = this.heartTarget
     let randomURL = location.pathname.split('/').pop()
 

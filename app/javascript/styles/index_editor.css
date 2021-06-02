@@ -1,9 +1,6 @@
 div.consoleClose div.iframeAndConsole div.Pane1{
   height: 100% !important;
 }
-div.consoleOpen div.iframeAndConsole div.Pane1{
-  height: 50% !important;
-}
 .SplitPane-horizontal{
   padding-top: 65px;
 }

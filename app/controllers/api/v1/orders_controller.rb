@@ -21,8 +21,8 @@ class Api::V1::OrdersController < Api::ApiController
         'TotalAmount' => order.total_amount,
         'TradeDesc' => @product.desc,
         'ItemName' => "#{@product.plan}: #{@product.period}",
-        'ReturnURL' => 'https://c09324c8aea2.ngrok.io/api/v1/orders/result', # 使用 ngrok 測試
-        'ClientBackURL' => 'https://c09324c8aea2.ngrok.io/api/v1/orders/client'# 使用 ngrok 測試
+        'ReturnURL' => 'https://codepain.live/api/v1/orders/result', # 使用 ngrok 測試
+        'ClientBackURL' => 'https://codepain.live/api/v1/orders/client'# 使用 ngrok 測試
       }
       # 先不帶入發票
       inv_params = {}
@@ -81,7 +81,7 @@ class Api::V1::OrdersController < Api::ApiController
   # 綠界轉址到這邊
   def client
     # 待上線後改成codepain.live/your-work
-    redirect_to 'https://c09324c8aea2.ngrok.io/your-work'
+    redirect_to 'https://codepain.live/your-work'
   end
 
   private

@@ -25,9 +25,11 @@ class Api::V1::CommentsController < Api::ApiController
   end
 
   def update
-    new_content = params.permit(:content)
     comment = Comment.find(params[:id])
-    comment.update(new_content)
+    if current_user && current_user == comment.user
+      new_content = params.permit(:content)
+      comment.update(new_content)
+    end
   end
 
   def destroy

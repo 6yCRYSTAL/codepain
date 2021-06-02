@@ -33,7 +33,7 @@ Give the creator a confidence boost!"
           <span><%="#{comment.user.display_name} (@#{comment.user.username})"%></span>
           <span><%=time_ago_in_words(comment.created_at) + ' ago'%></span>
         </div>
-        <div class="comment-edit-block"
+        <div class="comment-update-block"
           data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
           <button
@@ -49,14 +49,8 @@ Give the creator a confidence boost!"
         <div>
           <p data-comment-update-target="commentShow"><%= comment.content %></p>
         </div>
-        <button
-          data-action="click->comment-update#edit"
-          data-comment-update-target="editBtn"
-        > Edit </button>
-        <button
-          data-action="click->comment-delete#delete"
-          data-comment-update-target="deleteBtn"
-        > Delete</button>
+        <%# 評論編輯按鈕 %>
+        <%= edit_buttons(comment) %>
       </li>
       <% end %>
     </ol>

@@ -27,7 +27,7 @@ const PenItemContent = (props) => {
         </div>
       </header>
       <div className="pen-img">
-        <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" frameBorder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
+        <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" scrolling="no" frameBorder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
         <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
         <div className="prompt-link">
           <button id="modal-btn" className="modal-btn" onClick={ atAlert }>

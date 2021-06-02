@@ -61,7 +61,7 @@
             box-shadow: 0 4px 30px ;
             border-radius: 6px;
             padding: 10px;
-            color: #1d1e22,
+            color: #1d1e22;
           }
           .code-html{
             top: 20px;
@@ -92,10 +92,12 @@
               width: 100%;
               height: 100%;
               color: #fff;
-              font-size: 12px;
-              .code-coffe{color: rgb(210, 157, 44);}
-              .code-yellow{color: rgb(210, 210, 121)}
-              .code-green{color: rgb(88, 162, 88);}
+              font-size: 13px;
+              letter-spacing: 0.1px;
+              font-family: verdana;
+              .code-coffe{color: #a88038;}
+              .code-yellow{color: #e1ca72;}
+              .code-green{color: #74b087;}
 
             }
           }
@@ -128,8 +130,10 @@
               width: 100%;
               height: 100%;
               color: #fff;
-              font-size: 12px;
-              line-height: 1px;
+              font-size: 13px;
+              line-height: 0.1px;
+              letter-spacing: 0.1px;
+              font-family:verdana;
               .typewriter{
                 @keyframes caret {
                   50% { border-color: transparent; }
@@ -142,9 +146,9 @@
                 animation: typing 1s steps(4),
                 caret 1s steps(1) infinite;
               }
-              .code-yellow{color: rgb(210, 210, 121);}
-              .code-orange{color: rgb(254, 169, 11);}
-              .code-purple{color: rgb(136, 78, 136);}
+              .code-yellow{color: #e1ca72;}
+              .code-orange{color: #de7300;}
+              .code-purple{color: #9f8198;}
             }
           }
           .code-js{
@@ -177,9 +181,11 @@
               height: 100%;
               color: #fff;
               font-size: 12px;
-              .code-yellow{color: rgb(210, 210, 121);}
-              .code-green{color: rgb(88, 162, 88);}
-              .code-blue{color: rgb(93, 93, 154);}
+              letter-spacing: 0.1px;
+              font-family: verdana;
+              .code-yellow{color: #e1ca72;}
+              .code-green{color: #74b087;}
+              .code-blue{color: #7a99ad;}
             }
           }
         }

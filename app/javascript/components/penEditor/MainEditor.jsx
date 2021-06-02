@@ -22,16 +22,16 @@ const MainEditor = ( ) => {
         <SplitPane split="vertical" minSize={"33%"}>
           {/* editor html */}
           <Editor editorTitle={"HTML"} editorId={"editor--html"} editorClass={"editor-code editor-html"}/>
-          <SplitPane split="vertical" minSize={"50%"}>
+          <SplitPane split="vertical" minSize={100} defaultSize={300} primary="second" className="right-spliter">
             {/* editor css */}
             <Editor editorTitle={"CSS"} editorId={"editor--css"} editorClass={"editor-code editor-css"}/>
             {/* editor js */}
-            <Editor editorTitle={"JavaScript"} editorId={"editor--js"} editorClass={"editor-code editor-js"}/>
+            <Editor editorTitle={"JavaScript"} editorId={"editor--js"} editorClass={"editor-code editor-js"} />
           </ SplitPane>
         </ SplitPane>
 
         <div className={isOpen}>
-          <SplitPane split="horizontal" minSize={"50%"} className="iframeAndConsole">
+          <SplitPane split="horizontal" className="iframeAndConsole">
               <Iframe />
               <EditorConsole />
           </ SplitPane>

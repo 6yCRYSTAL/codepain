@@ -15,7 +15,6 @@ export default function getLike(e) {
     // 愛心樣式與數字
     ax.post(`/api/v1/pens/${url}/love`)
     .then(response => {
-      console.log(response.data.status);
       if(response.data.status === "added"){
         likeIcon.style.color = 'red';
         likeCount += 1;

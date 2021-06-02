@@ -20,11 +20,9 @@ export default class extends Controller {
     const searchInput = this.searchInputTarget.value
     const url = new URL(location.href)
     const params = url.searchParams
-    console.log(url);
 
     params.set('search_term', searchInput)
     params.delete('page')
-
     if (searchInput && !(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }
@@ -36,7 +34,6 @@ export default class extends Controller {
     const params = url.searchParams
 
     params.set('sort_by', sortBySelected.value)
-
     if (!(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }

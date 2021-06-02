@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    enabled: true,
+    // enabled: true,
     content: [
       "app/**/*.html.erb",
       "app/**/**/*.html.erb",

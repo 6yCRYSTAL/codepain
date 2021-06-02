@@ -130,7 +130,19 @@
               color: #fff;
               font-size: 12px;
               line-height: 1px;
-              .code-yellow{color: rgb(210, 210, 121)}
+              .typewriter{
+                @keyframes caret {
+                  50% { border-color: transparent; }
+                }
+                @keyframes typing {
+                  from { width: 0 }
+                }
+                border-right: .05em solid;
+                margin-left: 10px;
+                animation: typing 1s steps(4),
+                caret 1s steps(1) infinite;
+              }
+              .code-yellow{color: rgb(210, 210, 121);}
               .code-orange{color: rgb(254, 169, 11);}
               .code-purple{color: rgb(136, 78, 136);}
             }
@@ -189,15 +201,16 @@
       border-radius: 10px;
       margin: 0 auto;
       color: #fff;
-      z-index: -1;
+      position: relative;
+      z-index: 1;
       .homepage-illustration{
         width: 75px;
         height: 75px;
         position: absolute;
-        z-index: -2;
+        z-index: 2;
         background-color: #131417;
         border-radius: 10px;
-        top: 535px;
+        top: -40px;
         .home-illustration-desk{
           width: 60px;
           height: 60px;

@@ -34,11 +34,6 @@
       Change View</button>
       <div class="pinned-btn">
         <button class="btn-pinned">
-          <!-- <img src="images/loading-icon-svg" alt="">
-          <img src="images/pen-icon-svg" alt="">
-          <svg class="animate-spin h-5 w-5 mr-3 text-pink-500 bg-pink-500"  viewBox="0 0 24 24">
-          </svg>
-          -->
           <span><i  class="fas fa-thumbtack"></i></span>
           <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24"></svg>
         </button>
@@ -52,39 +47,24 @@
         </div>
         <div class="list">
         <ul>
+          <li>
             <i class="fas fa-window-maximize icon-a"></i>
+            test123123123
             <button class="item"><i class="delete fas fa-times"></i></button>
           </li>
           <li class="my-pin">
             <i class="fas fa-window-maximize icon-a"></i>
+            test123123123
             <button class="item"><i class="delete fas fa-times"></i></button>
           </li>
           <li class="my-pin">
             <i class="fas fa-window-maximize icon-a"></i>
+            test123123123
             <button class="item"><i class="delete fas fa-times"></i></button>
           </li>
       </div>
     </div>
   </div>
-  <div class="userMenu-box">
-    <button class="userMenu-img" id="userMenu-btn">
-      <img
-        src="https://gravatar.com/avatar/2b1915d0982115d83fa2d2c09ae3c4af?d=https%3A%2F%2Fassets.codepen.io%2Finternal%2Favatars%2Fusers%2Fdefault.png&fit=crop&format=auto&height=80&version=0&width=80"
-        alt="使用者圖像">
-    </button>
-    <ul class="userMenu-topnav">
-      <li><a href="#">Your Work</a></li>
-      <li><a href="#">Profile</a></li>
-      <li class="divider_before"><a href="#">New Pen</a>
-      <li><a href="#">New Project</a></li>
-      <li><a href="#">New Collection</a></li>
-      <li class="divider_before"><a href="#">Asset Manager</a>
-      <li><a href="#">Embed Theme Builder</a></li>
-      <li class="divider_before"><a href="#">Upgrade to</a>
-      <li><a href="#">Documentation</a></li>
-      <li><a href="#">Support</a></li>
-      <li class="divider_before"><a href="#">Settings</a>
-      <li><a href="#">LogOut</a></li>
-    </ul>
-  </div>
+  <%= render 'shared/user_menu_box' %>
 </header>
+

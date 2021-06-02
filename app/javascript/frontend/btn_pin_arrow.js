@@ -15,10 +15,11 @@ document.addEventListener('turbolinks:load' , function(){
   })
 }
 const closeBtns = document.querySelectorAll('.item')
-  closeBtns.forEach((btn)=>{
+  if (closeBtns){
+    closeBtns.forEach((btn)=>{
       btn.addEventListener('click',function(e){
-        console.log(e.target.parentNode.parentNode)
         e.currentTarget.parentNode.remove()
+      })
     })
-  })
+  }
 })

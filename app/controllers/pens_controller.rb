@@ -7,7 +7,7 @@ class PensController < ApplicationController
     unless current_user
       redirect_to :root
     else
-      search_user_pen(params[:page], 20)
+      search_user_pen(params[:page], 20)｀
       search_user_pen(1, 20) if @pens.current_page > @pens.total_pages
 
       # deleted tab

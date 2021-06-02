@@ -1,5 +1,11 @@
 class PensController < ApplicationController
+<<<<<<< HEAD
   before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
+=======
+  layout false
+  before_action :authenticate_user!
+  before_action :find_user_pen, only: [:show, :edit, :destroy]
+>>>>>>> refs/remotes/origin/show_page
   # impressionist :actions=>[:edit]
 
   def index
@@ -13,10 +19,9 @@ class PensController < ApplicationController
       # deleted tab
       @deleted_pens = current_user.pens.deleted_in_1_hour
 
-      # for Comment
-      @comment = current_user.comments.new
-      render layout: "application"
-    end
+    # for Comment
+    @comment = current_user.comments.new
+    render layout: "application"
   end
 
   def new
@@ -37,15 +42,8 @@ class PensController < ApplicationController
   end
 
   def edit
-    if @pen.private && current_user != @pen.user
-      redirect_to pens_path, alert: "This is a private pen. Please contact the owner for more information."
-    else
-      render layout: "edit"
-      begin
-        impressionist(@pen)
-      rescue
-      end
-    end
+    impressionist(@pen)
+    render layout: "edit"
   end
 
   def destroy

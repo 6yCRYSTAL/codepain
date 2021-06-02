@@ -82,9 +82,9 @@ document.addEventListener('turbolinks:load',function(){
   }
 
   // order
-  if (window.location.href.includes('sort_order')) {
-    document.querySelector('.sortOrderASC').classList.add('order-active')
-  } else {
-    document.querySelector('.sortOrderDESC').classList.add('order-active')
-  }
+  // if (window.location.href.includes('sort_order')) {
+  //   document.querySelector('.sortOrderASC').classList.add('order-active')
+  // } else {
+  //   document.querySelector('.sortOrderDESC').classList.add('order-active')
+  // }
 })

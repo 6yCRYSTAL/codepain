@@ -4,27 +4,25 @@ import Swal from 'sweetalert2'
 import Turbolinks from 'turbolinks'
 
 export default class extends Controller {
-  static targets = [ 'deleteBtn',
-                     'trashedPen',
+  static targets = [ 'trashedPen',
                      'trashedPenTitle',
                      'restoreBtn',
                      'restoreNotice',
                      'deleteNotice',
                      'reallyDeleteBtn'
                     ]
-  static values = { id: Number }
+  static values = { random: String, username: String }
 
   restore() {
-    let randomURL
     let username
     Rails.ajax({
-      url: `/api/v1/deleted_pens/${this.idValue}`,
+      url: `/api/v1/deleted_pens/${this.randomValue}`,
       type: 'PATCH',
-      data: `pen[id]=${this.idValue}`,
-      success: (data) => {
-        randomURL = data.payload.random_url
-        username = data.payload.username
-      }
+      data: `pen[random_url]=${this.randomValue}`
+      // success: (data) => {
+      //   randomURL = data.payload.random_url
+      //   username = data.payload.username
+      // }
     })
 
     setTimeout(() => {
@@ -34,7 +32,7 @@ export default class extends Controller {
       this.restoreNoticeTarget.classList.remove('hidden')
       setTimeout(() => {
         this.trashedPenTarget.remove()
-        Turbolinks.visit(`${location.origin}/${username}/pen/${randomURL}`)
+        Turbolinks.visit(`${location.origin}/${this.usernameValue}/pen/${this.randomValue}`)
       }, 1800)
     }, 1000)
   }
@@ -73,9 +71,9 @@ export default class extends Controller {
           this.deleteNoticeTarget.classList.remove('hidden')
           setTimeout(() => {
             Rails.ajax({
-              url: `/api/v1/deleted_pens/${this.idValue}`,
+              url: `/api/v1/deleted_pens/${this.randomValue}`,
               type: 'DELETE',
-              data: `pen[id]=${this.idValue}`
+              data: `pen[id]=${this.randomValue}`
             })
             this.trashedPenTarget.remove()
           }, 1800)
@@ -116,10 +114,17 @@ export default class extends Controller {
       confirmButtonText: `I understand, delete My Pen`
     }).then(result => {
       if (result.isConfirmed) {
-        const editPagePath = location.pathname
-        const userName = editPagePath.split('/')[1]
-        const randomURL = editPagePath.split('/').pop()
-        const penDelParams = `user[username]=${userName}&pen[random_url]=${randomURL}`
+        if ((!!this.hasUsernameValue) && (!!this.hasRandomValue)) {
+          var username = this.usernameValue
+          var randomURL = this.randomValue
+
+        } else {
+          var editPagePath = location.pathname
+          var username = editPagePath.split('/')[1]
+          var randomURL = editPagePath.split('/').pop()
+        }
+
+        var penDelParams = `user[username]=${username}&pen[random_url]=${randomURL}`
 
         Swal.fire({
           position: 'top',
@@ -140,11 +145,19 @@ export default class extends Controller {
             Swal.showLoading()
           },
           willClose: () => {
-            Rails.ajax({
-              url: editPagePath,
-              type: 'DELETE',
-              data: penDelParams
-            })
+            if ((!!editPagePath)) {
+              Rails.ajax({
+                url: editPagePath,
+                type: 'DELETE',
+                data: penDelParams
+              })
+            } else {
+              Rails.ajax({
+                url: `${username}/pen/${randomURL}`,
+                type: 'DELETE',
+                data: penDelParams
+              })
+            }
             Turbolinks.clearCache()
             Turbolinks.visit(`${location.origin}/your-work`)
           }

@@ -1,4 +1,4 @@
-class Api::V1::OrdersController < ApplicationController
+class Api::V1::OrdersController < Api::ApiController
   before_action :authenticate_user!, except: [:result]
   # 注意!!以下是csrf豁免
   skip_before_action :verify_authenticity_token, only: [:result, :client]
@@ -98,11 +98,7 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def find_product
-    begin
       @product = Product.find_by!('plan = ? AND period = ?',
                                    params[:plan], params[:period])
-    rescue
-      redirect_to pens_path
-    end
   end
 end

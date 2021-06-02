@@ -18,11 +18,6 @@ function getSaveBtn() {
       Rails.ajax({
         url: '/api/v1/pens',
         type: 'post',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        dataType: 'json',
         data: paramsFromNewPen
       })
       savedNotice()

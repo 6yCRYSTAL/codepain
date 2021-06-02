@@ -1,5 +1,8 @@
+div.consoleClose div.iframeAndConsole div.Pane1{
+  height: 100% !important;
+}
 .SplitPane-horizontal{
-  padding-top: 60px;
+  padding-top: 65px;
 }
 .Resizer {
   background: #000;
@@ -38,4 +41,16 @@
 
 .Resizer.disabled:hover {
   border-color: transparent;
+}
+
+.fake-console{
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  z-index: 100;
+  color: var(--light-gray);
+  font-size: var(--text-s-p);
+  padding: 2px 7px;
+  background-color: var(--primary-gray-4);
+  border-radius: 2px;
 }

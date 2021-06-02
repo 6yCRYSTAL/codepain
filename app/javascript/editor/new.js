@@ -110,7 +110,7 @@ document.addEventListener('turbolinks:load', () => {
       // 先把原本的console 備份起來
       let oldConsole = console
 
-      editorJS.getSession().on('change', ()=>{
+      editorJS.getSession().on('change', debounce(()=>{
         let stdoutMsg = ""
         // 改寫 console
         window.console = {
@@ -127,7 +127,7 @@ document.addEventListener('turbolinks:load', () => {
         }
         // 恢復原本的 console.log
         window.console = oldConsole
-      })
+      }) )
     }
 
     init()

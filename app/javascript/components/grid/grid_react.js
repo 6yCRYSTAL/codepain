@@ -33,7 +33,7 @@ function GridItem() {
         // 清除使用者pen js裡的 console.log()
         // setTimeout( () => {
         //   console.clear()
-        // }, 1000)
+        // }, 500)
       })
   }, [clickPage]);
   // 上下頁功能

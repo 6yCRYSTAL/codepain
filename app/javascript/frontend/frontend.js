@@ -56,7 +56,7 @@ document.addEventListener('turbolinks:load',function(){
 
   // 偵測網址 tab 樣式
   if (DeleteTab) {
-    let hashName = window.location.search;
+    let hashName = location.search;
     const YourWorkTab = document.querySelector('.your-work-tab');
     const GridBtn = document.querySelector('.grid-btn button');
     const ListBtn = document.querySelector('.list-btn button');
@@ -79,5 +79,12 @@ document.addEventListener('turbolinks:load',function(){
   // 全站搜尋頁面
   if (searchUsersFeatures) {
     searchUsersFeatures.parentElement.style.maxWidth = '1280px'
+  }
+
+  // order
+  if (window.location.href.includes('sort_order')) {
+    document.querySelector('.sortOrderASC').classList.add('order-active')
+  } else {
+    document.querySelector('.sortOrderDESC').classList.add('order-active')
   }
 })

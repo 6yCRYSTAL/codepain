@@ -408,9 +408,9 @@ to {
   background-color: var(--primary-gray-5);
   border-radius: 6px 0 6px 6px;
   z-index: 200;
-  display: none;
+  visibility: hidden;
   opacity: 0;
-  transform: scale(.9);
+  transform: scale(.8);
   transform-origin: top right;
   transition: all .2s ease-in-out;
   a{
@@ -443,7 +443,7 @@ to {
 
 }
 .userMenu-topnav.active{
-  display: block;
+  visibility: inherit;
   transform: scale(1);
   opacity: 1;
 }

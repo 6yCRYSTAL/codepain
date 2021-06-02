@@ -37,22 +37,24 @@ module PensHelper
     end
   end
 
-  # save as private button on edit_header(new)
+  # on edit_header(new)
   def save_as_private_button
-    begin
+    if current_user
       if current_user.membership != "free" && action_name == "new"
         "<button class='btn-save' id='btn-save-as-private'><span><i class='fas fa-cloud'></i></span>Save as Private</button>".html_safe
       end
-    rescue
     end
   end
 
-  # def private_switch
-  #   if current_user.membership != "free" && action_name == "edit"
+  def private_switch
+    if current_user
+      if current_user.membership != "free" && action_name == "edit"
+        render 'shared/private_switch'
+      end
+    end
+  end
 
-  # end
-
-  # pin button on edit_header
+  # on edit_header
   def pin_button
     if current_user
       "<div class='pinned-btn'>
@@ -97,19 +99,6 @@ module PensHelper
     else
       prev_page_button(pens) +
       next_page_button(pens)
-    end
-  end
-
-  # comment counts
-  def comments_count_text(comments_count)
-    if comments_count == 0
-      "<p>
-        <strong>No Comments</strong>
-        <br>
-        You can be the first!
-      </p>".html_safe
-    else
-      pluralize comments_count, "comment"
     end
   end
 end

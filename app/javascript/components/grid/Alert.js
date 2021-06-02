@@ -11,7 +11,7 @@ export default function Alert(props) {
       setToggle(false);
       document.querySelector('body').classList.remove('fixed');
       // 修改網址
-      history.replaceState(null, 'your-work', `${window.location.origin}/your-work?grid_type=grid`);
+      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
     };
   };
   // 新增網址，而不會刷新頁面
@@ -24,10 +24,7 @@ export default function Alert(props) {
         <a href="#" id="username">
           <h1>{user_name}</h1>
         </a>
-        <p>{title}</p>
-        <p>{html}</p>
-        <p>{css}</p>
-        <p>{js}</p>
+        <div className="points-wrap points-content-bottom" data-url={`${random_url}`}></div>
         <div className="bg-gray-300" data-controller="comcreate">
           <section>
             <textarea className="w-6/12 h-20"

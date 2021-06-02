@@ -605,3 +605,30 @@ label {
     color: #000;
   }
 }
+
+.private-switch-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.private-switch {
+  @apply flex items-center justify-center text-white mr-4;
+  .private-switch-label {
+    @apply flex items-center cursor-pointer mx-2;
+    input {
+      &~ .dot {
+        @apply absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition;
+        transform: translateX(100%);
+      }
+      &:checked ~ .dot {
+        transform: translateX(0);
+        background-color: #48bb78;
+      }
+
+    }
+    .block {
+      @apply bg-gray-600 w-14 h-8 rounded-full
+    }
+  }
+}
+

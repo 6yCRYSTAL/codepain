@@ -14,15 +14,10 @@ export default class extends Controller {
   static values = { random: String, username: String }
 
   restore() {
-    let username
     Rails.ajax({
       url: `/api/v1/deleted_pens/${this.randomValue}`,
       type: 'PATCH',
       data: `pen[random_url]=${this.randomValue}`
-      // success: (data) => {
-      //   randomURL = data.payload.random_url
-      //   username = data.payload.username
-      // }
     })
 
     setTimeout(() => {

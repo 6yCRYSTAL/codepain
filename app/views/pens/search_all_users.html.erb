@@ -33,10 +33,14 @@
                 </button>
               </a>
           </div>
-          <footer class="pen-footer">
-            <button class="pen-footer-style" data-btn="love">
-              <i class="fas fa-heart"></i>
-              <span><%= pen.heart_lists_count %></span>
+          <footer class="pen-footer" data-controller="stats"
+                                     data-stats-target="yourWork"
+                                     data-stats-loved-class="text-red-600"
+                                     data-stats-random-value="<%= pen.random_url %>">
+            <button class="pen-footer-style" data-btn="love" data-action="click->stats#toggleHeart">
+              <i class="fas fa-heart cursor-pointer stroke-current"
+                 data-stats-target="heart"></i>
+              <span data-stats-target="heartListsCount"></span>
             </button>
             <a href="#" class="pen-footer-style" data-btn="comments">
               <i class="fas fa-comment"></i>

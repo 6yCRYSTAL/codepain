@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 彈跳視窗功能
-export default function Alert(props) {
+const Alert = (props) => {
   const { setToggle } = props;
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = props.data;
 
@@ -49,3 +49,4 @@ export default function Alert(props) {
   );
 };
 
+export default Alert

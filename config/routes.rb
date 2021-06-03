@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pens, only: [:create, :edit, :update], param: :random_url do
         member do
+          get :love, action: 'love_pen'
           post :love, action: 'love_list'
           post :pin, action: 'pin_create'
           post :private, action: 'private_toggle'
@@ -57,7 +58,7 @@ Rails.application.routes.draw do
           get :pins, action: 'pin_list'
         end
       end
-      resources :deleted_pens, only: [:update, :destroy]
+      resources :deleted_pens, only: [:update, :destroy], param: :random_url
       # orders
       resources :orders, only: [:create] do
         collection do

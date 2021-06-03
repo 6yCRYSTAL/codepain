@@ -77,5 +77,4 @@ document.addEventListener('turbolinks:load',function(){
   if (searchUsersFeatures) {
     searchUsersFeatures.parentElement.style.maxWidth = '1280px'
   }
-
 })

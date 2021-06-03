@@ -41,7 +41,7 @@ Product.create(
   [{
     plan: 'starter',
     desc: 'CodePain membership: Annual Starter',
-    subtitle: 'Starter is the way to go. Welcome to CodePen.',
+    subtitle: 'Starter is the way to go. Welcome to CodePain.',
     period: 'year',
     price: 300,
     monthly_rate: 30
@@ -65,7 +65,7 @@ Product.create(
   {
     plan: 'starter',
     desc: 'CodePain membership: Starter',
-    subtitle: 'Starter is the way to go. Welcome to CodePen.',
+    subtitle: 'Starter is the way to go. Welcome to CodePain.',
     period: 'month',
     price: 30,
     annual_rate: 300

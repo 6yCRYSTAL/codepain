@@ -23,7 +23,7 @@ export default function points() {
                 <span>Make Private</span>
                 <span class="logo-pro">pro</span>
               </button>
-              <button class="delete-btn">
+              <button class="delete-btn" data-action="click->delete-pen#popup">
                 <div class="trash-icon"><i class="fas fa-trash"></i></div>
                 <span>Delete</span>
               </button>

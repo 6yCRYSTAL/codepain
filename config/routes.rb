@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     delete 'logout', to: 'users/sessions#destroy'
   end
 
+  resource :user, only: [] do
+    collection do
+      post 'follow', to: 'follows#follow'
+      post 'unfollow', to: 'follows#unfollow'
+    end
+  end
+
   # products
   get '/accounts/pro', to: 'products#index', as: 'products'
   get '/accounts/pro/billing/:plan/:period', to: 'products#show', as: 'product'
@@ -30,8 +37,6 @@ Rails.application.routes.draw do
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   get '/search/pens',  to: 'pens#search_all_users', as: 'search_all_users_pens'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-
-
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'

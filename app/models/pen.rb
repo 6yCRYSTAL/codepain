@@ -40,6 +40,13 @@ class Pen < ApplicationRecord
     end
   end
 
+  def trash!
+    # change pen state
+    self.update(state: 'trashed')
+    # soft_delete the pen
+    self.destroy
+  end
+
   def generate_random_url
     require 'securerandom'
     new_random_url = SecureRandom.urlsafe_base64(6)

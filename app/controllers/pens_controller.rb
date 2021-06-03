@@ -1,10 +1,11 @@
 class PensController < ApplicationController
+  include Searchable
   before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]
 
   def index
     # pens tab / all or search
-    unless current_user
+    unless user_signed_in?
       redirect_to :root
     else
       search_user_pen(params[:page], 20)
@@ -15,13 +16,12 @@ class PensController < ApplicationController
 
       # for Comment
       @comment = current_user.comments.new
-      render layout: "application"
     end
   end
 
   def new
     @pen = Pen.new
-    render layout: "edit"
+    render layout: "editor"
   end
 
   def show
@@ -29,18 +29,14 @@ class PensController < ApplicationController
     @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 
-    render layout: "show"
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    render layout: "details"
   end
 
   def edit
     if @pen.private && current_user != @pen.user
       redirect_to pens_path, alert: "This is a private pen. Please contact the owner for more information."
     else
-      render layout: "edit"
+      render layout: "editor"
 
       impressionist(@pen)
     end
@@ -48,11 +44,9 @@ class PensController < ApplicationController
 
   def destroy
     if current_user && current_user == @pen.user
-      # change pen state
-      @pen.update(state: 'trashed')
-      # soft_delete the pen
-      @pen.destroy
-      redirect_to pens_path, notice: "DELETED!!!"
+      @pen.trash!
+
+      redirect_to pens_path
     else
       redirect_to :root
     end
@@ -64,6 +58,5 @@ class PensController < ApplicationController
     rescue
       @pens = Pen.includes(:user).page(params[:page]).per(6)
     end
-    render layout: "application"
   end
 end

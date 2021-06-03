@@ -4,7 +4,8 @@ module.exports = {
     content: [
       "app/**/*.html.erb",
       "app/**/**/*.html.erb",
-      "app/helpers/**/*.rb"
+      "app/helpers/**/*.rb",
+      "app/**/**/*.jsx",
     ]
   },
   darkMode: false,

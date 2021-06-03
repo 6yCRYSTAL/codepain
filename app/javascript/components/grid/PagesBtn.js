@@ -1,6 +1,7 @@
 import React from 'react'
+
 // 換頁功能
-export default function PagesBtn(props) {
+const PagesBtn = (props) =>{
   let { nextBtn,prevBtn,currentPage,allPages } = props;
   return(
     <div className="next-prev-btn">
@@ -26,4 +27,4 @@ export default function PagesBtn(props) {
     </div>
   );
 };
-
+export default PagesBtn

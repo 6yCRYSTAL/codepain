@@ -80,11 +80,4 @@ document.addEventListener('turbolinks:load',function(){
   if (searchUsersFeatures) {
     searchUsersFeatures.parentElement.style.maxWidth = '1280px'
   }
-
-  // // order
-  // if (window.location.href.includes('sort_order')) {
-  //   document.querySelector('.sortOrderASC').classList.add('order-active')
-  // } else {
-  //   document.querySelector('.sortOrderDESC').classList.add('order-active')
-  // }
 })

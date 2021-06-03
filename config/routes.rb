@@ -58,7 +58,7 @@ Rails.application.routes.draw do
           get :pins, action: 'pin_list'
         end
       end
-      resources :deleted_pens, only: [:update, :destroy]
+      resources :deleted_pens, only: [:update, :destroy], param: :random_url
       # orders
       resources :orders, only: [:create] do
         collection do

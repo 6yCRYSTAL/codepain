@@ -14,7 +14,6 @@ export default class extends Controller {
     let config = { attributes: true, childList: true };
     let callback = (mutationsList) => {
           for(let mutation of mutationsList) {
-            console.log(mutation)
             if (mutation.addedNodes.length === 1){
               if (this.comments_count === 0) {
                 this.comments_count += 1

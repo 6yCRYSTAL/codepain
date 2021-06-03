@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { comment } from 'postcss';
 
 // 彈跳視窗功能
 const Alert = (props) => {
   const { setToggle } = props;
-  // const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = props.data;
+  const { user_name,random_url,comments_count,view_count } = props.data;
 
+  const [ comments, setComments ] = useState([])
 
+  useEffect( () => {
+    axios({
+      method: 'get',
+      url: '/api/v1/comments',
+      params:{
+        random_url: `${random_url}`
+      }
+    })
+    .then( (response) => {
+        //TODO
+        console.log(response.data.payload)
+        let commentData = response.data.payload.comments
+        setComments(commentData)
+    })
+  }, [])
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -19,11 +36,10 @@ const Alert = (props) => {
   };
   // 新增網址，而不會刷新頁面
   React.useEffect(() =>{
-    // history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
+    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
   })
 
   return(
-
     <div id="modal" className="modal-container" onClick={ closeAlert }>
       <div className="modal-content">
         <a href="#" id="username"> {user_name} </a>
@@ -43,26 +59,32 @@ const Alert = (props) => {
             <p className="uppercase" data-comments-count={comments_count} data-comment-create-target="commentsCount">
               {comments_count} comments</p>
             <ol data-comment-create-target="list" id="comment-list">
-              {/* each do */}
-              <li data-controller="comment-update comment-delete"
-                  data-comment-update-target="commentLi"
-                  data-comment-delete-target="commentLi"
-                  data-comment-delete-id-value="??????????">
-                <div>
-                  <span>{user_name} (@{user_name})</span>
-                  <span>???????????</span>
-                </div>
-                <div className="comment-update-block" data-comment-update-target="commentBlock">
-                  <textarea data-comment-update-target="updateTextArea">??????????</textarea>
-                  <button data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id="??????????"> Update </button>
-                  <button data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
-                </div>
-                <div>
-                  <p data-comment-update-target="commentShow">??????????</p>
-                </div>
-              <button data-action="click->comment-update#edit" data-comment-update-target="editBtn"> Edit </button>
-              <button data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn"> Delete</button>
-              </li>
+            {
+              comments.map( (commentData) => {
+                return(
+                  <li data-controller="comment-update comment-delete"
+                      data-comment-update-target="commentLi"
+                      data-comment-delete-target="commentLi"
+                      data-comment-delete-id-value={commentData.id}
+                      key={commentData.id}>
+                    <div>
+                      <span>{user_name} (@{user_name})</span>
+                      <span>{commentData.created_at}</span>
+                    </div>
+                    <div className="comment-update-block" data-comment-update-target="commentBlock">
+                      <textarea data-comment-update-target="updateTextArea" defaultValue={commentData.content}></textarea>
+                      <button data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id="{commentData.id}"> Update </button>
+                      <button data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
+                    </div>
+                    <div>
+                      <p data-comment-update-target="commentShow">{commentData.content}</p>
+                    </div>
+                    <button data-action="click->comment-update#edit" data-comment-update-target="editBtn"> Edit </button>
+                    <button data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn"> Delete</button>
+                  </li>
+                )
+              })
+            }
             </ol>
           </section>
         </div>

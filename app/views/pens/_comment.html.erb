@@ -1,6 +1,6 @@
 <div class="bg-gray-300"
   data-controller="comment-create"
-  data-comment-create-url-value="<%= pen.random_url %>"
+  data-comment-create-url-value="<%='a' + pen.random_url %>"
   data-comment-create-comments-count-value="<%= comments_count %>">
 <%# 開發用淺色背景 %>
   <section >
@@ -24,7 +24,7 @@ Give the creator a confidence boost!"
       data-comment-create-target="commentsCount"
     >
       <%= comments_count_text(comments_count) %></p>
-    <ol data-comment-create-target="list" id="<%= pen.random_url %>">
+    <ol data-comment-create-target="list" id="<%='a' + pen.random_url %>">
       <% comments.each do |comment| %>
       <li
         data-controller="comment-update comment-delete"

@@ -35,8 +35,14 @@ class Api::V1::PensController < Api::ApiController
     end
   end
 
+  def love_pen
+    @pen = Pen.find_by!(random_url: love_params[:random_url])
+
+    success!({ boolean: love_pen?(@pen), count: @pen.lovers.size }) if current_user
+  end
+
   def love_list
-    @pen = Pen.find_by(random_url: love_params[:random_url])
+    @pen = Pen.find_by!(random_url: love_params[:random_url])
 
     if current_user.loved?(@pen)
       current_user.love_pens.destroy(@pen)

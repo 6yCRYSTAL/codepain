@@ -11,7 +11,7 @@ rails db:prepare
 ```
 # 6yCRYSTAL members
 ## frontend
-- [p4952015](https://github.com/p4952015)
+- [YingXi Liu](https://github.com/p4952015)
 - [Mandy Tsai](https://github.com/mandy0315)
 - [Senri](https://github.com/Senri8468)
 ## backend

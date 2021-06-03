@@ -23,7 +23,6 @@ export default class extends Controller {
 
     params.set('search_term', searchInput)
     params.delete('page')
-
     if (searchInput && !(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }
@@ -35,7 +34,6 @@ export default class extends Controller {
     const params = url.searchParams
 
     params.set('sort_by', sortBySelected.value)
-
     if (!(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }

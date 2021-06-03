@@ -10,7 +10,8 @@
   <div class="deleted-pen-item">
     <% deleted_pens.each do |pen| %>
     <div class="deleted-pen-wrap" data-controller="delete-pen"
-                                  data-delete-pen-id-value="<%= pen.id %>"
+                                  data-delete-pen-random-value="<%= pen.random_url %>"
+                                  data-delete-pen-username-value="<%= current_user.username %>"
                                   data-delete-pen-target="trashedPen">
       <h2 data-delete-pen-target="trashedPenTitle">
         <%= pen.title %>

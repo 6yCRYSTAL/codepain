@@ -23,6 +23,6 @@ class Api::V1::DeletedPensController < Api::ApiController
   private
 
   def find_trashed_pen
-    @pen = Pen.is_trashed.find_by!(id: params[:id])
+    @pen = Pen.is_trashed.find_by!(random_url: params[:random_url])
   end
 end

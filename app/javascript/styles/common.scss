@@ -197,7 +197,7 @@ main{
       }
     }
     .codepain-link{
-      @apply flex;
+      @apply flex items-center;
       p{
         @apply m-0 pr-2;
       }
@@ -481,6 +481,9 @@ to {
     a{
       color: var(--primary-gray-1);
       text-decoration: none;
+      &:hover {
+        color: white;
+      }
     }
   }
 }

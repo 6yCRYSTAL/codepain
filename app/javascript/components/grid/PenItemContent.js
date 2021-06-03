@@ -22,7 +22,7 @@ const PenItemContent = (props) => {
   return(
     <div className="pen-item">
       <header className="pen-header">
-        <h2>{title}</h2>
+        <a href={`${user_name}/pen/${random_url}`}>{title}</a>
         <div className="points-wrap points-content-top" data-url={`${random_url}`}>
         </div>
       </header>

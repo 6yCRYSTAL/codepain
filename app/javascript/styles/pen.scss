@@ -208,9 +208,10 @@
   @apply px-4 pt-4;
 }
 .pen-header{
-  h2{
+  a{
     font-size: var(--text-h6);
     color: var(--light-gray);
+    @apply cursor-pointer font-bold;
   }
   .pen-more{
     svg{

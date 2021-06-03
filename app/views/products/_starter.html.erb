@@ -1,11 +1,73 @@
-<% if @product.period == 'year' %>
-  這是Annual Starter
-  <%= link_to '確定購買',
-    api_v1_orders_path(plan: params[:plan], period: params[:period]),
-    method: 'POST' %>
-<% else %>
-  這是 Starter
-    <%= link_to '確定購買',
-    api_v1_orders_path(plan: params[:plan], period: params[:period]),
-    method: 'POST' %>
-<% end %>
+<div class="form-wrap user-form <%= @product.plan %>-form pro-form-wrap">
+  <header class="signup-header">
+    <h1><%= @product.plan %></h1>
+    <p><%= @product.subtitle %></p>
+  </header>
+
+  <div class="user-container">
+    <div class="user-form-left pro-form" data-controller="pro-form">
+      <%= pro_form_left %>
+      <p class="signup-agreement pro-member">By clicking "Submit", you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> .</p>
+    </div>
+
+    <div class="signup-feature-list tier-name">
+      <h3>STARTER</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Project Count</dt>
+            <dd class="data">20</dd>
+            <dt>Files per Project</dt>
+            <dd class="data">50</dd>
+            <dt>Deploys</dt>
+            <dd class="data">2</dd>
+            <dt>Custom Domains</dt>
+            <dd class="data">2</dd>
+          </dl>
+      </div>
+
+      <h3>PEN & PROJECT VIEWS</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Editor View</dt>
+            <dd class="data">✅</dd>
+            <dt>Full View</dt>
+            <dd class="data">✅</dd>
+            <dt>Details View</dt>
+            <dd class="data">✅</dd>
+            <dt>Shareable Debug View</dt>
+            <dd class="data">✅</dd>
+          </dl>
+      </div>
+
+      <h3>PEN FEATURES</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Collab Mode</dt>
+            <dd class="data">2👤</dd>
+            <dt>Professor Mode</dt>
+            <dd class="data">10👤</dd>
+            <dt>Presentation View</dt>
+            <dd class="data">✅</dd>
+          </dl>
+      </div>
+
+      <h3>ASSET HOSTING</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Total GB</dt>
+            <dd class="data">2 GB</dd>
+            <dt>Max File Size</dt>
+            <dd class="data">5 MB</dd>
+          </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="signup-footer">
+    <a href="#">Terms of Service</a>
+     ·
+    <a href="#">Privacy Policy</a>
+     ·
+    <a href="#">Code of Conduct</a>
+  </div>
+</div>

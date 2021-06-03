@@ -3,10 +3,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    begin
-      @product = Product.find_by('plan = ? AND period = ?', params[:plan], params[:period])
-    rescue
-      redirect_to pens_path
-    end
+    @product = Product.find_by('plan = ? AND period = ?', params[:plan], params[:period])
+
+    render layout: "user"
   end
 end

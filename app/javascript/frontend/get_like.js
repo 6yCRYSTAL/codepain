@@ -9,23 +9,22 @@ export default function getLike(e) {
   likeStatus(randomUrl);
   function likeStatus(url) {
     let likeIcon= document.querySelector(`[data-url="${url}"] .fa-heart`)
-    let likeSpan= document.querySelector(`[data-url="${url}"] span`);
+    let likeSpan= document.querySelector(`[data-url="${url}"] .heart-count`);
+    let likeSpanContent = likeSpan.textContent;
+    let likeCount = parseInt(likeSpanContent);
     // 愛心樣式與數字
     ax.post(`/api/v1/pens/${url}/love`)
     .then(response => {
       if(response.data.status === "added"){
         likeIcon.style.color = 'red';
-        let likeSpanContent = likeSpan.textContent;
-        let likeCount = parseInt(likeSpanContent);
         likeCount += 1;
         likeSpan.textContent = likeCount;
-      }else{
+      }else if(response.data.status === "removed"){
         likeIcon.style.color = 'white';
-        let likeSpanContent = likeSpan.textContent;
-        let likeCount = parseInt(likeSpanContent);
         likeCount -= 1;
         likeSpan.textContent = likeCount;
-      };
+      }
     });
+
   };
 };

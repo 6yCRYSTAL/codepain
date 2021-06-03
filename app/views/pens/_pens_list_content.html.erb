@@ -12,15 +12,25 @@
         <a href="#" id="username">
           <%= current_user.username %>
         </a>
-          <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
+          <div class="points-wrap points-content-bottom"
+               data-url="<%= pen.random_url %>"></div>
+          <%= render 'comment' , pen: pen,
+                                 comments: pen.comments,
+                                 comment: @comment,
+                                 comments_count: pen.comments_count %>
       </div>
     </div>
   </td>
   <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
   <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
-  <td class="stats" data-controller="stats" data-stats-loved-class="text-red-600" data-stats-heart-value="<%= current_user.loved? pen %>" data-stats-random-value="<%= pen.random_url %>" data-stats-heart-lists-count-value="<%= pen.heart_lists_count %>">
+  <td class="stats" data-controller="stats"
+                    data-stats-target="yourWork"
+                    data-stats-loved-class="text-red-600"
+                    data-stats-random-value="<%= pen.random_url %>">
     <div class="hearts">
-      <i class="fas fa-heart cursor-pointer stroke-current" data-stats-target="heart" data-action="click->stats#toggleHeart"></i>
+      <i class="fas fa-heart cursor-pointer stroke-current"
+         data-stats-target="heart"
+         data-action="click->stats#toggleHeart"></i>
       <span data-stats-target="heartListsCount"></span>
     </div>
     <div class="comments">
@@ -32,14 +42,11 @@
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="more">
-    <div class="more-icon">
-      <svg viewBox="0 0 29 7" width="28" title="more">
-        <circle cx="3.5" cy="3.5" r="3.5"></circle>
-        <circle cx="14.5" cy="3.5" r="3.5"></circle>
-        <circle cx="25.5" cy="3.5" r="3.5"></circle>
-      </svg>
-    </div>
+  <td class="points-wrap points-content-top" data-url="<%= pen.random_url %>"
+                                             data-controller="delete-pen"
+                                             data-delete-pen-username-value="<%= current_user.username %>"
+                                             data-delete-pen-random-value="<%= pen.random_url %>"
+                                             data-delete-pen-target="trashedPen">
   </td>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

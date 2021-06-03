@@ -1,4 +1,5 @@
 import Rails from '@rails/ujs'
+import savedNotice from './popup_notice';
 
 function getSaveBtn() {
   const saveBtn = document.querySelector('#btn-save');
@@ -17,13 +18,9 @@ function getSaveBtn() {
       Rails.ajax({
         url: '/api/v1/pens',
         type: 'post',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        dataType: 'json',
         data: paramsFromNewPen
       })
+      savedNotice()
     })
   }
 }

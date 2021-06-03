@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 彈跳視窗功能
-export default function Alert(props) {
+const Alert = (props) => {
   const { setToggle } = props;
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = props.data;
 
@@ -9,10 +9,12 @@ export default function Alert(props) {
   function closeAlert(e){
     if (e.target === e.currentTarget) {
       setToggle(false);
-      document.querySelector('body').classList.remove('fixe');
+      document.querySelector('body').classList.remove('fixed');
+      // 修改網址
+      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
     };
   };
-  // 修改網址列的內容，而不會刷新頁面
+  // 新增網址，而不會刷新頁面
   React.useEffect(() =>{
     history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
   })
@@ -22,10 +24,7 @@ export default function Alert(props) {
         <a href="#" id="username">
           <h1>{user_name}</h1>
         </a>
-        <p>{title}</p>
-        <p>{html}</p>
-        <p>{css}</p>
-        <p>{js}</p>
+        <div className="points-wrap points-content-bottom" data-url={`${random_url}`}></div>
         <div className="bg-gray-300" data-controller="comcreate">
           <section>
             <textarea className="w-6/12 h-20"
@@ -50,3 +49,4 @@ export default function Alert(props) {
   );
 };
 
+export default Alert

@@ -13,7 +13,14 @@
   </div>
   <div class="edit-btn-header">
     <%= private_switch %>
-    <button class="btn-Love"><span><i class="fas fa-heart"></i></span></button>
+    <button class="btn-Love" data-controller="stats"
+                             data-stats-target="editor"
+                             data-action="click->stats#toggleEditorHeart"
+                             data-stats-loved-class="text-red-600">
+      <span><i class="fas fa-heart stroke-current"
+               data-stats-target="heart"></i>
+      </span>
+    </button>
     <%= save_button %>
     <%= save_as_private_button %>
     <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>

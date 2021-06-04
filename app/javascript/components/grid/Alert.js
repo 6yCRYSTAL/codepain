@@ -8,18 +8,6 @@ const Alert = (props) => {
 
   const [ comments, setComments ] = useState([])
 
-  useEffect( () => {
-    Rails.ajax({
-      type: 'get',
-      url: '/api/v1/comments',
-      data: `random_url=${random_url}`,
-      success: (response) => {
-        let commentData = response.comments
-        setComments(commentData)
-      }
-    })
-  }, [])
-
   // 關掉彈跳視窗
   function closeAlert(e){
     if (e.target === e.currentTarget) {
@@ -34,6 +22,18 @@ const Alert = (props) => {
     history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
   },[])
 
+  useEffect( () => {
+    Rails.ajax({
+      type: 'get',
+      url: '/api/v1/comments',
+      data: `random_url=${random_url}`,
+      success: (response) => {
+        let commentData = response.comments
+        setComments(commentData)
+      }
+    })
+  }, [])
+
   return(
     <div id="modal" className="modal-container" onClick={ closeAlert }>
       <div className="modal-content">
@@ -41,8 +41,7 @@ const Alert = (props) => {
         <div className="points-wrap points-content-bottom" data-url={ random_url }></div>
         <div className="bg-gray-300"
              data-controller="comment-create"
-             data-comment-create-url-value={ random_url }
-             data-comment-create-comments-count-value={ comments_count }>
+             data-comment-create-url-value={ random_url }>
           <section>
             <textarea className="w-6/12 h-20"
                       placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
@@ -54,8 +53,7 @@ const Alert = (props) => {
             </span>
           </section>
           <section>
-            <p className="uppercase" data-comment-create-target="commentsCount">
-              { comments_count } comments</p>
+            <p className="uppercase" data-comment-create-target="commentsCount"> { comments_count } comments</p>
             <ol data-comment-create-target="list" id={random_url}>
             {
               comments.map( (commentData) => {

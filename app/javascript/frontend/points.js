@@ -5,6 +5,8 @@ document.addEventListener('turbolinks:load' , function(){
 // Points component
 export default function points() {
   const PointsWrap = document.querySelectorAll('.points-wrap');
+  const PointsFollowWrap = document.querySelectorAll('.points-follow-wrap');
+
   if(PointsWrap){
     PointsWrap.forEach((wrap) =>{
       wrap.innerHTML= `
@@ -23,11 +25,41 @@ export default function points() {
                 <span>Make Private</span>
                 <span class="logo-pro">pro</span>
               </button>
-              <button class="delete-btn" data-action="click->delete-pen#popup">
+              <button data-action="click->delete-pen#popup">
                 <div class="trash-icon"><i class="fas fa-trash"></i></div>
                 <span>Delete</span>
               </button>
             </div>
+          </div>
+        </div>
+      `
+    })
+    clickPointsBtn();
+  }
+  if(PointsFollowWrap){
+    PointsFollowWrap.forEach((wrap) =>{
+      wrap.innerHTML= `
+        <div class="points-content-wrap">
+          <button class="points-btn" data-action="click->follow#showUser">
+            <svg viewBox="0 0 29 7" width="28" title="points">
+              <circle cx="3.5" cy="3.5" r="3.5"></circle>
+              <circle cx="14.5" cy="3.5" r="3.5"></circle>
+              <circle cx="25.5" cy="3.5" r="3.5"></circle>
+            </svg>
+          </button>
+          <div class="points-content points-content-hidden">
+            <div class="points-content-box">
+              <button class="private-btn">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <span>Make Private</span>
+                <span class="logo-pro">pro</span>
+              </button>
+              <button data-action="click->follow#follow">
+                <div class="follow-icon"><i class="fas fa-check"></i></div>
+                <span data-follow-target="followUser"></span>
+              </button>
+            </div>
+
           </div>
         </div>
       `

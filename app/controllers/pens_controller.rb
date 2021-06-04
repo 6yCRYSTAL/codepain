@@ -62,10 +62,18 @@ class PensController < ApplicationController
 
   def follow
     begin
-      @pens = Pen.joins(user: {follower_relationships: :following})
-                 .where(user: current_user.following).shuffle
+      pens = Pen.joins(user: {follower_relationships: :following})
+                .includes(:user)
+                .where(user: current_user.following)
+                .shuffle
+      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
     rescue
-      @pens = Pen.joins(user: {follower_relationships: :following}).distinct.shuffle
+      pens = Pen.joins(user: {follower_relationships: :following})
+                 .includes(:user)
+                 .where.not(user: current_user)
+                 .distinct
+                 .shuffle
+      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
     end
   end
 end

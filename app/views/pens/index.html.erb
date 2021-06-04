@@ -1,10 +1,12 @@
 <div class="your-work-title">
-  <h1 class="big-title">Your Work</h1>
+  <%= link_to 'Your Work', pens_path, class: 'big-title' %>
+  <%= link_to 'Following', follow_path, class: 'big-title' %>
 </div>
 
 <nav class="your-work-tab">
   <%= link_to 'Pens', pens_path %>
   <%= link_to 'Deleted', pens_path(item_type: 'deleted_item'), id: 'tab-delete' %>
+  <%= link_to 'Following', follow_path %>
 </nav>
 
 <% if params[:item_type] != 'deleted_item' %>

@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-    pen = current_pen
+
+    pen = current_user.pens.find_by(random_url: params[:random_url])
 
     if @comment.save
       redirect_to  pen_path(pen, username: current_user.username), notice: 'YA'
@@ -30,13 +31,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content).merge({user_id: user_id, pen_id: pen_id})
   end
 
-  def current_pen
-    @pen = current_user.pens.find_by(random_url: params[:random_url])
-    return @pen
-  end
-
   def current_comment
     @comment = Comment.find_by(id: params[:id])
   end
-
 end

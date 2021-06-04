@@ -59,4 +59,13 @@ class PensController < ApplicationController
       @pens = Pen.includes(:user).page(params[:page]).per(6)
     end
   end
+
+  def follow
+    begin
+      @pens = Pen.joins(user: {follower_relationships: :following})
+                 .where(user: current_user.following).shuffle
+    rescue
+      @pens = Pen.joins(user: {follower_relationships: :following}).distinct.shuffle
+    end
+  end
 end

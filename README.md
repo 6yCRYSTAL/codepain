@@ -10,11 +10,9 @@ bundle install
 rails db:prepare
 ```
 # 6yCRYSTAL members
-## frontend
-- [p4952015](https://github.com/p4952015)
+- [Trisha Liu](https://github.com/p4952015)
 - [Mandy Tsai](https://github.com/mandy0315)
 - [Senri](https://github.com/Senri8468)
-## backend
 - [Vincent Yu](https://github.com/VincentYuuu)
 - [Yen-Ting Li](https://github.com/yentingli)
-- [cyhsujohn](https://github.com/cyhsujohn)
+- [John Hsu](https://github.com/cyhsujohn)

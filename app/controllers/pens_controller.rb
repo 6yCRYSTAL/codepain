@@ -25,7 +25,7 @@ class PensController < ApplicationController
   end
 
   def show
-    @comments = @pen.comments.all.order(id: :desc)
+    @comments = @pen.comments.order(id: :desc)
     @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 

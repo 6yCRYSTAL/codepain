@@ -49,10 +49,6 @@ gem 'omniauth-facebook', '~> 8.0'
 # https://github.com/rubysherpas/paranoia
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 
-# react on rails
-# https://www.shakacode.com/react-on-rails/docs/basics/tutorial
-gem 'react_on_rails', '~> 12.2'
-
 # view counter
 # https://github.com/charlotte-ruby/impressionist
 gem 'impressionist'

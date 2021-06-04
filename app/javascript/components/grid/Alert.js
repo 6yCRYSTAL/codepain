@@ -9,6 +9,20 @@ const Alert = (props) => {
 
   const [ comments, setComments ] = useState([])
 
+  // 關掉彈跳視窗
+  function closeAlert(e){
+    if (e.target === e.currentTarget) {
+      setToggle(false);
+      document.querySelector('body').classList.remove('fixed');
+      // 修改網址
+      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
+    };
+  };
+  // 新增網址，而不會刷新頁面
+  React.useEffect(() =>{
+    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
+  })
+
   useEffect( () => {
     axios({
       method: 'get',
@@ -24,20 +38,6 @@ const Alert = (props) => {
         setComments(commentData)
     })
   }, [])
-
-  // 關掉彈跳視窗
-  function closeAlert(e){
-    if (e.target === e.currentTarget) {
-      setToggle(false);
-      document.querySelector('body').classList.remove('fixed');
-      // 修改網址
-      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
-    };
-  };
-  // 新增網址，而不會刷新頁面
-  React.useEffect(() =>{
-    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
-  })
 
   return(
     <div id="modal" className="modal-container" onClick={ closeAlert }>

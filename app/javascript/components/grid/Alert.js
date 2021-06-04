@@ -14,8 +14,6 @@ const Alert = (props) => {
       url: '/api/v1/comments',
       data: `random_url=${random_url}`,
       success: (response) => {
-        //TODO
-        console.log(response.comments)
         let commentData = response.comments
         setComments(commentData)
       }
@@ -57,7 +55,7 @@ const Alert = (props) => {
           </section>
           <section>
             <p className="uppercase" data-comment-create-target="commentsCount">
-              {comments_count % 2} comments</p>
+              { comments_count } comments</p>
             <ol data-comment-create-target="list" id={random_url}>
             {
               comments.map( (commentData) => {

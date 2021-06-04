@@ -7,7 +7,7 @@ export default function points() {
   const PointsWrap = document.querySelectorAll('.points-wrap');
   const PointsFollowWrap = document.querySelectorAll('.points-follow-wrap');
 
-  if(PointsWrap){
+  if (PointsWrap) {
     PointsWrap.forEach((wrap) =>{
       wrap.innerHTML= `
         <div class="points-content-wrap">
@@ -35,8 +35,7 @@ export default function points() {
       `
     })
     clickPointsBtn();
-  }
-  if(PointsFollowWrap){
+  } else if (PointsFollowWrap) {
     PointsFollowWrap.forEach((wrap) =>{
       wrap.innerHTML= `
         <div class="points-content-wrap">

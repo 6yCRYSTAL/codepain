@@ -68,7 +68,7 @@ export default class extends Controller {
             Rails.ajax({
               url: `/api/v1/deleted_pens/${this.randomValue}`,
               type: 'DELETE',
-              data: `pen[id]=${this.randomValue}`
+              data: `pen[random_url]=${this.randomValue}`
             })
             this.trashedPenTarget.remove()
           }, 1800)
@@ -114,9 +114,9 @@ export default class extends Controller {
           var randomURL = this.randomValue
 
         } else {
-          var editPagePath = location.pathname
-          var username = editPagePath.split('/')[1]
-          var randomURL = editPagePath.split('/').pop()
+          var pagePath = location.pathname
+          var username = pagePath.split('/')[1]
+          var randomURL = pagePath.split('/').pop()
         }
 
         var penDelParams = `user[username]=${username}&pen[random_url]=${randomURL}`
@@ -140,19 +140,11 @@ export default class extends Controller {
             Swal.showLoading()
           },
           willClose: () => {
-            if ((!!editPagePath)) {
-              Rails.ajax({
-                url: editPagePath,
-                type: 'DELETE',
-                data: penDelParams
-              })
-            } else {
-              Rails.ajax({
-                url: `${username}/pen/${randomURL}`,
-                type: 'DELETE',
-                data: penDelParams
-              })
-            }
+            Rails.ajax({
+              url: `${location.origin}/${username}/pen/${randomURL}`,
+              type: 'DELETE',
+              data: penDelParams
+            })
             Turbolinks.clearCache()
             Turbolinks.visit(`${location.origin}/your-work`)
           }

@@ -24,12 +24,18 @@ const Alert = (props) => {
         <a href="#" id="username">
           <h1>{user_name}</h1>
         </a>
-        <div className="points-wrap points-content-bottom" data-url={`${random_url}`}></div>
+        <div className="points-wrap points-content-bottom"
+             data-url={`${random_url}`}
+             data-controller="delete-pen"
+             data-delete-pen-username-value={`${user_name}`}
+             data-delete-pen-random-value={`${random_url}`}
+             data-delete-pen-target="trashedPen">
+        </div>
         <div className="bg-gray-300" data-controller="comcreate">
           <section>
             <textarea className="w-6/12 h-20"
-            placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
-            Feeling inspired? Let <%=pen.user.username%> know!
+            placeholder="Want to know how {`${user_name}`} did this? Ask a question!
+            Feeling inspired? Let {`${user_name}`} know!
             Want to share how you used this Pen?
             Give the creator a confidence boost!"
             data-comcreate-target="createTextArea" />

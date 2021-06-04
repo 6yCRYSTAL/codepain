@@ -53,7 +53,6 @@ export default class extends Controller {
       success: function(data) {
         if(data.status === "Destroyed") {
           comment_li.remove()
-
         }
       }
     })

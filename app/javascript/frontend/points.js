@@ -54,12 +54,9 @@ export default function points() {
                 <span>Make Private</span>
                 <span class="logo-pro">pro</span>
               </button>
-              <button data-action="click->follow#follow">
-                <div class="follow-icon"><i class="fas fa-check"></i></div>
-                <span data-follow-target="followUser"></span>
-              </button>
+              <div data-follow-target="followWrap">
+              </div>
             </div>
-
           </div>
         </div>
       `

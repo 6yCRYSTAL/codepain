@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/new.css'
+import '../../styles/new-edit.css'
 
 const EditorConsole = () => {
 

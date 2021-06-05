@@ -2,10 +2,9 @@ import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
   static targets = [
-    "editBtn", "cancelBtn", "updateBtn", "deleteBtn",
-    "realDeleteBtn", "deleteCancelBtn", "commentLi",
-    "commentBlock", "updateTextArea", "commentShow",
-    "warningBlock", "commentsCount"]
+    "editBtn", "cancelBtn", "updateBtn", "commentLi",
+    "deleteBtn", "commentBlock", "updateTextArea",
+    "commentShow", "warningBlock", "commentsCount"]
 
   initialize() {
     this.commentBlockToggle = () => {
@@ -32,11 +31,6 @@ export default class extends Controller {
     Rails.ajax({
       url: `/api/v1/comments/${comment_id}`,
       type: 'PATCH',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      dataType: 'json',
       data: content_upate()
     })
     this.commentBlockToggle()
@@ -56,15 +50,9 @@ export default class extends Controller {
     Rails.ajax({
       url: `/api/v1/comments/${comment_id}`,
       type: 'DELETE',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      dataType: 'json',
       success: function(data) {
-        if(data.status === "Destroied") {
+        if(data.status === "Destroyed") {
           comment_li.remove()
-
         }
       }
     })

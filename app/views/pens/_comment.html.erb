@@ -1,9 +1,13 @@
-<div class="comment-info-area" data-controller="comment-create">
-  <section>
+<div class="bg-gray-300"
+  data-controller="comment-create"
+  data-comment-create-url-value="<%='a' + pen.random_url %>"
+  data-comment-create-comments-count-value="<%= comments_count %>">
+<%# 開發用淺色背景 %>
+  <section >
     <%# 建立該pen評論%>
     <textarea class="w-6/12 h-20"
-              placeholder="Want to know how <%=pen.user.username%> did this? Ask a question!
-Feeling inspired? Let <%=pen.user.username%> know!
+              placeholder="Want to know how <%= pen.user.username %> did this? Ask a question!
+Feeling inspired? Let <%= pen.user.username %> know!
 Want to share how you used this Pen?
 Give the creator a confidence boost!"
               data-comment-create-target="createTextArea"
@@ -19,18 +23,21 @@ Give the creator a confidence boost!"
   <%# 顯示該pen評論%>
   <section >
     <p class="uppercase"
-      data-comments-count=<%= comments_count %>
       data-comment-create-target="commentsCount"
     >
       <%= comments_count_text(comments_count) %></p>
-    <ol data-comment-create-target="list">
+    <ol data-comment-create-target="list" id="<%='a' + pen.random_url %>">
       <% comments.each do |comment| %>
-      <li data-controller="comment-update" data-comment-update-target="commentLi" >
-        <div class = "comment-user-info">
-          <span><%="#{comment.user.display_name}"%><a href="#"><%=" (@#{comment.user.username})"%></a></span>
-          <time><%=time_ago_in_words(comment.created_at) + ' ago'%></time>
+      <li
+        data-controller="comment-update comment-delete"
+        data-comment-update-target="commentLi"
+        data-comment-delete-target="commentLi"
+        data-comment-delete-id-value="<%= comment.id %>">
+        <div>
+          <span><%= "#{comment.user.display_name} (@#{comment.user.username})" %></span>
+          <span><%= time_ago_in_words(comment.created_at) + ' ago' %></span>
         </div>
-        <div class="comment-edit-block"
+        <div class="comment-update-block"
           data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
           <button
@@ -46,29 +53,8 @@ Give the creator a confidence boost!"
         <div>
           <p data-comment-update-target="commentShow"><%= comment.content %></p>
         </div>
-        <button
-          data-action="click->comment-update#edit"
-          data-comment-update-target="editBtn"
-        > Edit </button>
-        <button
-          data-action="click->comment-update#delete"
-          data-comment-update-target="deleteBtn"
-        > Delete</button>
-        <div class="warning-wrap hidden border-solid border-4" data-comment-update-target="warningBlock">
-          <div class="warning-content">
-            <h2>Delete Confirmation</h2>
-            <p>This will permanently delete this Comment.</p>
-            <button
-              data-action="click->comment-update#realDelete"
-              data-comment-update-target="realDeleteBtn"
-              data-id="<%= comment.id %>"
-            > I understand, delete the Comment</button>
-            <button
-              data-action="click->comment-update#deleteCancel"
-              data-comment-update-target="deleteCancelBtn"
-            >Cancel</button>
-          </div>
-        </div>
+        <%# 評論編輯按鈕 %>
+        <%= edit_buttons(comment) %>
       </li>
       <% end %>
     </ol>

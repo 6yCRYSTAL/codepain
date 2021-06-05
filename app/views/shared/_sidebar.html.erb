@@ -1,6 +1,6 @@
 <header class="main-sidebar">
   <div class="sidebar-logo">
-    <a href="#">
+    <a href="/">
       <img src="/images/logo-white.svg" alt="codepain-logo">
     </a>
   </div>
@@ -54,6 +54,12 @@
         <%= link_to 'Challenges' , pens_path %>
         <%= link_to 'Spark' , pens_path %>
       </div>
+      <div class="sidebar-item sidebar-item-line">
+        <%= link_to products_path,class:'codepain-link' do%>
+          <p>CodePain</p>
+          <span class="logo-pro">pro</span>
+          <% end %>
+      </div>
       <figure class="sidebar-advertise">
         <div class="advertise-img">
           <img src="/images/banner-5x.jpg" title="5X宣傳廣告">
@@ -75,7 +81,12 @@
         <%= link_to 'Challenges' , '#' %>
         <%= link_to 'Spark' , '#' %>
       </div>
-      <div class="sidebar-item-line2"></div>
+      <div class="sidebar-item sidebar-item-line2">
+        <%= link_to products_path,class:'codepain-link' do%>
+          <p>CodePain</p>
+          <span class="logo-pro">pro</span>
+        <% end %>
+      </div>
       <figure class="sidebar-advertise">
         <div class="advertise-img">
           <img src="/images/banner-5x.jpg" title="5X宣傳廣告">

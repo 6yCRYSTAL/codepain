@@ -12,17 +12,19 @@ document.addEventListener('turbolinks:load',function(){
     let username = modal.children[0].children[0].textContent.trim()
     // change URL at window location
     history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
-    modal.style.display = 'block'
+    modal.style.display = 'flex'
     modal.addEventListener('click', closeModal)
-    document.querySelector('body').style.overflow = "hidden"
+    // add lock body bg
+    document.querySelector('body').classList.add('fixed');
   }
   // listen for outside click
   function closeModal(e) {
     if (e.target === this) {
       e.target.style.display = 'none'
       // back to your-work
-      history.replaceState(null, 'your-work', `${window.location.origin}/your-work`)
-      document.querySelector('body').style.overflow = "auto"
+      history.replaceState(null, 'your-work', `${location.origin}/your-work`)
+      // remove lock body bg
+      document.querySelector('body').classList.remove('fixed');
     }
   }
 })

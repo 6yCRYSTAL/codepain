@@ -9,73 +9,43 @@
     </button>
     <div id="modal" class="modal" data-url="<%= pen.random_url %>">
       <div class="modal-content">
-        <div class = "modal-content-display">
-          <a href="#" id="username">
-            <%= current_user.username %>
-          </a>
-          <%= pen.title %>
-          <%= pen.html %>
-          <%= pen.css %>
-          <%= pen.js %>
-        </div>
-        <div class="modal-content-info">
-          <%= render 'comment' , pen: pen, comments: pen.comments, comment: @comment, comments_count: pen.comments_count %>
-          <aside class="">
-            <div class="share-block">
-              <span>Share</span>
-              <span>Copy Link</span>
-            </div>
-            <dl>
-              <div>
-                <dt>Created on</dt>
-                <dd> <%= pen.created_at.to_date.to_formatted_s(:long) %> </dd>
-              </div>
-              <div>
-                <dt>Updated on</dt>
-                <dd> <%= pen.updated_at.to_date.to_formatted_s(:long) %> </dd>
-              </div>
-             </dl>
-            <% if pen.edit_view_count != 0 %>
-              <div id="view_count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
-            <% end %>
-          </aside>
-        </div>
-        <div class = "modal-chage-btn-wrap">
-          <button class = "modal-change-btn ">
-            <span class="arrow-left"><i class="fas fa-chevron-right"></i></span>
-          </button>
-          <button class = "modal-change-btn ">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
+        <a href="#" id="username">
+          <%= current_user.username %>
+        </a>
+          <div class="points-wrap points-content-bottom"
+               data-url="<%= pen.random_url %>"></div>
+          <%= render 'comment' , pen: pen,
+                                 comments: pen.comments,
+                                 comment: @comment,
+                                 comments_count: pen.comments_count %>
       </div>
     </div>
   </td>
   <td><%= pen.created_at.to_date.to_formatted_s(:long) %></td>
   <td><%= pen.updated_at.to_date.to_formatted_s(:long) %></td>
-  <td class="stats">
+  <td class="stats" data-controller="stats"
+                    data-stats-target="yourWork"
+                    data-stats-loved-class="text-red-600"
+                    data-stats-random-value="<%= pen.random_url %>">
     <div class="hearts">
-      <i class="fas fa-heart"></i>
-      0
+      <i class="fas fa-heart cursor-pointer stroke-current"
+         data-stats-target="heart"
+         data-action="click->stats#toggleHeart"></i>
+      <span data-stats-target="heartListsCount"></span>
     </div>
     <div class="comments">
       <i class="fas fa-comment"></i>
-      0
+      <%= pen.comments_count %>
     </div>
     <div class="eye">
       <i class="fas fa-eye"></i>
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="more">
-    <div class="more-icon">
-      <svg viewBox="0 0 29 7" width="28" title="more">
-        <circle cx="3.5" cy="3.5" r="3.5"></circle>
-        <circle cx="14.5" cy="3.5" r="3.5"></circle>
-        <circle cx="25.5" cy="3.5" r="3.5"></circle>
-      </svg>
-    </div>
+  <td class="points-wrap points-content-top" data-url="<%= pen.random_url %>"
+                                             data-controller="delete-pen"
+                                             data-delete-pen-username-value="<%= current_user.username %>"
+                                             data-delete-pen-random-value="<%= pen.random_url %>"
+                                             data-delete-pen-target="trashedPen">
   </td>
-  <%# TODO: 移除下方show連結%>
-  <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

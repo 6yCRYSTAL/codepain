@@ -9,10 +9,10 @@
 
 <% if params[:item_type] != 'deleted_item' %>
 
-  <% if params[:grid_type] != 'list' %>
-    <%= render 'pens_grid' %>
-  <% else %>
+  <% if params[:grid_type] != 'grid' %>
     <%= render 'pens_list' %>
+  <% else %>
+    <%= render 'pens_grid' %>
   <% end %>
 
 <% else %>

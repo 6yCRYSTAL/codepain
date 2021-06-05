@@ -5,36 +5,53 @@
 .uppercase{
   text-transform: uppercase;
 }
-.warning-wrap{
-  //TODO:彈跳視窗CSS
-}
 .appear{
   display: block;
 }
-.comment-info-area{
+.comment-wrap{
+  display:flex;
+  justify-content: center;
   color: var(--light-gray);
-  section textarea{
-    background-color: var(--primary-gray-7);
-    width:80%;
-    resize : none;
-    border: none;
-    outline: none;
-    @apply rounded;
-    color: var(--light-gray);
-  }
-  .comment-submit-block{
-    @apply rounded;
-    background-color: var(--primary-gray-7);
-    display: flex;
-    width:80%;
-    margin-top: -20px;
-    .comment-submit-btn{
-      margin-left: auto;
-      display: block;
-      @apply bg-gray-500 text-white font-bold py-2 px-4 rounded
+  section{
+    flex-grow: 2;
+    margin: 10px;
+    textarea{
+      background-color: var(--primary-gray-7);
+      font-size: var(--text-p);
+      width: 400px;
+      height:150px;
+      resize : none;
+      border: none;
+      outline: none;
+      @apply rounded;
+      color: var(--light-gray);
+    }
+    .comment-submit-block{
+      @apply rounded;
+      background-color: var(--primary-gray-7);
+      display: flex;
+      width: 400px;
+      margin-top: -10px;
+      .comment-submit-btn{
+        margin-left: auto;
+        display: block;
+        @apply bg-gray-500 text-white font-bold py-2 px-4 rounded
+      }
+    }
+    ol li{
+      background: #2c1f1f;
+      padding: 5px;
+      .comment-user-info span{
+        display: block;
+      }
     }
   }
-  section .comment-user-info{
-    display: block;
+  aside{
+    flex-grow: 1;
+    margin: 10px;
+    background-color:rgb(4, 51, 4);
+    .share-block{
+      background-color: var(--primary-gray-7);
+    }
   }
 }

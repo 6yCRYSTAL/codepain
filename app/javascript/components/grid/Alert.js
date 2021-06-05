@@ -10,7 +10,6 @@ const Alert = (props) => {
   function closeAlert(e){
     if (e.target === e.currentTarget) {
       setAlertToggle(false);
-      console.log('yes');
       document.querySelector('body').classList.remove('fixed');
       // 修改網址
       // history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
@@ -35,16 +34,15 @@ const Alert = (props) => {
               <i className="fas fa-lock text-gray-400"></i>
             </div>
           }
-          <div className="points-wrap points-content-bottom" data-url={`${ random_url }`}></div>
-        </header>
 
-        {/* 鎖頭入口 */}
-        <div className="points-content-wrap points-content-bottom">
-          <Points
-            url={ random_url }
-            setPrivateToggle={setPrivateToggle}
-          />
-        </div>
+          {/* 鎖頭入口 */}
+          <div className="points-content-wrap points-content-bottom">
+            <Points
+              url={ random_url }
+              setPrivateToggle={setPrivateToggle}
+            />
+          </div>
+        </header>
 
         <div className="bg-gray-300" data-controller="comcreate">
           <section>

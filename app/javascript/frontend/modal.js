@@ -7,7 +7,6 @@ document.addEventListener('turbolinks:load',function(){
     btn.addEventListener('click', openModal)
   })
   function openModal(e) {
-    console.log(e.target.nextElementSibling)
     let modal = this.nextElementSibling
     let penURL = modal.dataset['url']
     let username = modal.children[0].children[0].textContent.trim()

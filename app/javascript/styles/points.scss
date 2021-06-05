@@ -86,6 +86,8 @@
   }
 }
 .points-content-bottom{
+  background-color: var(--primary-gray-4);
+  @apply rounded;
   .points-btn{
     @apply py-5 px-4 rounded-t rounded-b-none;
     &:hover{

@@ -1,13 +1,6 @@
 module.exports = {
   purge: {
-    content: [
-      // "app/**/*.html.erb",
-      // "app/**/_*.html.erb",
-      // "app/helpers/**/*.rb",
-      // "app/javascript/**/*.js",
-      // "app/javascript/**/*.jsx",
-      // "app/javascript/**/*.scss"
-    ]
+    content: []
   },
   darkMode: false,
   theme: {

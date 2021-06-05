@@ -63,6 +63,7 @@ document.addEventListener('turbolinks:load', () => {
     // when editor session change excute renderToiframe()
     editorHTML.getSession().on('change',debounce( () => {
       renderToiframe()
+      test()
     }) )
     editorCSS.getSession().on('change',debounce( () => {
       renderToiframe()
@@ -96,7 +97,13 @@ document.addEventListener('turbolinks:load', () => {
             <script type="text/javascript">${editorJS.getValue()}</script>
           </body>
         </html>`
-    }
+      }
+
+
+      function test () {
+        let test = document.querySelector(".yayaya")
+        console.log(test)
+      }
 
     // show console
     const consolecontainer = document.querySelector('.edit-console-container')

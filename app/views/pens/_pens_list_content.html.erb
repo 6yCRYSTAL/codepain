@@ -1,6 +1,7 @@
-<tr scope="col">
-  <th class="title-wrap">
-    <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
+<tr scope="col" data-controller="private" data-private-random-value="<%= pen.random_url %>">
+  <th class="title-wrap flex items-center justify-between">
+    <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
+    <div class="private-lock hidden pr-2" id="private-lock" data-private-target="privateIcon" data-is-private="<%= pen.private %>"><i class="fas fa-lock"></i></div>
   </th>
   <td class="modal-wrap">
     <%# modal %>
@@ -42,11 +43,12 @@
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="points-wrap points-content-top" data-url="<%= pen.random_url %>"
-                                             data-controller="delete-pen"
-                                             data-delete-pen-username-value="<%= current_user.username %>"
-                                             data-delete-pen-random-value="<%= pen.random_url %>"
-                                             data-delete-pen-target="trashedPen">
+  <td class="points-wrap points-content-top"
+      data-controller="delete-pen"
+      data-delete-pen-username-value="<%= current_user.username %>"
+      data-delete-pen-random-value="<%= pen.random_url %>"
+      data-delete-pen-target="trashedPen"
+      >
   </td>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>
 </tr>

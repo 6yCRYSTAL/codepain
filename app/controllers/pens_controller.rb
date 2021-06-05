@@ -4,7 +4,7 @@ class PensController < ApplicationController
 
   def index
     # pens tab / all or search
-    unless current_user
+    unless user_signed_in?
       redirect_to :root
     else
       search_user_pen(params[:page], 20)
@@ -47,7 +47,7 @@ class PensController < ApplicationController
   end
 
   def destroy
-    if current_user && current_user == @pen.user
+    if user_signed_in? && current_user == @pen.user
       # change pen state
       @pen.update(state: 'trashed')
       # soft_delete the pen

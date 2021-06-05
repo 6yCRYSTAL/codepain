@@ -68,6 +68,8 @@ Rails.application.routes.draw do
       end
       # comments
       resources :comments, only: [:index, :create, :update, :destroy]
+      # cdn_resources
+      resources :resources, only: [:create, :destroy]
     end
   end
 end

@@ -21,14 +21,14 @@ class Api::V1::CommentsController < Api::ApiController
 
   def update
     comment = Comment.find(params[:id])
-    if current_user && current_user == comment.user
+    if user_signed_in? && current_user == comment.user
       comment.update(content: params[:content])
     end
   end
 
   def destroy
     comment = Comment.find_by(id: params[:id])
-    if current_user && current_user == comment.user
+    if user_signed_in? && current_user == comment.user
       comment.destroy
       render json: { status: 'Destroyed' }, status: :ok
     else

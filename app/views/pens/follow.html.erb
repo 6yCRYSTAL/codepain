@@ -1,9 +1,8 @@
-<div class="your-work-title">
-  <%= link_to 'Following', follow_path, class: 'big-title' %>
+<div class="feat-page-title">
+  <%= link_to 'Following', follow_path, class: 'big-title active' %>
   <%= link_to 'Trending', trending_path, class: 'big-title' %>
   <%= link_to 'Your Work', pens_path, class: 'big-title' %>
 </div>
-
 <div class="pen-items-wrap">
   <% @pens.each do |pen| %>
       <article class="col">
@@ -17,6 +16,7 @@
                  data-follow-random-value="<%= pen.random_url %>">
             </div>
           </header>
+          <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
           <div class="pen-img">
               <iframe frameborder="0"></iframe>
               <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>

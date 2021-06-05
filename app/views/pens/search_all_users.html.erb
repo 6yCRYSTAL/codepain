@@ -18,6 +18,7 @@
                  data-follow-random-value="<%= pen.random_url %>">
             </div>
           </header>
+          <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
           <div class="pen-img">
               <iframe frameborder="0"></iframe>
               <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>

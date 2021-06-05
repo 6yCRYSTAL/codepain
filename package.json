@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.13.13",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
@@ -22,6 +24,7 @@
     "react-split-pane": "^0.1.92",
     "stimulus": "^2.0.0",
     "sweetalert2": "^11.0.15",
+    "sweetalert2-react-content": "^4.0.1",
     "turbolinks": "^5.2.0"
   },
   "scripts": {
@@ -29,10 +32,10 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.2",
+    "@fullhuman/postcss-purgecss": "3.0.0",
+    "autoprefixer": "^9",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "autoprefixer": "^9",
-    "@fullhuman/postcss-purgecss": "3.0.0"
+    "webpack-dev-server": "^3.11.2"
   }
 }

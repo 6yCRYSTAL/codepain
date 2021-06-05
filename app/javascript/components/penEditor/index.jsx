@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom'
 
 import MainEditor from './MainEditor'
 import MainFooter from './Footer'
+import SettingAlert from './SettingAlert'
 
 
 document.addEventListener('turbolinks:load', () => {
   const indexEditor = document.querySelector('#index-editor')
-  if( indexEditor ){
+  if(indexEditor){
     ReactDOM.render(
       <MainEditor />,
       indexEditor
@@ -15,10 +16,15 @@ document.addEventListener('turbolinks:load', () => {
   }
 
   const editFooter = document.querySelector('.edit-footer')
-  if( editFooter ){
+  if(editFooter){
     ReactDOM.render(
       <MainFooter />,
       editFooter
     )
+  }
+
+  const settingButton = document.querySelector('.btn-settings')
+  if (settingButton) {
+    settingButton.addEventListener('click', SettingAlert)
   }
 })

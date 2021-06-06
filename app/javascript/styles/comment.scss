@@ -20,6 +20,10 @@
     margin-right: 4px;
     border: none;
     outline: none;
+    &:hover{
+      background-color: var(--primary-gray-1);
+      cursor: pointer;
+    }
   }
   .light-text{
     @apply text-gray-400 text-xs;
@@ -47,10 +51,14 @@
       margin-top: -10px;
       .comment-submit-btn{
         padding: 10px;
-        margin-left: auto;
+        margin: 0 10px 10px auto;
         display: block;
         background-color: var(--primary-gray-4);
         @apply  text-white font-bold py-2 px-4 rounded;
+        &:hover{
+          background-color: var(--primary-gray-1);
+          cursor: pointer;
+        }
       }
     }
     .comments-count{
@@ -130,7 +138,6 @@
           }
         }
       }
-
     }
   }
   aside{

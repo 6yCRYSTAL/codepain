@@ -42,9 +42,18 @@ export default function points() {
 // click Points-btn
 function clickPointsBtn() {
   const PointsBtn = document.querySelectorAll('.points-btn');
-  const toArray = Array.from(PointsBtn);
+  const toArrayPoints = Array.from(PointsBtn);
   let prev,now,defValue = 0;
-
+  // 點擊外面關掉
+  // window.addEventListener('click', function(e){
+  //   toArrayPoints.forEach((btn)=>{
+  //     if(e.target !== btn){
+  //       console.log('inner');
+  //     }else if(e.target){
+  //       console.log('out');
+  //     }
+  //   })
+  // });
   PointsBtn.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
       const PointsContent = e.currentTarget.nextElementSibling;
@@ -52,12 +61,12 @@ function clickPointsBtn() {
       // 其他按鈕關掉
       if(defValue === 0){
         defValue++;
-        prev = toArray.indexOf(e.currentTarget);
+        prev = toArrayPoints.indexOf(e.currentTarget);
       }
-      now = toArray.indexOf(e.currentTarget);
+      now = toArrayPoints.indexOf(e.currentTarget);
       if(prev !== now){
-        toArray[prev].nextElementSibling.classList.add('points-content-hidden');
-        toArray[prev].style.backgroundColor = 'inherit';
+        toArrayPoints[prev].nextElementSibling.classList.add('points-content-hidden');
+        toArrayPoints[prev].style.backgroundColor = 'inherit';
         prev = now ;
       }
       // 判斷 points-content 樣式

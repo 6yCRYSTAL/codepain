@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus'
 import Rails from '@rails/ujs'
 function UnlockBtn(Checks) {
-  console.log(Checks);
   Checks.forEach( UnlockBtn => {
     UnlockBtn.innerHTML=`
       <div class="lock-icon"><i class="fas fa-eye"></i></div>
@@ -11,7 +10,6 @@ function UnlockBtn(Checks) {
   });
 }
 function LockBtn(Checks) {
-  console.log(Checks);
   Checks.forEach( LockBtn => {
     LockBtn.innerHTML=`
       <div class="lock-icon"><i class="fas fa-lock"></i></div>

@@ -63,10 +63,21 @@ const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
   );
 }
 
-let prev,now,defValue = 0,count= 0;
+let prev,now,defValue = 0,count= 0,flag = 0;
 // Points按鈕
 const PointsBtn = () => {
   function handleClick(e) {
+    let btn = e.currentTarget;
+    // 點擊外面關掉
+    // window.addEventListener('click', function(e){
+    //   // e.stopPropagation();
+    //   if(btn.contains(e.target) === true){
+    //     console.log('out');
+    //   }else{
+    //     console.log('inner');
+    //   }
+    // });
+
     if(defValue === 0){
       defValue++;
       prev = e.currentTarget.parentElement;
@@ -85,11 +96,13 @@ const PointsBtn = () => {
       if(count>=2){
         // 重複點第二次關掉顯示
         prevClosePoints();
+        // nowOpenPoints();
         count = 0;
       }else{
         // 第一次打開顯示
         nowOpenPoints();
         prev = now;
+        // flag = 0;
       }
     }
   }

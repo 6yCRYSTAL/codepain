@@ -1,70 +1,24 @@
-/* div.consoleClose div.iframeAndConsole div.Pane1{
-  height: 105% !important;
-} */
-/*
-div.Pane .vertical .Pane{
-  min-width: 50px;
-}
-div.Pane .horizontal .Pane{
-  min-height: 50px;
-} */
 div.consoleClose div.sc-bdnxRM {
   flex: none !important;
   height: 105%;
 }
+
 div.jlqcXc:not(.iframeAndConsole){
   padding-top: 65px;
 }
+
 .Resizer.horizontal {
   height: 10px;
   cursor: row-resize;
   width: 100%;
   border: 8px solid #333642;
 }
+
 .Resizer.vertical {
   cursor: col-resize;
   border: 8px solid #333642;
 }
 
-/*.Resizer {
-  background: #000;
-  z-index: 10;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding;
-  background-clip: padding-box;
-}
-
-.Resizer:hover {
-  -webkit-transition: all 2s ease;
-  transition: all 2s ease;
-  border: 10px solid #333642;
-}
-
-.Resizer.horizontal {
-  height: 10px;
-  margin: -5px 0;
-  cursor: row-resize;
-  width: 100%;
-  border: 6px solid #333642;
-}
-
-.Resizer.vertical {
-  margin: 0 -5px;
-  cursor: col-resize;
-  border: 6px solid #333642;
-}
-
-.Resizer.disabled {
-  cursor: not-allowed;
-}
-
-.Resizer.disabled:hover {
-  border-color: transparent;
-}
-*/
 .fake-console{
   position: absolute;
   bottom: 5px;

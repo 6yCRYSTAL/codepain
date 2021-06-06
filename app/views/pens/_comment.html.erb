@@ -31,8 +31,16 @@ Give the creator a confidence boost!"
         data-comment-delete-target="commentLi"
         data-comment-delete-id-value="<%= comment.id %>">
         <div class = "comment-user-info">
-          <span><%= "#{comment.user.display_name} (@#{comment.user.username})" %></span>
-          <span><%= time_ago_in_words(comment.created_at) + ' ago' %></span>
+          <div class="userComment-img">
+            <img src="/images/user-img.jpg" alt="使用者圖像" />
+          </div>
+          <div class="userName" >
+            <span><%="#{comment.user.display_name}"%></span>
+            <span class="lightText"><%= "(@#{comment.user.username})" %></span>
+          </div>
+          <div class="commentTime">
+            <%= time_ago_in_words(comment.created_at) + ' ago' %>
+          </div>
         </div>
         <div class="comment-update-block"
           data-comment-update-target="commentBlock">

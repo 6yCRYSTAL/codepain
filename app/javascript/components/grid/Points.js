@@ -63,60 +63,55 @@ const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
   );
 }
 
-let prev,now,defValue = 0,count= 0,flag = 0;
+let prevEl,nowEl,defValue = 0,swCount= 0;
 // Points按鈕
 const PointsBtn = () => {
+  window.addEventListener("click",function() {
+    if(prevEl){
+      prevClosePoints();
+      swCount = 0;
+    }
+  })
   function handleClick(e) {
-    let btn = e.currentTarget;
-    // 點擊外面關掉
-    // window.addEventListener('click', function(e){
-    //   // e.stopPropagation();
-    //   if(btn.contains(e.target) === true){
-    //     console.log('out');
-    //   }else{
-    //     console.log('inner');
-    //   }
-    // });
-
+    e.stopPropagation();
+    // 一次性執行
     if(defValue === 0){
       defValue++;
-      prev = e.currentTarget.parentElement;
+      prevEl = e.currentTarget.parentElement;
     }
-    now = e.currentTarget.parentElement;
-    if(prev !== now){
+    nowEl = e.currentTarget.parentElement;
+    if(prevEl !== nowEl){
       // 打開你現在的現顯示
       nowOpenPoints();
       // 關閉你之前的顯示
       prevClosePoints();
-      prev = now;
-    }
-    else{
+      prevEl = nowEl;
+      swCount = 1;
+    }else{
       // 切換顯示狀態
-      count++;
-      if(count>=2){
+      swCount++;
+      if(swCount>=2){
         // 重複點第二次關掉顯示
         prevClosePoints();
-        // nowOpenPoints();
-        count = 0;
+        swCount = 0;
       }else{
         // 第一次打開顯示
         nowOpenPoints();
-        prev = now;
-        // flag = 0;
+        prevEl = nowEl;
       }
     }
   }
   let nowOpenPoints = () =>{
-    now.lastElementChild.classList.remove('points-content-hidden');
-    now.firstElementChild.style.backgroundColor= "white";
-    now.firstElementChild.classList.add('hover-no-color');
+    nowEl.lastElementChild.classList.remove('points-content-hidden');
+    nowEl.firstElementChild.style.backgroundColor= "white";
+    nowEl.firstElementChild.classList.add('hover-no-color');
   }
   let prevClosePoints = () =>{
-    prev.lastElementChild.classList.add('points-content-hidden');
-    prev.firstElementChild.style.backgroundColor= "transparent";
-    prev.firstElementChild.classList.remove('hover-no-color');
+    prevEl.lastElementChild.classList.add('points-content-hidden');
+    prevEl.firstElementChild.style.backgroundColor= "transparent";
+    prevEl.firstElementChild.classList.remove('hover-no-color');
   }
-  // console.log(PointsBtnToggle);
+
   return(
     <button
       className="points-btn p-1"

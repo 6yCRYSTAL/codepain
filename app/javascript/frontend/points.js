@@ -45,19 +45,22 @@ function clickPointsBtn() {
   const toArrayPoints = Array.from(PointsBtn);
   let prev,now,defValue = 0;
   // 點擊外面關掉
-  // window.addEventListener('click', function(e){
-  //   toArrayPoints.forEach((btn)=>{
-  //     if(e.target !== btn){
-  //       console.log('inner');
-  //     }else if(e.target){
-  //       console.log('out');
-  //     }
-  //   })
-  // });
+  window.addEventListener('click', function(e){
+    toArrayPoints.forEach(btn =>{
+      if(btn.contains(e.target) === false){
+        btn.nextElementSibling.classList.add('points-content-hidden');
+        btn.style.backgroundColor = 'inherit';
+        btn.classList.remove('hover-no-color');
+      }
+    })
+  });
+  // 按鈕點擊
   PointsBtn.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
+      // e.stopPropagation();
       const PointsContent = e.currentTarget.nextElementSibling;
       PointsContent.classList.toggle('points-content-hidden');
+
       // 其他按鈕關掉
       if(defValue === 0){
         defValue++;

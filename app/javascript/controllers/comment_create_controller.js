@@ -1,42 +1,41 @@
 import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
-  static targets = ["createBtn", "createTextArea", "list", "commentsCount"]
-
+  static targets = [ "createBtn", "createTextArea", "list", "commentsCount" ]
+  static values = { url: String, commentsCount: Number }
   initialize() {
-    this.comments_count = parseInt(this.commentsCountTarget.dataset.commentsCount)
+    this.comments_count = this.commentsCountValue
   }
+
   // 偵測 ol 子元素變化，更新顯示評論數
   connect() {
     let commentCountP = this.commentsCountTarget
-    let comments_count = this.comments_count
-    let targetNode = document.querySelector('#comment-list');
+    let targetNode = document.querySelector(`#${this.urlValue}`);
     let config = { attributes: true, childList: true };
-    let callback = function(mutationsList) {
+    let callback = (mutationsList) => {
           for(let mutation of mutationsList) {
             if (mutation.addedNodes.length === 1){
-              if (comments_count === 0) {
-                comments_count += 1
-                commentCountP.innerText = `${comments_count} comment`
+              if (this.comments_count === 0) {
+                this.comments_count += 1
+                commentCountP.innerHTML = `${this.comments_count} comment`
               } else {
-                comments_count += 1
-                commentCountP.innerText = `${comments_count} comments`
+                this.comments_count += 1
+                commentCountP.innerText = `${this.comments_count} comments`
               }
             }if (mutation.removedNodes.length === 1){
-              if (comments_count === 2) {
-                comments_count -= 1
-                commentCountP.innerText = `${comments_count} comment`
-              } else if (comments_count === 1) {
-                comments_count -= 1
+              if (this.comments_count === 2) {
+                this.comments_count -= 1
+                commentCountP.innerText = `${this.comments_count} comment`
+              } else if (this.comments_count === 1) {
+                this.comments_count -= 1
                 commentCountP.innerHTML =`
-                <p>
                   <strong>No Comments</strong>
                   <br>
                   You can be the first!
-                </p>`
+                `
               } else {
-                comments_count -= 1
-                commentCountP.innerText = `${comments_count} comments`
+                this.comments_count -= 1
+                commentCountP.innerText = `${this.comments_count} comments`
               }
             }
           }

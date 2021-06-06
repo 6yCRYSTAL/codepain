@@ -3,19 +3,14 @@ class Api::V1::CommentsController < Api::ApiController
   before_action :authenticate_user!
 
   def index
-    pen = Pen.find_by(random_url: params[:random_url])
-    comments = pen.comments.all.order(id: :desc)
-    comments_count = pen.comments_count
-    user_list = User.joins(pens: :commenters).where(comments: { pen_id: pen.id }).select(:id, :username, :display_name)
-    # 將評論者 id 一併回傳前端，以正確連結評論-評論者
-    success!({ comments: comments, comments_count: comments_count, user_list: user_list })
+    @pen = Pen.find_by(random_url: params[:random_url])
+    @comments = @pen.comments.order(created_at: :desc).includes(:user)
   end
 
   def create
-    pen_id = Pen.find_by(random_url: params[:random_url]).id
-    user_id = current_user.id
+    pen = Pen.find_by(random_url: params[:random_url])
     content = params[:content]
-    @comment = current_user.comments.new({pen_id: pen_id, user_id: user_id, content: content  })
+    @comment = current_user.comments.new({pen: pen, user: current_user, content: content})
 
     if @comment.save
       render json: @comment.as_json(include: :user), status: :created
@@ -27,8 +22,7 @@ class Api::V1::CommentsController < Api::ApiController
   def update
     comment = Comment.find(params[:id])
     if current_user && current_user == comment.user
-      new_content = params.permit(:content)
-      comment.update(new_content)
+      comment.update(content: params[:content])
     end
   end
 

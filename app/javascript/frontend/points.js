@@ -20,7 +20,7 @@ export default function points() {
             <div class="points-content-box">
               <button class="private-btn"
               data-action="click->private#togglePrivate"
-              data-private-target="privateCheck"
+              data-private-target="privateChecks"
               >
                 <div class="lock-icon"><i class="fas fa-lock"></i></div>
                 <span>Make Private</span>

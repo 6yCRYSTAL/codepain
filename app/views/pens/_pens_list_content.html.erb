@@ -3,7 +3,7 @@
     <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
     <% # 鎖 %>
     <div  class="private-lock hidden pr-2"
-          data-private-target="privateIcon"
+          data-private-target="privateIcons"
           data-is-private="<%= pen.private %>">
       <i class="fas fa-lock"></i>
     </div>
@@ -21,12 +21,13 @@
           <%= pen.title %>
           <% # 鎖 %>
           <div  class="private-lock hidden pr-2"
-                data-private-target="privateIcon2"
+                data-private-target="privateIcons"
                 data-is-private="<%= pen.private %>">
             <i class="fas fa-lock"></i>
           </div>
           <% # points 按鈕 %>
-          <div class="points-wrap points-content-bottom" data-url="<%= pen.random_url %>"></div>
+          <div class="points-wrap points-content-bottom" data-url="<%= pen.random_url %>" data-action="click->private#togglePoints"
+          ></div>
         </header>
 
         <%= render 'comment' ,  pen: pen,
@@ -62,6 +63,7 @@
       data-delete-pen-username-value="<%= current_user.username %>"
       data-delete-pen-random-value="<%= pen.random_url %>"
       data-delete-pen-target="trashedPen"
+      data-action="click->private#togglePoints"
       >
   </td>
   <td><%= link_to 'show', pen_path(pen, username:current_user.username)%></td>

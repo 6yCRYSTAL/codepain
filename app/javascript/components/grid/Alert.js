@@ -39,7 +39,8 @@ const Alert = (props) => {
           <div className="points-content-wrap points-content-bottom">
             <Points
               url={ random_url }
-              setPrivateToggle={setPrivateToggle}
+              setPrivateToggle={ setPrivateToggle }
+              privateToggle= { privateToggle }
             />
           </div>
         </header>

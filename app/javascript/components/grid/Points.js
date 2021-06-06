@@ -5,11 +5,26 @@ let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;
 ax.defaults.headers.common['X-CSRF-Token'] = token;
 
+const LockBtn = ()=>{
+  return(
+    <>
+      <div className="lock-icon"><i className="fas fa-lock"></i></div>
+      <span>Make Private</span>
+    </>
+  )
+}
+const UnlockBtn = ()=>{
+  return(
+    <>
+      <div className="lock-icon"><i className="fas fa-eye"></i></div>
+      <span>Make Public</span>
+    </>
+  )
+}
 // Points內容
-const PointsContent = ({ url,setPrivateToggle }) =>{
+const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
   // 樣式更動
   function PrivateClick() {
-    console.log(url);
     ax.post(`/api/v1/pens/${url}/private`)
       .then(res => {
         let isPrivate = res.data.payload.boolean;
@@ -29,9 +44,14 @@ const PointsContent = ({ url,setPrivateToggle }) =>{
           className="private-btn"
           onClick={ PrivateClick }
         >
-          <div className="lock-icon"><i className="fas fa-lock"></i></div>
-          <span>Make Private</span>
-          <span className="logo-pro">pro</span>
+          {/* 按鈕文字判斷 */}
+          { privateToggle ? <UnlockBtn/> : <LockBtn/> }
+          <span
+            className="logo-pro"
+            style={{
+              visibility: privateToggle && 'hidden',
+            }}
+          >pro</span>
         </button>
 
         <button className="delete-btn" data-action="click->delete-pen#popup">
@@ -99,13 +119,14 @@ const PointsBtn = () => {
 };
 
 // points 功能
-const Points = ({ url,setPrivateToggle }) => {
+const Points = ({ url,setPrivateToggle,privateToggle }) => {
   return(
     <>
       <PointsBtn />
       <PointsContent
-        url={url}
-        setPrivateToggle={setPrivateToggle}
+        url={ url }
+        setPrivateToggle={ setPrivateToggle }
+        privateToggle={ privateToggle }
       />
     </>
   );

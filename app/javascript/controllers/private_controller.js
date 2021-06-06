@@ -1,31 +1,54 @@
 import { Controller } from 'stimulus'
 import Rails from '@rails/ujs'
-
+function UnlockBtn(Checks) {
+  console.log(Checks);
+  Checks.forEach( UnlockBtn => {
+    UnlockBtn.innerHTML=`
+      <div class="lock-icon"><i class="fas fa-eye"></i></div>
+      <span>Make Public</span>
+      <span class="logo-pro" style="visibility:hidden;">pro</span>
+    `
+  });
+}
+function LockBtn(Checks) {
+  console.log(Checks);
+  Checks.forEach( LockBtn => {
+    LockBtn.innerHTML=`
+      <div class="lock-icon"><i class="fas fa-lock"></i></div>
+      <span>Make Private</span>
+      <span class="logo-pro">pro</span>
+    `
+  });
+}
 export default class extends Controller {
-
-  static targets = [ 'privateIcon', 'privateCheck' ,'privateIcon2']
+  static targets = [ 'privateIcons', 'privateChecks' ]
   static values = {
     random: String,
   }
+  // Private 按鈕傳送 api
   togglePrivate() {
-    const icon = this.privateIconTarget
-    const icon2 = this.privateIcon2Target
-    const check = this.privateCheckTarget
+    const icon = this.privateIconsTargets
+    const check = this.privateChecksTargets
+    let toArrayIcon = Array.from(icon);
+    let toArrayCheck = Array.from(check);
+
     Rails.ajax({
       url: `/api/v1/pens/${this.randomValue}/private`,
       type: 'post',
       success: (data) => {
         check.checked = data.payload.boolean;
         if(check.checked === true){
-          icon.classList.remove("hidden");
-          icon2.classList.remove("hidden");
-          icon.dataset.isPrivate = check.checked;
-          icon2.dataset.isPrivate = check.checked;
+          toArrayIcon.forEach( Icon => {
+            Icon.classList.remove("hidden");
+            Icon.dataset.isPrivate = check.checked;
+          });
+          UnlockBtn(toArrayCheck);
         }else{
-          icon.classList.add("hidden");
-          icon2.classList.add("hidden");
-          icon.dataset.isPrivate = check.checked;
-          icon2.dataset.isPrivate = check.checked;
+          toArrayIcon.forEach( Icon => {
+            Icon.classList.add("hidden");
+            Icon.dataset.isPrivate = check.checked;
+          });
+          LockBtn(toArrayCheck);
         }
       }
     })
@@ -33,18 +56,38 @@ export default class extends Controller {
   stopPropagation(e) {
     e.stopPropagation()
   }
-  // 第一次:撈出每個 pen 的 isPrivate 狀態
-  initialize() {
-    const icon = this.privateIconTarget
-    const icon2 = this.privateIcon2Target
-    let isPrivate = icon.dataset.isPrivate
-    let isPrivate2 = icon2.dataset.isPrivate
+  // Points 點擊判斷 Private 按鈕狀態
+  togglePoints(){
+    const icon = this.privateIconsTargets;
+    const check = this.privateChecksTargets;
+    let toArrayIcon = Array.from(icon);
+    let toArrayCheck = Array.from(check);
+    let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
+    let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
 
-    if (isPrivate === 'true') {
-      icon.classList.remove("hidden");
+    if ((isPrivate && isPrivate2) === 'true') {
+      UnlockBtn(toArrayCheck);
     }
-    if (isPrivate2 === 'true') {
-      icon2.classList.remove("hidden");
+    if ((isPrivate && isPrivate2) === 'false') {
+      LockBtn(toArrayCheck);
+    }
+  }
+
+  // 第一次判斷 Private 鎖頭狀態
+  initialize() {
+    const icon = this.privateIconsTargets;
+    let toArrayIcon = Array.from(icon);
+    let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
+    let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
+    if ((isPrivate && isPrivate2) === 'true') {
+      toArrayIcon.forEach( Icon => {
+        Icon.classList.remove("hidden");
+      });
+    }
+    if ((isPrivate && isPrivate2) === 'false'){
+      toArrayIcon.forEach( Icon => {
+        Icon.classList.add("hidden");
+      });
     }
   }
 }

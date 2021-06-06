@@ -39,6 +39,7 @@ const PenItemContent = (props) => {
             <Points
               url={ random_url }
               setPrivateToggle= { setPrivateToggle }
+              privateToggle= { privateToggle }
             />
           </div>
         </header>

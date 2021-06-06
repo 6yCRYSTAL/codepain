@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 
 import MainEditor from './MainEditor'
 import MainFooter from './Footer'
-import SettingAlert from './SettingAlert'
+import SettingAlertOwner from './SettingAlertOwner'
+import SettingAlertOthers from './SettingAlertOthers'
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -23,8 +24,14 @@ document.addEventListener('turbolinks:load', () => {
     )
   }
 
-  const settingButton = document.querySelector('.btn-settings')
+  const settingButton = document.querySelector('#btn-settings')
+  const updateButton = document.querySelector('#btn-update')
   if (settingButton) {
-    settingButton.addEventListener('click', SettingAlert)
+    if (updateButton) {
+      settingButton.addEventListener('click', SettingAlertOthers)
+    }
+    // else {
+    //   settingButton.addEventListener('click', SettingAlertOthers)
+    // }
   }
 })

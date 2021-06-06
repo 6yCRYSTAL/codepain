@@ -9,7 +9,7 @@ const Test = styled.div`
   font-weight: 900;
 `
 
-const SettingAlert = async () => {
+const SettingAlert = () => {
   const MySwal = withReactContent(Swal)
   const ipAPI = '//api.ipify.org?format=json'
 
@@ -17,12 +17,16 @@ const SettingAlert = async () => {
     .then(response => response.json())
     .then(data => data.ip)
 
-  const { value: ipAddress } = await MySwal.fire({
-    title: <Test>Testing</Test>,
+  MySwal.fire({
+    background: 'black',
+    position: 'center',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    titleText: 'CDN Setting',
     input: 'text',
     inputLabel: 'Your IP address',
     inputValue: inputValue,
-    showCancelButton: true,
+    confirmButtonText: 'Close',
     inputValidator: (value) => {
       if (!value) {
         return 'You need to write something!'

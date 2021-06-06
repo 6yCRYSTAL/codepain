@@ -19,10 +19,10 @@ Give the creator a confidence boost!"
       > Comment </span>
     </div>
     <%# 顯示評論%>
-    <p class="uppercase"
-      data-comment-create-target="commentsCount"
-    >
+    <p class="comments-count"
+      data-comment-create-target="commentsCount">
       <%= comments_count_text(comments_count) %></p>
+    <span></span>
     <ol data-comment-create-target="list" id="<%='a' + pen.random_url %>">
       <% comments.each do |comment| %>
       <li
@@ -31,43 +31,54 @@ Give the creator a confidence boost!"
         data-comment-delete-target="commentLi"
         data-comment-delete-id-value="<%= comment.id %>">
         <div class = "comment-user-info">
-          <div class="userComment-img">
+          <div class="user-comment-img">
             <img src="/images/user-img.jpg" alt="使用者圖像" />
           </div>
-          <div class="userName" >
+          <div class="user-name" >
             <span><%="#{comment.user.display_name}"%></span>
-            <span class="lightText"><%= "(@#{comment.user.username})" %></span>
+            <span class="light-text"><%= "(@#{comment.user.username})" %></span>
           </div>
-          <div class="commentTime">
+          <div class="comment-time">
             <%= time_ago_in_words(comment.created_at) + ' ago' %>
           </div>
         </div>
         <div class="comment-update-block"
           data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
-          <button
-            data-action="click->comment-update#update"
-            data-comment-update-target="updateBtn"
-            data-id="<%= comment.id %>"
-          > Update </button>
-          <button
-            data-action="click->comment-update#cancel"
-            data-comment-update-target="cancelBtn"
-          > Cancel </button>
+          <div class="update-btn-block">
+            <button
+              data-action="click->comment-update#cancel"
+              data-comment-update-target="cancelBtn"
+            > Cancel </button>
+            <button
+              data-action="click->comment-update#update"
+              data-comment-update-target="updateBtn"
+              data-id="<%= comment.id %>"
+            > Update </button>
+          </div>
         </div>
-        <div>
-          <p data-comment-update-target="commentShow"><%= comment.content %></p>
+        <div class="comment-content-block">
+          <div class="comment-content-text">
+            <p data-comment-update-target="commentShow"><%= comment.content %></p>
+          </div>
+          <div class="edit-btn-block">
+            <%# 評論編輯按鈕 %>
+            <%= edit_buttons(comment) %>
+          </div>
         </div>
-        <%# 評論編輯按鈕 %>
-        <%= edit_buttons(comment) %>
       </li>
       <% end %>
     </ol>
   </section>
-  <aside class="">
+  <aside>
     <div class="share-block">
-      <span>Share</span>
-      <span>Copy Link</span>
+      <span class="share-text">Share</span>
+      <button class="copy-link"
+        data-controller="share-link"
+        data-share-link-target="copyBtn"
+        data-action="click->share-link#copy"
+      >
+        <i class="fas fa-link"></i> Copy Link</button>
     </div>
     <dl>
       <div>
@@ -80,7 +91,7 @@ Give the creator a confidence boost!"
       </div>
     </dl>
     <% if pen.edit_view_count != 0 %>
-      <div id="view_count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
+      <div class="view-count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
     <% end %>
   </aside>
 

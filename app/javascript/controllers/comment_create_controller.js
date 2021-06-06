@@ -18,6 +18,7 @@ export default class extends Controller {
               if (this.comments_count === 0) {
                 this.comments_count += 1
                 commentCountP.innerHTML = `${this.comments_count} comment`
+                commentCountP.nextElementSibling.classList.add("hidden")
               } else {
                 this.comments_count += 1
                 commentCountP.innerText = `${this.comments_count} comments`
@@ -59,34 +60,54 @@ export default class extends Controller {
       // 取回後端資料渲染
       success: (data) => {
         listElement.innerHTML = `
-        <div>
-          <span>${data.user.display_name} (@${data.user.username})</span>
-          <span> less than a minute ago </span>
+        <div class = "comment-user-info">
+          <div class="user-comment-img">
+            <img src="/images/user-img.jpg" alt="使用者圖像" />
+          </div>
+          <div class="user-name" >
+            <span>${data.user.display_name}</span>
+            <span class="light-text"> (@${data.user.username})</span>
+          </div>
+          <div class="comment-time">
+            <span> less than a minute ago </span>
+          </div>
         </div>
-        <div class="comment-edit-block"
+        <div class="comment-update-block"
           data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea">${data.content}</textarea>
-          <button
-            data-action="click->comment-update#update"
-            data-comment-update-target="updateBtn"
-            data-id="${data.id}"
-          > Update </button>
-          <button
+          <div class="update-btn-block">
+            <button
             data-action="click->comment-update#cancel"
             data-comment-update-target="cancelBtn"
-          > Cancel </button>
+            > Cancel </button>
+            <button
+              data-action="click->comment-update#update"
+              data-comment-update-target="updateBtn"
+              data-id="${data.id}"
+            > Update </button>
+          </div>
         </div>
-        <div>
-          <p data-comment-update-target="commentShow">${data.content}</p>
+        <div class="comment-content-block">
+          <div class="comment-content-text">
+            <p data-comment-update-target="commentShow">${data.content}</p>
+          </div>
+          <div class="edit-btn-block">
+            <button
+              class='comment-edit-btn'
+              data-action='click->comment-update#edit'
+              data-comment-update-target='editBtn'>
+              <span><i class='fas fa-pencil-alt'></i></span>
+              <span>Edit</span>
+            </button>
+            <button
+              class='comment-delete-btn'
+              data-action='click->comment-delete#delete'
+              data-comment-update-target='deleteBtn'>
+              <span><i class='fas fa-trash'></i></span>
+              <sapn>Delete</sapn>
+            </button>
+          </div>
         </div>
-        <button
-          data-action="click->comment-update#edit"
-          data-comment-update-target="editBtn"
-        > Edit </button>
-        <button
-          data-action="click->comment-delete#delete"
-          data-comment-update-target="deleteBtn"
-        > Delete</button>
         `
         listElement.setAttribute("data-comment-delete-id-value", data.id)
         this.listTarget.insertAdjacentElement('afterbegin', listElement)

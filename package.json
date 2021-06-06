@@ -22,7 +22,10 @@
     "react-split-pane": "^0.1.92",
     "stimulus": "^2.0.0",
     "sweetalert2": "^11.0.15",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "@fullhuman/postcss-purgecss": "3.0.0",
+    "postcss": "^7"
   },
   "scripts": {
     "postinstall": "patch-package"
@@ -30,9 +33,6 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.2",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "autoprefixer": "^9",
-    "@fullhuman/postcss-purgecss": "3.0.0"
+    "autoprefixer": "^9"
   }
 }

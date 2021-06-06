@@ -3,7 +3,7 @@ import axios from 'axios'
 import WorkFeatures from './WorkFeatures.js'
 import PenItemContent from './PenItemContent.js'
 import PagesBtn from './PagesBtn.js'
-// import Alert from './Alert.js'
+
 // axios api
 let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;

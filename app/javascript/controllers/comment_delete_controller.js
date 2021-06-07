@@ -34,7 +34,7 @@ export default class extends Controller {
           url: `/api/v1/comments/${this.idValue}`,
           type: 'DELETE',
           success: (data) => {
-            if(data.status === "Destroyed") {
+            if(data.status === "Destroied") {
               this.commentLiTarget.remove()
             }
           }

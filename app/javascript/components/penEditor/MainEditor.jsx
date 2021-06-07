@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SplitPane from 'react-split-pane'
+import { SplitPane } from "react-collapse-pane";
 import '../../styles/index_editor.css'
 
 import Editor from './Editor'
@@ -13,6 +13,7 @@ const MainEditor = ( ) => {
 
   const [isDragging, setDraggingState] = useState(false)
 
+
   function showConsoleBox() {
     setShowConsole(!showConsole)
   }
@@ -23,37 +24,26 @@ const MainEditor = ( ) => {
 
   return(
     <>
-      <SplitPane split="horizontal"
-                 defaultSize={"50%"}
-                 className="SplitPane-horizontal"
-                 onDragStarted={atDragging}
-                 onDragFinished={atDragging}>
-        <SplitPane split="vertical" minSize={"33%"}>
+      <SplitPane split="horizontal" hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}>
+
+        <SplitPane split="vertical" collapse={true}>
           {/* editor html */}
           <Editor editorTitle={"HTML"} editorId={"editor--html"} editorClass={"editor-code editor-html"}/>
-          <SplitPane split="vertical" minSize={50} defaultSize={"50%"} primary="second" className="right-spliter">
-            {/* editor css */}
-            <Editor editorTitle={"CSS"} editorId={"editor--css"} editorClass={"editor-code editor-css"}/>
-            {/* editor js */}
-            <Editor editorTitle={"JavaScript"} editorId={"editor--js"} editorClass={"editor-code editor-js"} />
-          </ SplitPane>
+          {/* editor css */}
+          <Editor editorTitle={"CSS"} editorId={"editor--css"} editorClass={"editor-code editor-css"}/>
+          {/* editor js */}
+          <Editor editorTitle={"JavaScript"} editorId={"editor--js"} editorClass={"editor-code editor-js"} />
         </ SplitPane>
 
         <div className={isOpen}>
-          <SplitPane split="horizontal"
-                     className="iframeAndConsole"
-                     onDragStarted={atDragging}
-                     onDragFinished={atDragging}
-                     minSize={"50%"}>
-              <div className="edit-render-result"
-                   style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
-                    <Iframe />
-              </div>
-              <div>
-                <EditorConsole />
-              </div>
+          <SplitPane split="horizontal" className="iframeAndConsole" hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}>
+            <div className="edit-render-result" style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
+              <Iframe />
+            </div>
+            <EditorConsole />
           </ SplitPane>
         </div>
+
       </ SplitPane>
 
       <button onClick={showConsoleBox} id="console-btn" className="fake-console"> Console </button>

@@ -17,7 +17,8 @@ const SettingAlert = () => {
     customClass: {
       popup: 'setting-popup',
       confirmButton: 'setting-close',
-      title: 'setting-title'
+      title: 'setting-title',
+      actions: 'setting-actions'
     },
     focusConfirm: false,
     html: <EditorSettingContainer />,

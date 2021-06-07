@@ -1,23 +1,39 @@
-<tr scope="col">
-  <th class="title-wrap">
-    <%= link_to pen.title, edit_pen_path(pen, username: current_user.username) %>
+<tr scope="col" data-controller="private" data-private-random-value="<%= pen.random_url %>">
+  <th class="title-wrap flex items-center justify-between">
+    <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
+    <% # 鎖 %>
+    <div  class="private-lock hidden pr-2"
+          data-private-target="privateIcons"
+          data-is-private="<%= pen.private %>">
+      <i class="fas fa-lock"></i>
+    </div>
   </th>
+  <% # 彈跳視窗入口 %>
   <td class="modal-wrap">
     <%# modal %>
     <button class="modal-btn" id="modal-btn">
       <i class="fas fa-expand-arrows-alt"></i>
     </button>
-    <div id="modal" class="modal" data-url="<%= pen.random_url %>">
+    <div id="modal" class="modal">
       <div class="modal-content">
-        <a href="#" id="username">
+        <header className="modal-header">
           <%= current_user.username %>
-        </a>
-          <div class="points-wrap points-content-bottom"
-               data-url="<%= pen.random_url %>"></div>
-          <%= render 'comment' , pen: pen,
-                                 comments: pen.comments.order(created_at: :desc),
-                                 comment: @comment,
-                                 comments_count: pen.comments_count %>
+          <%= pen.title %>
+          <% # 鎖 %>
+          <div  class="private-lock hidden pr-2"
+                data-private-target="privateIcons"
+                data-is-private="<%= pen.private %>">
+            <i class="fas fa-lock"></i>
+          </div>
+          <% # points 按鈕 %>
+          <div class="points-wrap points-content-bottom" data-url="<%= pen.random_url %>" data-action="click->private#togglePoints"
+          ></div>
+        </header>
+
+        <%= render 'comment' ,  pen: pen,
+                                comments: pen.comments.order(created_at: :desc),
+                                comment: @comment,
+                                comments_count: pen.comments_count %>
       </div>
     </div>
   </td>
@@ -42,10 +58,12 @@
       <%= pen.edit_view_count %>
     </div>
   </td>
-  <td class="points-wrap points-content-top" data-url="<%= pen.random_url %>"
-                                             data-controller="delete-pen"
-                                             data-delete-pen-username-value="<%= current_user.username %>"
-                                             data-delete-pen-random-value="<%= pen.random_url %>"
-                                             data-delete-pen-target="trashedPen">
+  <td class="points-wrap points-content-top"
+      data-controller="delete-pen"
+      data-delete-pen-username-value="<%= current_user.username %>"
+      data-delete-pen-random-value="<%= pen.random_url %>"
+      data-delete-pen-target="trashedPen"
+      data-action="click->private#togglePoints"
+      >
   </td>
 </tr>

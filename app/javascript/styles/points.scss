@@ -102,15 +102,17 @@
   @apply inline-block;
   .points-content-box{
     top: 95%;
-    @apply bottom-auto;
+    @apply bottom-auto rounded-l rounded-tr-none rounded-br;
   }
 }
 .points-content-bottom{
+  background-color: var(--primary-gray-4);
+  @apply rounded;
   .points-btn{
     @apply py-5 px-4 rounded-t rounded-b-none;
     &:hover{
       background-color: var(--primary-gray-3);
-      @apply rounded;
+      @apply rounded-t;
     }
   }
 }

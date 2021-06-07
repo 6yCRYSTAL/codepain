@@ -20,7 +20,10 @@ export default function points() {
           </button>
           <div class="points-content points-content-hidden">
             <div class="points-content-box">
-              <button class="private-btn">
+              <button class="private-btn"
+              data-action="click->private#togglePrivate"
+              data-private-target="privateChecks"
+              >
                 <div class="lock-icon"><i class="fas fa-lock"></i></div>
                 <span>Make Private</span>
                 <span class="logo-pro">pro</span>
@@ -67,22 +70,34 @@ export default function points() {
 // click Points-btn
 function clickPointsBtn() {
   const PointsBtn = document.querySelectorAll('.points-btn');
-  const toArray = Array.from(PointsBtn);
+  const toArrayPoints = Array.from(PointsBtn);
   let prev,now,defValue = 0;
-
+  // 點擊外面關掉
+  window.addEventListener('click', function(e){
+    toArrayPoints.forEach(btn =>{
+      if(btn.contains(e.target) === false){
+        btn.nextElementSibling.classList.add('points-content-hidden');
+        btn.style.backgroundColor = 'inherit';
+        btn.classList.remove('hover-no-color');
+      }
+    })
+  });
+  // 按鈕點擊
   PointsBtn.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
+      // e.stopPropagation();
       const PointsContent = e.currentTarget.nextElementSibling;
       PointsContent.classList.toggle('points-content-hidden');
+
       // 其他按鈕關掉
       if(defValue === 0){
         defValue++;
-        prev = toArray.indexOf(e.currentTarget);
+        prev = toArrayPoints.indexOf(e.currentTarget);
       }
-      now = toArray.indexOf(e.currentTarget);
+      now = toArrayPoints.indexOf(e.currentTarget);
       if(prev !== now){
-        toArray[prev].nextElementSibling.classList.add('points-content-hidden');
-        toArray[prev].style.backgroundColor = 'inherit';
+        toArrayPoints[prev].nextElementSibling.classList.add('points-content-hidden');
+        toArrayPoints[prev].style.backgroundColor = 'inherit';
         prev = now ;
       }
       // 判斷 points-content 樣式

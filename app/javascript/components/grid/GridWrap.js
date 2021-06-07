@@ -22,7 +22,7 @@ function GridItem() {
   // 搜尋、排序值
   let searchValue = allValue[0];
   let sortBy = allValue[1] || 'Date Created';
-  let sortDirection = allValue[2] || ' ';
+  let sortDirection = allValue[2] || '';
 
   // get Api
   React.useEffect(() =>{
@@ -42,14 +42,14 @@ function GridItem() {
         LikeId.push(like.id);
       });
       setUserLike(LikeId);
-
+      setSearchNoData(false);
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
       // }, 500)
     })
     .catch( error => {
-      if(error instanceof Error) {
+      if(error.message){
         setSearchNoData(true);
       }
     });

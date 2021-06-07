@@ -8,7 +8,7 @@ module Searchable
   def search_user_pen(page, per)
     pens = current_user.pens
     case
-    when params.has_key?(:search_term) && params.has_key?(:sort_by) && params.has_key?(:sort_order)
+    when params.has_key?(:search_term) && params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .sort_asc(params[:sort_by])
                   .includes_comments_and_page(page, per)
@@ -18,12 +18,12 @@ module Searchable
                   .sort_desc(params[:sort_by])
                   .includes_comments_and_page(page, per)
 
-    when params.has_key?(:search_term) && params.has_key?(:sort_order)
+    when params.has_key?(:search_term) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .order(created_at: :asc)
                   .includes_comments_and_page(page, per)
 
-    when params.has_key?(:sort_by) && params.has_key?(:sort_order)
+    when params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.sort_asc(params[:sort_by])
                   .includes_comments_and_page(page, per)
 
@@ -36,7 +36,7 @@ module Searchable
       @pens = pens.sort_desc(params[:sort_by])
                   .includes_comments_and_page(page, per)
 
-    when params.has_key?(:sort_order)
+    when (params[:sort_order] == 'asc')
       @pens = pens.order(created_at: :asc)
                   .includes_comments_and_page(page, per)
 

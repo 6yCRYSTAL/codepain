@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Rails from '@rails/ujs'
 import Points from './Points.js'
-import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 
 // 彈跳視窗功能
 const Alert = (props) => {

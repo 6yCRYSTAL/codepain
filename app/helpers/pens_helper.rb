@@ -101,4 +101,8 @@ module PensHelper
       next_page_button(pens)
     end
   end
+
+  def pro_logo(pen)
+    "<span class='logo-pro'>pro</span>".html_safe if pen.user.membership != 'free'
+  end
 end

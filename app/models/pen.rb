@@ -18,7 +18,7 @@ class Pen < ApplicationRecord
   scope :search, -> keyword { where('title Ilike ?', "%#{keyword}%") }
   scope :includes_comments_and_page, -> (page, per) { includes(:comments).page(page).per(per) }
 
-  def self.sort_by_desc(sort)
+  def self.sort_desc(sort)
     case sort
     when 'Date Created'
       order(created_at: :desc)
@@ -29,7 +29,7 @@ class Pen < ApplicationRecord
     end
   end
 
-  def self.sort_by_asc(sort)
+  def self.sort_asc(sort)
     case sort
     when 'Date Created'
       order(created_at: :asc)
@@ -38,6 +38,13 @@ class Pen < ApplicationRecord
     when 'Popularity'
       order(edit_view_count: :asc)
     end
+  end
+
+  def trash!
+    # change pen state
+    self.update(state: 'trashed')
+    # soft_delete the pen
+    self.destroy
   end
 
   def generate_random_url

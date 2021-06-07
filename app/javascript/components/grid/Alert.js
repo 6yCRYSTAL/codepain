@@ -38,7 +38,13 @@ const Alert = (props) => {
     <div id="modal" className="modal-container" onClick={ closeAlert }>
       <div className="modal-content">
         <a href="#" id="username">{ user_name }</a>
-        <div className="points-wrap points-content-bottom" data-url={ random_url }></div>
+        <div className="points-wrap points-content-bottom"
+             data-url={`${random_url}`}
+             data-controller="delete-pen"
+             data-delete-pen-username-value={`${user_name}`}
+             data-delete-pen-random-value={`${random_url}`}
+             data-delete-pen-target="trashedPen">
+        </div>
         <div className="bg-gray-300"
              data-controller="comment-create"
              data-comment-create-url-value={ random_url }>

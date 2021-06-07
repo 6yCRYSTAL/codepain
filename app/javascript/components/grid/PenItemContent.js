@@ -23,7 +23,12 @@ const PenItemContent = (props) => {
     <div className="pen-item">
       <header className="pen-header">
         <h2>{title}</h2>
-        <div className="points-wrap points-content-top" data-url={`${random_url}`}>
+        <div className="points-wrap points-content-top"
+             data-url={`${random_url}`}
+             data-controller="delete-pen"
+             data-delete-pen-username-value={`${user_name}`}
+             data-delete-pen-random-value={`${random_url}`}
+             data-delete-pen-target="trashedPen">
         </div>
       </header>
       <div className="pen-img">

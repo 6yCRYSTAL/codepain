@@ -54,9 +54,11 @@ class PensController < ApplicationController
 
   def search_all_users
     begin
-      @pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user).page(params[:page]).per(6)
+      pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user).shuffle
+      pens_per_page(pens)
     rescue
-      @pens = Pen.includes(:user).where.not(user: current_user).page(params[:page]).per(6)
+      pens = Pen.includes(:user).where.not(user: current_user).shuffle
+      pens_per_page(pens)
     end
   end
 
@@ -66,14 +68,42 @@ class PensController < ApplicationController
                 .includes(:user)
                 .where(user: current_user.following)
                 .shuffle
-      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
+
+      pens_per_page(pens)
     rescue
       pens = Pen.joins(user: {follower_relationships: :following})
                  .includes(:user)
                  .where.not(user: current_user)
                  .distinct
                  .shuffle
-      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
+
+      pens_per_page(pens)
     end
+  end
+
+  def trending
+    begin
+      most_viewed_pens = Pen.joins(:impressions)
+                            .where("impressions.created_at": 1.day.ago..Time.now)
+                            .where.not(user: current_user)
+                            .group("pens.id")
+                            .order("count(pens.id) DESC")
+
+      most_follower_pens = Pen.joins(user: {follower_relationships: :following})
+                              .includes(:user)
+                              .where.not(user: current_user)
+                              .group("pens.id")
+                              .order("count(follows.following_id) DESC")
+
+      pens = (most_viewed_pens + most_follower_pens).uniq.shuffle
+
+      pens_per_page(pens)
+    end
+  end
+
+  private
+
+  def pens_per_page(pens)
+    @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
   end
 end

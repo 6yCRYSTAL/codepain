@@ -1,4 +1,5 @@
 class PensController < ApplicationController
+  include Searchable
   before_action :find_user_pen, only: [:show, :edit, :destroy, :make_private]
   # impressionist :actions=>[:edit]
 
@@ -15,32 +16,27 @@ class PensController < ApplicationController
 
       # for Comment
       @comment = current_user.comments.new
-      render layout: "application"
     end
   end
 
   def new
     @pen = Pen.new
-    render layout: "edit"
+    render layout: "editor"
   end
 
   def show
-    @comments = @pen.comments.order(id: :desc)
+    @comments = @pen.comments.order(created_at: :desc)
     @comments_count = @pen.comments_count
     @comment = current_user.comments.new
 
-    render layout: "show"
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    render layout: "details"
   end
 
   def edit
     if @pen.private && current_user != @pen.user
       redirect_to pens_path, alert: "This is a private pen. Please contact the owner for more information."
     else
-      render layout: "edit"
+      render layout: "editor"
 
       impressionist(@pen)
     end
@@ -48,11 +44,9 @@ class PensController < ApplicationController
 
   def destroy
     if user_signed_in? && current_user == @pen.user
-      # change pen state
-      @pen.update(state: 'trashed')
-      # soft_delete the pen
-      @pen.destroy
-      redirect_to pens_path, notice: "DELETED!!!"
+      @pen.trash!
+
+      redirect_to pens_path
     else
       redirect_to :root
     end
@@ -60,10 +54,26 @@ class PensController < ApplicationController
 
   def search_all_users
     begin
-      @pens = Pen.search(params[:q]).includes(:user).page(params[:page]).per(6)
+      @pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user).page(params[:page]).per(6)
     rescue
-      @pens = Pen.includes(:user).page(params[:page]).per(6)
+      @pens = Pen.includes(:user).where.not(user: current_user).page(params[:page]).per(6)
     end
-    render layout: "application"
+  end
+
+  def follow
+    begin
+      pens = Pen.joins(user: {follower_relationships: :following})
+                .includes(:user)
+                .where(user: current_user.following)
+                .shuffle
+      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
+    rescue
+      pens = Pen.joins(user: {follower_relationships: :following})
+                 .includes(:user)
+                 .where.not(user: current_user)
+                 .distinct
+                 .shuffle
+      @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
+    end
   end
 end

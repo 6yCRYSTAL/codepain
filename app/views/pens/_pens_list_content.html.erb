@@ -31,7 +31,7 @@
         </header>
 
         <%= render 'comment' ,  pen: pen,
-                                comments: pen.comments,
+                                comments: pen.comments.order(created_at: :desc),
                                 comment: @comment,
                                 comments_count: pen.comments_count %>
       </div>

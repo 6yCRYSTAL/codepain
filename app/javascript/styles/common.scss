@@ -25,15 +25,20 @@
     background-color: var(--primary-gray-3);
   }
 }
-
-*{
+body, html{
+  font-family: Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: var(--primary-gray-7);
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-
 a {
   text-decoration: none;
 }
-
 button{
   margin: 0;
   padding: 0;
@@ -45,16 +50,6 @@ button{
 ul, ol {
   list-style:none;
   padding-left:0;
-}
-body, html{
-  font-family: Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
-	width: 100%;
-	height: 100%;
-	position: relative;
-	background-color: var(--primary-gray-7);
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
 }
 .big-title{
   font-family: "Alata", sans-serif;
@@ -345,6 +340,9 @@ to {
   position: relative;
   width: 100%;
   padding-right: .5rem;
+  label{
+    display: flex;
+  }
   .fa-search{
     font-size: 20px;
     position: absolute;
@@ -355,7 +353,7 @@ to {
   input,input:focus{
     background-color: var(--primary-gray-6);
     color: var(--light-gray);
-    padding: 0.4em 0.4em 0.4em 2em;
+    padding: 0em 2em;
     width: 100%;
     height: 45px;
     border-radius: 2px;

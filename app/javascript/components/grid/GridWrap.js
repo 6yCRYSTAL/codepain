@@ -3,7 +3,7 @@ import axios from 'axios'
 import WorkFeatures from './WorkFeatures.js'
 import PenItemContent from './PenItemContent.js'
 import PagesBtn from './PagesBtn.js'
-
+import SearchNoResult from './SearchNoResult.js'
 // axios api
 let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;
@@ -17,6 +17,7 @@ function GridItem() {
   const [clickPage, setClickPage] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(true);
   const [allValue, setAllValue] = React.useState([]);
+  const [searchNoData, setSearchNoData] = React.useState(false);
 
   // 搜尋、排序值
   let searchValue = allValue[0];
@@ -47,6 +48,11 @@ function GridItem() {
       //   console.clear()
       // }, 500)
     })
+    .catch( error => {
+      if(error instanceof Error) {
+        setSearchNoData(true);
+      }
+    });
   }, [clickPage,allValue]);
   // 上下頁功能
   function nextBtn() {
@@ -65,9 +71,17 @@ function GridItem() {
   return(
     <>
       <WorkFeatures
-        setAllValue={setAllValue}
+        setAllValue={ setAllValue }
+        setSearchNoData={ setSearchNoData }
       />
+      {
+        searchNoData &&
+        <SearchNoResult
+          searchValue={ searchValue }
+        />
+      }
       <div className="pens-grid-content">
+        {/* <SearchToNull /> */}
         <div className="pen-items-wrap">
           {
             grid.map((data) =>{

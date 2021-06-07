@@ -15,6 +15,23 @@
     }
   }
 }
+.points-follow-wrap{
+  @apply relative;
+}
+.points-content-wrap{
+  @apply relative flex justify-center;
+}
+.points-btn{
+  @apply flex p-3 justify-center rounded-b-sm;
+  svg{
+    fill: var(--primary-gray-1);
+  }
+  &:hover{
+    svg{
+      fill: var(--light-gray);
+    }
+  }
+}
 .points-content-hidden{
   @apply invisible;
 }
@@ -37,6 +54,9 @@
       &.lock-icon{
         font-size: var(--text-p);
       }
+    }
+    .follow-icon{
+      @apply pr-3;
     }
     span{
       font-size: var(--text-p);

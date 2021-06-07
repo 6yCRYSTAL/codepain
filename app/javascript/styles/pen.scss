@@ -167,7 +167,7 @@
 /* title & features end */
 /* grid-pen-item */
 .pens-grid-loading{
-  height: 60rem;
+  height: 100rem;
 }
 .pen-items-wrap{
   -webkit-box-align: start;
@@ -219,9 +219,10 @@
   }
 }
 .pen-header{
-  h2{
+  a{
     font-size: var(--text-h6);
     color: var(--light-gray);
+    @apply cursor-pointer font-bold;
   }
   .pen-more{
     svg{
@@ -362,7 +363,6 @@
     }
     &:hover{
       background: rgba(0,0,0,0.5);
-      color: #fff
     }
   }
 }

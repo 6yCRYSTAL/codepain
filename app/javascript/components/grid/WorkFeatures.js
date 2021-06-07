@@ -8,7 +8,7 @@ import SortDirection from './SortDirection.js'
 const WorkFeatures = ({ setAllValue,setSearchNoData })=>{
   const [isSearchValue, setSearchValue] = React.useState([]);
   const [isSortBy, setSortBy] = React.useState('Date Created');
-  const [isSortOrder, setSortOrder] = React.useState('desc');
+  const [isSortOrder, setSortOrder] = React.useState('');
 
   React.useEffect(() =>{
     setAllValue([`${isSearchValue}`,`${isSortBy}`,`${isSortOrder}`])

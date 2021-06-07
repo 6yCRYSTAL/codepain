@@ -47,7 +47,7 @@ library.add(
   faChevronRight,
   faTrash,
   faLock,
-  faTimesCircle
+  faTimesCircle,
   faLink,
   faCheck,
   faTimes

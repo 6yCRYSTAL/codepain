@@ -19,7 +19,6 @@ border-left: 3px solid #444857;
 margin-bottom: 20px;
 `
 const CdnContainerTitle = styled.div`
-  width: 100%;
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -27,7 +26,6 @@ const CdnContainerTitle = styled.div`
   padding: 10px;
 `
 const SearchInputContainer = styled.div`
-  width: 100%;
   min-height: 3em;
   display: flex;
   align-items: center;

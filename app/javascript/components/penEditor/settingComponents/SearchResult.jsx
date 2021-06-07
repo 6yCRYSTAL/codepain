@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import axios from 'axios'
 
 const ResultWrap = styled.div`
-  width: 100%;
   min-height: 3em;
   background-color: #2c303a;
   position: relative;

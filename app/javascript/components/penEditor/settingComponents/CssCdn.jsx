@@ -2,7 +2,6 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const CdnList = styled.div`
-  width: 100%;
   color: white;
   display: flex;
   justify-content: space-between;

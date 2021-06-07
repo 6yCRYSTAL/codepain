@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Rails from '@rails/ujs'
 import Points from './Points.js'
 import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
-import { comment } from 'postcss';
 
 // 彈跳視窗功能
-const Alert = (props, commentData) => {
+const Alert = (props) => {
   const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
   const [ comments, setComments ] = useState([])
+  const [ res, setRes] = useState([])
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -32,8 +32,7 @@ const Alert = (props, commentData) => {
       success: (response) => {
         let commentData = response.comments
         setComments(commentData)
-          //TODO
-          console.log(commentData)
+        setRes(response)
       }
     })
   }, [])
@@ -140,11 +139,11 @@ const Alert = (props, commentData) => {
             <dl>
               <div>
                 <dt>Created on</dt>
-                <dd>???????????</dd>
+                <dd>{res.pen_created_on}</dd>
               </div>
             <div>
               <dt>Updated on</dt>
-              <dd>?????????????</dd>
+              <dd>{res.pen_updated_on}</dd>
             </div>
             </dl>
             <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>

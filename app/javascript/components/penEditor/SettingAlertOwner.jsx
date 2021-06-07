@@ -2,11 +2,10 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import '../../styles/editor-setting.scss'
-import EditorSettingContainer from './settingComponents/EditorSettingContainer'
+import EditorSettingContainerOwner from './settingComponents/EditorSettingContainerOwner'
 
 const SettingAlert = () => {
   const MySwal = withReactContent(Swal)
-  let updateBtn = document.querySelector('#btn-update')
 
   MySwal.fire({
     background: 'black',
@@ -22,7 +21,7 @@ const SettingAlert = () => {
       actions: 'setting-actions'
     },
     focusConfirm: false,
-    html: <EditorSettingContainer auth={updateBtn ? "owner" : "others"}/>,
+    html: <EditorSettingContainerOwner />,
     confirmButtonText: 'Close',
     confirmButtonColor: '#47cf73'
   })

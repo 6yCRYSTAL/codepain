@@ -2,7 +2,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import '../../styles/editor-setting.scss'
-import EditorSettingContainer from './settingComponents/EditorSettingContainer'
+import EditorSettingContainerOthers from './settingComponents/EditorSettingContainerOthers'
 
 const SettingAlert = () => {
   const MySwal = withReactContent(Swal)
@@ -21,7 +21,7 @@ const SettingAlert = () => {
       actions: 'setting-actions'
     },
     focusConfirm: false,
-    html: <EditorSettingContainer />,
+    html: <EditorSettingContainerOthers />,
     confirmButtonText: 'Close',
     confirmButtonColor: '#47cf73'
   })

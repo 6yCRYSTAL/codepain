@@ -28,11 +28,11 @@ document.addEventListener('turbolinks:load', () => {
   const updateButton = document.querySelector('#btn-update')
   if (settingButton) {
     if (updateButton) {
+      settingButton.addEventListener('click', SettingAlertOwner)
+    }
+    else {
       settingButton.addEventListener('click', SettingAlertOthers)
     }
-    // else {
-    //   settingButton.addEventListener('click', SettingAlertOthers)
-    // }
   } else {
     localStorage.removeItem('css')
     localStorage.removeItem('js')

@@ -80,9 +80,9 @@ const NoCdnImplemented = styled.div`
   color: #5a5f73;
 `
 
-function EditorSettingContainer ({auth}) {
-  const cssStorage = JSON.parse(localStorage.getItem('css'))
-  const jsStorage = JSON.parse(localStorage.getItem('js'))
+function EditorSettingContainerOthers () {
+  const cssStorage = JSON.parse(localStorage.getItem('css')) || []
+  const jsStorage = JSON.parse(localStorage.getItem('js')) || []
 
   const [searchQuery, setSearchQuery] = useState('')
   const [cssCdnList, setCssCdnList] = useState(cssStorage)
@@ -138,77 +138,47 @@ function EditorSettingContainer ({auth}) {
     const url = e.currentTarget.dataset.url
     const urlArray = url.split('.')
     const category = urlArray[urlArray.length-1]
-    let token = document.querySelector('meta[name = csrf-token]').content
-    const response = await axios({
-      method: 'post',
-      url: '/api/v1/resources',
-      data: {
-        random_url: randomurl,
+
+    if (category === "css"){
+      let newList = cssCdnList.concat({
         category: category,
-        url: url
-      },
-      headers: {
-        'X-CSRF-Token': `${token}`
-      }
-    })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-    if (response) {
-      if (category === "css"){
-        let newList = cssCdnList.concat({
-          category: category,
-          url: url,
-          id: response.data.id
-        })
-        setCssCdnList(newList)
-        localStorage.setItem('css', JSON.stringify(newList))
-      } else {
-        let newList = jsCdnList.concat({
-          category: category,
-          url: url,
-          id: response.data.id
-        })
-        setJsCdnList(newList)
-        localStorage.setItem('js', JSON.stringify(newList))
-      }
-      setSearchQuery('')
-      setIsBlur(true)
-      setResourcesFound([])
+        url: url,
+        id: Math.floor(Math.random()*50)+"a"
+      })
+      setCssCdnList(newList)
+      localStorage.setItem('css', JSON.stringify(newList))
+    } else {
+      let newList = jsCdnList.concat({
+        category: category,
+        url: url,
+        id: Math.floor(Math.random()*50)+"a"
+      })
+      setJsCdnList(newList)
+      localStorage.setItem('js', JSON.stringify(newList))
     }
+    setSearchQuery('')
+    setIsBlur(true)
+    setResourcesFound([])
   }
 
   const atCdnDelete = async (e) => {
     e.preventDefault()
     const cdnId = e.currentTarget.dataset.resource
     const cdnCategory = e.currentTarget.dataset.category
-    let token = document.querySelector('meta[name = csrf-token]').content
-    const response = await axios({
-      method: 'delete',
-      url: `/api/v1/resources/${cdnId}`,
-      headers: {
-        'X-CSRF-Token': `${token}`
+    if (cdnCategory === "css"){
+      let newList = cssCdnList.filter(resource => resource.id != cdnId)
+      if (!newList) {
+        newList = []
       }
-    })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-    if (response) {
-      if (cdnCategory === "css"){
-        let newList = cssCdnList.filter(resource => resource.id != cdnId)
-        if (!newList) {
-          newList = []
-        }
-        setCssCdnList(newList)
-        localStorage.setItem('css', JSON.stringify(newList))
-      } else {
-        let newList = jsCdnList.filter(resource => resource.id != cdnId)
-        if (!newList) {
-          newList = []
-        }
-        setJsCdnList(newList)
-        localStorage.setItem('js', JSON.stringify(newList))
+      setCssCdnList(newList)
+      localStorage.setItem('css', JSON.stringify(newList))
+    } else {
+      let newList = jsCdnList.filter(resource => resource.id != cdnId)
+      if (!newList) {
+        newList = []
       }
+      setJsCdnList(newList)
+      localStorage.setItem('js', JSON.stringify(newList))
     }
   }
 
@@ -288,4 +258,4 @@ function EditorSettingContainer ({auth}) {
 
 
 
-export default EditorSettingContainer
+export default EditorSettingContainerOthers

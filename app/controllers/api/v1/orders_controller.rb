@@ -7,7 +7,7 @@ class Api::V1::OrdersController < Api::ApiController
     find_product
     # 新增訂單
     order = @product.orders.new(
-      user_id: current_user.id,
+      user: current_user,
       total_amount: @product.price
     )
 
@@ -98,7 +98,6 @@ class Api::V1::OrdersController < Api::ApiController
   end
 
   def find_product
-      @product = Product.find_by!('plan = ? AND period = ?',
-                                   params[:plan], params[:period])
+      @product = Product.find_by!(plan: params[:plan], period: params[:period])
   end
 end

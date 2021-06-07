@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import Rails from '@rails/ujs'
+import Points from './Points.js'
 
 // 彈跳視窗功能
 const Alert = (props) => {
-  const { setToggle } = props;
-  const { user_name,random_url,comments_count,view_count } = props.data;
-
+  const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
+  const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
   const [ comments, setComments ] = useState([])
 
   // 關掉彈跳視窗
   function closeAlert(e){
     if (e.target === e.currentTarget) {
-      setToggle(false);
+      setAlertToggle(false);
       document.querySelector('body').classList.remove('fixed');
       // 修改網址
-      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
+      // history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
     };
   };
   // 新增網址，而不會刷新頁面
-  React.useEffect(() =>{
-    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
-  },[])
+  // React.useEffect(() =>{
+  //   history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
+  // },[])
 
   useEffect( () => {
     Rails.ajax({
@@ -35,10 +35,30 @@ const Alert = (props) => {
   }, [])
 
   return(
-    <div id="modal" className="modal-container" onClick={ closeAlert }>
+    <div
+      id="modal"
+      className="modal-container"
+      onClick={ closeAlert }>
+
       <div className="modal-content">
-        <a href="#" id="username">{ user_name }</a>
-        <div className="points-wrap points-content-bottom" data-url={ random_url }></div>
+        <header className="modal-header">
+          <p>{ user_name }</p>
+          {
+            privateToggle &&
+            <div className="private-lock alert-private-lock" id="private-lock">
+              <i className="fas fa-lock text-gray-400"></i>
+            </div>
+          }
+
+          {/* 鎖頭入口 */}
+          <div className="points-content-wrap points-content-bottom">
+            <Points
+              url={ random_url }
+              setPrivateToggle={ setPrivateToggle }
+              privateToggle= { privateToggle }
+            />
+          </div>
+        </header>
         <div className="bg-gray-300"
              data-controller="comment-create"
              data-comment-create-url-value={ random_url }>

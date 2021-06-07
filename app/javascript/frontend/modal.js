@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load',function(){
     let penURL = modal.dataset['url']
     let username = modal.children[0].children[0].textContent.trim()
     // change URL at window location
-    history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
+    // history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/details/${penURL}`)
     modal.style.display = 'flex'
     modal.addEventListener('click', closeModal)
     // add lock body bg
@@ -22,7 +22,7 @@ document.addEventListener('turbolinks:load',function(){
     if (e.target === this) {
       e.target.style.display = 'none'
       // back to your-work
-      history.replaceState(null, 'your-work', `${location.origin}/your-work`)
+      // history.replaceState(null, 'your-work', `${location.origin}/your-work`)
       // remove lock body bg
       document.querySelector('body').classList.remove('fixed');
     }

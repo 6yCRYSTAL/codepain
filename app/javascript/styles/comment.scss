@@ -40,8 +40,11 @@
       resize : none;
       border: none;
       outline: none;
-      @apply rounded;
+      @apply rounded w-6/12 h-20;
       color: var(--light-gray);
+    }
+    .create-btn{
+      @apply bg-gray-500 text-white font-bold py-2 px-4 rounded;
     }
     .comment-submit-block{
       @apply rounded-b;

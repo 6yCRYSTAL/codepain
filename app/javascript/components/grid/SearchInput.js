@@ -34,7 +34,7 @@ function SearchInput({ setSearchValue,setSearchNoData }) {
         <button className="search-btn">Search</button>
       </form>
       <button
-        className="clear-search hidden"
+        className="clear-search"
         onClick={ clearSearch }
         style={{
           display: toggle && 'inline-block',

@@ -36,23 +36,30 @@ function GridItem() {
     .then(res =>{
       setGrid(res.data.payload.pens);
       setTotalPage(res.data.payload.meta.totalPages);
+      setSearchNoData(false);
       setIsLoading(false);
       // 使用者喜歡哪些 pens 的 id
-      res.data.payload.pens[0].user.love_pens.forEach((like) => {
-        LikeId.push(like.id);
-      });
+      // res.data.payload.pens[0].user.love_pens.forEach((like) => {
+      //   LikeId.push(like.id);
+      // });
       setUserLike(LikeId);
-      setSearchNoData(false);
+      console.log(res.data.payload.pens.length === 0)
+      if(res.data.payload.pens.length === 0){
+        console.log('yes');
+        setSearchNoData(true);
+      }
+
+
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
       // }, 500)
     })
-    .catch( error => {
-      if(error.message){
-        setSearchNoData(true);
-      }
-    });
+    // .catch( error => {
+    //   if(error.message){
+    //     setSearchNoData(true);
+    //   }
+    // });
   }, [clickPage,allValue]);
   // 上下頁功能
   function nextBtn() {

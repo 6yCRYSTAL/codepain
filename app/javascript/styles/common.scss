@@ -469,16 +469,12 @@ to {
 .footer-menu{
   > nav{
     font-size: var(--text-p);
-    padding-bottom: .5rem;
-    > h4{
-      display: inline;
-      margin-right: 1rem;
-      height: 40px;
-      letter-spacing: .5px;
+    @apply pb-2;
+    > h2{
+      @apply inline mr-4 h-10 tracking-wider;
     }
     a{
       color: var(--primary-gray-1);
-      text-decoration: none;
       &:hover {
         color: white;
       }
@@ -486,8 +482,8 @@ to {
   }
 }
 .footer-logo-copyright{
-  p{
-    font-size: var(--text-s-p);
+  h1{
+    font-size: 13px;
     text-align: right;
     color: var(--primary-gray-1);
   }
@@ -508,7 +504,7 @@ to {
 .login-p {
   color: #0ebeff;
 }
-/* login */
+/* login end */
 
 /* button */
 .next-btn,.prev-btn{
@@ -520,6 +516,7 @@ to {
     @apply transform -rotate-180;
   }
 }
+/* button end */
 
 /* comment */
 .comment-edit-block{
@@ -528,6 +525,7 @@ to {
 .appear{
   display: block;
 }
+/* comment end */
 
 /* delete pen modal */
 .delete-pen-popup {
@@ -565,3 +563,18 @@ to {
   top: 30px !important;
   border: 6px solid var(--warning-yellow) !important;
 }
+/* delete pen modal end */
+
+/* private-lock */
+/* alert-lock  */
+.alert-lock-icon{
+  @apply text-gray-400;
+}
+
+.grid-private-lock{
+  @apply absolute top-5 left-4;
+  svg{
+    @apply text-gray-600;
+  }
+}
+/* private-lock end */

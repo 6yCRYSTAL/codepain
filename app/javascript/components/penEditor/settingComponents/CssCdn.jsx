@@ -17,11 +17,13 @@ const CdnList = styled.div`
   }
 `
 
-const CssCdn = ({url, id, atCssCdnDelete}) => {
+const CssCdn = ({url, id, category, atCdnDelete}) => {
   return (
     <CdnList>
       {url}
-      <div data-resource={id} onClick={atCssCdnDelete}>
+      <div data-resource={id}
+           onClick={atCdnDelete}
+           data-category={category}>
         <i className="fas fa-times-circle"></i>
       </div>
     </CdnList>

@@ -17,11 +17,13 @@ div {
 }
 `
 
-const JsCdn = ({url, id, atJsCdnDelete}) => {
+const JsCdn = ({url, id, category, atCdnDelete}) => {
   return (
     <CdnList>
       {url}
-      <div data-resource={id} onClick={atJsCdnDelete}>
+      <div data-resource={id}
+           onClick={atCdnDelete}
+           data-category={category}>
         <i className="fas fa-times-circle"></i>
       </div>
     </CdnList>

@@ -1,57 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import styled from '@emotion/styled'
-
-const Test = styled.div`
-  background-color: #FAA;
-  color: black;
-  font-weight: 900;
-`
+import '../../styles/editor-setting.scss'
+import EditorSettingContainer from './settingComponents/EditorSettingContainer'
 
 const SettingAlert = () => {
   const MySwal = withReactContent(Swal)
-  const ipAPI = '//api.ipify.org?format=json'
-
-  const inputValue = fetch(ipAPI)
-    .then(response => response.json())
-    .then(data => data.ip)
+  let updateBtn = document.querySelector('#btn-update')
 
   MySwal.fire({
     background: 'black',
     position: 'center',
-    allowOutsideClick: false,
-    allowEscapeKey: false,
+    // allowOutsideClick: false,
+    // allowEscapeKey: false,
+    allowEnterKey: false,
     titleText: 'CDN Setting',
-    input: 'text',
-    inputLabel: 'Your IP address',
-    inputValue: inputValue,
+    customClass: {
+      popup: 'setting-popup',
+      confirmButton: 'setting-close',
+      title: 'setting-title',
+      actions: 'setting-actions'
+    },
+    focusConfirm: false,
+    html: <EditorSettingContainer auth={updateBtn ? "owner" : "others"}/>,
     confirmButtonText: 'Close',
-    inputValidator: (value) => {
-      if (!value) {
-        return 'You need to write something!'
-      }
-    }
+    confirmButtonColor: '#47cf73'
   })
-
-  if (ipAddress) {
-    MySwal.fire(`Your IP address is ${ipAddress}`)
-  }
-
-
-  // MySwal.fire({
-
-
-
-
-
-  // })
-
-
-
 }
-
-
-
 
 export default SettingAlert

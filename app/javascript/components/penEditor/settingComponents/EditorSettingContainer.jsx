@@ -80,7 +80,7 @@ const NoCdnImplemented = styled.div`
   color: #5a5f73;
 `
 
-function EditorSettingContainer () {
+function EditorSettingContainer ({auth}) {
   const cssStorage = JSON.parse(localStorage.getItem('css'))
   const jsStorage = JSON.parse(localStorage.getItem('js'))
 
@@ -124,7 +124,6 @@ function EditorSettingContainer () {
       });
 
     if (response) {
-      console.log("Response: ", response.data.results);
       if (response.data.results && response.data.results.length === 0) setNoResources(true);
 
       setResourcesFound(response.data.results);
@@ -133,7 +132,7 @@ function EditorSettingContainer () {
 
   useDebounce(searchQuery, 500, searchCdn)
 
-  const atCdnSelecte = async (e) => {
+  const atCdnSelect = async (e) => {
     e.preventDefault()
     const randomurl = location.pathname.split('/pen/')[1]
     const url = e.currentTarget.dataset.url
@@ -156,14 +155,33 @@ function EditorSettingContainer () {
         console.log("Error: ", err);
       });
     if (response) {
-      console.log("Response: ", response.status);
+      if (category === "css"){
+        let newList = cssCdnList.concat({
+          category: category,
+          url: url,
+          id: response.data.id
+        })
+        setCssCdnList(newList)
+        localStorage.setItem('css', JSON.stringify(newList))
+      } else {
+        let newList = jsCdnList.concat({
+          category: category,
+          url: url,
+          id: response.data.id
+        })
+        setJsCdnList(newList)
+        localStorage.setItem('js', JSON.stringify(newList))
+      }
+      setSearchQuery('')
+      setIsBlur(true)
+      setResourcesFound([])
     }
   }
 
-  const atCssCdnDelete = async (e) => {
+  const atCdnDelete = async (e) => {
     e.preventDefault()
-    console.log(e)
     const cdnId = e.currentTarget.dataset.resource
+    const cdnCategory = e.currentTarget.dataset.category
     let token = document.querySelector('meta[name = csrf-token]').content
     const response = await axios({
       method: 'delete',
@@ -176,30 +194,21 @@ function EditorSettingContainer () {
         console.log("Error: ", err);
       });
     if (response) {
-      console.log("Response: ", response.status)
-      let newList = cssCdnList.filter(resource => resource.id === cdnId)
-      setCssCdnList(newList)
-    }
-  }
-
-  const atJsCdnDelete = async (e) => {
-    e.preventDefault()
-    const cdnId = e.currentTarget.dataset.resource
-    let token = document.querySelector('meta[name = csrf-token]').content
-    const response = await axios({
-      method: 'delete',
-      url: `/api/v1/resources/${cdnId}`,
-      headers: {
-        'X-CSRF-Token': `${token}`
+      if (cdnCategory === "css"){
+        let newList = cssCdnList.filter(resource => resource.id != cdnId)
+        if (!newList) {
+          newList = []
+        }
+        setCssCdnList(newList)
+        localStorage.setItem('css', JSON.stringify(newList))
+      } else {
+        let newList = jsCdnList.filter(resource => resource.id != cdnId)
+        if (!newList) {
+          newList = []
+        }
+        setJsCdnList(newList)
+        localStorage.setItem('js', JSON.stringify(newList))
       }
-    })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-    if (response) {
-      console.log("Response: ", response.status)
-      let newList = jsCdnList.filter(resource => resource.id === cdnId)
-      setJsCdnList(newList)
     }
   }
 
@@ -230,7 +239,7 @@ function EditorSettingContainer () {
                 version={version}
                 atBlur={atBlur}
                 atFocus={atFocus}
-                atClick={atCdnSelecte}
+                atClick={atCdnSelect}
                 />
             )
           })
@@ -242,13 +251,14 @@ function EditorSettingContainer () {
         <CdnContainerTitle>CSS</CdnContainerTitle>
         {cssCdnList.length === 0 && <NoCdnImplemented>No resources implemented yet...</NoCdnImplemented>}
         {
-          cssCdnList.map(({url, id}) => {
+          cssCdnList.map(({url, id, category}) => {
             return(
               <CssCdn
-                key={url}
+                key={id}
                 url={url}
                 id={id}
-                atCssCdnDelete={atCssCdnDelete}
+                atCdnDelete={atCdnDelete}
+                category={category}
                 />
             )
           })
@@ -259,13 +269,14 @@ function EditorSettingContainer () {
         <CdnContainerTitle>JavaScript</CdnContainerTitle>
         {jsCdnList.length === 0 && <NoCdnImplemented>No resources implemented yet...</NoCdnImplemented>}
         {
-          jsCdnList.map(({url, id}) => {
+          jsCdnList.map(({url, id, category}) => {
             return(
               <JsCdn
-                key={url}
+                key={id}
                 url={url}
                 id={id}
-                atJsCdnDelete={atJsCdnDelete}
+                atCdnDelete={atCdnDelete}
+                category={category}
                 />
             )
           })

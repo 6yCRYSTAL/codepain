@@ -28,9 +28,9 @@ document.addEventListener('turbolinks:load', () => {
           let jsList = []
           resources.forEach(({id, category, url}) => {
             if (category === 'js') {
-              jsList.push({id, url})
+              jsList.push({id, url, category})
             } else {
-              cssList.push({id, url})
+              cssList.push({id, url, category})
             }
           })
           localStorage.setItem('css', JSON.stringify(cssList))
@@ -44,8 +44,6 @@ document.addEventListener('turbolinks:load', () => {
             privateSwitch.checked = data.payload.private
             privateLock.classList.remove(data.payload.private ? "hidden" : "")
           }
-
-          // localStorage.setItem
         }
       })
       .catch( (error) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // 搜尋功能
-function SearchInput({ setSearchValue }) {
+function SearchInput({ setSearchValue,setSearchNoData }) {
   const [value,setValue] = useState([]);
   const [toggle,setToggle] = useState(false);
   function getValue(e) {
@@ -16,6 +16,7 @@ function SearchInput({ setSearchValue }) {
     setValue('');
     setSearchValue('');
     setToggle(false);
+    setSearchNoData(false);
   }
   return(
     <>

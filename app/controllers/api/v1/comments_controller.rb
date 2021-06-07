@@ -35,4 +35,23 @@ class Api::V1::CommentsController < Api::ApiController
       render json: { status: 'Destroy failed' }, status: :expectation_failed
     end
   end
+
+  def destroy
+    comment = Comment.find_by(id: params[:id])
+    if current_user && current_user == comment.user
+      comment.destroy
+      render json: { status: 'Destroied' }, status: :ok
+    else
+      render json: { status: 'Destroy failed' }, status: :expectation_failed
+    end
+  end
+end
+
+
+def find_user_pen
+  begin
+    @pen = Pen.find_by!(random_url: params[:random_url])
+  rescue
+    redirect_to pens_path
+  end
 end

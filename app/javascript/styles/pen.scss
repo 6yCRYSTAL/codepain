@@ -380,6 +380,10 @@
       @apply transition-all opacity-100 transform scale-100;
     }
   }
+  .modal-content{
+    background-color: var(--primary-gray-5);
+    @apply overflow-auto;
+  }
 }
 .title-wrap:hover + .modal-wrap{
   .modal-btn{

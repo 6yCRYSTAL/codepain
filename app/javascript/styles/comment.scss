@@ -34,6 +34,7 @@
     textarea{
       background-color: var(--primary-gray-7);
       font-size: var(--text-p);
+      box-sizing: border-box;
       width: 350px;
       height:120px;
       padding: 10px;
@@ -146,13 +147,12 @@
     .share-block{
       background-color: var(--primary-gray-6);
       border-radius: 4px;
+      box-sizing: border-box;
       padding: 10px;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       margin: 0 0 1rem;
-      position: relative;
-      width: 100%;
       .share-text{
         display: inline-block;
         color: var(--primary-gray-2);
@@ -172,6 +172,9 @@
       padding: 0;
       dt{
         @apply text-gray-400 text-xs;
+      }
+      dd{
+        margin-inline-start: 0px;
       }
     }
     .view-count{

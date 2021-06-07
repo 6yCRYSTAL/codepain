@@ -43,11 +43,15 @@ const ResultUrl = styled.div`
 
 // cdnName, cdnVersion, cdnDescription, cdnUrl
 
-const SearchResult = ({name, latest, description, version}) => {
+const SearchResult = ({name, latest, description, version, atClick, atBlur, atFocus}) => {
   return(
     <ResultWrap
       tabIndex='0'
-      value={latest}>
+      data-url={latest}
+      onClick={atClick}
+      onBlur={atBlur}
+      onFocus={atFocus}
+      >
       <NameVersionWrap>
         <ResultName>{name}</ResultName>
         <ResultVersion>{version}</ResultVersion>

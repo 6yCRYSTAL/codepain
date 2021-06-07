@@ -2,19 +2,29 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
 const CdnList = styled.div`
-  width: 100%;
-  background-color: #e3e4e8;
-  border-radius: 4px;
-  color: black;
-  display: flex;
-  justify-content: space-between;
+width: 100%;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 10px;
+padding: 10px;
+text-align: left;
+border-bottom: 1px solid #717790;
+div {
+  font-size: 20px;
+  padding-left: 10px;
+  cursor: pointer;
+}
 `
 
-const JsCdn = ({url}) => {
+const JsCdn = ({url, id, atJsCdnDelete}) => {
   return (
     <CdnList>
       {url}
-      <i class="fas fa-times-circle"></i>
+      <div data-resource={id} onClick={atJsCdnDelete}>
+        <i className="fas fa-times-circle"></i>
+      </div>
     </CdnList>
   )
 }

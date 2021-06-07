@@ -33,5 +33,8 @@ document.addEventListener('turbolinks:load', () => {
     // else {
     //   settingButton.addEventListener('click', SettingAlertOthers)
     // }
+  } else {
+    localStorage.removeItem('css')
+    localStorage.removeItem('js')
   }
 })

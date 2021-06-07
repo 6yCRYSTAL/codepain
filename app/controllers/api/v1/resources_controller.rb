@@ -1,6 +1,6 @@
 class Api::V1::ResourcesController < Api::ApiController
   respond_to :json
-  include Searchable
+  # include Searchable
   before_action :authenticate_user!
 
   def create

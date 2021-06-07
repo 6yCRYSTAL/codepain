@@ -14,7 +14,6 @@ const SearchBarContainer = styled.div`
 const CdnContainer = styled.div`
 display: flex;
 flex-direction: column;
-padding: 4px 0;
 background: linear-gradient(to right, rgba(113,119,144,0.3), rgba(113,119,144,0));
 border-left: 3px solid #444857;
 margin-bottom: 20px;
@@ -25,6 +24,7 @@ const CdnContainerTitle = styled.div`
   font-size: 1rem;
   font-weight: bold;
   border-bottom: 1px solid #aaaebc;
+  padding: 10px;
 `
 const SearchInputContainer = styled.div`
   width: 100%;
@@ -83,14 +83,15 @@ const NoCdnImplemented = styled.div`
 `
 
 function EditorSettingContainer () {
+  const cssStorage = JSON.parse(localStorage.getItem('css'))
+  const jsStorage = JSON.parse(localStorage.getItem('js'))
 
   const [searchQuery, setSearchQuery] = useState('')
-  const [cssCdnList, setCssCdnList] = useState([])
-  const [jsCdnList, setJsCdnList] = useState([])
+  const [cssCdnList, setCssCdnList] = useState(cssStorage)
+  const [jsCdnList, setJsCdnList] = useState(jsStorage)
   const [resourcesFound, setResourcesFound] = useState([])
   const [noResources, setNoResources] = useState(false);
   const [isBlur, setIsBlur] = useState(true)
-  const updateButton = document.querySelector('#btn-update')
 
   const changeHandler = (e) => {
     e.preventDefault();
@@ -134,29 +135,75 @@ function EditorSettingContainer () {
 
   useDebounce(searchQuery, 500, searchCdn)
 
-  const atCdnSelected = (e) => {
+  const atCdnSelecte = async (e) => {
     e.preventDefault()
-    if (updateButton) {
-      const randomurl = location.pathname.split('/pen/')[1]
-      const url = e.target.value
-      const urlArray = url.split('.')
-      const category = urlArray[urlArray.length-1]
-
-      const response = await axios({
-        method: 'post',
-        url: '/api/v1/resources',
-        params: {
-          random_url: randomurl,
-          category: category,
-          url: url
-        }
-      })
-        .catch((err) => {
-          console.log("Error: ", err);
-        });
+    const randomurl = location.pathname.split('/pen/')[1]
+    const url = e.currentTarget.dataset.url
+    const urlArray = url.split('.')
+    const category = urlArray[urlArray.length-1]
+    let token = document.querySelector('meta[name = csrf-token]').content
+    const response = await axios({
+      method: 'post',
+      url: '/api/v1/resources',
+      data: {
+        random_url: randomurl,
+        category: category,
+        url: url
+      },
+      headers: {
+        'X-CSRF-Token': `${token}`
+      }
+    })
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
+    if (response) {
+      console.log("Response: ", response.status);
     }
   }
 
+  const atCssCdnDelete = async (e) => {
+    e.preventDefault()
+    console.log(e)
+    const cdnId = e.currentTarget.dataset.resource
+    let token = document.querySelector('meta[name = csrf-token]').content
+    const response = await axios({
+      method: 'delete',
+      url: `/api/v1/resources/${cdnId}`,
+      headers: {
+        'X-CSRF-Token': `${token}`
+      }
+    })
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
+    if (response) {
+      console.log("Response: ", response.status)
+      let newList = cssCdnList.filter(resource => resource.id === cdnId)
+      setCssCdnList(newList)
+    }
+  }
+
+  const atJsCdnDelete = async (e) => {
+    e.preventDefault()
+    const cdnId = e.currentTarget.dataset.resource
+    let token = document.querySelector('meta[name = csrf-token]').content
+    const response = await axios({
+      method: 'delete',
+      url: `/api/v1/resources/${cdnId}`,
+      headers: {
+        'X-CSRF-Token': `${token}`
+      }
+    })
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
+    if (response) {
+      console.log("Response: ", response.status)
+      let newList = jsCdnList.filter(resource => resource.id === cdnId)
+      setJsCdnList(newList)
+    }
+  }
 
   return(
     <>
@@ -166,7 +213,7 @@ function EditorSettingContainer () {
           <SearchInput
             placeholder="Search for resources (React, axios, Tailwindcss...)"
             tabIndex='0'
-            onBlur={atBlur}
+            // onBlur={atBlur}
             onFocus={atFocus}
             value={searchQuery}
             onChange={changeHandler}
@@ -183,9 +230,9 @@ function EditorSettingContainer () {
                 latest={latest}
                 description={description}
                 version={version}
-                onBlur={atBlur}
-                onFocus={atFocus}
-                onClick={atCdnSelected}
+                atBlur={atBlur}
+                atFocus={atFocus}
+                atClick={atCdnSelecte}
                 />
             )
           })
@@ -197,11 +244,13 @@ function EditorSettingContainer () {
         <CdnContainerTitle>CSS</CdnContainerTitle>
         {cssCdnList.length === 0 && <NoCdnImplemented>No resources implemented yet...</NoCdnImplemented>}
         {
-          cssCdnList.map((url, id) => {
+          cssCdnList.map(({url, id}) => {
             return(
               <CssCdn
+                key={url}
                 url={url}
                 id={id}
+                atCssCdnDelete={atCssCdnDelete}
                 />
             )
           })
@@ -212,11 +261,13 @@ function EditorSettingContainer () {
         <CdnContainerTitle>JavaScript</CdnContainerTitle>
         {jsCdnList.length === 0 && <NoCdnImplemented>No resources implemented yet...</NoCdnImplemented>}
         {
-          jsCdnList.map((url, id) => {
+          jsCdnList.map(({url, id}) => {
             return(
               <JsCdn
+                key={url}
                 url={url}
                 id={id}
+                atJsCdnDelete={atJsCdnDelete}
                 />
             )
           })

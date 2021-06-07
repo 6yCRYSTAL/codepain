@@ -63,7 +63,6 @@ document.addEventListener('turbolinks:load', () => {
     // when editor session change excute renderToiframe()
     editorHTML.getSession().on('change',debounce( () => {
       renderToiframe()
-      test()
     }) )
     editorCSS.getSession().on('change',debounce( () => {
       renderToiframe()
@@ -86,23 +85,35 @@ document.addEventListener('turbolinks:load', () => {
       }
     }
 
+    function cssCDN () {
+      let css = JSON.parse(localStorage.getItem('css'))
+      if (css) {
+        let cssCdnPrepared = css.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+        return cssCdnPrepared.join('')
+      }
+    }
+
+    function jsCDN () {
+      let js = JSON.parse(localStorage.getItem('js'))
+      if (js) {
+        let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
+        return jsCdnPrepared.join('')
+      }
+    }
+
     // render to iframe
     function renderToiframe() {
       let result = document.querySelector('#edit--result')
       result.srcdoc =
         `<html>
           <style>${editorCSS.getValue()}</style>
+          ${cssCDN()}
           <body>
               ${editorHTML.getValue()}
             <script type="text/javascript">${editorJS.getValue()}</script>
+            ${jsCDN()}
           </body>
         </html>`
-      }
-
-
-      function test () {
-        let test = document.querySelector(".yayaya")
-        console.log(test)
       }
 
     // show console

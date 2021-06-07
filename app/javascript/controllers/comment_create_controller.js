@@ -18,7 +18,6 @@ export default class extends Controller {
               if (this.comments_count === 0) {
                 this.comments_count += 1
                 commentCountP.innerHTML = `${this.comments_count} comment`
-                commentCountP.nextElementSibling.classList.add("hidden")
               } else {
                 this.comments_count += 1
                 commentCountP.innerText = `${this.comments_count} comments`

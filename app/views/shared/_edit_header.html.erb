@@ -23,7 +23,7 @@
     </button>
     <%= save_button %>
     <%= save_as_private_button %>
-    <button class="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
+    <button class="btn-settings" id="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
     <button class="btn-changeView">
       <span>
         <svg viewBox="-703.9 491.1 31.7 25.3">
@@ -35,9 +35,11 @@
           </path>
         </svg>
       </span>
-      Change View
-    </button>
-    <%= pin_button %>
+      Change View</button>
+    <div class="pinned-btn">
+      <button class="btn-pinned"><span><i class="fas fa-thumbtack"></i></span></button>
+      <button class="btn-pin-arrow"><span class="fas fa-chevron-down"></span></button>
+    </div>
   </div>
   <%= user_menu_button %>
 </header>

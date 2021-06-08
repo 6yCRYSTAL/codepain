@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/new-edit.css'
 
 const EditorConsole = () => {
 

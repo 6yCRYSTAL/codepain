@@ -20,11 +20,13 @@ import {
   faExpandArrowsAlt,
   faChevronRight,
   faEye,
+  faWindowMaximize,
+  faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
-  faTimes
  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -44,11 +46,13 @@ library.add(
   faGithub,
   faGoogle,
   faChevronRight,
+  faWindowMaximize,
+  faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
-  faTimes
   )
 
 dom.watch()

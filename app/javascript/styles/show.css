@@ -109,10 +109,6 @@
   background-color:	#2c303a;
   width: 80%;
 }
-/* .ItemDetailsLicense_root-35USN{
-  height: 2%;
-  background-color: #faf;
-} */
 textarea#comment_content{
   display: flex;
   background-color: #000;
@@ -121,10 +117,3 @@ textarea#comment_content{
   width: 340px;
   padding: 20px
 }
-/* input{
-  width: 150px;
-  background-color: gray;
-  font-size: 14px;
-  color: #fff;
-  border-radius: 4px;
-} */

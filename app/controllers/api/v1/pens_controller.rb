@@ -6,7 +6,12 @@ class Api::V1::PensController < Api::ApiController
 
   def create
     @pen = current_user.pens.new(pen_params)
-
+      (JSON.parse(params[:resource][:css]) || []).each do |cssCDN|
+        @pen.resources.build(url: cssCDN["url"], category: "css")
+      end
+      (JSON.parse(params[:resource][:js]) || []).each do |jsCDN|
+        @pen.resources.build(url: jsCDN["url"], category: "js")
+      end
     if @pen.save
       redirect_to edit_pen_path(@pen, username: current_user.username)
     else

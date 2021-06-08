@@ -23,6 +23,7 @@
   border-radius: 4px;
   animation-name: modalopen-fadein;
   animation-duration: 1s;
+  overflow: auto;
 }
 
 @keyframes modalopen-fadein {

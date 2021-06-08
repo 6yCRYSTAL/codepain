@@ -31,7 +31,7 @@ require 'date'
   user = User.create(
     email: Faker::Internet.free_email,
     password: "password",
-    username: Faker::Internet.first_name,
+    username: Faker::Internet.username,
     display_name: Faker::Name.first_name,
     membership: 'free'
   )
@@ -47,7 +47,7 @@ end
   user = User.create(
     email: Faker::Internet.free_email,
     password: "password",
-    username: Faker::Internet.first_name,
+    username: Faker::Internet.username,
     display_name: Faker::Name.first_name,
     membership: 'super'
   )

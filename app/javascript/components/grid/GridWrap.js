@@ -38,14 +38,15 @@ function GridItem() {
       setTotalPage(res.data.payload.meta.totalPages);
       setIsLoading(false);
       // 使用者喜歡哪些 pens 的 id
-      res.data.payload.pens[0].user.love_pens.forEach((like) => {
-        LikeId.push(like.id);
-      });
+      if (res.data.payload.pens.length !== 0) {
+        res.data.payload.pens[0].user.love_pens.forEach((like) => {
+          LikeId.push(like.id);
+        });
+      }
       setUserLike(LikeId);
       // SearchNoData 判斷
       setSearchNoData(false);
       if(res.data.payload.pens.length === 0){
-        console.log('yes');
         setSearchNoData(true);
       }
       // 清除使用者pen js裡的 console.log()

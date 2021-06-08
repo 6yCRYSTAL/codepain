@@ -23,6 +23,18 @@ document.addEventListener('turbolinks:load', () => {
       .then( (response) => {
         let data = response.data
         if(data.status === "ok"){
+          let resources = data.payload.resources
+          let cssList = []
+          let jsList = []
+          resources.forEach(({id, category, url}) => {
+            if (category === 'js') {
+              jsList.push({id, url, category})
+            } else {
+              cssList.push({id, url, category})
+            }
+          })
+          localStorage.setItem('css', JSON.stringify(cssList))
+          localStorage.setItem('js', JSON.stringify(jsList))
           title.textContent = data.payload.title
           inputValue.value = data.payload.title
           editorHTML.session.setValue(data.payload.html)

@@ -74,18 +74,20 @@ export default class extends Controller {
   // 第一次判斷 Private 鎖頭狀態
   initialize() {
     const icon = this.privateIconsTargets;
-    let toArrayIcon = Array.from(icon);
-    let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
-    let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
-    if ((isPrivate && isPrivate2) === 'true') {
-      toArrayIcon.forEach( Icon => {
-        Icon.classList.remove("hidden");
-      });
-    }
-    if ((isPrivate && isPrivate2) === 'false'){
-      toArrayIcon.forEach( Icon => {
-        Icon.classList.add("hidden");
-      });
+    if (icon.length !== 0) {
+      let toArrayIcon = Array.from(icon);
+      let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
+      let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
+      if ((isPrivate && isPrivate2) === 'true') {
+        toArrayIcon.forEach( Icon => {
+          Icon.classList.remove("hidden");
+        });
+      }
+      if ((isPrivate && isPrivate2) === 'false'){
+        toArrayIcon.forEach( Icon => {
+          Icon.classList.add("hidden");
+        });
+      }
     }
   }
 }

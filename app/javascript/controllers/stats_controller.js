@@ -37,7 +37,9 @@ export default class extends Controller {
         type: 'GET',
         success: (data) => {
           let heart = this.heartTarget
-          let isLoved = data.payload.boolean
+          if(data.payload) {
+            var isLoved = data.payload.boolean
+          }
 
           if (isLoved) {
             heart.classList.add(this.lovedClass)

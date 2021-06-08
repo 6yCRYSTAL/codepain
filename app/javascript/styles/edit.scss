@@ -137,19 +137,32 @@
     ul{
       padding-top: 10px;
       li{
-        color: #faa;
-        height: auto;
+        &:hover{
+          background: #444857;
+        }
         padding: 13px 13px 17px;
         margin-bottom: 15px;
+        height: auto;
         background: #2c303a;
         border-radius: 6px;
+        .icon-a{
+          color: rgb(91, 192, 231);
+          margin: 0, 100%, 0, 100%;
+        }
+        .item{
+          margin-right: 0px;
+          background-color:transparent;
         .delete{
+          &:hover{
+            background: #444857;
+            color: rgb(230, 224, 224);
+          }
           color: gray;
-          text-align:right;
           padding: 0px 0px 0px;
           width: 20px;
-          background-color:transparent;
-          font-size: 30px;
+          font-weight:lighter;
+          font-size: 25px;
+          }
         }
       }
     }

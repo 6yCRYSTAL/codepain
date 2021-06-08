@@ -7,6 +7,7 @@ const Alert = (props) => {
   const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
   const [ comments, setComments ] = useState([])
+  const [ res, setRes] = useState([])
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -30,6 +31,7 @@ const Alert = (props) => {
       success: (response) => {
         let commentData = response.comments
         setComments(commentData)
+        setRes(response)
       }
     })
   }, [])
@@ -42,7 +44,7 @@ const Alert = (props) => {
 
       <div className="modal-content">
         <header className="modal-header">
-          <p>{ user_name }</p>
+          <p>{ user_name } { title }</p>
           {
             privateToggle &&
             <div className="private-lock alert-private-lock" id="private-lock">
@@ -64,21 +66,19 @@ const Alert = (props) => {
             />
           </div>
         </header>
-        <div className="bg-gray-300"
+        <div className="comment-wrap"
              data-controller="comment-create"
              data-comment-create-url-value={ random_url }>
           <section>
             <textarea
                       placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
                       data-comment-create-target="createTextArea"></textarea>
-            <span className="create-btn"
-                  data-action="click->comment-create#create"
-                  data-comment-create-target="createBtn">
-              Comment
-            </span>
-          </section>
-          <section>
-            <p className="uppercase" data-comment-create-target="commentsCount"> { comments_count } comments</p>
+            <div className="comment-submit-block">
+              <span className="comment-submit-btn"
+                    data-action="click->comment-create#create"
+                    data-comment-create-target="createBtn">Comment</span>
+            </div>
+            <p className="comments-count" data-comment-create-target="commentsCount"> { comments_count } comments</p>
             <ol data-comment-create-target="list" id={random_url}>
             {
               comments.map( (commentData) => {
@@ -88,29 +88,65 @@ const Alert = (props) => {
                       data-comment-delete-target="commentLi"
                       data-comment-delete-id-value={ commentData.content.id }
                       key={ commentData.content.id }>
-                    <div>
-                      <span>{ commentData.user.display_name } (@{ commentData.user.username })</span>
-                      <span>{ commentData.created_at }</span>
+                    <div className = "comment-user-info">
+                      <div className="user-comment-img">
+                        <img src="/images/user-img.jpg" alt="使用者圖像" />
+                      </div>
+                      <div className="user-name">
+                        <span>{ commentData.user.display_name }</span>
+                        <span className="light-text"> @{ commentData.user.username } </span>
+                      </div>
+                      <div className="comment-time"> { commentData.created_at } ago </div>
                     </div>
                     <div className="comment-update-block" data-comment-update-target="commentBlock">
                       <textarea data-comment-update-target="updateTextArea" defaultValue={ commentData.content.content }></textarea>
-                      <button data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id={ commentData.content.id }> Update </button>
-                      <button data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
+                      <div className="update-btn-block">
+                        <button data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
+                        <button data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id={ commentData.content.id }> Update </button>
+                      </div>
                     </div>
-                    <div>
-                      <p data-comment-update-target="commentShow">{ commentData.content.content }</p>
+                    <div className="comment-content-block">
+                      <div className="comment-content-text">
+                        <p data-comment-update-target="commentShow">{ commentData.content.content }</p>
+                      </div>
+                      <div className="edit-btn-block">
+                          <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
+                            <span><i className="fas fa-pencil-alt"></i></span>
+                            <span>Edit</span>
+                          </button>
+                          <button className="comment-delete-btn" data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn">
+                            <span><i className="fas fa-trash"></i></span>
+                            <span>Delete</span>
+                          </button>
+                      </div>
                     </div>
-                    <button data-action="click->comment-update#edit" data-comment-update-target="editBtn"> Edit </button>
-                    <button data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn"> Delete</button>
                   </li>
                 )
               })
             }
             </ol>
           </section>
-        </div>
-        <div>
-          <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>
+          <aside>
+            <div className="share-block">
+            <span className="share-text">Share</span>
+            <button className="copy-link"
+                    data-controller="share-link"
+                    data-share-link-target="copyBtn"
+                    data-action="click->share-link#copy">
+              <i className="fas fa-link"></i> Copy Link</button>
+            </div>
+            <dl>
+              <div>
+                <dt>Created on</dt>
+                <dd>{res.pen_created_on}</dd>
+              </div>
+            <div>
+              <dt>Updated on</dt>
+              <dd>{res.pen_updated_on}</dd>
+            </div>
+            </dl>
+            <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>
+          </aside>
         </div>
       </div>
     </div>

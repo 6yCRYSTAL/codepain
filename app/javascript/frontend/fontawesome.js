@@ -20,8 +20,11 @@ import {
   faExpandArrowsAlt,
   faChevronRight,
   faEye,
+  faWindowMaximize,
+  faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
   faTimes,
@@ -44,11 +47,13 @@ library.add(
   faGithub,
   faGoogle,
   faChevronRight,
+  faWindowMaximize,
+  faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
-  faTimes
   )
 
 dom.watch()

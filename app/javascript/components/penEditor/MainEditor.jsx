@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SplitPane } from "react-collapse-pane";
-import '../../styles/index_editor.css'
+import '../../styles/index_editor.scss'
 
 import Editor from './Editor'
 import EditorConsole from './EditorConsole'

@@ -11,13 +11,14 @@ div.bSVmsq {
 }
 
 .Resizer.horizontal {
-  height: 10px;
+  height: 0 !important;
   cursor: row-resize;
   width: 100%;
   border: 8px solid #333642;
 }
 
 .Resizer.vertical {
+  width: 0 !important;
   cursor: col-resize;
   border: 8px solid #333642;
 }

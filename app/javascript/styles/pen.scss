@@ -1,14 +1,17 @@
 /* title & features */
-.your-work-title{
+.feat-page-title{
   .big-title{
     font-size: var(--text-h4);
-    color: var(--light-gray);
+    color: var(--primary-gray-2);
     padding: 1rem;
     margin: 0;
     display: inline-block;
-    border-bottom: 2px solid var(--success-green);
     position: relative;
     z-index: 1;
+  }
+  .active{
+    color: var(--light-gray);
+    border-bottom: 2px solid var(--success-green);
   }
   &::after{
     content: '';
@@ -197,6 +200,7 @@
     left: 0;
   }
 }
+
 .pens-grid-content{
   margin: 2rem 0;
 }
@@ -206,6 +210,13 @@
   justify-content: space-between;
   align-items: center;
   @apply px-4 pt-4;
+}
+.pen-pro{
+  @apply px-4 order-2;
+  span:first-child {
+    color: var(--primary-gray-1);
+    @apply pr-2 hover:text-white cursor-pointer;
+  }
 }
 .pen-header{
   a{

@@ -11,38 +11,46 @@ module Searchable
     when params.has_key?(:search_term) && params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .sort_asc(params[:sort_by])
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when params.has_key?(:search_term) && params.has_key?(:sort_by)
       @pens = pens.search(params[:search_term])
                   .sort_desc(params[:sort_by])
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when params.has_key?(:search_term) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .order(created_at: :asc)
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.sort_asc(params[:sort_by])
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when params.has_key?(:search_term)
       @pens = pens.search(params[:search_term])
                   .order(created_at: :desc)
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when params.has_key?(:sort_by)
       @pens = pens.sort_desc(params[:sort_by])
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     when (params[:sort_order] == 'asc')
       @pens = pens.order(created_at: :asc)
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
 
     else
       @pens = pens.order(created_at: :desc)
-                  .includes_comments_and_page(page, per)
+                  .includes(:comments)
+                  .page(page).per(per)
     end
   end
 end

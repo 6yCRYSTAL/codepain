@@ -51,7 +51,12 @@ const Alert = (props) => {
           }
 
           {/* 鎖頭入口 */}
-          <div className="points-content-wrap points-content-bottom">
+          <div className="points-wrap points-content-bottom"
+               data-url={`${random_url}`}
+               data-controller="delete-pen"
+               data-delete-pen-username-value={`${user_name}`}
+               data-delete-pen-random-value={`${random_url}`}
+               data-delete-pen-target="trashedPen">
             <Points
               url={ random_url }
               setPrivateToggle={ setPrivateToggle }

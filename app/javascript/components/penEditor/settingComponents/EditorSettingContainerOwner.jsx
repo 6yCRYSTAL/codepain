@@ -12,11 +12,11 @@ const SearchBarContainer = styled.div`
   position: relative;
 `
 const CdnContainer = styled.div`
-display: flex;
-flex-direction: column;
-background: linear-gradient(to right, rgba(113,119,144,0.3), rgba(113,119,144,0));
-border-left: 3px solid #444857;
-margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, rgba(113,119,144,0.3), rgba(113,119,144,0));
+  border-left: 3px solid #444857;
+  margin-bottom: 20px;
 `
 const CdnContainerTitle = styled.div`
   color: white;
@@ -94,7 +94,6 @@ function EditorSettingContainerOwner () {
   const changeHandler = (e) => {
     e.preventDefault();
     if (e.target.value.trim() === "") setNoResources(false);
-
     setSearchQuery(e.target.value);
   }
 
@@ -102,14 +101,13 @@ function EditorSettingContainerOwner () {
     setIsBlur(true)
     setNoResources(false)
   }
-  const atFocus = () => setIsBlur(false)
 
+  const atFocus = () => setIsBlur(false)
 
   const searchCdn = async () => {
     if (!searchQuery || searchQuery.trim() === "") return;
 
     setNoResources(false);
-
     const response = await axios({
       method: 'get',
       url: 'https://api.cdnjs.com/libraries',
@@ -119,13 +117,9 @@ function EditorSettingContainerOwner () {
         fields: 'description,version'
       }
     })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
 
     if (response) {
       if (response.data.results && response.data.results.length === 0) setNoResources(true);
-      // let filteredResult =
       setResourcesFound(response.data.results);
     }
   }
@@ -139,6 +133,7 @@ function EditorSettingContainerOwner () {
     const urlArray = url.split('.')
     const category = urlArray[urlArray.length-1]
     let token = document.querySelector('meta[name = csrf-token]').content
+
     const response = await axios({
       method: 'post',
       url: '/api/v1/resources',
@@ -151,9 +146,7 @@ function EditorSettingContainerOwner () {
         'X-CSRF-Token': `${token}`
       }
     })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
+
     if (response) {
       if (category === "css"){
         let newList = cssCdnList.concat({
@@ -186,26 +179,18 @@ function EditorSettingContainerOwner () {
     const response = await axios({
       method: 'delete',
       url: `/api/v1/resources/${cdnId}`,
-      headers: {
-        'X-CSRF-Token': `${token}`
-      }
+      headers: {'X-CSRF-Token': `${token}`}
     })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
+
     if (response) {
       if (cdnCategory === "css"){
         let newList = cssCdnList.filter(resource => resource.id != cdnId)
-        if (!newList) {
-          newList = []
-        }
+        if (!newList) {newList = []}
         setCssCdnList(newList)
         localStorage.setItem('css', JSON.stringify(newList))
       } else {
         let newList = jsCdnList.filter(resource => resource.id != cdnId)
-        if (!newList) {
-          newList = []
-        }
+        if (!newList) {newList = []}
         setJsCdnList(newList)
         localStorage.setItem('js', JSON.stringify(newList))
       }
@@ -285,7 +270,5 @@ function EditorSettingContainerOwner () {
     </>
   )
 }
-
-
 
 export default EditorSettingContainerOwner

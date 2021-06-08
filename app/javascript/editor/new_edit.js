@@ -114,7 +114,7 @@ document.addEventListener('turbolinks:load', () => {
             ${jsCDN()}
           </body>
         </html>`
-      }
+    }
 
     // show console
     const consolecontainer = document.querySelector('.edit-console-container')

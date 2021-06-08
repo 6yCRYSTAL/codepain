@@ -10,8 +10,6 @@ const SettingAlert = () => {
   MySwal.fire({
     background: 'black',
     position: 'center',
-    // allowOutsideClick: false,
-    // allowEscapeKey: false,
     allowEnterKey: false,
     titleText: 'CDN Setting',
     customClass: {

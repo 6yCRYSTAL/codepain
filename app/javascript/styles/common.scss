@@ -455,85 +455,67 @@ to {
 /* search-userMenu-box end */
 
 /* footer */
-.link-footer-container{
+.footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  @apply flex flex-nowrap tracking-wide py-6 px-16;
+  @apply flex flex-nowrap tracking-wide py-10 px-20;
 }
-  /* teams */
-.teams-title,.dev-title{
-  font-size: var(--text-h5);
-  @apply mb-4 mt-0;
-  &::after{
-    content: '';
-    background-color: var(--success-green);
-    @apply rounded-md mt-2 h-0.5 block w-8;
+.footer-items-wrap{
+  @apply w-8/12;
+}
+.footer-item,.footer-dev{
+  @apply flex mt-0 my-0 mb-2;
+  .footer-item-title{
+    @apply m-0 text-base;
   }
 }
-.dev-title{
-  &::after{
-    background-color: var(--info-blue);
-  }
-}
-.teams-wrap{
-  @apply w-3/12;
-}
-.teams-row,.dev-row{
-  @apply leading-6 w-full m-0 flex flex-col;
-  .teams-col,.dev-col{
-    @apply pb-2 flex items-center relative pr-2;
-  }
-}
-.teams-mem-name,.dev-item-name{
-  font-size: var(--text-p);
-  white-space: nowrap;
-  @apply m-0 absolute top-0;
-}
-.teams-mem-link,.dev-item-content{
-  color: var(--primary-gray-4);
-  font-size: var(--text-p);
-  @apply flex flex-nowrap m-0 items-center;
-  &:hover{
-    @apply text-white;
-  }
-}
-.teams-mem-link{
-  margin-left: 4.5rem;
-}
-  /* dev */
-.dev-wrap{
-  @apply w-5/12;
-}
-.dev-row{
-  .dev-col{
-    .dev-item-content{
-      padding-left: 4.5rem;
-      &:hover{
-        color: var(--primary-gray-4);
-      }
+.footer-item-team,.footer-item-dev{
+  @apply flex items-center m-0;
+  li{
+    color: var(--gray);
+    font-size: var(--text-s-p);
+    @apply pl-2;
+    .teams-mem-link{
+      color: var(--light-blue);
+      font-size: var(--text-s-p);
+      @apply hover:text-white;
+    }
+    .github-icon{
+      color: var(--light-blue);
+    }
+    &::after{
+      content: '|';
+      @apply inline-block ml-1;
+    }
+    &:last-child::after,&:first-child::after{
+      @apply hidden;
     }
   }
 }
-.logo-wrap{
+.footer-item-dev{
+  li{
+    &:first-child::after{
+      @apply inline-block;
+    }
+  }
+}
+.footer-logo-wrap{
   @apply w-4/12 text-white flex flex-col justify-center items-end;
   .footer-logo{
     @apply block;
     img{
-      width: 12rem;
+      width: 10rem;
     }
   }
-  .footer-copy,.footer-content{
-    @apply text-right w-full;
+  .footer-logo-copy,.footer-logo-text{
+    font-size: 13px;
+    @apply text-gray-500 text-right w-full;
   }
-  .footer-copy{
+  .footer-logo-copy{
     @apply text-gray-500 mt-1 mb-4;
   }
-  .footer-content{
+  .footer-logo-text{
     @apply m-0;
-    span{
-      font-size: var(--text-h6);
-      @apply text-yellow-100 leading-10;
-    }
   }
 }
 

@@ -5,9 +5,11 @@ import Points from './Points.js'
 // 彈跳視窗功能
 const Alert = (props) => {
   const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
-  const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
+  const { title,user_name,random_url,comments_count,view_count} = data;
+
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
+  const [ judgeCurrentUser, setJudgeCurrentUser] = useState(false)
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -19,9 +21,9 @@ const Alert = (props) => {
     };
   };
   // 新增網址，而不會刷新頁面
-  // React.useEffect(() =>{
-  //   history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
-  // },[])
+  useEffect(() =>{
+    // history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/pen/${random_url}`);
+  },[])
 
   useEffect( () => {
     Rails.ajax({
@@ -32,9 +34,31 @@ const Alert = (props) => {
         let commentData = response.comments
         setComments(commentData)
         setRes(response)
+        //TODO
+        console.log(response)
+        console.log(response.current_user.id)
       }
     })
   }, [])
+
+    //TODO
+
+    if (res.current_user.id === commentData.user.id){
+      setJudgeCurrentUser(true)
+      return(
+        <div className="edit-btn-block">
+          <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
+            <span><i className="fas fa-pencil-alt"></i></span>
+            <span>Edit</span>
+          </button>
+          <button className="comment-delete-btn" data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn">
+            <span><i className="fas fa-trash"></i></span>
+            <span>Delete</span>
+          </button>
+        </div>
+      )
+    }
+
 
   return(
     <div
@@ -70,6 +94,7 @@ const Alert = (props) => {
              data-controller="comment-create"
              data-comment-create-url-value={ random_url }>
           <section>
+
             <textarea className="w-6/12 h-20"
                       placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
                       data-comment-create-target="createTextArea"></textarea>
@@ -109,7 +134,9 @@ const Alert = (props) => {
                       <div className="comment-content-text">
                         <p data-comment-update-target="commentShow">{ commentData.content.content }</p>
                       </div>
-                      <div className="edit-btn-block">
+                      {
+                        judgeCurrentUser &&
+                          <div className="edit-btn-block">
                           <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
                             <span><i className="fas fa-pencil-alt"></i></span>
                             <span>Edit</span>
@@ -118,9 +145,11 @@ const Alert = (props) => {
                             <span><i className="fas fa-trash"></i></span>
                             <span>Delete</span>
                           </button>
-                      </div>
+                        </div>
+                      }
                     </div>
                   </li>
+
                 )
               })
             }

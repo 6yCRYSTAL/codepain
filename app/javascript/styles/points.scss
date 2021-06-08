@@ -95,6 +95,12 @@
 .points-content-top{
   width: 5%;
 }
+.points-wrap-grid{
+  width: auto;
+  .points-content-box{
+    bottom: 30px;
+  }
+}
 /* points-content-top end */
 
 /* 動態與位置 points-content-bottom */

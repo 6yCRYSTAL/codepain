@@ -5,10 +5,10 @@ import SortBy from './SortBy.js'
 import SortDirection from './SortDirection.js'
 
 // 功能列表
-const WorkFeatures = ({setAllValue})=>{
+const WorkFeatures = ({ setAllValue,setSearchNoData })=>{
   const [isSearchValue, setSearchValue] = React.useState([]);
   const [isSortBy, setSortBy] = React.useState('Date Created');
-  const [isSortOrder, setSortOrder] = React.useState('desc');
+  const [isSortOrder, setSortOrder] = React.useState('');
 
   React.useEffect(() =>{
     setAllValue([`${isSearchValue}`,`${isSortBy}`,`${isSortOrder}`])
@@ -17,17 +17,18 @@ const WorkFeatures = ({setAllValue})=>{
     <div className="your-work-features">
       <div className="features-item">
         <SearchInput
-        setSearchValue = {setSearchValue}
+        setSearchValue = { setSearchValue }
+        setSearchNoData = { setSearchNoData }
         />
       </div>
       <nav className="features-item">
         <GridListBtn />
         <SortBy
-          setSortBy = {setSortBy}
-          isSortBy = {isSortBy}
+          setSortBy = { setSortBy }
+          isSortBy = { isSortBy }
         />
         <SortDirection
-          setSortOrder = {setSortOrder}
+          setSortOrder = { setSortOrder }
         />
       </nav>
     </div>

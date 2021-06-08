@@ -1,6 +1,6 @@
 class Api::V1::PensController < Api::ApiController
   respond_to :json
-
+  include Searchable
   before_action :authenticate_user!, except: [:new, :edit]
   before_action :find_user_pen, only: [:edit, :update, :private_toggle]
 
@@ -86,11 +86,11 @@ class Api::V1::PensController < Api::ApiController
   private
 
   def love_pen?(pen)
-    HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+    HeartList.exists?(pen: pen, user: current_user)
   end
 
   def pin_pen?(pen)
-    Pin.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+    Pin.exists?(pen: pen, user: current_user)
   end
 
   def love_params

@@ -1,10 +1,9 @@
-<div class="bg-gray-300"
+<div class="comment-wrap"
   data-controller="comment-create"
   data-comment-create-url-value="<%='a' + pen.random_url %>"
   data-comment-create-comments-count-value="<%= comments_count %>">
-<%# 開發用淺色背景 %>
   <section >
-    <%# 建立該pen評論%>
+    <%# 建立評論%>
     <textarea class="w-6/12 h-20"
               placeholder="Want to know how <%= pen.user.username %> did this? Ask a question!
 Feeling inspired? Let <%= pen.user.username %> know!
@@ -12,17 +11,16 @@ Want to share how you used this Pen?
 Give the creator a confidence boost!"
               data-comment-create-target="createTextArea"
               ></textarea>
-    <span
-      class="bg-gray-500 text-white font-bold py-2 px-4 rounded "
-      data-action="click->comment-create#create"
-      data-comment-create-target="createBtn"
-    > Comment </span>
-  </section>
-  <%# 顯示該pen評論%>
-  <section >
-    <p class="uppercase"
-      data-comment-create-target="commentsCount"
-    >
+    <div class="comment-submit-block">
+      <span
+        class="comment-submit-btn"
+        data-action="click->comment-create#create"
+        data-comment-create-target="createBtn"
+      > Comment </span>
+    </div>
+    <%# 顯示評論%>
+    <p class="comments-count"
+      data-comment-create-target="commentsCount">
       <%= comments_count_text(comments_count) %></p>
     <ol data-comment-create-target="list" id="<%='a' + pen.random_url %>">
       <% comments.each do |comment| %>
@@ -31,34 +29,83 @@ Give the creator a confidence boost!"
         data-comment-update-target="commentLi"
         data-comment-delete-target="commentLi"
         data-comment-delete-id-value="<%= comment.id %>">
-        <div>
-          <span><%= "#{comment.user.display_name} (@#{comment.user.username})" %></span>
-          <span><%= time_ago_in_words(comment.created_at) + ' ago' %></span>
+        <div class = "comment-user-info">
+          <div class="user-comment-img">
+            <img src="/images/user-img.jpg" alt="使用者圖像" />
+          </div>
+          <div class="user-name" >
+            <span><%="#{comment.user.display_name}"%></span>
+            <span class="light-text"><%= "(@#{comment.user.username})" %></span>
+          </div>
+          <div class="comment-time">
+            <%= time_ago_in_words(comment.created_at) + ' ago' %>
+          </div>
         </div>
         <div class="comment-update-block"
           data-comment-update-target="commentBlock">
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
-          <button
-            data-action="click->comment-update#update"
-            data-comment-update-target="updateBtn"
-            data-id="<%= comment.id %>"
-          > Update </button>
-          <button
-            data-action="click->comment-update#cancel"
-            data-comment-update-target="cancelBtn"
-          > Cancel </button>
+          <div class="update-btn-block">
+            <button
+              data-action="click->comment-update#cancel"
+              data-comment-update-target="cancelBtn"
+            > Cancel </button>
+            <button
+              data-action="click->comment-update#update"
+              data-comment-update-target="updateBtn"
+              data-id="<%= comment.id %>"
+            > Update </button>
+          </div>
         </div>
-        <div>
-          <p data-comment-update-target="commentShow"><%= comment.content %></p>
+        <div class="comment-content-block">
+          <div class="comment-content-text">
+            <p data-comment-update-target="commentShow"><%= comment.content %></p>
+          </div>
+          <div class="edit-btn-block">
+            <%# 評論編輯按鈕 %>
+            <% if current_user == comment.user %>
+              <button
+                class="comment-edit-btn"
+                data-action="click->comment-update#edit"
+                data-comment-update-target="editBtn">
+                <span><i class="fas fa-pencil-alt"></i></span>
+                <span>Edit</span>
+              </button>
+              <button
+                class="comment-delete-btn"
+                data-action="click->comment-delete#delete"
+                data-comment-update-target="deleteBtn">
+                <span><i class="fas fa-trash"></i></span>
+                <span>Delete</span>
+              </button>
+            <% end %>
+          </div>
         </div>
-        <%# 評論編輯按鈕 %>
-        <%= edit_buttons(comment) %>
       </li>
       <% end %>
     </ol>
   </section>
+  <aside>
+    <div class="share-block">
+      <span class="share-text">Share</span>
+      <button class="copy-link"
+        data-controller="share-link"
+        data-share-link-target="copyBtn"
+        data-action="click->share-link#copy"
+      >
+        <i class="fas fa-link"></i> Copy Link</button>
+    </div>
+    <dl>
+      <div>
+        <dt>Created on</dt>
+        <dd> <%= pen.created_at.to_date.to_formatted_s(:long) %> </dd>
+      </div>
+      <div>
+        <dt>Updated on</dt>
+        <dd> <%= pen.updated_at.to_date.to_formatted_s(:long) %> </dd>
+      </div>
+    </dl>
+    <% if pen.edit_view_count != 0 %>
+      <div class="view-count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
+    <% end %>
+  </aside>
 </div>
-<% if pen.edit_view_count != 0 %>
-  <div id="view_count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
-<% end %>
-

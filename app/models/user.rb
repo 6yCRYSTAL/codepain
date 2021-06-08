@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :omniauthable,
-           omniauth_providers: [:google, :github, :facebook]
+         omniauth_providers: [:google, :github, :facebook]
 
   has_many :pens, dependent: :destroy
   has_many :comments
@@ -17,6 +17,11 @@ class User < ApplicationRecord
   has_many :love_pens, through: :heart_list, source: :pen
   has_many :pins
   has_many :pinned_pens, through: :pins, source: :pen
+  has_many :follows
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers, through: :follower_relationships, source: :follower
+  has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following, through: :following_relationships, source: :following
 
   def self.from_omniauth_provider(auth)
     data = auth.info

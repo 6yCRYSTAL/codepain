@@ -19,11 +19,11 @@ class Api::ApiController < ApplicationController
     }
   end
 
-  def success!(payload = {}, status = :ok)
+  def success!(payload = {}, code = :ok)
     render json: {
       success: true,
       payload: payload,
-      status: status
+      status: code
     }
   end
 

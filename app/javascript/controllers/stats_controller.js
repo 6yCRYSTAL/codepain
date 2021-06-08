@@ -55,7 +55,6 @@ export default class extends Controller {
 
     let heart = this.heartTarget
     let heartListsCount = this.heartListsCountTarget
-
     Rails.ajax({
       url: `/api/v1/pens/${this.randomValue}/love`,
       type: 'post'

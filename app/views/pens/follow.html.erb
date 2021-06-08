@@ -1,10 +1,8 @@
-<div class="search-users-features">
-  <div class="features-item">
-    <div class="search-users-sort">SORT BY</div>
-    <div class="search-users-depth">SEARCH DEPTH</div>
-  </div>
+<div class="feat-page-title">
+  <%= link_to 'Following', follow_path, class: 'big-title active' %>
+  <%= link_to 'Trending', trending_path, class: 'big-title' %>
+  <%= link_to 'Your Work', pens_path, class: 'big-title' %>
 </div>
-
 <div class="pen-items-wrap">
   <% @pens.each do |pen| %>
       <article class="col">

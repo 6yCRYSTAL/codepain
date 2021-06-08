@@ -438,7 +438,7 @@
    }
   .deleted-pen-button {
     span {
-      @apply text-white opacity-80 mr-52 animate-pulse leading-9;
+      @apply text-white opacity-80 mr-52 animate-pulse leading-9 hidden;
     }
     button {
       @apply text-white pt-2 pb-2 pl-3 pr-3 ml-2 text-sm rounded;

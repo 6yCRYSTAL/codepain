@@ -21,10 +21,10 @@ export default class extends Controller {
     })
 
     setTimeout(() => {
-      this.restoreBtnTarget.classList.add('hidden')
-      this.reallyDeleteBtnTarget.classList.add('hidden')
+      this.restoreBtnTarget.style.display = 'none'
+      this.reallyDeleteBtnTarget.style.display = 'none'
       this.trashedPenTitleTarget.classList.add('trashed-pulse-active')
-      this.restoreNoticeTarget.classList.remove('hidden')
+      this.restoreNoticeTarget.style.display = 'inline-block'
       setTimeout(() => {
         this.trashedPenTarget.remove()
         Turbolinks.visit(`${location.origin}/${this.usernameValue}/pen/${this.randomValue}`)
@@ -60,10 +60,10 @@ export default class extends Controller {
     }).then(result => {
       if (result.isConfirmed) {
         setTimeout(() => {
-          this.restoreBtnTarget.classList.add('hidden')
-          this.reallyDeleteBtnTarget.classList.add('hidden')
+          this.restoreBtnTarget.style.display = 'none'
+          this.reallyDeleteBtnTarget.style.display = 'none'
           this.trashedPenTitleTarget.classList.add('trashed-pulse-active')
-          this.deleteNoticeTarget.classList.remove('hidden')
+          this.deleteNoticeTarget.style.display = 'inline-block'
           setTimeout(() => {
             Rails.ajax({
               url: `/api/v1/deleted_pens/${this.randomValue}`,

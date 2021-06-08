@@ -24,7 +24,7 @@ import {
   faLock,
   faLink,
   faCheck,
-  faTimes
+  faTimes,
  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(

@@ -456,46 +456,87 @@ to {
 
 /* footer */
 .link-footer-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--primary-gray-8);
-  padding: 2rem 6rem;
   color: var(--light-gray);
-  // position: absolute;
-  // width: 100%;
-  // bottom: 0;
+  @apply flex flex-nowrap tracking-wide py-6 px-16;
 }
-.footer-menu{
-  > nav{
-    font-size: var(--text-p);
-    @apply pb-2;
-    > h2{
-      @apply inline mr-4 h-10 tracking-wider;
-    }
-    a{
-      color: var(--primary-gray-1);
-      &:hover {
-        color: white;
+  /* teams */
+.teams-title,.dev-title{
+  font-size: var(--text-h5);
+  @apply mb-4 mt-0;
+  &::after{
+    content: '';
+    background-color: var(--success-green);
+    @apply rounded-md mt-2 h-0.5 block w-8;
+  }
+}
+.dev-title{
+  &::after{
+    background-color: var(--info-blue);
+  }
+}
+.teams-wrap{
+  @apply w-3/12;
+}
+.teams-row,.dev-row{
+  @apply leading-6 w-full m-0 flex flex-col;
+  .teams-col,.dev-col{
+    @apply pb-2 flex items-center relative pr-2;
+  }
+}
+.teams-mem-name,.dev-item-name{
+  font-size: var(--text-p);
+  white-space: nowrap;
+  @apply m-0 absolute top-0;
+}
+.teams-mem-link,.dev-item-content{
+  color: var(--primary-gray-4);
+  font-size: var(--text-p);
+  @apply flex flex-nowrap m-0 items-center;
+  &:hover{
+    @apply text-white;
+  }
+}
+.teams-mem-link{
+  margin-left: 4.5rem;
+}
+  /* dev */
+.dev-wrap{
+  @apply w-5/12;
+}
+.dev-row{
+  .dev-col{
+    .dev-item-content{
+      padding-left: 4.5rem;
+      &:hover{
+        color: var(--primary-gray-4);
       }
     }
   }
 }
-.footer-logo-copyright{
-  h1{
-    font-size: 13px;
-    text-align: right;
-    color: var(--primary-gray-1);
-  }
+.logo-wrap{
+  @apply w-4/12 text-white flex flex-col justify-center items-end;
   .footer-logo{
-    background-color: transparent;
-    a{
-      padding: 0;
-      max-width: 150px;
-      margin-left: auto;
+    @apply block;
+    img{
+      width: 12rem;
+    }
+  }
+  .footer-copy,.footer-content{
+    @apply text-right w-full;
+  }
+  .footer-copy{
+    @apply text-gray-500 mt-1 mb-4;
+  }
+  .footer-content{
+    @apply m-0;
+    span{
+      font-size: var(--text-h6);
+      @apply text-yellow-100 leading-10;
     }
   }
 }
+
 /* footer end */
 /* login */
 .login-title {

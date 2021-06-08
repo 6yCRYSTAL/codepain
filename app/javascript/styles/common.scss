@@ -549,9 +549,10 @@ to {
   background-color: var(--btn-gray);
   color: var(--light-gray);
 }
-.delete-pen-actions {
-  padding-left: 1.8rem !important;
-  justify-content: start !important;
+.swal2-actions.delete-pen-actions {
+  padding-left: 1.8rem;
+  padding-bottom: 1.8rem;
+  justify-content: start;
 }
 .delete-pen-html-container {
   p, ul {

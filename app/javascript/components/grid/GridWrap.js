@@ -43,6 +43,7 @@ function GridItem() {
       });
       setUserLike(LikeId);
 
+      // 準備 css & js CDN 列表
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
@@ -84,7 +85,17 @@ function GridItem() {
         {/* <SearchToNull /> */}
         <div className="pen-items-wrap">
           {
-            grid.map((data) =>{
+            grid.map((data) => {
+              let resources = data.resources
+              let cssList = []
+              let jsList = []
+              resources.forEach(({id, category, url}) => {
+                if (category === 'js') {
+                  jsList.push({id, url, category})
+                } else {
+                  cssList.push({id, url, category})
+                }
+              })
               return(
                 <article className="col" key={data.id}>
                   <PenItemContent
@@ -99,7 +110,9 @@ function GridItem() {
                     css={data.css}
                     js={data.js}
                     isPrivate={data.private}
-                    userLike={userLike}/>
+                    userLike={userLike}
+                    cssList={cssList}
+                    jsList={jsList}/>
                 </article>
               );
             })

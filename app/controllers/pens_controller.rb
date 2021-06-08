@@ -43,7 +43,7 @@ class PensController < ApplicationController
   end
 
   def destroy
-    if current_user && current_user == @pen.user
+    if user_signed_in? && current_user == @pen.user
       @pen.trash!
 
       redirect_to pens_path

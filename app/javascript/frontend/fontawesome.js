@@ -24,6 +24,7 @@ import {
   faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
  } from '@fortawesome/free-solid-svg-icons'
@@ -49,6 +50,7 @@ library.add(
   faTimes,
   faTrash,
   faLock,
+  faTimesCircle,
   faLink,
   faCheck,
   )

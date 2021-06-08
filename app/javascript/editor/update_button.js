@@ -31,7 +31,6 @@ document.addEventListener('turbolinks:load', () => {
         }
       })
       .then( (response) => {
-        // console.log(response)
         if( response.data.status === "update succeeded"){
           savedNotice()
         }

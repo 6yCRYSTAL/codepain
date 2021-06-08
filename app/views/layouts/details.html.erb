@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag  'application',  media: 'all',  'data-turbolinks-track': 'reload'  %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class="edit">
-    <div class="container-edit">
-    <%= render 'shared/edit_header' %>
+    <div>
+    <%= render './shared/show_header' %>
     <main>
       <%= yield %>
     </main>
-    <%= render 'shared/edit_footer' %>
     </div>
   </body>
 </html>

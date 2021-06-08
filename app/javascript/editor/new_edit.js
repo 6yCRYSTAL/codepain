@@ -1,14 +1,14 @@
-import "ace-builds/src-noconflict/ace.js"
-import "ace-builds/webpack-resolver.js"
-import "ace-builds/src-noconflict/ext-language_tools.js"
-import "ace-builds/src-noconflict/mode-html.js"
-import "ace-builds/src-noconflict/mode-css.js"
-import "ace-builds/src-noconflict/mode-javascript.js"
-import "emmet-core/emmet.js"
-import "ace-builds/src-noconflict/ext-emmet.js"
-import "ace-builds/src-noconflict/theme-twilight.js"
-import "ace-builds/src-noconflict/ext-error_marker.js"
-import "ace-builds/src-noconflict/snippets/javascript.js"
+import "ace-builds/src-noconflict/ace"
+import "ace-builds/webpack-resolver"
+import "ace-builds/src-noconflict/ext-language_tools"
+import "ace-builds/src-noconflict/mode-html"
+import "ace-builds/src-noconflict/mode-css"
+import "ace-builds/src-noconflict/mode-javascript"
+import "emmet-core/emmet"
+import "ace-builds/src-noconflict/ext-emmet"
+import "ace-builds/src-noconflict/theme-twilight"
+import "ace-builds/src-noconflict/ext-error_marker"
+import "ace-builds/src-noconflict/snippets/javascript"
 
 document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
@@ -85,15 +85,33 @@ document.addEventListener('turbolinks:load', () => {
       }
     }
 
+    function cssCDN () {
+      let css = JSON.parse(localStorage.getItem('css'))
+      if (css) {
+        let cssCdnPrepared = css.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+        return cssCdnPrepared.join('')
+      }
+    }
+
+    function jsCDN () {
+      let js = JSON.parse(localStorage.getItem('js'))
+      if (js) {
+        let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
+        return jsCdnPrepared.join('')
+      }
+    }
+
     // render to iframe
     function renderToiframe() {
       let result = document.querySelector('#edit--result')
       result.srcdoc =
         `<html>
           <style>${editorCSS.getValue()}</style>
+          ${cssCDN()}
           <body>
               ${editorHTML.getValue()}
             <script type="text/javascript">${editorJS.getValue()}</script>
+            ${jsCDN()}
           </body>
         </html>`
     }

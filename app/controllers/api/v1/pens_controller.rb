@@ -1,12 +1,17 @@
 class Api::V1::PensController < Api::ApiController
   respond_to :json
-
+  include Searchable
   before_action :authenticate_user!, except: [:new, :edit]
   before_action :find_user_pen, only: [:edit, :update, :private_toggle]
 
   def create
     @pen = current_user.pens.new(pen_params)
-
+      (JSON.parse(params[:resource][:css]) || []).each do |cssCDN|
+        @pen.resources.build(url: cssCDN["url"], category: "css")
+      end
+      (JSON.parse(params[:resource][:js]) || []).each do |jsCDN|
+        @pen.resources.build(url: jsCDN["url"], category: "js")
+      end
     if @pen.save
       redirect_to edit_pen_path(@pen, username: current_user.username)
     else
@@ -86,11 +91,11 @@ class Api::V1::PensController < Api::ApiController
   private
 
   def love_pen?(pen)
-    HeartList.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+    HeartList.exists?(pen: pen, user: current_user)
   end
 
   def pin_pen?(pen)
-    Pin.where('pen_id = ? AND user_id = ?', pen.id, current_user.id).exists?
+    Pin.exists?(pen: pen, user: current_user)
   end
 
   def love_params

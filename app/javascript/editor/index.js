@@ -1,5 +1,5 @@
 // import your editor js here
-import './new'
+import './new_edit'
 import './edit_title'
 import './update_button'
 import './user_edit_show'

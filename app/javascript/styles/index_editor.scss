@@ -1,0 +1,35 @@
+div.consoleClose div.sc-bdnxRM {
+  flex: none !important;
+  height: 105%;
+}
+
+div.jlqcXc:not(.iframeAndConsole){
+  padding-top: 65px;
+}
+div.bSVmsq {
+  background: none;
+}
+
+.Resizer.horizontal {
+  height: 10px;
+  cursor: row-resize;
+  width: 100%;
+  border: 8px solid #333642;
+}
+
+.Resizer.vertical {
+  cursor: col-resize;
+  border: 8px solid #333642;
+}
+
+.fake-console{
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  z-index: 100;
+  color: var(--light-gray);
+  font-size: var(--text-s-p);
+  padding: 2px 7px;
+  background-color: var(--primary-gray-4);
+  border-radius: 2px;
+}

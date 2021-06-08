@@ -11,14 +11,14 @@
         <div class="pen-item">
           <header class="pen-header">
             <h2><%= pen.title %></h2>
-            <button class="pen-more">
-              <svg viewBox="0 0 29 7" title="more">
-                <circle cx="3.5" cy="3.5" r="3.5"></circle>
-                <circle cx="14.5" cy="3.5" r="3.5"></circle>
-                <circle cx="25.5" cy="3.5" r="3.5"></circle>
-              </svg>
-            </button>
+            <div class="points-follow-wrap points-content-top"
+                 data-url="<%= pen.random_url %>"
+                 data-controller="follow"
+                 data-follow-username-value="<%= pen.user.username %>"
+                 data-follow-random-value="<%= pen.random_url %>">
+            </div>
           </header>
+          <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
           <div class="pen-img">
               <iframe frameborder="0"></iframe>
               <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>

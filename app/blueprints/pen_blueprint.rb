@@ -3,6 +3,7 @@ class PenBlueprint < Blueprinter::Base
 
   view :normal do
     fields :title, :html, :css, :js, :random_url, :updated_at, :private
+    association :resources, blueprint: ResourceBlueprint, view: :normal
   end
 
   view :extended do

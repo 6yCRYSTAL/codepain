@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_000848) do
+ActiveRecord::Schema.define(version: 2021_06_04_092700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_05_31_000848) do
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["pen_id"], name: "index_comments_on_pen_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id", unique: true
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id"], name: "index_follows_on_following_id"
   end
 
   create_table "heart_lists", force: :cascade do |t|
@@ -90,8 +100,8 @@ ActiveRecord::Schema.define(version: 2021_05_31_000848) do
     t.string "random_url"
     t.bigint "user_id", null: false
     t.string "state", default: "editing"
-    t.integer "comments_count", default: 0
     t.integer "edit_view_count", default: 0
+    t.integer "comments_count", default: 0
     t.integer "heart_lists_count", default: 0
     t.boolean "private", default: false
     t.index ["deleted_at"], name: "index_pens_on_deleted_at"
@@ -121,6 +131,15 @@ ActiveRecord::Schema.define(version: 2021_05_31_000848) do
     t.string "subtitle"
     t.index ["period"], name: "index_products_on_period"
     t.index ["plan"], name: "index_products_on_plan"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "category"
+    t.string "url"
+    t.bigint "pen_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pen_id"], name: "index_resources_on_pen_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -161,4 +180,5 @@ ActiveRecord::Schema.define(version: 2021_05_31_000848) do
   add_foreign_key "pens", "users"
   add_foreign_key "pins", "pens"
   add_foreign_key "pins", "users"
+  add_foreign_key "resources", "pens"
 end

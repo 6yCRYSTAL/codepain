@@ -25,13 +25,13 @@ Rails.application.routes.draw do
 
   # pens
   get '/your-work', to: 'pens#index', as: 'pens'
+  get 'follow', to: 'pens#follow', as: 'follow'
+  get 'trending', to: 'pens#trending', as: 'trending'
   get '/pen', to: 'pens#new', as: 'new_pen'
   get '/:username/details/:random_url', to: 'pens#show', as: 'pen'
   get '/:username/pen/:random_url', to: 'pens#edit', as: 'edit_pen'
   get '/search/pens',  to: 'pens#search_all_users', as: 'search_all_users_pens'
   delete '/:username/pen/:random_url', to: 'pens#destroy', as: 'destroy_pen'
-
-
 
   # comments
   post '/:username/details/:random_url', to: 'comments#create', as: 'create_comment'
@@ -59,6 +59,16 @@ Rails.application.routes.draw do
         end
       end
       resources :deleted_pens, only: [:update, :destroy], param: :random_url
+
+      # users
+      resource :user, only: [] do
+        collection do
+          get 'follow', to: 'follows#list'
+          post 'follow', to: 'follows#follow'
+          post 'unfollow', to: 'follows#unfollow'
+        end
+      end
+
       # orders
       resources :orders, only: [:create] do
         collection do
@@ -68,6 +78,8 @@ Rails.application.routes.draw do
       end
       # comments
       resources :comments, only: [:index, :create, :update, :destroy]
+      # cdn_resources
+      resources :resources, only: [:create, :destroy]
     end
   end
 end

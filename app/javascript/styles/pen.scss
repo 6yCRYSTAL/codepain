@@ -222,7 +222,7 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    @apply cursor-pointer font-bold;
+    @apply cursor-pointer font-bold overflow-hidden whitespace-nowrap;
   }
   .pen-more{
     svg{
@@ -415,10 +415,7 @@
   background-color: var(--primary-gray-3);
   padding: 0 .8rem;
   color: var(--light-gray);
-  @apply cursor-pointer rounded-l-none rounded-r-sm;
-}
-.clear-search{
-  @apply rounded-sm ml-4 leading-8 ;
+  @apply cursor-pointer rounded-l-none rounded-r-sm ml-4 leading-8 hidden;
 }
 /* pen button end */
 
@@ -438,7 +435,7 @@
    }
   .deleted-pen-button {
     span {
-      @apply text-white opacity-80 mr-52 animate-pulse leading-9;
+      @apply text-white opacity-80 mr-52 animate-pulse leading-9 hidden;
     }
     button {
       @apply text-white pt-2 pb-2 pl-3 pr-3 ml-2 text-sm rounded;
@@ -476,3 +473,13 @@
 .love-active{
   @apply text-red-600;
 }
+/* deleted pen tab end */
+
+/* no-search-pen */
+.no-search-pen{
+  @apply mt-8 mr-0;
+  blockquote{
+    @apply max-w-sm mx-auto my-8;
+  }
+}
+/* no-search-pen end */

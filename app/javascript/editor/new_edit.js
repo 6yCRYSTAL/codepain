@@ -90,7 +90,7 @@ document.addEventListener('turbolinks:load', () => {
       if (css) {
         let cssCdnPrepared = css.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
         return cssCdnPrepared.join('')
-      }
+      } else {return ""}
     }
 
     function jsCDN () {
@@ -98,7 +98,7 @@ document.addEventListener('turbolinks:load', () => {
       if (js) {
         let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
         return jsCdnPrepared.join('')
-      }
+      } else {return ""}
     }
 
     // render to iframe

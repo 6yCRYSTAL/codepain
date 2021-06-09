@@ -59,8 +59,14 @@
 
 <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
 <% if @pens.count == 0 %>
-  <p>No results for <%= params[:search_term] %></p>
-
+  <div class="no-deleted-pen no-search-pen">
+    <h2>No results for <em><%= params[:search_term] %>.</em></h2>
+    <blockquote>
+      <p>If you want to save our world, you must hurry. We don't know how much longer we can withstand the nothing.</p>
+      <br />
+      <cite>— Southern Oracle, The Neverending Story</cite>
+    </blockquote>
+  </div>
 <% else %>
   <table class="pen-list">
     <thead class="pen-list-title">

@@ -10,7 +10,8 @@
       <article class="col">
         <div class="pen-item">
           <header class="pen-header">
-            <h2><%= pen.title %></h2>
+            <%= link_to pen.title,
+                        edit_pen_path(username: pen.user.username, random_url: pen.random_url) %>
             <div class="points-follow-wrap points-content-top"
                  data-url="<%= pen.random_url %>"
                  data-controller="follow"

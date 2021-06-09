@@ -22,7 +22,7 @@ const Alert = (props) => {
     };
   };
   // 新增網址，而不會刷新頁面
-  React.useEffect(() =>{
+  useEffect(() =>{
     history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/pen/${random_url}`);
   },[])
 
@@ -39,23 +39,6 @@ const Alert = (props) => {
       }
     })
   }, [])
-
-    if (res.current_user.id === commentData.user.id){
-      setJudgeCurrentUser(true)
-      return(
-        <div className="edit-btn-block">
-          <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
-            <span><i className="fas fa-pencil-alt"></i></span>
-            <span>Edit</span>
-          </button>
-          <button className="comment-delete-btn" data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn">
-            <span><i className="fas fa-trash"></i></span>
-            <span>Delete</span>
-          </button>
-        </div>
-      )
-    }
-
 
   return(
     <div

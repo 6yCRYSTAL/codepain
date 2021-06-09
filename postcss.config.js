@@ -22,7 +22,9 @@ if (process.env.RAILS_ENV === 'production') {
         "app/helpers/**/*.rb",
         "app/javascript/**/*.js",
         "app/javascript/**/*.jsx",
-        "app/javascript/**/*.scss"
+        "app/javascript/**/*.scss",
+        "./node_modules/tailwindcss/dist/*.js",
+        "./node_modules/tailwindcss/lib/*.js"
       ],
       defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
       whitelistPatterns: [/swal/, /Resizer/, /ace/, /Pane/, /vertical/, /horizontal/],

@@ -415,10 +415,7 @@
   background-color: var(--primary-gray-3);
   padding: 0 .8rem;
   color: var(--light-gray);
-  @apply cursor-pointer rounded-l-none rounded-r-sm;
-}
-.clear-search{
-  @apply rounded-sm ml-4 leading-8 ;
+  @apply cursor-pointer rounded-l-none rounded-r-sm ml-4 leading-8 hidden;
 }
 /* pen button end */
 
@@ -473,3 +470,13 @@
     }
   }
 }
+/* deleted pen tab end */
+
+/* no-search-pen */
+.no-search-pen{
+  @apply mt-8 mr-0;
+  blockquote{
+    @apply max-w-sm mx-auto my-8;
+  }
+}
+/* no-search-pen end */

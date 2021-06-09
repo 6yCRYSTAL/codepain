@@ -458,51 +458,70 @@ to {
 /* search-userMenu-box end */
 
 /* footer */
-.link-footer-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.footer-container{
   background-color: var(--primary-gray-8);
-  padding: 2rem 6rem;
   color: var(--light-gray);
-  // position: absolute;
-  // width: 100%;
-  // bottom: 0;
+  @apply flex flex-nowrap tracking-wide py-10 px-20;
 }
-.footer-menu{
-  > nav{
-    font-size: var(--text-p);
-    padding-bottom: .5rem;
-    > h4{
-      display: inline;
-      margin-right: 1rem;
-      height: 40px;
-      letter-spacing: .5px;
-    }
-    a{
-      color: var(--primary-gray-1);
-      text-decoration: none;
-      &:hover {
-        color: white;
-      }
-    }
+.footer-items-wrap{
+  @apply w-8/12;
+}
+.footer-item,.footer-dev{
+  @apply flex mt-0 my-0 mb-2;
+  .footer-item-title{
+    @apply m-0 text-base;
   }
 }
-.footer-logo-copyright{
-  p{
+.footer-item-team,.footer-item-dev{
+  @apply flex items-center m-0;
+  li{
+    color: var(--gray);
     font-size: var(--text-s-p);
-    text-align: right;
-    color: var(--primary-gray-1);
-  }
-  .footer-logo{
-    background-color: transparent;
-    a{
-      padding: 0;
-      max-width: 150px;
-      margin-left: auto;
+    @apply pl-2;
+    .teams-mem-link{
+      color: var(--light-blue);
+      font-size: var(--text-s-p);
+      @apply hover:text-white;
+    }
+    .github-icon{
+      color: var(--light-blue);
+    }
+    &::after{
+      content: '|';
+      @apply inline-block ml-1;
+    }
+    &:last-child::after,&:first-child::after{
+      @apply hidden;
     }
   }
 }
+.footer-item-dev{
+  li{
+    &:first-child::after{
+      @apply inline-block;
+    }
+  }
+}
+.footer-logo-wrap{
+  @apply w-4/12 text-white flex flex-col justify-center items-end;
+  .footer-logo{
+    @apply block;
+    img{
+      width: 10rem;
+    }
+  }
+  .footer-logo-copy,.footer-logo-text{
+    font-size: 13px;
+    @apply text-gray-500 text-right w-full;
+  }
+  .footer-logo-copy{
+    @apply text-gray-500 mt-1 mb-4;
+  }
+  .footer-logo-text{
+    @apply m-0;
+  }
+}
+
 /* footer end */
 /* login */
 .login-title {
@@ -511,7 +530,7 @@ to {
 .login-p {
   color: #0ebeff;
 }
-/* login */
+/* login end */
 
 /* button */
 .next-btn,.prev-btn{
@@ -523,6 +542,7 @@ to {
     @apply transform -rotate-180;
   }
 }
+/* button end */
 
 /* comment */
 .comment-edit-block{
@@ -531,6 +551,7 @@ to {
 .appear{
   display: block;
 }
+/* comment end */
 
 /* delete pen modal */
 .delete-pen-popup {
@@ -569,3 +590,18 @@ to {
   top: 30px !important;
   border: 6px solid var(--warning-yellow) !important;
 }
+/* delete pen modal end */
+
+/* private-lock */
+/* alert-lock  */
+.alert-lock-icon{
+  @apply text-gray-400;
+}
+
+.grid-private-lock{
+  @apply absolute top-5 left-4;
+  svg{
+    @apply text-gray-600;
+  }
+}
+/* private-lock end */

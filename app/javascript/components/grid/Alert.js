@@ -48,7 +48,7 @@ const Alert = (props) => {
           {
             privateToggle &&
             <div className="private-lock alert-private-lock" id="private-lock">
-              <i className="fas fa-lock text-gray-400"></i>
+              <i className="fas fa-lock alert-lock-icon"></i>
             </div>
           }
 
@@ -70,7 +70,7 @@ const Alert = (props) => {
              data-controller="comment-create"
              data-comment-create-url-value={ random_url }>
           <section>
-            <textarea className="w-6/12 h-20"
+            <textarea
                       placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
                       data-comment-create-target="createTextArea"></textarea>
             <div className="comment-submit-block">

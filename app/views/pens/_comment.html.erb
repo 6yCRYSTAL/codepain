@@ -2,10 +2,33 @@
   data-controller="comment-create"
   data-comment-create-url-value="<%='a' + pen.random_url %>"
   data-comment-create-comments-count-value="<%= comments_count %>">
-  <section >
+  <div class="aside-info">
+    <div class="share-block">
+      <span class="share-text">Share</span>
+      <button class="copy-link"
+        data-controller="share-link"
+        data-share-link-target="copyBtn"
+        data-action="click->share-link#copy"
+      >
+        <i class="fas fa-link"></i> Copy Link</button>
+    </div>
+    <dl>
+      <div>
+        <dt>Created on</dt>
+        <dd> <%= pen.created_at.to_date.to_formatted_s(:long) %> </dd>
+      </div>
+      <div>
+        <dt>Updated on</dt>
+        <dd> <%= pen.updated_at.to_date.to_formatted_s(:long) %> </dd>
+      </div>
+    </dl>
+    <% if pen.edit_view_count != 0 %>
+      <div class="view-count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
+    <% end %>
+  </div>
+  <section>
     <%# 建立評論%>
-    <textarea class="w-6/12 h-20"
-              placeholder="Want to know how <%= pen.user.username %> did this? Ask a question!
+    <textarea placeholder="Want to know how <%= pen.user.username %> did this? Ask a question!
 Feeling inspired? Let <%= pen.user.username %> know!
 Want to share how you used this Pen?
 Give the creator a confidence boost!"
@@ -84,28 +107,4 @@ Give the creator a confidence boost!"
       <% end %>
     </ol>
   </section>
-  <aside>
-    <div class="share-block">
-      <span class="share-text">Share</span>
-      <button class="copy-link"
-        data-controller="share-link"
-        data-share-link-target="copyBtn"
-        data-action="click->share-link#copy"
-      >
-        <i class="fas fa-link"></i> Copy Link</button>
-    </div>
-    <dl>
-      <div>
-        <dt>Created on</dt>
-        <dd> <%= pen.created_at.to_date.to_formatted_s(:long) %> </dd>
-      </div>
-      <div>
-        <dt>Updated on</dt>
-        <dd> <%= pen.updated_at.to_date.to_formatted_s(:long) %> </dd>
-      </div>
-    </dl>
-    <% if pen.edit_view_count != 0 %>
-      <div class="view-count"><i class="fas fa-eye"></i> <%= pen.edit_view_count %> Views</div>
-    <% end %>
-  </aside>
 </div>

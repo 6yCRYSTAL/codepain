@@ -22,7 +22,7 @@ function GridItem() {
   // 搜尋、排序值
   let searchValue = allValue[0];
   let sortBy = allValue[1] || 'Date Created';
-  let sortDirection = allValue[2] || ' ';
+  let sortDirection = allValue[2] || '';
 
   // get Api
   React.useEffect(() =>{
@@ -38,22 +38,22 @@ function GridItem() {
       setTotalPage(res.data.payload.meta.totalPages);
       setIsLoading(false);
       // 使用者喜歡哪些 pens 的 id
-      res.data.payload.pens[0].user.love_pens.forEach((like) => {
-        LikeId.push(like.id);
-      });
+      if (res.data.payload.pens.length !== 0) {
+        res.data.payload.pens[0].user.love_pens.forEach((like) => {
+          LikeId.push(like.id);
+        });
+      }
       setUserLike(LikeId);
-
-      // 準備 css & js CDN 列表
+      // SearchNoData 判斷
+      setSearchNoData(false);
+      if(res.data.payload.pens.length === 0){
+        setSearchNoData(true);
+      }
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
       // }, 500)
     })
-    .catch( error => {
-      if(error instanceof Error) {
-        setSearchNoData(true);
-      }
-    });
   }, [clickPage,allValue]);
   // 上下頁功能
   function nextBtn() {

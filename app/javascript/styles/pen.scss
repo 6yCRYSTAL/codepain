@@ -222,7 +222,7 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    @apply cursor-pointer font-bold;
+    @apply cursor-pointer font-bold overflow-hidden whitespace-nowrap;
   }
   .pen-more{
     svg{
@@ -469,6 +469,9 @@
       @apply border-b-4 border-t-0 border-l-0 border-r-0 border-solid border-white border-opacity-10 mb-3 pb-3;
     }
   }
+}
+.love-active{
+  @apply text-red-600;
 }
 /* deleted pen tab end */
 

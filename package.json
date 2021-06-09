@@ -30,7 +30,7 @@
     "postcss": "^7",
     "autoprefixer": "^9",
     "sweetalert2-react-content": "^4.0.1",
-    "typed.js": "^2.0.12",
+    "typed.js": "^2.0.12"
   },
   "scripts": {
     "postinstall": "patch-package"

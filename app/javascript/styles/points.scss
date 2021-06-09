@@ -5,7 +5,7 @@
   @apply relative flex justify-center;
 }
 .points-btn{
-  @apply flex p-3 justify-center rounded-b-sm;
+  @apply flex p-3 justify-center rounded-b-sm box-border;
   svg{
     fill: var(--primary-gray-1);
   }
@@ -17,20 +17,6 @@
 }
 .points-follow-wrap{
   @apply relative;
-}
-.points-content-wrap{
-  @apply relative flex justify-center;
-}
-.points-btn{
-  @apply flex p-3 justify-center rounded-b-sm;
-  svg{
-    fill: var(--primary-gray-1);
-  }
-  &:hover{
-    svg{
-      fill: var(--light-gray);
-    }
-  }
 }
 .points-content-hidden{
   @apply invisible;

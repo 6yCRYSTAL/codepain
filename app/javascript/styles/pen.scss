@@ -222,7 +222,7 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    @apply cursor-pointer font-bold;
+    @apply cursor-pointer font-bold overflow-hidden whitespace-nowrap;
   }
   .pen-more{
     svg{

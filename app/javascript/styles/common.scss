@@ -402,9 +402,6 @@ to {
       width: 6px;
       height: 2px;
       background-color: white;
-      transform: scaleX(1);
-      transform-origin: 0 0;
-      transition: all, 1.2s, ease-in-out;
     }
     &::after{
       bottom: 0;

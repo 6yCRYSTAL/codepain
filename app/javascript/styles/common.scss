@@ -523,6 +523,11 @@ to {
   .footer-logo-text{
     @apply m-0;
   }
+  .teams-mem-link{
+    color: var(--light-blue);
+    font-size: var(--text-s-p);
+    @apply hover:text-white;
+  }
 }
 
 /* footer end */

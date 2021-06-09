@@ -6,7 +6,7 @@
   height: 100%;
 
   .edit-zone-bar{
-    @extend .wh100;
+    width: 100%;
     padding-left: 18px;
     line-height: 30px;
     color: var(--primary-gray-1);

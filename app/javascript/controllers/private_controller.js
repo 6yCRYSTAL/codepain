@@ -1,5 +1,7 @@
 import { Controller } from 'stimulus'
 import Rails from '@rails/ujs'
+import Turbolinks from 'turbolinks'
+
 function UnlockBtn(Checks) {
   Checks.forEach( UnlockBtn => {
     UnlockBtn.innerHTML=`
@@ -20,35 +22,35 @@ function LockBtn(Checks) {
 }
 export default class extends Controller {
   static targets = [ 'privateIcons', 'privateChecks' ]
-  static values = {
-    random: String,
-  }
+  static values = { random: String }
   // Private 按鈕傳送 api
   togglePrivate() {
     const icon = this.privateIconsTargets
     const check = this.privateChecksTargets
-    let toArrayIcon = Array.from(icon);
+    console.log(icon)
     let toArrayCheck = Array.from(check);
 
     Rails.ajax({
       url: `/api/v1/pens/${this.randomValue}/private`,
       type: 'post',
       success: (data) => {
+        console.log(data)
         check.checked = data.payload.boolean;
-        if(check.checked === true){
-          toArrayIcon.forEach( Icon => {
+        if(check.checked){
+          icon.forEach( Icon => {
             Icon.classList.remove("hidden");
             Icon.dataset.isPrivate = check.checked;
           });
           UnlockBtn(toArrayCheck);
         }else{
-          toArrayIcon.forEach( Icon => {
+          icon.forEach( Icon => {
             Icon.classList.add("hidden");
             Icon.dataset.isPrivate = check.checked;
           });
           LockBtn(toArrayCheck);
         }
-      }
+      },
+      error: Turbolinks.visit('/accounts/pro', 'replace')
     })
   }
   stopPropagation(e) {
@@ -58,10 +60,9 @@ export default class extends Controller {
   togglePoints(){
     const icon = this.privateIconsTargets;
     const check = this.privateChecksTargets;
-    let toArrayIcon = Array.from(icon);
     let toArrayCheck = Array.from(check);
-    let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
-    let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
+    let isPrivate = icon[0].attributes[2].nodeValue;
+    let isPrivate2 = icon[1].attributes[2].nodeValue;
 
     if ((isPrivate && isPrivate2) === 'true') {
       UnlockBtn(toArrayCheck);
@@ -75,16 +76,15 @@ export default class extends Controller {
   initialize() {
     const icon = this.privateIconsTargets;
     if (icon.length !== 0) {
-      let toArrayIcon = Array.from(icon);
-      let isPrivate = toArrayIcon[0].attributes[2].nodeValue;
-      let isPrivate2 = toArrayIcon[1].attributes[2].nodeValue;
+      let isPrivate = icon[0].attributes[2].nodeValue;
+      let isPrivate2 = icon[1].attributes[2].nodeValue;
       if ((isPrivate && isPrivate2) === 'true') {
-        toArrayIcon.forEach( Icon => {
+        icon.forEach( Icon => {
           Icon.classList.remove("hidden");
         });
       }
       if ((isPrivate && isPrivate2) === 'false'){
-        toArrayIcon.forEach( Icon => {
+        icon.forEach( Icon => {
           Icon.classList.add("hidden");
         });
       }

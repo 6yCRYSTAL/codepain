@@ -39,12 +39,7 @@ const PenItemContent = (props) => {
 
   React.useEffect(() =>{
     // 一開始判斷私有鎖
-    if(isPrivate === true){
-      setPrivateToggle(true)
-    }
-    if(isPrivate === false){
-      setPrivateToggle(false)
-    }
+      setPrivateToggle(isPrivate)
   },[])
   return(
     <>

@@ -1,3 +1,4 @@
+json.current_user current_user, :display_name, :username, :id
 json.comments_count(@pen.comments_count)
 json.comments @comments do |comment|
   json.content comment, :content, :id

@@ -24,11 +24,14 @@ if (process.env.RAILS_ENV === 'production') {
         "app/javascript/**/*.jsx",
         "app/javascript/**/*.scss",
         "./node_modules/tailwindcss/**/*.js",
+        "./node_modules/tailwindcss/**/*.css",
         "./node_modules/sweetalert2/**/*.js",
         "./node_modules/sweetalert2/**/*.css",
         "./node_modules/sweetalert2-react-content/**/*.js",
         "./node_modules/sweetalert2-react-content/**/*.js.map",
-        "./node_modules/react-collapse-pane/**/*.js"
+        "./node_modules/react-collapse-pane/**/*.js",
+        "./node_modules/react-collapse-pane/**/*.js.map",
+        "./node_modules/react-collapse-pane/**/*.ts"
       ],
       defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
       whitelistPatterns: [/swal/, /Resizer/, /ace/, /Pane/, /vertical/, /horizontal/],

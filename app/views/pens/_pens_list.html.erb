@@ -10,7 +10,7 @@
                         data: { "search-target": "searchInput" } %>
     <button data-action="click->search#submitSearch" class="search-btn">Search</button>
     <%= link_to 'Clear Search', request.params.except(:search_term),
-                                class: 'clear-search hidden',
+                                class: 'clear-search',
                                 data: { "search-target": "clearSearch" } %>
   </div>
   <nav class="features-item">

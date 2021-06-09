@@ -11,7 +11,7 @@ export default class extends Controller {
       document.querySelector('.sortOrderDESC').classList.add('order-active')
     }
     if (this.searchInputTarget.value) {
-      this.clearSearchTarget.classList.remove('hidden')
+      this.clearSearchTarget.style.display = 'inline-block'
     }
   }
 

@@ -40,8 +40,6 @@ const Alert = (props) => {
     })
   }, [])
 
-    //TODO
-
     if (res.current_user.id === commentData.user.id){
       setJudgeCurrentUser(true)
       return(

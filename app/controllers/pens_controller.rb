@@ -54,11 +54,21 @@ class PensController < ApplicationController
 
   def search_all_users
     begin
-      pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user).shuffle
+      pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user)
       pens_per_page(pens)
+
+      respond_to do |format|
+        format.json { render json: pens_per_page(pens) }
+        format.html { render :search_all_users }
+      end
     rescue
-      pens = Pen.includes(:user).where.not(user: current_user).shuffle
+      pens = Pen.includes(:user).where.not(user: current_user)
       pens_per_page(pens)
+
+      respond_to do |format|
+        format.json { render json: pens_per_page(pens) }
+        format.html { render :search_all_users }
+      end
     end
   end
 
@@ -67,22 +77,29 @@ class PensController < ApplicationController
       pens = Pen.joins(user: {follower_relationships: :following})
                 .includes(:user)
                 .where(user: current_user.following)
-                .shuffle
 
       pens_per_page(pens)
+
+      respond_to do |format|
+        format.json { render json: pens_per_page(pens) }
+        format.html { render :follow }
+      end
     rescue
       pens = Pen.joins(user: {follower_relationships: :following})
                  .includes(:user)
                  .where.not(user: current_user)
                  .distinct
-                 .shuffle
 
       pens_per_page(pens)
+
+      respond_to do |format|
+        format.json { render json: pens_per_page(pens) }
+        format.html { render :follow }
+      end
     end
   end
 
   def trending
-    begin
       most_viewed_pens = Pen.joins(:impressions)
                             .where("impressions.created_at": 1.day.ago..Time.now)
                             .where.not(user: current_user)
@@ -95,10 +112,14 @@ class PensController < ApplicationController
                               .group("pens.id")
                               .order("count(follows.following_id) DESC")
 
-      pens = (most_viewed_pens + most_follower_pens).uniq.shuffle
+      pens = (most_viewed_pens.first(50) + most_follower_pens.first(50)).uniq
 
       pens_per_page(pens)
-    end
+
+      respond_to do |format|
+        format.json { render json: pens_per_page(pens) }
+        format.html { render :trending }
+      end
   end
 
   private

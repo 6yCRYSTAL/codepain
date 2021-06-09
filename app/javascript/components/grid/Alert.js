@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Rails from '@rails/ujs'
 import Points from './Points.js'
+import { comment } from 'postcss';
 
 // 彈跳視窗功能
 const Alert = (props) => {
   const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
+
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
+  const [ currentUserId, setCurrentUserId] = useState("")
+
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -15,13 +19,13 @@ const Alert = (props) => {
       setAlertToggle(false);
       document.querySelector('body').classList.remove('fixed');
       // 修改網址
-      // history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
+      history.replaceState(null, 'your-work', `${location.origin}/your-work?grid_type=grid`);
     };
   };
   // 新增網址，而不會刷新頁面
-  // React.useEffect(() =>{
-  //   history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/details/${random_url}`);
-  // },[])
+  React.useEffect(() =>{
+    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/pen/${random_url}`);
+  },[])
 
   useEffect( () => {
     Rails.ajax({
@@ -32,6 +36,7 @@ const Alert = (props) => {
         let commentData = response.comments
         setComments(commentData)
         setRes(response)
+        setCurrentUserId(response.current_user.id)
       }
     })
   }, [])
@@ -69,9 +74,29 @@ const Alert = (props) => {
         <div className="comment-wrap"
              data-controller="comment-create"
              data-comment-create-url-value={`a${random_url}`}>
+          <div className="aside-info">
+            <div className="share-block">
+            <span className="share-text">Share</span>
+            <button className="copy-link"
+                    data-controller="share-link"
+                    data-share-link-target="copyBtn"
+                    data-action="click->share-link#copy">
+              <i className="fas fa-link"></i> Copy Link</button>
+            </div>
+            <dl>
+              <div>
+                <dt>Created on</dt>
+                <dd>{res.pen_created_on}</dd>
+              </div>
+            <div>
+              <dt>Updated on</dt>
+              <dd>{res.pen_updated_on}</dd>
+            </div>
+            </dl>
+            <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>
+          </div>
           <section>
-            <textarea
-                      placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
+            <textarea placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
                       data-comment-create-target="createTextArea"></textarea>
             <div className="comment-submit-block">
               <span className="comment-submit-btn"
@@ -109,7 +134,8 @@ const Alert = (props) => {
                       <div className="comment-content-text">
                         <p data-comment-update-target="commentShow">{ commentData.content.content }</p>
                       </div>
-                      <div className="edit-btn-block">
+                      { currentUserId == commentData.user.id &&
+                        <div className="edit-btn-block">
                           <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
                             <span><i className="fas fa-pencil-alt"></i></span>
                             <span>Edit</span>
@@ -118,7 +144,8 @@ const Alert = (props) => {
                             <span><i className="fas fa-trash"></i></span>
                             <span>Delete</span>
                           </button>
-                      </div>
+                        </div>
+                      }
                     </div>
                   </li>
                 )
@@ -126,27 +153,6 @@ const Alert = (props) => {
             }
             </ol>
           </section>
-          <aside>
-            <div className="share-block">
-            <span className="share-text">Share</span>
-            <button className="copy-link"
-                    data-controller="share-link"
-                    data-share-link-target="copyBtn"
-                    data-action="click->share-link#copy">
-              <i className="fas fa-link"></i> Copy Link</button>
-            </div>
-            <dl>
-              <div>
-                <dt>Created on</dt>
-                <dd>{res.pen_created_on}</dd>
-              </div>
-            <div>
-              <dt>Updated on</dt>
-              <dd>{res.pen_updated_on}</dd>
-            </div>
-            </dl>
-            <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>
-          </aside>
         </div>
       </div>
     </div>

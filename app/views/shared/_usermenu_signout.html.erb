@@ -1,6 +1,14 @@
 <!-- 登出 -->
 <section class="search-userMenu-container">
   <div class="search-userMenu">
+    <div class="burger-menu"
+         data-burger-target="burger"
+         data-action="click->openSidebar">
+      <button>
+        <span></span>
+        <div class="fas fa-chevron-down"></div>
+      </button>
+    </div>
     <%# search all users' pens bar %>
     <%= form_tag search_all_users_pens_path, method: 'get', class: 'search-box' do %>
       <label>

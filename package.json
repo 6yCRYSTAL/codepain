@@ -30,13 +30,13 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "@fullhuman/postcss-purgecss": "3.0.0",
     "postcss": "^7",
-    "autoprefixer": "^9"
+    "autoprefixer": "^9",
+    "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
     "postinstall": "patch-package"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
   }
 }

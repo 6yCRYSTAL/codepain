@@ -46,7 +46,7 @@ export default class extends Controller {
 
   create() {
     let content = this.createTextAreaTarget.value
-    let randomurl = location.href.split('/').reverse()[0]
+    let randomurl = this.urlValue.substring(1)
     let listElement = document.createElement('li')
     listElement.setAttribute("data-controller", "comment-update comment-delete")
     listElement.setAttribute("data-comment-update-target", "commentLi")

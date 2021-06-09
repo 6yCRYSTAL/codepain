@@ -68,7 +68,7 @@ const Alert = (props) => {
         </header>
         <div className="comment-wrap"
              data-controller="comment-create"
-             data-comment-create-url-value={ random_url }>
+             data-comment-create-url-value={`a${random_url}`}>
           <section>
             <textarea
                       placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}

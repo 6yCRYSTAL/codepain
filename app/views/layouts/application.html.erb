@@ -11,7 +11,9 @@
   </head>
 
   <body>
-    <div class="container-left" data-controller="burger">
+    <div class="container-left"
+      data-controller="burger"
+      data-burger-target="mobile">
       <%= render 'shared/sidebar' %>
       <% if current_user %>
         <%= render 'shared/usermenu_signin' %>

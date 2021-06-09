@@ -132,7 +132,7 @@ export default class extends Controller {
           timer: 1600,
           customClass: {
             popup: 'delete-pen-loading-popup',
-            title: 'delete-pen-loading-popup-title'
+            title: 'delete-and-comment-loading-popup-title'
           },
           showClass: {
             popup: 'block'

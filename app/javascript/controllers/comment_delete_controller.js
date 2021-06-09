@@ -44,13 +44,14 @@ export default class extends Controller {
         Swal.fire({
           position: 'top',
           width: '300px',
-          html: '<p class="text-white text-base">Deleting this Comment.</p>',
+          titleText: 'Deleting this Comment.',
           background: 'black',
           allowOutsideClick: false,
           allowEscapeKey: false,
           timer: 500,
           customClass: {
-            popup: 'delete-pen-loading-popup'
+            popup: 'delete-pen-loading-popup',
+            title: 'delete-and-comment-loading-popup-title'
           },
           showClass: {
             popup: 'block'

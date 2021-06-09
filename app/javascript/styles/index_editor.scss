@@ -5,21 +5,11 @@ div.consoleClose div.sc-bdnxRM {
 
 div.jlqcXc:not(.iframeAndConsole){
   padding-top: 65px;
+  box-sizing: border-box;
 }
+
 div.bSVmsq {
   background: none;
-}
-
-.Resizer.horizontal {
-  height: 10px;
-  cursor: row-resize;
-  width: 100%;
-  border: 8px solid #333642;
-}
-
-.Resizer.vertical {
-  cursor: col-resize;
-  border: 8px solid #333642;
 }
 
 .fake-console{

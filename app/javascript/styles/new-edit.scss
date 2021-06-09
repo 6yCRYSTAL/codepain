@@ -6,7 +6,7 @@
   height: 100%;
 
   .edit-zone-bar{
-    @extend .wh100;
+    width: 100%;
     padding-left: 18px;
     line-height: 30px;
     color: var(--primary-gray-1);
@@ -46,7 +46,7 @@
   @extend .wh100;
   padding: 5px;
 }
-.edit-console-clear, .edit-console-close{
+.edit-console-clear{
   display: block;
   color: var(--light-gray);
   padding: 2px 7px;
@@ -96,14 +96,6 @@
 
   }
 }
-// .share-box-close{
-//   position: absolute;
-//   right: 10px;
-//   top:10px;
-//   width: 20px;
-//   height: 20px;
-//   cursor: pointer;
-// }
 
  ::-webkit-scrollbar {
   background: none;

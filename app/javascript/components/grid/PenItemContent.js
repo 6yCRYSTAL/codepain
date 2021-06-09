@@ -26,7 +26,7 @@ const PenItemContent = (props) => {
     if (cssList) {
       let cssCdnPrepared = cssList.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
       return cssCdnPrepared.join('')
-    }
+    } else {return ""}
   }
 
   // 整理 jsCDN 清單
@@ -34,7 +34,7 @@ const PenItemContent = (props) => {
     if (jsList) {
       let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
       return jsCdnPrepared.join('')
-    }
+    } else {return ""}
   }
 
   React.useEffect(() =>{

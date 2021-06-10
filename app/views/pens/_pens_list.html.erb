@@ -1,3 +1,4 @@
+<% provide :layout_title, "Your Work" %>
 <%# search bar %>
 <div class="your-work-features" data-controller="search">
   <div class="features-item">
@@ -10,7 +11,7 @@
                         data: { "search-target": "searchInput" } %>
     <button data-action="click->search#submitSearch" class="search-btn">Search</button>
     <%= link_to 'Clear Search', request.params.except(:search_term),
-                                class: 'clear-search hidden',
+                                class: 'clear-search',
                                 data: { "search-target": "clearSearch" } %>
   </div>
   <nav class="features-item">

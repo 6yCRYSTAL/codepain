@@ -12,7 +12,7 @@ class Api::V1::CommentsController < Api::ApiController
     content = params[:content]
     @comment = current_user.comments.new({pen: pen, user: current_user, content: content})
 
-    if @comment.save
+    if !content.blank? && @comment.save
       render json: @comment.as_json(include: :user), status: :created
     else
       render json: { status: 'failed' }, status: :expectation_failed

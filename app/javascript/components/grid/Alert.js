@@ -4,12 +4,27 @@ import Points from './Points.js'
 
 // 彈跳視窗功能
 const Alert = (props) => {
-  const { setAlertToggle, setPrivateToggle, data, privateToggle } = props;
+  const { setAlertToggle, setPrivateToggle, data, privateToggle ,cssList ,jsList } = props;
   const { title,user_name, random_url, heart_count, comments_count, view_count, html, js, css, isPrivate} = data;
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
   const [ currentUserId, setCurrentUserId] = useState("")
 
+  // 整理 cssCDN 清單
+  function cssCDN () {
+    if (cssList) {
+      let cssCdnPrepared = cssList.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+      return cssCdnPrepared.join('')
+    } else {return ""}
+  }
+
+  // 整理 jsCDN 清單
+  function jsCDN () {
+    if (jsList) {
+      let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
+      return jsCdnPrepared.join('')
+    } else {return ""}
+  }
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -83,7 +98,20 @@ const Alert = (props) => {
           </div>
         </header>
         <div className="modal-iframe">
-          <img src="https://fakeimg.pl/800x400/eee" />
+           <iframe id="grid-iframe"
+                  sandbox="allow-scripts"
+                  loading="lazy"
+                  scrolling="no"
+                  frameBorder="0"
+                  srcDoc={`
+                    <html>
+                      <style>${css}</style>
+                      ${cssCDN()}
+                      <body>${html}</body>
+                      <script type="text/javascript">${js}</script>
+                      ${jsCDN()}
+                    </html>`}>
+          </iframe>
         </div>
 
         <div className="comment-wrap"

@@ -44,7 +44,16 @@
           </div>
         </header>
         <div class="modal-iframe">
-          <img src="https://fakeimg.pl/800x400/eee">
+          <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" scrolling="no" frameBorder="0"
+          srcdoc="
+          <html>
+            <style><%= pen.css %></style>
+            <body><%= pen.html %></body>
+            <script type="text/javascript"><%= pen.js %></script>
+          </html>
+          "
+
+          ></iframe>
         </div>
 
         <%= render 'comment' ,  pen: pen,

@@ -5,6 +5,13 @@
   backdrop-filter: blur(3px);
   @apply w-full h-full fixed left-0 top-0 hidden overflow-y-auto;
 }
+#modal::-webkit-scrollbar{
+  @apply w-2 p-0 m-0;
+}
+#modal::-webkit-scrollbar-thumb{
+	background-color: var(--primary-gray-2);
+  @apply rounded-none w-2;
+}
 .modal-wrap{
   padding: 0;
   .modal-btn{
@@ -36,6 +43,9 @@
   animation-name: modalopen-fadein;
   animation-duration: 1s;
   @apply my-10 mx-auto rounded-xl self-start overflow-visible;
+  @media (max-width: 830px){
+    width: 90%;
+  }
 }
 @keyframes modalopen-fadein {
   from { opacity: 0; transform: scale(0.7) }
@@ -45,7 +55,7 @@
 /* modal-header */
 .modal-header{
   box-sizing: border-box;
-  @apply p-4 flex justify-between items-center;
+  @apply py-3 px-4 flex justify-between items-center;
 }
 .modal-header-user{
   margin-left: -25px;
@@ -80,7 +90,7 @@
   .modal-header-editor-btn{
     background-color: var(--primary-gray-4);
     color: var(--light-gray);
-    font-size: var(--text-p);
+    font-size: var(--text-s-p);
     @apply flex items-center py-2 px-3 rounded ml-2;
     &:hover{
       background-color: var(--primary-gray-3);
@@ -91,7 +101,11 @@
 /* modal-iframe */
 .modal-iframe{
   background-color: var(--primary-gray-6);
+  height: 400px;
   @apply py-4;
+  iframe{
+    @apply w-full bg-white h-full;
+  }
 }
 /* modal-iframe end */
 /* comment-wrap */

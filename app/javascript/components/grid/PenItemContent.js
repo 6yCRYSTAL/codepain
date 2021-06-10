@@ -72,8 +72,7 @@ const PenItemContent = (props) => {
                       <body>${html}</body>
                       <script type="text/javascript">${js}</script>
                       ${jsCDN()}
-                    </html>`}>
-          </iframe>
+                    </html>`} />
           <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
 
           <div className="prompt-link">
@@ -116,6 +115,8 @@ const PenItemContent = (props) => {
           setAlertToggle={ setAlertToggle }
           setPrivateToggle={ setPrivateToggle }
           privateToggle={ privateToggle }
+          cssList={cssList}
+          jsList={jsList}
         />
       }
     </>

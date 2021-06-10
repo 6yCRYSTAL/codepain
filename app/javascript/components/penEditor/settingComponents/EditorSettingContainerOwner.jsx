@@ -72,6 +72,7 @@ const NoResultsMessage = styled.div`
   padding: 15px;
   z-index: 10;
   color: white;
+  box-sizing: border-box;
 `
 const NoCdnImplemented = styled.div`
   width: 100%;

@@ -1,9 +1,12 @@
-div.consoleClose div.sc-bdnxRM {
+*{
+  box-sizing: border-box;
+}
+div.consoleClose div.Pane.horizontal.iframeAndConsole {
   flex: none !important;
   height: 105%;
 }
 
-div.sc-iCoGMd.SplitPane.horizontal:not(.iframeAndConsole){
+div#index-editor > div:first-child{
   padding-top: 65px;
   box-sizing: border-box;
 }

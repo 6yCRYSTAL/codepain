@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=Candal&display=swap');
 
 /* set */
+@mixin burger{
+  @media(max-width:830px){
+    @content;
+  }
+}
 @mixin green-btn{
   height: 45px;
   background-color: var(--btn-green);
@@ -57,6 +62,9 @@ ul, ol {
 .container-left{
   margin-left: 200px;
   overflow: hidden;
+  @include burger {
+    @apply m-auto;
+  }
 }
 .wrap{
   max-width: 1200px;
@@ -65,6 +73,9 @@ ul, ol {
   z-index: 100;
   padding: 1.2rem;
   box-sizing: border-box;
+  @include burger {
+    @apply z-40;
+  }
 }
 main{
   width: 100%;
@@ -84,6 +95,13 @@ main{
   width: 200px;
   height: 100vh;
   position: fixed;
+  // TODO 改成 visibility 保留區塊隱藏，用 display 整個刪除再開啟不能做動畫
+  @include burger{
+    visibility: hidden;
+    transform: scale(.8);
+    transform-origin: top center;
+    @apply h-auto shadow-2xl absolute z-50 top-14 opacity-0 transition-all;
+  }
   .sidebar-toggle-btn{
     button{
       box-shadow: 0px 0px 20px black;
@@ -106,6 +124,9 @@ main{
       width: 100%;
       height: 100%;
     }
+    @include burger{
+      @apply hidden;
+    }
   }
   &:hover{
     .sidebar-toggle-btn{
@@ -120,6 +141,14 @@ main{
         background-color: var(--primary-gray-2);
       }
     }
+  }
+}
+.main-sidebar.menu-sidebar-active{
+  @include burger{
+    box-shadow: 0 5px 20px #000;
+    visibility: inherit;
+    transform: scale(1);
+    @apply block py-2 opacity-100 transition-all;
   }
 }
 .sidebar-toggle-btn{
@@ -147,6 +176,9 @@ main{
   margin-left: 0;
   .main-sidebar{
     left: -200px;
+    @include burger{
+      @apply left-0;
+    }
     .sidebar-toggle-btn{
       button{
         opacity: 1;
@@ -177,6 +209,9 @@ main{
   background-color: var(--primary-gray-6);
   position: relative;
   z-index: 20;
+  @include burger{
+    @apply hidden;
+  }
   a{
     padding: 0 1.25rem;
     height: 75px;
@@ -334,6 +369,80 @@ to {
 /* search-userMenu-box */
 .search-userMenu-container{
   padding: 1.2rem;
+  @include burger{
+    @apply p-3;
+  }
+}
+/* burger menu */
+.burger-logo{
+  width: 30px;
+  height: 30px;
+  @apply pr-2 hidden;
+  @include burger{
+    @apply flex;
+  }
+}
+.burger-menu{
+  @apply pr-2;
+  button{
+    box-shadow: 0px 0px 20px black;
+    width: 30px;
+    height: 30px;
+    z-index: 50;
+    padding: 8px 5px;
+    background-color: var(--primary-gray-2);
+    color: var(--light-gray);
+    @apply hidden items-center rounded opacity-100 justify-around;
+    @include burger{
+      @apply flex;
+    }
+    // TODO 關鏡向反轉
+    svg{
+      top: -3px;
+      @apply transition-all scale-y-100 relative;
+    }
+  }
+  // TODO 本來是陰影改三條線
+  span{
+    width: 10px;
+    height: 2px;
+    background-color: var(--light-gray);
+    @apply relative;
+    &::before{
+      content: '';
+      width: 6px;
+      height: 2px;
+      top: -6px;
+      background-color: var(--light-gray);
+      @apply absolute left-0;
+    }
+    &::after{
+      content: '';
+      width: 16px;
+      height: 2px;
+      bottom: -6px;
+      background-color: var(--light-gray);
+      @apply absolute left-0;
+    }
+  }
+}
+.burger-menu-open{
+  button{
+    // TODO 開鏡向反轉
+    svg{
+      transform: scaleY(-1);
+      -moz-transform: scaleY(-1);
+      -webkit-transform: scaleY(-1);
+      @apply transition-all;
+    }
+  }
+  // TODO 本來是陰影改三條線
+  span{
+    width: 6px;
+    &::before{
+      width: 8px;
+    }
+  }
 }
 .search-userMenu,.edit-header{
   display: flex;
@@ -352,6 +461,9 @@ to {
     top: 12px;
     left: 10px;
     color: var(--primary-gray-2);
+    @include burger{
+      @apply text-base top-2 left-3;
+    }
   }
   input,input:focus{
     background-color: var(--primary-gray-6);
@@ -366,6 +478,9 @@ to {
     font-weight: bold;
     &::placeholder{
       color: var(--primary-gray-2);
+    }
+    @include burger{
+      @apply h-8 text-base leading-8;
     }
   }
 }
@@ -393,6 +508,9 @@ to {
   height: 45px;
   border-radius: 2px;
   overflow: hidden;
+  @include burger{
+    @apply h-8 w-8;
+  }
   img{
     display: inline-block;
     width:100%;

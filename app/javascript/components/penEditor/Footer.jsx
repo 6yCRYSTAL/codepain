@@ -12,17 +12,10 @@ const MainFooter = () => {
 
   return (
     <div className="edit-footer-btn">
-      <div className="footer-left">
-        <button> Console </button>
-        <button id="clear-assets-btn" className="btn-assets"> Assets </button>
-        <button className="btn-Comments"> Comments </button>
-      </div>
+      <div className="footer-left"></div>
       <div className="footer-right" data-controller="delete-pen">
-        <div className="save-dateTime">
-          <time>...</time>
-        </div>
+        <div className="save-dateTime"></div>
         { updatBtn && (<button id="btn-delet" className="btn-delete" data-action="click->delete-pen#popup"> Delete </button>) }
-        <button className="btn-collection"> Add to Collection </button>
         <button id="edit-share-btn" className="btn-Share" onClick={showShareBox}> Share </button>
         { showURL && <ShareUrlBox/> }
       </div>

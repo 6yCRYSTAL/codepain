@@ -15,7 +15,8 @@ export default class extends Controller {
         actions: 'delete-pen-actions',
         popup: 'delete-pen-popup',
         confirmButton: 'delete-pen-confirm',
-        cancelButton: 'delete-pen-cancel'
+        cancelButton: 'delete-pen-cancel',
+        title: 'delete-and-comment-popup-title'
       },
       showClass: {
         popup: 'block'
@@ -24,7 +25,7 @@ export default class extends Controller {
         popup: 'hidden'
       },
       buttonsStyling: false,
-      title: '<p class="text-white font-bold text-left">Delete Confirmation',
+      titleText: 'Delete Confirmation',
       html: "<p>This will permanently delete this Comment.</p>",
       showCancelButton: true,
       confirmButtonText: `I understand, delete the Comment`
@@ -43,13 +44,14 @@ export default class extends Controller {
         Swal.fire({
           position: 'top',
           width: '300px',
-          html: '<p class="text-white text-base">Deleting this Comment.</p>',
+          titleText: 'Deleting this Comment.',
           background: 'black',
           allowOutsideClick: false,
           allowEscapeKey: false,
           timer: 500,
           customClass: {
-            popup: 'delete-pen-loading-popup'
+            popup: 'delete-pen-loading-popup',
+            title: 'delete-and-comment-loading-popup-title'
           },
           showClass: {
             popup: 'block'

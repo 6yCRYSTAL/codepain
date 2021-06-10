@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Codepain</title>
+    <% if content_for?(:layout_title)  %>
+      <title><%= yield :layout_title %> - CodePain</title>
+    <% else %>
+      <title>CodePain</title>
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +15,9 @@
   </head>
 
   <body>
-    <div class="container-left">
+    <div class="container-left"
+      data-controller="burger"
+      data-burger-target="mobile">
       <%= render 'shared/sidebar' %>
       <% if current_user %>
         <%= render 'shared/usermenu_signin' %>

@@ -34,12 +34,6 @@
         Credit Card
       </label>
     </div>
-    <div class="payment-method-wrap">
-      <%= radio_button_tag 'payment_method', 'credit_period', false, class: "btn-payment-selection" %>
-      <label for="payment_method_credit_period" class="label-payment-selection">
-        Credit Card Installment
-      </label>
-    </div>
   </div>
   <div class="hidden plan">
     <%= hidden_field_tag 'plan', @product.plan %>

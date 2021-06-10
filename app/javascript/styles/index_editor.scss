@@ -1,14 +1,17 @@
-div.consoleClose div.sc-bdnxRM {
+*{
+  box-sizing: border-box;
+}
+div.consoleClose div.Pane.horizontal.iframeAndConsole {
   flex: none !important;
   height: 105%;
 }
 
-div.jlqcXc:not(.iframeAndConsole){
+div#index-editor > div:first-child{
   padding-top: 65px;
   box-sizing: border-box;
 }
 
-div.bSVmsq {
+div.sc-fujyAs{
   background: none;
 }
 

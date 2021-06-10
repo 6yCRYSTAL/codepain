@@ -70,11 +70,13 @@
   right: 20px;
   bottom: 35px;
   z-index: 100;
+  box-sizing: border-box;
 }
 .share-btn-input, .share-btn-copy{
   border-radius: 4px;
   position: absolute;
   left: 15px;
+  box-sizing: border-box;
 }
 .share-btn-input{
   width: 200px;

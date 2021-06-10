@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Turbolinks from 'turbolinks'
 // axios api
 let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;
@@ -28,7 +29,7 @@ const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
     ax.post(`/api/v1/pens/${url}/private`)
       .then(res => {
         let isPrivate = res.data.payload.boolean;
-        if(isPrivate === true){
+        if(isPrivate){
           // 開啟鎖頭
           setPrivateToggle(true)
         }else{
@@ -36,6 +37,9 @@ const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
           setPrivateToggle(false)
         }
       })
+      .catch(
+        Turbolinks.visit('/accounts/pro', 'replace')
+      )
   }
   return(
     <div className="points-content points-content-hidden">

@@ -7,6 +7,14 @@
     </div>
   </header>
   <section class="plans-content">
+
+    <nav class="nav-rwd">
+      <button class="nav-btn nav-btn-free" style="background-color: rgb(113, 119, 144, .5)">Free</button>
+      <button class="nav-btn nav-btn-starter" style="background-color: rgba(14,190,255,.5)">Starter</button>
+      <button class="nav-btn nav-btn-developer" style="background-color: rgba(174,99,228,.5)">Developer</button>
+      <button class="nav-btn nav-btn-super" style="background-color: rgba(71,207,115,.5)">Super</button>
+    </nav>
+
     <table data-controller="plans" class="plans-table">
       <thead class="plans-table-thead">
         <tr data-plans-target="yearTitles">
@@ -23,7 +31,7 @@
             <h3 class="plans-title big-title">Annual Super</h3>
           </th>
         </tr>
-        <tr data-plans-target="monthTitles" class="plans-table-hidden">
+        <!-- <tr data-plans-target="monthTitles" class="plans-table-hidden">
           <th>
             <h3 class="plans-title big-title">Free</h3>
           </th>
@@ -36,7 +44,7 @@
           <th>
             <h3 class="plans-title big-title">Super</h3>
           </th>
-        </tr>
+        </tr> -->
       </thead>
       <tbody class="plans-table-tbody">
         <tr data-plans-target="yearDetails">
@@ -85,7 +93,7 @@
             </div>
           </td>
         </tr>
-        <tr data-plans-target="monthDetails" class="plans-table-hidden">
+        <!-- <tr data-plans-target="monthDetails" class="plans-table-hidden">
           <td class="plans-price-free">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
@@ -126,30 +134,30 @@
               <strong>save $156</strong></mark> a year.
             </div>
           </td>
-        </tr>
+        </tr> -->
         <tr data-plans-target="yearLinks">
           <td></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'year') %></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'year') %></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'year') %></td>
         </tr>
-        <tr data-plans-target="monthLinks" class="plans-table-hidden">
+        <!-- <tr data-plans-target="monthLinks" class="plans-table-hidden">
           <td></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'month') %></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'month') %></td>
           <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'month') %></td>
-        </tr>
+        </tr> -->
         <tr data-plans-target="yearSwitchers">
           <td></td>
           <td data-action="click->plans#switch">Switch to monthly billing</td>
           <td data-action="click->plans#switch">Switch to monthly billing</td>
           <td data-action="click->plans#switch">Switch to monthly billing</td>
         </tr>
-        <tr data-plans-target="monthSwitchers" class="plans-table-hidden">
+        <!-- <tr data-plans-target="monthSwitchers" class="plans-table-hidden">
           <td></td>
           <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
           <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
-          <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+          <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td> -->
         </tr>
         <tr class="plans-features-wrap">
           <td class="plans-features">

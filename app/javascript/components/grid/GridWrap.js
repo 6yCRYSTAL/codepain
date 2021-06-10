@@ -42,17 +42,19 @@ function GridItem() {
         res.data.payload.pens[0].user.love_pens.forEach((like) => {
           LikeId.push(like.id);
         });
+        setUserLike(LikeId);
       }
-      setUserLike(LikeId);
-      // SearchNoData 判斷
-      setSearchNoData(false);
-      if(res.data.payload.pens.length === 0){
-        setSearchNoData(true);
-      }
+
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
       // }, 500)
+    })
+    .then(dd =>{
+      console.log(dd.data.payload.pens);
+      // if(res.data.payload.pens.length === 0){
+      //   setSearchNoData(true);
+      // }
     })
   }, [clickPage,allValue]);
   // 上下頁功能
@@ -63,18 +65,16 @@ function GridItem() {
     if (clickPage > 1) { setClickPage(clickPage - 1) };
   };
 
-  // loading
-  if(isLoading){
-    return(
-      <div className="pens-grid-loading"></div>
-    )
-  }
   return(
     <>
       <WorkFeatures
         setAllValue={ setAllValue }
         setSearchNoData={ setSearchNoData }
       />
+      {
+        isLoading &&
+        <div className="pens-grid-loading"></div>
+      }
       {
         searchNoData &&
         <SearchNoResult

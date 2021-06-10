@@ -9,7 +9,7 @@
 #forgot-password-link span {
   text-decoration: none;
   color: #76daff;
-  &hover {
+  &:hover {
     color: white;
   }
 }
@@ -569,6 +569,13 @@ label {
   background-color: #2c303a;
   border-radius: 6px;
   box-sizing: border-box;
+  .sign-up-link {
+      text-decoration: none;
+      color: #76daff;
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .hide {
@@ -618,6 +625,9 @@ label {
   @apply flex items-center justify-center text-white mr-4;
   .private-switch-label {
     @apply flex items-center cursor-pointer mx-2;
+    div:first-child{
+      @apply relative;
+    }
     input {
       &~ .dot {
         @apply absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition;

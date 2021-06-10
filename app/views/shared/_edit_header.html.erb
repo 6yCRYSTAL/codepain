@@ -13,14 +13,16 @@
   </div>
   <div class="edit-btn-header">
     <%= private_switch %>
-    <button class="btn-Love" data-controller="stats"
-                             data-stats-target="editor"
-                             data-action="click->stats#toggleEditorHeart"
-                             data-stats-loved-class="text-red-600">
-      <span><i class="fas fa-heart stroke-current"
-               data-stats-target="heart"></i>
-      </span>
-    </button>
+    <% if user_signed_in? && action_name == 'edit' %>
+      <button class="btn-Love" data-controller="stats"
+                              data-stats-target="editor"
+                              data-action="click->stats#toggleEditorHeart"
+                              data-stats-loved-class="love-active">
+        <span><i class="fas fa-heart stroke-current"
+                data-stats-target="heart"></i>
+        </span>
+      </button>
+    <% end %>
     <%= save_button %>
     <%= save_as_private_button %>
     <button class="btn-settings" id="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
@@ -36,10 +38,6 @@
         </svg>
       </span>
       Change View</button>
-    <div class="pinned-btn">
-      <button class="btn-pinned"><span><i class="fas fa-thumbtack"></i></span></button>
-      <button class="btn-pin-arrow"><span class="fas fa-chevron-down"></span></button>
-    </div>
   </div>
   <%= user_menu_button %>
 </header>

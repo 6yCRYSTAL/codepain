@@ -1,2 +1,2 @@
-railsweb: bin/rails server -p 3000
-webpack: bin/webpack-dev-server
+web: bundle exec rails server
+webpack: bin/webpack

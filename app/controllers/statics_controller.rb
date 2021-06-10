@@ -1,5 +1,4 @@
 class StaticsController < ApplicationController
-  require "browser"
   before_action :detect_mobile_user
 
   def index

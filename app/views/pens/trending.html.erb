@@ -42,11 +42,7 @@
                             </html>" %>>
             </iframe>
               <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
-              <a class="prompt-link" id="modal-entry">
-                <button>
-                  <i class="fas fa-expand-arrows-alt"></i>
-                </button>
-              </a>
+              <a class="prompt-link modal-entry" id="<%= pen.random_url %>" %>></a>
           </div>
           <footer class="pen-footer" data-controller="stats"
                                      data-stats-target="yourWork"

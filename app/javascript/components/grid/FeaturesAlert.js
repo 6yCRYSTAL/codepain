@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Rails from '@rails/ujs'
 
 // 彈跳視窗功能
-const Alert = () => {
-
-  // const { setAlertToggle,setPrivateToggle,data,privateToggle }
+const Alert = ({setAlertToggle, data}) => {
   const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css} = data;
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])

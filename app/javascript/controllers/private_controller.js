@@ -37,12 +37,14 @@ export default class extends Controller {
         check.checked = data.payload.boolean;
         if(check.checked === true){
           toArrayIcon.forEach( Icon => {
+            console.log(Icon);
             Icon.classList.remove("hidden");
             Icon.dataset.isPrivate = check.checked;
           });
           UnlockBtn(toArrayCheck);
         }else{
           toArrayIcon.forEach( Icon => {
+            console.log(Icon);
             Icon.classList.add("hidden");
             Icon.dataset.isPrivate = check.checked;
           });

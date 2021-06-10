@@ -374,27 +374,6 @@
     }
   }
 }
-.modal-wrap{
-  padding: 0;
-  .modal-btn{
-    @apply p-1 opacity-0 rounded-sm;
-    background-color: var(--primary-gray-3);
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    svg{
-      color: var(--light-gray);
-      font-size: 16px;
-    }
-    &:hover{
-      @apply transition-all opacity-100 transform scale-100;
-    }
-  }
-  .modal-content{
-    background-color: var(--primary-gray-5);
-    @apply overflow-auto;
-  }
-}
 .title-wrap:hover + .modal-wrap{
   .modal-btn{
     @apply transition-all opacity-100 transform scale-100;

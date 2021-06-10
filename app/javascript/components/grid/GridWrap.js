@@ -20,7 +20,7 @@ function GridItem() {
   const [searchNoData, setSearchNoData] = React.useState(false);
 
   // 搜尋、排序值
-  let searchValue = allValue[0];
+  let searchValue = allValue[0] || '';
   let sortBy = allValue[1] || 'Date Created';
   let sortDirection = allValue[2] || '';
 
@@ -37,24 +37,18 @@ function GridItem() {
       setGrid(res.data.payload.pens);
       setTotalPage(res.data.payload.meta.totalPages);
       setIsLoading(false);
-      // 使用者喜歡哪些 pens 的 id
-      if (res.data.payload.pens.length !== 0) {
-        res.data.payload.pens[0].user.love_pens.forEach((like) => {
-          LikeId.push(like.id);
-        });
+      if (res.data.payload.pens.length) {
+        res.data.payload.pens[0].user.love_pens.forEach((like) => LikeId.push(like.id))
         setUserLike(LikeId);
+        setSearchNoData(false);
+      }else{
+        setSearchNoData(true);
       }
 
       // 清除使用者pen js裡的 console.log()
       // setTimeout( () => {
       //   console.clear()
       // }, 500)
-    })
-    .then(dd =>{
-      console.log(dd.data.payload.pens);
-      // if(res.data.payload.pens.length === 0){
-      //   setSearchNoData(true);
-      // }
     })
   }, [clickPage,allValue]);
   // 上下頁功能

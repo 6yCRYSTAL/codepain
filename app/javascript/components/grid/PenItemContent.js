@@ -13,6 +13,7 @@ const PenItemContent = (props) => {
 
   // 判斷自己 id & 所有喜歡的pen ; 沒有 -1 有陣列數
   let haveUserLike = userLike.indexOf(id);
+  let isReact = false
 
   // 開啟彈跳視窗
   function atAlert() {
@@ -33,14 +34,23 @@ const PenItemContent = (props) => {
   function jsCDN () {
     if (jsList) {
       let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
-      return jsCdnPrepared.join('')
+      if (jsCdnPrepared.join('').includes('react')) {
+        isReact = true
+        jsCdnPrepared += '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>'
+      } else {isReact = false}
+      return jsCdnPrepared
     } else {return ""}
+  }
+
+  function babelSwitch () {
+    return isReact ? 'babel' : 'javascript'
   }
 
   React.useEffect(() =>{
     // 一開始判斷私有鎖
       setPrivateToggle(isPrivate)
   },[])
+
   return(
     <>
       <div className="pen-item">
@@ -67,11 +77,13 @@ const PenItemContent = (props) => {
                   frameBorder="0"
                   srcDoc={`
                     <html>
-                      <style>${css}</style>
                       ${cssCDN()}
-                      <body>${html}</body>
-                      <script type="text/javascript">${js}</script>
-                      ${jsCDN()}
+                      <style>${css}</style>
+                      <body>
+                        ${html}
+                        ${jsCDN()}
+                        <script type="text/${babelSwitch()}">${js}</script>
+                      </body>
                     </html>`}>
           </iframe>
           <a className="cover-link" href={`${user_name}/pen/${random_url}`} />

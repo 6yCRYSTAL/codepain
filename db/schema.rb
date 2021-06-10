@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_060259) do
+ActiveRecord::Schema.define(version: 2021_06_04_092700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "collections", force: :cascade do |t|
-    t.string "title", default: "My collections"
-    t.string "desc", default: "My collections description"
-    t.string "random_url", null: false
-    t.bigint "user_id", null: false
-    t.bigint "pen_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pen_id"], name: "index_collections_on_pen_id"
-    t.index ["random_url"], name: "index_collections_on_random_url"
-    t.index ["user_id"], name: "index_collections_on_user_id"
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -184,8 +171,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_060259) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "collections", "pens"
-  add_foreign_key "collections", "users"
   add_foreign_key "comments", "pens"
   add_foreign_key "comments", "users"
   add_foreign_key "heart_lists", "pens"

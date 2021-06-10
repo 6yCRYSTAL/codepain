@@ -23,23 +23,16 @@ const UnlockBtn = ()=>{
   )
 }
 // Points內容
-const PointsContent = ({ url,setPrivateToggle,privateToggle }) =>{
+const PointsContent = ({url, setPrivateToggle, privateToggle}) => {
   // 樣式更動
   function PrivateClick() {
     ax.post(`/api/v1/pens/${url}/private`)
-      .then(res => {
-        let isPrivate = res.data.payload.boolean;
-        if(isPrivate){
-          // 開啟鎖頭
-          setPrivateToggle(true)
-        }else{
-          // 關掉鎖頭
-          setPrivateToggle(false)
-        }
-      })
-      .catch(
-        Turbolinks.visit('/accounts/pro', 'replace')
-      )
+    .then(res => {
+      setPrivateToggle(res.data.payload.boolean)
+    })
+    .catch(() => {
+      Turbolinks.visit('/accounts/pro', 'replace')
+    })
   }
   return(
     <div className="points-content points-content-hidden">

@@ -27,7 +27,6 @@ export default class extends Controller {
   togglePrivate() {
     const icon = this.privateIconsTargets
     const check = this.privateChecksTargets
-    console.log(icon)
     let toArrayCheck = Array.from(check);
 
     Rails.ajax({

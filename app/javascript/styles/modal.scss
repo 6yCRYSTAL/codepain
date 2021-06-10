@@ -57,6 +57,7 @@
     }
   }
   .modal-header-title-username{
+    color: var(--primary-gray-1);
     @apply ml-4 flex flex-col justify-center;
     .modal-header-title{
       @apply flex;
@@ -67,7 +68,7 @@
       }
       .private-lock{
         svg{
-          @apply w-2.5 px-2;
+          @apply w-2.5 mx-2;
         }
       }
     }

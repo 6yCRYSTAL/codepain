@@ -34,7 +34,6 @@ export default class extends Controller {
       url: `/api/v1/pens/${this.randomValue}/private`,
       type: 'post',
       success: (data) => {
-        console.log(data)
         check.checked = data.payload.boolean;
         if(check.checked){
           icon.forEach( Icon => {

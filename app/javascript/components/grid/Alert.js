@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Rails from '@rails/ujs'
 import Points from './Points.js'
-import { comment } from 'postcss';
 
 // 彈跳視窗功能
 const Alert = (props) => {

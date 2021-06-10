@@ -36,6 +36,7 @@ document.addEventListener('turbolinks:load', () => {
           localStorage.setItem('css', JSON.stringify(cssList))
           localStorage.setItem('js', JSON.stringify(jsList))
           title.textContent = data.payload.title
+          document.title = data.payload.title
           inputValue.value = data.payload.title
           editorHTML.session.setValue(data.payload.html)
           editorCSS.session.setValue(data.payload.css)

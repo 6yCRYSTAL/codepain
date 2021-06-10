@@ -42,7 +42,8 @@ export default class extends Controller {
         actions: 'delete-pen-actions',
         popup: 'delete-pen-popup',
         confirmButton: 'delete-pen-confirm',
-        cancelButton: 'delete-pen-cancel'
+        cancelButton: 'delete-pen-cancel',
+        title: 'delete-and-comment-popup-title'
       },
       showClass: {
         popup: 'block'
@@ -51,8 +52,7 @@ export default class extends Controller {
         popup: 'hidden'
       },
       buttonsStyling: false,
-      title: '<p class="text-white font-bold text-left">Are you sure you want ' +
-             'to PERMANENTLY delete this?',
+      title: '<p>Are you sure you want<br>to PERMANENTLY delete this?</p>',
       html:
         '<p>It will be gone forever. Even CodePain support has no way to get it back. Be sure!</p>',
       showCancelButton: true,
@@ -88,7 +88,8 @@ export default class extends Controller {
         actions: 'delete-pen-actions',
         popup: 'delete-pen-popup',
         confirmButton: 'delete-pen-confirm',
-        cancelButton: 'delete-pen-cancel'
+        cancelButton: 'delete-pen-cancel',
+        title: 'delete-and-comment-popup-title'
       },
       showClass: {
         popup: 'block'
@@ -97,7 +98,7 @@ export default class extends Controller {
         popup: 'hidden'
       },
       buttonsStyling: false,
-      title: '<p class="text-white font-bold text-left">Delete Confirmation',
+      titleText: 'Delete Confirmation',
       html:
         "<p>Here's what happens when you delete a Pen:</p>" +
         "<ul>" +
@@ -124,14 +125,14 @@ export default class extends Controller {
         Swal.fire({
           position: 'top',
           width: '300px',
-          html: '<p class="text-white text-base">Deleting this Pen.' +
-                '<br>Buckle up!</br></p>',
+          title: '<p>Deleting this Pen.<br>Buckle up!</p>',
           background: 'black',
           allowOutsideClick: false,
           allowEscapeKey: false,
           timer: 1600,
           customClass: {
-            popup: 'delete-pen-loading-popup'
+            popup: 'delete-pen-loading-popup',
+            title: 'delete-and-comment-loading-popup-title'
           },
           showClass: {
             popup: 'block'

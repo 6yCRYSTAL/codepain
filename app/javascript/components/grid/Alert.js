@@ -4,8 +4,8 @@ import Points from './Points.js'
 
 // 彈跳視窗功能
 const Alert = (props) => {
-  const { setAlertToggle,setPrivateToggle,data,privateToggle } = props;
-  const { title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate} = data;
+  const { setAlertToggle, setPrivateToggle, data, privateToggle } = props;
+  const { title,user_name, random_url, heart_count, comments_count, view_count, html, js, css, isPrivate} = data;
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
 

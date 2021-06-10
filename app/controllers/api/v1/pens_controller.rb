@@ -36,7 +36,7 @@ class Api::V1::PensController < Api::ApiController
       @pen.toggle!(:private)
       success!({ boolean: @pen.private }, 'done')
     else
-      redirect_to pens_path
+      fail!('Pro members only!', 'Update to pro member first!')
     end
   end
 

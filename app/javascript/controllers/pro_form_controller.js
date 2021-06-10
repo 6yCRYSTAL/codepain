@@ -12,7 +12,7 @@ export default class extends Controller {
     let monthlyBlock = this.monthlyTarget
     let switcher = this.switcherTarget
     monthlyBlock.classList.remove('hidden')
-    switcher.classList.add('hidden')
+    switcher.style.display = 'none'
   }
 
   monthlyToAnnual() {

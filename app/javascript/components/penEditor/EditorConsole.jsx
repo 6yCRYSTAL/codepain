@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/new-edit.css'
 
 const EditorConsole = () => {
 
@@ -13,7 +12,6 @@ const EditorConsole = () => {
       <div className="edit-console-bar">
         Console
         <button className="edit-console-clear" onClick={clearConsole}>clear</button>
-        {/* <button className="edit-console-close">X</button> */}
       </div>
       <div className="edit-console"></div>
     </div>

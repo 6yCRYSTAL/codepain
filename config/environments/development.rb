@@ -85,7 +85,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # using ngrok to test ecpay response
-  config.hosts << "c09324c8aea2.ngrok.io"
+  #config.hosts << "c09324c8aea2.ngrok.io"
 
   # add white-listed ips for ecpay
   config.web_console.whitelisted_ips = %w(118.233.67.12 175.99.72.1)

@@ -25,8 +25,8 @@ if (process.env.RAILS_ENV === 'production') {
         "app/javascript/**/*.scss"
       ],
       defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
-      whitelistPatterns: [/swal/, /Resizer/, /ace/],
-      whitelistPatternsChildren: [/swal/, /Resizer/, /ace/]
+      whitelistPatterns: [/swal/, /Resizer/, /ace/, /Pane/, /vertical/, /horizontal/],
+      whitelistPatternsChildren: [/swal/, /Resizer/, /ace/, /Pane/, /vertical/, /horizontal/]
     })
   )
 }

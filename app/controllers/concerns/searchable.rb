@@ -8,7 +8,7 @@ module Searchable
   def search_user_pen(page, per)
     pens = current_user.pens
     case
-    when params.has_key?(:search_term) && params.has_key?(:sort_by) && params.has_key?(:sort_order)
+    when params.has_key?(:search_term) && params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .sort_asc(params[:sort_by])
                   .includes(:comments)
@@ -20,13 +20,13 @@ module Searchable
                   .includes(:comments)
                   .page(page).per(per)
 
-    when params.has_key?(:search_term) && params.has_key?(:sort_order)
+    when params.has_key?(:search_term) && (params[:sort_order] == 'asc')
       @pens = pens.search(params[:search_term])
                   .order(created_at: :asc)
                   .includes(:comments)
                   .page(page).per(per)
 
-    when params.has_key?(:sort_by) && params.has_key?(:sort_order)
+    when params.has_key?(:sort_by) && (params[:sort_order] == 'asc')
       @pens = pens.sort_asc(params[:sort_by])
                   .includes(:comments)
                   .page(page).per(per)
@@ -42,7 +42,7 @@ module Searchable
                   .includes(:comments)
                   .page(page).per(per)
 
-    when params.has_key?(:sort_order)
+    when (params[:sort_order] == 'asc')
       @pens = pens.order(created_at: :asc)
                   .includes(:comments)
                   .page(page).per(per)

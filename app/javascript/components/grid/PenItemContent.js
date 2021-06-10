@@ -5,11 +5,11 @@ import Alert from './Alert.js'
 
 // 每個 pen
 const PenItemContent = (props) => {
-  const {html,js,css,title,user_name,random_url,heart_count,comments_count,view_count,id,userLike,isPrivate} = props;
+  const {html,js,css,title,user_name,random_url,heart_count,comments_count,view_count,id,userLike,isPrivate,cssList,jsList} = props;
   const [privateToggle, setPrivateToggle] = React.useState(false);
   const [alertToggle, setAlertToggle] = React.useState(false);
   const [getData, setData] = React.useState({});
-  const data = {title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate};
+  const data = {title,user_name,random_url,heart_count,comments_count,view_count,html,js,css,isPrivate,cssList,jsList};
 
   // 判斷自己 id & 所有喜歡的pen ; 沒有 -1 有陣列數
   let haveUserLike = userLike.indexOf(id);
@@ -20,6 +20,22 @@ const PenItemContent = (props) => {
     setData(data);
     document.querySelector('body').classList.add('fixed');
   };
+
+  // 整理 cssCDN 清單
+  function cssCDN () {
+    if (cssList) {
+      let cssCdnPrepared = cssList.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+      return cssCdnPrepared.join('')
+    } else {return ""}
+  }
+
+  // 整理 jsCDN 清單
+  function jsCDN () {
+    if (jsList) {
+      let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
+      return jsCdnPrepared.join('')
+    } else {return ""}
+  }
 
   React.useEffect(() =>{
     // 一開始判斷私有鎖
@@ -35,7 +51,7 @@ const PenItemContent = (props) => {
       <div className="pen-item">
         <header className="pen-header">
           <a href={`${user_name}/pen/${random_url}`}>{title}</a>
-          <div className="points-wrap points-content-top"
+          <div className="points-wrap points-content-top points-wrap-grid"
                data-url={`${random_url}`}
                data-controller="delete-pen"
                data-delete-pen-username-value={`${user_name}`}
@@ -49,7 +65,20 @@ const PenItemContent = (props) => {
           </div>
         </header>
         <div className="pen-img">
-          <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" scrolling="no" frameBorder="0" srcDoc={`<html><style>${css}</style><body>${html}</body><script type="text/javascript">${js}</script></html>`}></iframe>
+          <iframe id="grid-iframe"
+                  sandbox="allow-scripts"
+                  loading="lazy"
+                  scrolling="no"
+                  frameBorder="0"
+                  srcDoc={`
+                    <html>
+                      <style>${css}</style>
+                      ${cssCDN()}
+                      <body>${html}</body>
+                      <script type="text/javascript">${js}</script>
+                      ${jsCDN()}
+                    </html>`}>
+          </iframe>
           <a className="cover-link" href={`${user_name}/pen/${random_url}`} />
 
           <div className="prompt-link">
@@ -59,8 +88,8 @@ const PenItemContent = (props) => {
           {/* 開鎖 icon */}
           {
             privateToggle &&
-            <div className="private-lock absolute top-5 left-4" id="private-lock">
-              <i className="fas fa-lock text-gray-700"></i>
+            <div className="private-lock grid-private-lock" id="private-lock">
+              <i className="fas fa-lock"></i>
             </div>
           }
         </div>

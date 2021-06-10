@@ -12,7 +12,12 @@
     </div>
   </div>
   <div class="edit-btn-header">
-    <div class="burgerBtn" style="color:aliceblue"> 漢堡 </div>
+    <div class="sidebar-toggle-btn burgerBtn">
+      <button>
+        <div class="fas fa-chevron-left"></div>
+      </button>
+      <div class="sidebar-line"></div>
+    </div>
     <%= private_switch %>
     <% if user_signed_in? && action_name == 'edit' %>
       <button class="btn-Love" data-controller="stats"

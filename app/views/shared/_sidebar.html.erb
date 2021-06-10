@@ -1,4 +1,5 @@
-<header class="main-sidebar">
+
+<header class="main-sidebar" data-burger-target="sidebar">
   <div class="sidebar-logo">
     <a href="/">
       <img src="/images/logo-white.svg" alt="codepain-logo">
@@ -24,35 +25,11 @@
           </svg>
           <span>Pen</span>
         <% end %>
-        <%= link_to new_pen_path,class: 'create-link' do %>
-          <svg viewBox="0 0 20 20" width="20" height="20">
-            <path
-              d="M7 .995C7 .445 7.447 0 7.999 0H19c.552 0 .999.456.999.995v8.01c0 .55-.447.995-.999.995H8C7.447 10 7 9.544 7 9.005V.995zm0 11.003c0-.551.447-.998.999-.998H19c.552 0 .999.446.999.998v7.004c0 .551-.447.998-.999.998H8A.998.998 0 017 19.002v-7.004zM0 .992C0 .444.451 0 .99 0h4.02c.546 0 .99.455.99.992v18.016a.996.996 0 01-.99.992H.99a.999.999 0 01-.99-.992V.992z">
-            </path>
-          </svg>
-          <span>Project</span>
-        <% end %>
-        <%= link_to new_pen_path,class: 'create-link' do %>
-          <svg viewBox="0 0 20 20" width="20" height="20">
-            <rect y="10.36" width="9.64" height="9.64" rx="1" ry="1"></rect>
-            <rect x="10.36" y="10.36" width="9.64" height="9.64" rx="1" ry="1"></rect>
-            <rect width="9.64" height="9.64" rx="1" ry="1"></rect>
-            <rect x="10.36" width="9.64" height="9.64" rx="1" ry="1"></rect>
-          </svg>
-          <span>Collection</span>
-        <% end %>
       </div>
       <div class="sidebar-item sidebar-item-line">
         <%= link_to 'Your work' , pens_path %>
-        <%= link_to 'Activity' , pens_path %>
-        <%= link_to 'Assets' , pens_path %>
-        <%= link_to 'Pinned Items' , pens_path %>
-      </div>
-      <div class="sidebar-item sidebar-item-line">
-        <%= link_to 'Following' , pens_path %>
-        <%= link_to 'Trending' , pens_path %>
-        <%= link_to 'Challenges' , pens_path %>
-        <%= link_to 'Spark' , pens_path %>
+        <%= link_to 'Following' , follow_path %>
+        <%= link_to 'Trending' , trending_path %>
       </div>
       <div class="sidebar-item sidebar-item-line">
         <%= link_to products_path,class:'codepain-link' do%>
@@ -62,7 +39,9 @@
       </div>
       <figure class="sidebar-advertise">
         <div class="advertise-img">
-          <img src="/images/banner-5x.jpg" title="5X宣傳廣告">
+          <a href="https://astro.5xruby.tw/" rel="noreferrer noopener nofollow" target="_blank">
+            <img src="/images/banner-5x.jpg" title="5X宣傳廣告">
+          </a>
         </div>
         <figcaption>5X宣傳廣告</figcaption>
       </figure>
@@ -77,12 +56,10 @@
         <% end %>
       </div>
       <div class="sidebar-item sidebar-item-line2">
-        <%= link_to 'Trending' , '#' %>
-        <%= link_to 'Challenges' , '#' %>
-        <%= link_to 'Spark' , '#' %>
+        <%= link_to 'Trending' , trending_path %>
       </div>
       <div class="sidebar-item sidebar-item-line2">
-        <%= link_to products_path,class:'codepain-link' do%>
+        <%= link_to products_path, class:'codepain-link' do%>
           <p>CodePain</p>
           <span class="logo-pro">pro</span>
         <% end %>

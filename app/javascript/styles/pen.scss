@@ -1,3 +1,13 @@
+@mixin gridRWD2col {
+  @media (max-width:1148px) and (min-width:933px){
+    @apply grid-cols-2
+  }
+}
+@mixin gridRWD1col {
+  @media screen and (max-width:932px){
+    @apply grid-cols-1
+  }
+}
 /* title & features */
 .feat-page-title{
   .big-title{
@@ -171,6 +181,8 @@
 .pen-items-wrap{
   -webkit-box-align: start;
   @apply grid grid-cols-3 gap-x-12 gap-y-8 my-4 auto-rows-auto;
+  @include gridRWD2col();
+  @include gridRWD1col();
 }
 .pen-item{
   display: flex;

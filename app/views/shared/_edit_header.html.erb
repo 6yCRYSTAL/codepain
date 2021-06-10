@@ -12,6 +12,7 @@
     </div>
   </div>
   <div class="edit-btn-header">
+    <div class="burgerBtn" style="color:aliceblue"> 漢堡 </div>
     <%= private_switch %>
     <% if user_signed_in? && action_name == 'edit' %>
       <button class="btn-Love" data-controller="stats"
@@ -26,18 +27,6 @@
     <%= save_button %>
     <%= save_as_private_button %>
     <button class="btn-settings" id="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
-    <button class="btn-changeView">
-      <span>
-        <svg viewBox="-703.9 491.1 31.7 25.3">
-          <path
-            d="M-688.1 499.6c-4.3 0-8.1 2.2-10.4 5.6 2.2 3.4 6 5.6 10.4 5.6 4.3 0 8.1-2.2 10.4-5.6-2.2-3.3-6-5.6-10.4-5.6zm0 9.9c-2.3 0-4.2-1.9-4.2-4.2-.1-2.4 1.8-4.3 4.2-4.3 2.3 0 4.2 1.9 4.2 4.2 0 2.4-1.9 4.3-4.2 4.3z">
-          </path>
-          <path
-            d="M-673.4 491.1h-29.3c-.7 0-1.2.5-1.2 1.2v22.9c0 .7.5 1.2 1.2 1.2h29.3c.7 0 1.2-.5 1.2-1.2v-22.9c0-.6-.6-1.2-1.2-1.2zm-28.1 22.9v-17.1h26.8V514h-26.8z">
-          </path>
-        </svg>
-      </span>
-      Change View</button>
   </div>
   <%= user_menu_button %>
 </header>

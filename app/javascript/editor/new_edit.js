@@ -20,6 +20,7 @@ document.addEventListener('turbolinks:load', () => {
     let editorHTML = ace.edit("editor--html")
     let editorCSS = ace.edit("editor--css")
     let editorJS = ace.edit("editor--js")
+    let isReact = false
 
     function init() {
       // set options
@@ -97,8 +98,16 @@ document.addEventListener('turbolinks:load', () => {
       let js = JSON.parse(localStorage.getItem('js'))
       if (js) {
         let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
-        return jsCdnPrepared.join('')
+        if (jsCdnPrepared.join('').includes('react')) {
+          isReact = true
+          jsCdnPrepared += '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>'
+        } else {isReact = false}
+        return jsCdnPrepared
       } else {return ""}
+    }
+
+    function babelSwitch () {
+      return isReact ? 'babel' : 'javascript'
     }
 
     // render to iframe
@@ -106,12 +115,12 @@ document.addEventListener('turbolinks:load', () => {
       let result = document.querySelector('#edit--result')
       result.srcdoc =
         `<html>
-          <style>${editorCSS.getValue()}</style>
           ${cssCDN()}
+          <style>${editorCSS.getValue()}</style>
           <body>
-              ${editorHTML.getValue()}
-            <script type="text/javascript">${editorJS.getValue()}</script>
+            ${editorHTML.getValue()}
             ${jsCDN()}
+            <script type="text/${babelSwitch()}">${editorJS.getValue()}</script>
           </body>
         </html>`
     }

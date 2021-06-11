@@ -6,8 +6,6 @@ export default class extends Controller {
   static values = { random: String, username: String }
 
   showUser() {
-    // TODO:
-    console.log(123)
     Rails.ajax({
       url: '/api/v1/user/follow',
       type: 'GET',

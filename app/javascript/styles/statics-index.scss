@@ -3,19 +3,40 @@
   letter-spacing: 1px;
 }
 /* homepage-anon-header */
+.homepage-codepain-title{
+  display: none;
+  width: 100%;
+  height: 18px;
+  @media screen and (max-width:1024px) {
+    @apply block ;
+  }
+  .homepage-codepain-logo{
+    width: 200px;
+    margin-left: 40%;
+  }
+}
 .homepage-anon-header{
   width: 100%;
   display: flex;
   padding: 3rem 0;
   position: relative;
+  @media screen and (max-width:1024px) {
+    @apply flex-wrap flex-col-reverse ;
+  }
 }
 .homepage-anon-header-left{
   width: 50%;
   background-color: transparent;
   padding-top: 2rem;
+  @media screen and (max-width:1024px) {
+    @apply w-screen ml-44 ;
+  }
   .homepage-codepain{
     width: 50px;
     margin-top: -10px;
+    @media screen and (max-width:1024px) {
+      @apply hidden ;
+    }
   }
   .homepage-title{
     color: var(--light-gray);
@@ -43,6 +64,9 @@
     color: var(--dark-gray);
     font-size: var(--text-p);
     padding: .8rem 1rem;
+    @media screen and (max-width:1024px) {
+      @apply ml-40 ;
+    }
     &:hover{
       background-color: var(--btn-hover-green-dark);
     }
@@ -51,6 +75,9 @@
 .homepage-anon-header-right{
   width: 50%;
   background-color: transparent;
+  @media screen and (max-width:1024px) {
+    @apply w-screen  ;
+  }
   .background-doily{
     position: relative;
     width: 85%;
@@ -58,6 +85,9 @@
     height: 28rem;
     background: linear-gradient(109.61deg,#4c4f5a 4.26%, #202125 84.84%);
     border-radius: 10px;
+    @media screen and (max-width:1024px) {
+      @apply w-screen h-80 px-10 ;
+    }
     .Preview{
       position: absolute;
       width: 300px;
@@ -102,10 +132,16 @@
     .homepage-code-html{
       top: -20px;
       right: 20px;
+      @media screen and (max-width:1024px) {
+        @apply top-5 -left-4 ;
+      }
     }
     .homepage-code-css{
       top: 145px;
       right: -20px;
+      @media screen and (max-width:1024px) {
+        @apply top-20 right-80 ;
+      }
       .code-content{
         .css-type-an{
           margin-left: 4rem;
@@ -120,24 +156,14 @@
             margin-left: 2rem;
           }
         }
-
-        // .typewriter{
-        //   @keyframes caret {
-        //     50% { border-color: transparent; }
-        //   }
-        //   @keyframes typing {
-        //     from { width: 0 }
-        //   }
-        //   border-right: .05em solid;
-        //   margin-left: 10px;
-        //   animation: typing 1s steps(4),
-        //   caret 1s steps(1) infinite;
-        // }
       }
     }
     .homepage-code-js{
       bottom: -20px;
       right: 40px;
+      @media screen and (max-width:1024px) {
+        @apply top-36 left-24 ;
+      }
       p{
         margin: 0;
       }
@@ -159,8 +185,14 @@
   position: relative;
   .row{
     @apply flex space-x-8;
+    @media screen and (max-width:1024px) {
+      @apply flex-wrap space-x-0 space-y-10 ;
+    }
     .col{
       @apply w-4/12;
+      @media screen and (max-width:1024px) {
+        @apply w-full;
+      }
     }
   }
 }

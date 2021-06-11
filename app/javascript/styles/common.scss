@@ -17,6 +17,10 @@
   &:hover{
     background-color: var(--btn-hover-green-dark);
   }
+  @media screen and (max-width:768px) {
+    height: 35px;
+    font-size: var(--text-s-p);
+  }
 }
 @mixin gray-btn{
   height: 45px;
@@ -28,6 +32,10 @@
   @apply px-4 py-0 rounded-lg;
   &:hover{
     background-color: var(--primary-gray-3);
+  }
+  @media screen and (max-width:768px) {
+    height: 35px;
+    font-size: var(--text-s-p);
   }
 }
 body, html{

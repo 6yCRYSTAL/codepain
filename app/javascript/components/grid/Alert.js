@@ -4,12 +4,27 @@ import Points from './Points.js'
 
 // 彈跳視窗功能
 const Alert = (props) => {
-  const { setAlertToggle, setPrivateToggle, data, privateToggle } = props;
+  const { setAlertToggle, setPrivateToggle, data, privateToggle ,cssList ,jsList } = props;
   const { title,user_name, random_url, heart_count, comments_count, view_count, html, js, css, isPrivate} = data;
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
   const [ currentUserId, setCurrentUserId] = useState("")
 
+  // 整理 cssCDN 清單
+  function cssCDN () {
+    if (cssList) {
+      let cssCdnPrepared = cssList.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+      return cssCdnPrepared.join('')
+    } else {return ""}
+  }
+
+  // 整理 jsCDN 清單
+  function jsCDN () {
+    if (jsList) {
+      let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
+      return jsCdnPrepared.join('')
+    } else {return ""}
+  }
 
   // 關掉彈跳視窗
   function closeAlert(e){
@@ -47,28 +62,58 @@ const Alert = (props) => {
 
       <div className="modal-content">
         <header className="modal-header">
-          <p>{ user_name } { title }</p>
-          {
-            privateToggle &&
-            <div className="private-lock alert-private-lock" id="private-lock">
-              <i className="fas fa-lock alert-lock-icon"></i>
+          <div className="modal-header-user">
+            <div className="modal-header-user-img">
+              <img src="/images/user-img.jpg" alt="使用者圖像" />
             </div>
-          }
-
-          {/* 鎖頭入口 */}
-          <div className="points-wrap points-content-bottom"
-               data-url={`${random_url}`}
-               data-controller="delete-pen"
-               data-delete-pen-username-value={`${user_name}`}
-               data-delete-pen-random-value={`${random_url}`}
-               data-delete-pen-target="trashedPen">
-            <Points
-              url={ random_url }
-              setPrivateToggle={ setPrivateToggle }
-              privateToggle= { privateToggle }
-            />
+            <div className="modal-header-title-username">
+              <div className="modal-header-title">
+                <a href={`/${ user_name }/pen/${ random_url }`}>title</a>
+                {
+                  privateToggle &&
+                  <div className="private-lock alert-private-lock" id="private-lock">
+                    <i className="fas fa-lock alert-lock-icon"></i>
+                  </div>
+                }
+              </div>
+              <div className="modal-header-username">
+                { user_name }
+              </div>
+            </div>
+          </div>
+          <div className="modal-header-btn">
+            <div className="points-wrap points-content-bottom"
+                data-url={`${random_url}`}
+                data-controller="delete-pen"
+                data-delete-pen-username-value={`${user_name}`}
+                data-delete-pen-random-value={`${random_url}`}
+                data-delete-pen-target="trashedPen">
+              <Points
+                url={ random_url }
+                setPrivateToggle={ setPrivateToggle }
+                privateToggle= { privateToggle }
+              />
+            </div>
+            <a href={`/${ user_name }/pen/${ random_url }`} className="modal-header-editor-btn">View in Editor</a>
           </div>
         </header>
+        <div className="modal-iframe">
+           <iframe id="grid-iframe"
+                  sandbox="allow-scripts"
+                  loading="lazy"
+                  scrolling="no"
+                  frameBorder="0"
+                  srcDoc={`
+                    <html>
+                      <style>${css}</style>
+                      ${cssCDN()}
+                      <body>${html}</body>
+                      <script type="text/javascript">${js}</script>
+                      ${jsCDN()}
+                    </html>`}>
+          </iframe>
+        </div>
+
         <div className="comment-wrap"
              data-controller="comment-create"
              data-comment-create-url-value={`a${random_url}`}>
@@ -91,17 +136,21 @@ const Alert = (props) => {
               <dd>{res.pen_updated_on}</dd>
             </div>
             </dl>
-            <div id="view_count"><i className="fas fa-eye" /> { view_count } Views</div>
           </div>
-          <section>
-            <textarea placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
-                      data-comment-create-target="createTextArea"></textarea>
+          <section className="comment-content">
+            <textarea
+              placeholder={`Want to know how ${user_name} did this? Ask a question!\nFeeling inspired? Let ${user_name} know!\nWant to share how you used this Pen?\nGive the creator a confidence boost!`}
+              data-comment-create-target="createTextArea"/>
             <div className="comment-submit-block">
               <span className="comment-submit-btn"
                     data-action="click->comment-create#create"
-                    data-comment-create-target="createBtn">Comment</span>
+                    data-comment-create-target="createBtn">
+                Comment
+              </span>
             </div>
-            <p className="comments-count" data-comment-create-target="commentsCount"> { comments_count } comments</p>
+            <p className="comments-count" data-comment-create-target="commentsCount">
+              { comments_count } comments
+            </p>
             <ol data-comment-create-target="list" id={random_url}>
             {
               comments.map( (commentData) => {

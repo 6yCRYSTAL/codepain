@@ -128,6 +128,8 @@ const PenItemContent = (props) => {
           setAlertToggle={ setAlertToggle }
           setPrivateToggle={ setPrivateToggle }
           privateToggle={ privateToggle }
+          cssList={cssList}
+          jsList={jsList}
         />
       }
     </>

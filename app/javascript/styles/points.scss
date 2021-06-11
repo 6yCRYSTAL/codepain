@@ -21,8 +21,10 @@
 .points-content-hidden{
   @apply invisible;
 }
+
 .hover-no-color{
   &:hover{
+    @apply rounded-b-none;
     svg{
       fill: var(--primary-gray-1);
     }
@@ -101,10 +103,12 @@
   background-color: var(--primary-gray-4);
   @apply rounded;
   .points-btn{
-    @apply py-5 px-4 rounded-t rounded-b-none;
+    @apply py-5 px-4 rounded;
     &:hover{
       background-color: var(--primary-gray-3);
-      @apply rounded-t;
+    }
+    &.hover-no-color{
+      @apply rounded-t rounded-b-none;
     }
   }
 }

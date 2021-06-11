@@ -100,6 +100,7 @@
 /* modal-header end */
 /* modal-iframe */
 .modal-iframe{
+  position: relative;
   background-color: var(--primary-gray-6);
   height: 400px;
   @apply py-4;

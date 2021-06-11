@@ -13,10 +13,10 @@ document.addEventListener('turbolinks:load',function(){
       PenItemsWrap
     )
   }
-
+  // const { setAlertToggle, setPrivateToggle, data, privateToggle ,cssList ,jsList } = props;
   if (FeaturesModal) {
     FeaturesModal.forEach((featureGrid) => {
-      randomUrl = featureGrid.id
+      let randomUrl = featureGrid.id
       const [isAlert, setIsAlert] = useState(false)
 
 

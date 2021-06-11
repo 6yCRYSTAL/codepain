@@ -51,11 +51,6 @@ export default function points() {
           </button>
           <div class="points-content points-content-hidden">
             <div class="points-content-box">
-              <button class="private-btn">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <span>Make Private</span>
-                <span class="logo-pro">pro</span>
-              </button>
               <div data-follow-target="followWrap">
               </div>
             </div>

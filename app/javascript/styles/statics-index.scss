@@ -331,7 +331,7 @@
 }
 .homepage-body-bg{
   position: absolute;
-  bottom: -120px;
+  bottom: -40px;
   left: -260px;
   max-width: 640px;
   z-index: -1;
@@ -342,7 +342,6 @@
   @media screen and (max-width:640px) {
     max-width: 500px;
     left: -175px;
-    bottom: -100px;
   }
 }
 /* mobile */

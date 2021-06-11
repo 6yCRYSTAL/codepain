@@ -21,33 +21,46 @@
           </header>
           <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
           <div class="pen-img">
-              <iframe id="grid-iframe"
+            <iframe id="grid-iframe"
                     sandbox="allow-scripts"
                     loading="lazy"
                     scrolling="no"
                     frameBorder="0"
                     srcDoc="<html>
-                            <style><%= pen.css %></style>
-                            <% pen.resources.each do |cdn| %>
-                              <% if cdn.category === 'css' %>
-                                <link rel='stylesheet' href='<%= cdn.url %>'></link>
+                              <% pen.resources.each do |cdn| %>
+                                <% if cdn.category == 'css' %>
+                                  <link rel='stylesheet' href='<%= cdn.url %>'></link>
+                                <% end %>
                               <% end %>
-                            <% end %>
-                            <body><%= pen.html %> </body>
-                            <script type='text/javascript'><%= pen.js %></script>
-                            <% pen.resources.each do | cdn | %>
-                              <% if cdn.category === 'js' %>
-                                <script type='text/javascript' href='<%= cdn.url %>'></script>
-                              <% end %>
-                            <% end %>
+                              <style><%= pen.css %></style>
+                              <body><%= pen.html %>
+                                <% pen.resources.each do | cdn | %>
+                                  <% if cdn.category == 'js' %>
+                                    <script src='<%= cdn.url %>'></script>
+                                  <% end %>
+                                <% end %>
+                                <% isReact = false %>
+                                <% pen.resources.each do | cdn | %>
+                                    <% if cdn.url.include?('react') %>
+                                      <% isReact = true %>
+                                    <% break %>
+                                    <% end %>
+                                <% end %>
+                                <% if isReact %>
+                                  <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js'></script>
+                                  <script type='text/babel'><%= pen.js %></script>
+                                <% else %>
+                                  <script type='text/javascript'><%= pen.js %></script>
+                                <% end %>
+                              </body>
                             </html>" %>>
             </iframe>
-              <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
-              <a class="prompt-link">
-                <button>
-                  <i class="fas fa-expand-arrows-alt"></i>
-                </button>
-              </a>
+            <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
+            <a class="prompt-link">
+              <button>
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+            </a>
           </div>
           <footer class="pen-footer" data-controller="stats"
                                      data-stats-target="yourWork"

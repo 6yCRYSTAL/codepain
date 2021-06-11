@@ -47,17 +47,14 @@ document.addEventListener('turbolinks:load',function(){
         })
       })
 
-
-
       ReactDOM.render(
         <>
-          <button onClick={}>
+          <button>
             <i class="fas fa-expand-arrows-alt"></i>
           </button>
           <FeaturesAlert
             />
         </>
       )
-    }
-  })
+  })}
 })

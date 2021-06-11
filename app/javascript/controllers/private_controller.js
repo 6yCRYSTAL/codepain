@@ -48,7 +48,7 @@ export default class extends Controller {
           LockBtn(toArrayCheck);
         }
       },
-      error: Turbolinks.visit('/accounts/pro', 'replace')
+      error: () => Turbolinks.visit('/accounts/pro', 'replace')
     })
   }
   stopPropagation(e) {

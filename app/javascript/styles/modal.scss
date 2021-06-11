@@ -218,11 +218,15 @@
       .edit-btn-block{
         transition: all .16s ease-out;
         transform: translateY(5px);
-        opacity: 0;
+        @apply flex opacity-0;
         .comment-edit-btn,.comment-delete-btn{
           padding: 2px 8px;
+          @apply flex;
           span{
             @apply text-xs;
+            &:last-of-type{
+              @apply pl-1;
+            }
           }
           &:hover{
             background-color: var(--btn-green);

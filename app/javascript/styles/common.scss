@@ -78,7 +78,7 @@ ul, ol {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   padding: 1.2rem;
   box-sizing: border-box;
   @include burger {
@@ -99,11 +99,10 @@ main{
   background-color: var(--primary-gray-6);
   top: 0;
   left: 0;
-  z-index: 16;
+  z-index: 10;
   width: 200px;
   height: 100vh;
   position: fixed;
-  // TODO 改成 visibility 保留區塊隱藏，用 display 整個刪除再開啟不能做動畫
   @include burger{
     visibility: hidden;
     transform: scale(.8);
@@ -590,7 +589,8 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  @apply flex flex-nowrap tracking-wide py-10 px-20;
+  z-index: 20;
+  @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
 }
 .footer-items-wrap{
   @apply w-8/12;

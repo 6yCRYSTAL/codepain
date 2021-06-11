@@ -44,16 +44,45 @@
           </div>
         </header>
         <div class="modal-iframe">
-          <iframe id="grid-iframe" sandbox="allow-scripts" loading="lazy" scrolling="no" frameBorder="0"
-          srcdoc="
-          <html>
-            <style><%= pen.css %></style>
-            <body><%= pen.html %></body>
-            <script type='text/javascript'><%= pen.js %></script>
-          </html>
-          "
-
-          ></iframe>
+          <iframe id="grid-iframe"
+                  sandbox="allow-scripts"
+                  loading="lazy"
+                  scrolling="no"
+                  frameBorder="0"
+                  srcDoc="<html>
+                            <% if pen.resources %>
+                              <% pen.resources.each do |cdn| %>
+                                <% if cdn.category == 'css' %>
+                                  <link rel='stylesheet' href='<%= cdn.url %>'></link>
+                                <% end %>
+                              <% end %>
+                            <% end %>
+                            <style><%= pen.css %></style>
+                            <body><%= pen.html %>
+                            <% if pen.resources %>
+                              <% pen.resources.each do | cdn | %>
+                                <% if cdn.category == 'js' %>
+                                  <script src='<%= cdn.url %>'></script>
+                                <% end %>
+                              <% end %>
+                              <% isReact = false %>
+                              <% pen.resources.each do | cdn | %>
+                                  <% if cdn.url.include?('react') %>
+                                    <% isReact = true %>
+                                  <% break %>
+                                  <% end %>
+                              <% end %>
+                              <% if isReact %>
+                                <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js'></script>
+                                <script type='text/babel'><%= pen.js %></script>
+                              <% else %>
+                                <script type='text/javascript'><%= pen.js %></script>
+                              <% end %>
+                            <% else %>
+                                <script type='text/javascript'><%= pen.js %></script>
+                            <% end %>
+                            </body>
+                          </html>"></iframe>
         </div>
 
         <%= render 'comment' ,  pen: pen,

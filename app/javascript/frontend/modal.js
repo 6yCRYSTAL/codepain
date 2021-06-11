@@ -1,6 +1,4 @@
 document.addEventListener('turbolinks:load',function(){
-  // Get modal element
-  const modalAll = document.querySelectorAll('#modal')
   // Get open modal button
   const modalBtnAll = document.querySelectorAll('#modal-btn')
   modalBtnAll.forEach(btn => {

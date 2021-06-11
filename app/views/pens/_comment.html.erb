@@ -5,7 +5,7 @@
   <div class="aside-info">
     <div class="share-block">
       <span class="share-text">Share</span>
-      <button class="copy-link"
+      <button class="copy-link feature-related"
         data-controller="share-link"
         data-share-link-target="copyBtn"
         data-action="click->share-link#copy"
@@ -66,10 +66,12 @@ Give the creator a confidence boost!"
           <textarea data-comment-update-target="updateTextArea"><%= comment.content %></textarea>
           <div class="update-btn-block">
             <button
+              class="feature-related"
               data-action="click->comment-update#cancel"
               data-comment-update-target="cancelBtn"
             > Cancel </button>
             <button
+              class="feature-related"
               data-action="click->comment-update#update"
               data-comment-update-target="updateBtn"
               data-id="<%= comment.id %>"
@@ -80,18 +82,18 @@ Give the creator a confidence boost!"
           <div class="comment-content-text">
             <p data-comment-update-target="commentShow"><%= comment.content %></p>
           </div>
-          <div class="edit-btn-block">
+          <div class="edit-btn-block" data-comment-update-target="editBtnBlock">
             <%# 評論編輯按鈕 %>
             <% if current_user == comment.user %>
               <button
-                class="comment-edit-btn"
+                class="comment-edit-btn feature-related"
                 data-action="click->comment-update#edit"
                 data-comment-update-target="editBtn">
                 <span><i class="fas fa-pencil-alt"></i></span>
                 <span>Edit</span>
               </button>
               <button
-                class="comment-delete-btn"
+                class="comment-delete-btn feature-related"
                 data-action="click->comment-delete#delete"
                 data-comment-update-target="deleteBtn">
                 <span><i class="fas fa-trash"></i></span>

@@ -1,3 +1,40 @@
+@mixin headerBurger {
+  .burgerBtn{
+    display: none;
+  }
+  @media screen and (max-width:768px){
+    .burgerBtn{
+      display: block;
+      position: absolute;
+      top: -50px;
+      right: 50px;
+      >button{
+        width: 2rem;
+        height: 2rem;
+      }
+      > button > svg{
+        transform: translate(-5px, 0) rotate(270deg);
+      }
+    }
+    width: 200px;
+    position: absolute;
+    right: 13px;
+    top: 65px;
+    display: flex;
+    flex-direction: column;
+
+    > button {
+      display: none;
+    }
+    > button.open{
+      display: block;
+      background-color: black;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
 /* header */
 .edit{
   background-color: var(--primary-gray-6);
@@ -116,61 +153,7 @@
         margin: 0;
       }
     }
-  }
-  .extend{
-    position:absolute;
-    z-index: 15;
-    width: 400px;
-    background-color: #131417;
-    border-radius: 5px;
-    padding: 2rem;
-    height: auto;
-    max-height: 80vh;
-    top: 63px;
-    right: 60px;
-    display: none;
-    .Pinned-Items{
-      font-size: 15px;
-      font-weight: bold;
-      color: #fff;
-    }
-    ul{
-      padding-top: 10px;
-      li{
-        &:hover{
-          background: #444857;
-        }
-        padding: 13px 13px 17px;
-        margin-bottom: 15px;
-        height: auto;
-        background: #2c303a;
-        border-radius: 6px;
-        .icon-a{
-          color: rgb(91, 192, 231);
-          margin: 0, 100%, 0, 100%;
-        }
-        .item{
-          margin-right: 0px;
-          background-color:transparent;
-        .delete{
-          &:hover{
-            background: #444857;
-            color: rgb(230, 224, 224);
-          }
-          color: gray;
-          padding: 0px 0px 0px;
-          width: 20px;
-          font-weight:lighter;
-          font-size: 25px;
-          }
-        }
-      }
-    }
-    .btn-pin-arrow{
-      border-radius: 0 4px 4px 0;
-      padding: 10px 5px;
-      font-size: 8px;
-    }
+    @include headerBurger;
   }
 /* header end */
 

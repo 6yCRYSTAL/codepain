@@ -60,7 +60,6 @@
     @apply flex;
   }
   .your-work-search{
-    height: 30px;
     color: var(--primary-gray-1);
     font-size: var(--text-s-p);
     display: flex;
@@ -76,16 +75,14 @@
       background-color: var(--primary-gray-3);
       padding: 0 .8rem;
       color: var(--light-gray);
-      @apply cursor-pointer rounded-l-none rounded-r-sm;
+      @apply cursor-pointer rounded-l-none rounded-r;
     }
     .search-text{
-      height: 100%;
-      border: 0;
+      box-sizing: border-box;
       outline: none;
-      padding: 0 0 0 .5rem ;
-      border-radius: 3px 0 0 3px;
       background: var(--primary-gray-4);
       color: var(--light-gray);
+      @apply h-full border-0 p-2 rounded-l rounded-r-none;
 
       &::placeholder{
         color: var(--light-gray);
@@ -108,6 +105,7 @@
       svg{
         font-size: var(--text-h5);
         fill: var(--primary-gray-1);
+        @apply align-middle;
       }
     }
     &:hover{
@@ -118,7 +116,7 @@
   }
   .list-btn{
     button{
-      @apply rounded-r-sm;
+      @apply rounded-r;
     }
     span{
       @apply ml-1;
@@ -126,7 +124,7 @@
   }
   .grid-btn{
     button{
-      @apply rounded-l-sm;
+      @apply rounded-l;
     }
     span{
       @apply mr-1;
@@ -144,23 +142,24 @@
     color: var(--light-gray);
     background-color: var(--primary-gray-4);
     font-size: var(--text-s-p);
-    @apply pl-1 pr-6 border-none rounded cursor-pointer appearance-none h-full;
+    @apply w-32 pl-2 pr-6 border-none rounded cursor-pointer appearance-none h-full;
   }
   .sort-by-select-icon{
     color: var(--light-gray);
-    @apply absolute top-1 right-2 text-sm;
+    @apply absolute top-1.5 right-2.5 text-sm pointer-events-none;
   }
 }
 .sortOrderDESC,.sortOrderASC{
   color: var(--primary-gray-2);
   background-color: var(--primary-gray-4);
-  @apply py-1 px-2.5 cursor-pointer h-full rounded-r-none rounded-l-sm flex items-center;
+  box-sizing: border-box;
+  @apply py-1 px-2.5 cursor-pointer h-full rounded-r-none rounded-l flex items-center;
   &:hover{
     color: var(--light-gray);
   }
 }
 .sortOrderASC{
-  @apply rounded-r-sm rounded-l-none;
+  @apply rounded-r rounded-l-none;
 }
 .order-active{
   background-color: var(--primary-gray-3);
@@ -387,27 +386,6 @@
     }
   }
 }
-.modal-wrap{
-  padding: 0;
-  .modal-btn{
-    @apply p-1 opacity-0 rounded-sm;
-    background-color: var(--primary-gray-3);
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    svg{
-      color: var(--light-gray);
-      font-size: 16px;
-    }
-    &:hover{
-      @apply transition-all opacity-100 transform scale-100;
-    }
-  }
-  .modal-content{
-    background-color: var(--primary-gray-5);
-    @apply overflow-auto;
-  }
-}
 .title-wrap:hover + .modal-wrap{
   .modal-btn{
     @apply transition-all opacity-100 transform scale-100;
@@ -420,14 +398,14 @@
   @apply flex justify-center m-8;
 }
 .clear-search{
+  box-sizing: border-box;
   margin: 0;
   border: none;
-  outline: none;
   height: 30px;
   background-color: var(--primary-gray-3);
   padding: 0 .8rem;
   color: var(--light-gray);
-  @apply cursor-pointer rounded-l-none rounded-r-sm ml-4 leading-8 hidden;
+  @apply cursor-pointer outline-none rounded ml-4 leading-8 hidden;
 }
 /* pen button end */
 

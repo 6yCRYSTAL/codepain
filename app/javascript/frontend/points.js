@@ -77,7 +77,7 @@ function clickPointsBtn() {
     toArrayPoints.forEach(btn =>{
       if(btn.contains(e.target) === false){
         btn.nextElementSibling.classList.add('points-content-hidden');
-        btn.style.backgroundColor = 'inherit';
+        btn.removeAttribute("style");
         btn.classList.remove('hover-no-color');
       }
     })
@@ -85,7 +85,6 @@ function clickPointsBtn() {
   // 按鈕點擊
   PointsBtn.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
-      // e.stopPropagation();
       const PointsContent = e.currentTarget.nextElementSibling;
       PointsContent.classList.toggle('points-content-hidden');
 
@@ -97,12 +96,12 @@ function clickPointsBtn() {
       now = toArrayPoints.indexOf(e.currentTarget);
       if(prev !== now){
         toArrayPoints[prev].nextElementSibling.classList.add('points-content-hidden');
-        toArrayPoints[prev].style.backgroundColor = 'inherit';
+        toArrayPoints[prev].removeAttribute("style");
         prev = now ;
       }
       // 判斷 points-content 樣式
       if(PointsContent.className === "points-content points-content-hidden"){
-        e.currentTarget.style.backgroundColor = 'inherit';
+        e.currentTarget.removeAttribute("style");
         e.currentTarget.classList.remove('hover-no-color');
       }else{
         e.currentTarget.style.backgroundColor = 'white';

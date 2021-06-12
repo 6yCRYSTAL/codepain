@@ -105,7 +105,6 @@ main{
   width: 200px;
   height: 100vh;
   position: fixed;
-  // TODO 改成 visibility 保留區塊隱藏，用 display 整個刪除再開啟不能做動畫
   @include burger{
     transform: scale(.8);
     transform-origin: top center;
@@ -404,13 +403,11 @@ to {
     @include burger{
       @apply flex;
     }
-    // TODO 關鏡向反轉
     svg{
       top: -3px;
       @apply transition-all scale-y-100 relative;
     }
   }
-  // TODO 本來是陰影改三條線
   span{
     width: 10px;
     height: 2px;
@@ -436,7 +433,6 @@ to {
 }
 .burger-menu-open,.burger-btn-open{
   button{
-    // TODO 開鏡向反轉
     svg{
       transform: scaleY(-1);
       -moz-transform: scaleY(-1);
@@ -444,7 +440,6 @@ to {
       @apply transition-all;
     }
   }
-  // TODO 本來是陰影改三條線
   span{
     width: 6px;
     &::before{

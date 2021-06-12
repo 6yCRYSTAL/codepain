@@ -5,12 +5,14 @@
         <header class="pen-header">
           <%= link_to pen.title,
                       edit_pen_path(username: pen.user.username, random_url: pen.random_url) %>
-          <div class="points-follow-wrap points-content-top"
-                data-url="<%= pen.random_url %>"
-                data-controller="follow"
-                data-follow-username-value="<%= pen.user.username %>"
-                data-follow-random-value="<%= pen.random_url %>">
-          </div>
+          <% if user_signed_in? %>
+            <div class="points-follow-wrap points-content-top"
+                 data-url="<%= pen.random_url %>"
+                 data-controller="follow"
+                 data-follow-username-value="<%= pen.user.username %>"
+                 data-follow-random-value="<%= pen.random_url %>">
+            </div>
+          <% end %>
         </header>
         <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
         <div class="pen-img">
@@ -70,14 +72,14 @@
                   </div>
 
                   <div class="modal-header-btn">
-                    <% # points 按鈕 %>
-                    <div class="points-follow-wrap points-content-bottom"
-                         data-url="<%= pen.random_url %>"
-                         data-controller="follow"
-                         data-follow-username-value="<%= pen.user.username %>"
-                         data-follow-random-value="<%= pen.random_url %>">
-                    ></div>
-
+                    <% if user_signed_in? %>
+                      <div class="points-follow-wrap points-content-bottom"
+                            data-url="<%= pen.random_url %>"
+                            data-controller="follow"
+                            data-follow-username-value="<%= pen.user.username %>"
+                            data-follow-random-value="<%= pen.random_url %>">
+                      </div>
+                    <% end %>
                     <%= link_to 'View in Editor', edit_pen_path(pen, username: pen.user.username),class: 'modal-header-editor-btn'%>
                   </div>
                 </header>
@@ -128,11 +130,15 @@
                                   data-stats-target="yourWork"
                                   data-stats-loved-class="text-red-600"
                                   data-stats-random-value="<%= pen.random_url %>">
-          <button class="pen-footer-style" data-btn="love" data-action="click->stats#toggleHeart">
+          <% if user_signed_in? %>
+            <a class="pen-footer-style" data-btn="love" data-action="click->stats#toggleHeart">
+          <% else %>
+            <a class="pen-footer-style" data-btn="love">
+          <% end %>
             <i class="fas fa-heart cursor-pointer stroke-current"
               data-stats-target="heart"></i>
-            <span data-stats-target="heartListsCount"></span>
-          </button>
+            <span data-stats-target="heartListsCount"><%= pen.heart_lists_count %></span>
+          </a>
           <a class="pen-footer-style" data-btn="comments">
             <i class="fas fa-comment"></i>
             <span><%= pen.comments.size %></span>

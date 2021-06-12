@@ -28,7 +28,6 @@ document.addEventListener('turbolinks:load',function(){
         e.target.style.display = 'none'
         // back to your-work
         history.replaceState(null, 'your-work', `${originLocation}`)
-        // history.back()
         // remove lock body bg
         document.querySelector('body').classList.remove('fixed');
       }

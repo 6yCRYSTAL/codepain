@@ -61,10 +61,10 @@
                     </div>
                     <div class="modal-header-title-username">
                       <div class="modal-header-title">
-                        <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
+                        <%= link_to pen.title, edit_pen_path(pen, username: pen.user.username)%>
                       </div>
                       <div class="modal-header-username">
-                        <%= current_user.username %>
+                        <%= pen.user.username %>
                       </div>
                     </div>
                   </div>
@@ -82,7 +82,7 @@
                   </div>
                 </header>
                 <div class="modal-iframe">
-                  <iframe id="grid-iframe"
+                  <iframe id="b<%= pen.random_url %>"
                     sandbox="allow-scripts"
                     loading="lazy"
                     scrolling="no"

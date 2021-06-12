@@ -7,6 +7,7 @@ document.addEventListener('turbolinks:load',function(){
   function openModal(e) {
     if (e.currentTarget.dataset.url) {
       document.querySelector(`#a${e.currentTarget.dataset.url}`).style.zIndex = "100"
+      document.querySelector(`#b${e.currentTarget.dataset.url}`).srcdoc = document.querySelector(`#b${e.currentTarget.dataset.url}`).srcdoc
     }
     let modal = this.nextElementSibling
     let penURL = modal.dataset.url

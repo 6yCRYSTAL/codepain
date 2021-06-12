@@ -1,6 +1,6 @@
 <tr scope="col" data-controller="private" data-private-random-value="<%= pen.random_url %>">
   <th class="title-wrap flex items-center justify-between">
-    <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
+    <%= link_to pen.title, edit_pen_path(pen, username: pen.user.username)%>
     <% # 鎖 %>
     <div  class="private-lock hidden pr-2"
           data-private-target="privateIcons"
@@ -11,7 +11,7 @@
   <% # 彈跳視窗入口 %>
   <td class="modal-wrap">
     <%# modal %>
-    <button class="modal-btn" id="modal-btn">
+    <button class="modal-btn" id="modal-btn" data-url="<%= pen.random_url %>">
       <i class="fas fa-expand-arrows-alt"></i>
     </button>
     <div id="modal" class="modal" data-url=<%= pen.random_url %>>
@@ -23,14 +23,14 @@
             </div>
             <div class="modal-header-title-username">
               <div class="modal-header-title">
-                <%= link_to pen.title, edit_pen_path(pen, username: current_user.username)%>
+                <%= link_to pen.title, edit_pen_path(pen, username: pen.user.username)%>
                 <% # 鎖 %>
                 <div class="private-lock hidden pr-2" data-private-target="privateIcons" data-is-private="<%= pen.private %>">
                   <i class="fas fa-lock"></i>
                 </div>
               </div>
               <div class="modal-header-username">
-                <%= current_user.username %>
+                <%= pen.user.username %>
               </div>
             </div>
           </div>
@@ -40,11 +40,11 @@
             <div class="points-wrap points-content-bottom" data-url="<%= pen.random_url %>" data-action="click->private#togglePoints"
             ></div>
 
-            <%= link_to 'View in Editor', edit_pen_path(pen, username: current_user.username),class: 'modal-header-editor-btn'%>
+            <%= link_to 'View in Editor', edit_pen_path(pen, username: pen.user.username),class: 'modal-header-editor-btn'%>
           </div>
         </header>
         <div class="modal-iframe">
-          <iframe id="grid-iframe"
+          <iframe id="b<%= pen.random_url %>"
                   sandbox="allow-scripts"
                   loading="lazy"
                   scrolling="no"

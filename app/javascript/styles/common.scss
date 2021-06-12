@@ -17,6 +17,11 @@
   &:hover{
     background-color: var(--btn-hover-green-dark);
   }
+  @media screen and (max-width: 830px) {
+    height: 35px;
+    font-size: var(--text-s-p);
+    @apply px-2;
+  }
 }
 @mixin gray-btn{
   height: 45px;
@@ -28,6 +33,11 @@
   @apply px-4 py-0 rounded-lg;
   &:hover{
     background-color: var(--primary-gray-3);
+  }
+  @media screen and (max-width: 830px) {
+    height: 35px;
+    font-size: var(--text-s-p);
+    @apply px-2;
   }
 }
 body, html{
@@ -97,10 +107,9 @@ main{
   position: fixed;
   // TODO 改成 visibility 保留區塊隱藏，用 display 整個刪除再開啟不能做動畫
   @include burger{
-    visibility: hidden;
     transform: scale(.8);
     transform-origin: top center;
-    @apply h-auto shadow-2xl absolute z-50 top-14 opacity-0 transition-all;
+    @apply h-auto shadow-2xl absolute z-50 top-14 opacity-0 transition-all invisible;
   }
   .sidebar-toggle-btn{
     button{
@@ -146,9 +155,8 @@ main{
 .main-sidebar.menu-sidebar-active{
   @include burger{
     box-shadow: 0 5px 20px #000;
-    visibility: inherit;
     transform: scale(1);
-    @apply block py-2 opacity-100 transition-all;
+    @apply py-2 opacity-100 transition-all visible;
   }
 }
 .sidebar-toggle-btn{
@@ -382,7 +390,7 @@ to {
     @apply flex;
   }
 }
-.burger-menu{
+.burger-menu,.burger-btn{
   @apply pr-2;
   button{
     box-shadow: 0px 0px 20px black;
@@ -426,7 +434,7 @@ to {
     }
   }
 }
-.burger-menu-open{
+.burger-menu-open,.burger-btn-open{
   button{
     // TODO 開鏡向反轉
     svg{
@@ -447,6 +455,9 @@ to {
 .search-userMenu,.edit-header{
   display: flex;
   align-items: center;
+  > a:last-of-type{
+    @apply mr-0;
+  }
 }
 .search-box{
   position: relative;

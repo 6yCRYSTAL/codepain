@@ -30,7 +30,7 @@
     background-color: var(--primary-gray-3);
   }
 }
-body, html{
+body{
   font-family: Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
 	width: 100%;
 	height: 100%;
@@ -61,7 +61,6 @@ ul, ol {
 }
 .container-left{
   margin-left: 200px;
-  overflow: hidden;
   @include burger {
     @apply m-auto;
   }

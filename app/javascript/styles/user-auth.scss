@@ -376,7 +376,11 @@ label {
   margin: 0;
   padding: 0;
 }
-
+.user-right-info:first-of-type{
+  dd{
+    text-align: left;
+  }
+}
 .pro-member-ask {
   background-color: #f9e9a2;
   color: #2c303a;

@@ -13,23 +13,25 @@ document.addEventListener('turbolinks:load',function(){
     let penURL = modal.dataset.url
     let username = modal.children[0].children[0].children[0].lastElementChild.lastElementChild.textContent.trim()
     // change URL at window location
-    history.pushState({username, penURL}, `Selected: ${username}, ${penURL}`, `./${username}/pen/${penURL}`)
+    let originLocation = window.location.href
+    history.replaceState({username, penURL}, `Selected: ${username}, ${penURL}`, `/${username}/pen/${penURL}`)
     modal.style.display = 'flex'
     modal.addEventListener('click', closeModal)
     // add lock body bg
     document.querySelector('body').classList.add('fixed');
-  }
-  // listen for outside click
-  function closeModal(e) {
-    if (e.target === this) {
-      if (e.target.dataset.url) {
-        document.querySelector(`#a${e.target.dataset.url}`).style.zIndex = ""
+    // listen for outside click
+    function closeModal(e) {
+      if (e.target === this) {
+        if (e.target.dataset.url) {
+          document.querySelector(`#a${e.target.dataset.url}`).style.zIndex = ""
+        }
+        e.target.style.display = 'none'
+        // back to your-work
+        history.replaceState(null, 'your-work', `${originLocation}`)
+        // history.back()
+        // remove lock body bg
+        document.querySelector('body').classList.remove('fixed');
       }
-      e.target.style.display = 'none'
-      // back to your-work
-      history.replaceState(null, 'your-work', `${location.origin}/your-work`)
-      // remove lock body bg
-      document.querySelector('body').classList.remove('fixed');
     }
   }
 })

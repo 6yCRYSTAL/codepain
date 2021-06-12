@@ -46,7 +46,7 @@ const Alert = (props) => {
   };
   // 新增網址，而不會刷新頁面
   useEffect(() =>{
-    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/pen/${random_url}`);
+    history.replaceState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `/${user_name}/pen/${random_url}`);
   },[])
 
   useEffect( () => {

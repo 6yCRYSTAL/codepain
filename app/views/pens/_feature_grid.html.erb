@@ -78,7 +78,7 @@
                          data-follow-random-value="<%= pen.random_url %>">
                     ></div>
 
-                    <%= link_to 'View in Editor', edit_pen_path(pen, username: current_user.username),class: 'modal-header-editor-btn'%>
+                    <%= link_to 'View in Editor', edit_pen_path(pen, username: pen.user.username),class: 'modal-header-editor-btn'%>
                   </div>
                 </header>
                 <div class="modal-iframe">

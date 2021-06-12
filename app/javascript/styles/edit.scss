@@ -82,6 +82,7 @@
   }
 }
 .edit-btn-wrap{
+  @apply flex;
   button{
     border-radius: 4px;
     height: 45px;
@@ -109,13 +110,16 @@
     box-shadow: 0 2rem 4rem #0a0a0c;
     transform: scale(.8);
     transform-origin: top right;
-    @apply absolute right-0 top-full w-60 py-2 invisible opacity-0 transition-all;
+    @apply absolute right-0 top-full w-60 py-2 invisible opacity-0 transition-all flex flex-col;
     > button{
       background-color: var(--primary-gray-6);
       @apply w-full rounded-none h-auto text-left px-4 py-2.5;
       &:hover{
         background-color: var(--primary-gray-3);
       }
+    }
+    .private-switch-wrap{
+      @apply order-last py-1 px-4;
     }
     &.mobile-edit-btn{
       transform: scale(1);

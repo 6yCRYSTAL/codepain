@@ -383,8 +383,8 @@ to {
 }
 /* burger menu */
 .burger-logo{
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 35px;
   @apply pr-2 hidden;
   @include burger{
     @apply flex;

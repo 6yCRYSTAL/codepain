@@ -5,4 +5,12 @@
   <%= link_to 'Your Work', pens_path, class: 'big-title' %>
 </div>
 
-<%= render 'feature_grid' %>
+<% if @pens.length == 0 %>
+  <div class="no-deleted-pen no-search-pen">
+    <h2 class="no-follow">You aren't following anyone yet!<br>
+    Maybe you could find some people to follow in
+    <%= link_to "Trending", trending_path %>.</h2>
+  </div>
+<% else %>
+  <%= render 'feature_grid' %>
+<% end %>

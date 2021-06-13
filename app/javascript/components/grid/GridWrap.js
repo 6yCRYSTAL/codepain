@@ -3,7 +3,7 @@ import axios from 'axios'
 import WorkFeatures from './WorkFeatures.js'
 import PenItemContent from './PenItemContent.js'
 import PagesBtn from './PagesBtn.js'
-import SearchNoResult from './SearchNoResult.js'
+import Nothing from './Nothing.js'
 // axios api
 let ax = axios.create();
 let token = document.querySelector('meta[name=csrf-token]').content;
@@ -18,12 +18,13 @@ function GridItem() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [allValue, setAllValue] = React.useState([]);
   const [searchNoData, setSearchNoData] = React.useState(false);
+  const [nothing, setNothing] = React.useState(false);
+
 
   // 搜尋、排序值
   let searchValue = allValue[0] || '';
   let sortBy = allValue[1] || 'Date Created';
   let sortDirection = allValue[2] || '';
-
   // get Api
   React.useEffect(() =>{
     const LikeId = []
@@ -40,9 +41,9 @@ function GridItem() {
       if (res.data.payload.pens.length) {
         res.data.payload.pens[0].user.love_pens.forEach((like) => LikeId.push(like.id))
         setUserLike(LikeId);
-        setSearchNoData(false);
+        setNothing(false);
       }else{
-        setSearchNoData(true);
+        setNothing(true);
       }
 
       // 清除使用者pen js裡的 console.log()
@@ -63,6 +64,7 @@ function GridItem() {
     <>
       <WorkFeatures
         setAllValue={ setAllValue }
+        setNothing={ setNothing }
         setSearchNoData={ setSearchNoData }
       />
       {
@@ -70,9 +72,10 @@ function GridItem() {
         <div className="pens-grid-loading"></div>
       }
       {
-        searchNoData &&
-        <SearchNoResult
+        nothing &&
+        <Nothing
           searchValue={ searchValue }
+          searchNoData={ searchNoData }
         />
       }
       <div className="pens-grid-content">

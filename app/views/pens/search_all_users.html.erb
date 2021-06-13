@@ -1,4 +1,14 @@
 <div class="search-users-features">
 </div>
-
-<%= render 'feature_grid' %>
+<% if @pens.length == 0 %>
+  <div class="no-deleted-pen no-search-pen">
+    <h2>No results for <em><%= params[:q] %>.</em></h2>
+    <blockquote>
+      <p>If you want to save our world, you must hurry. We don't know how much longer we can withstand the nothing.</p>
+      <br />
+      <cite>— Southern Oracle, The Neverending Story</cite>
+    </blockquote>
+  </div>
+<% else %>
+  <%= render 'feature_grid' %>
+<% end %>

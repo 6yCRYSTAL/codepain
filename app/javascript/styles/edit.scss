@@ -189,9 +189,8 @@
     background-color: var(--primary-gray-4);
     // background-color: var(--danger-red);
     border-radius: 2px;
-    margin-right: 4px;
-    &:last-child{
-      margin-right: 0px;
+    &.btn-Share{
+      margin-left: 4px;
     }
     &:hover{
       background-color: var(--primary-gray-2);

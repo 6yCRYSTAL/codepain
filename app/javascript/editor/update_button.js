@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Turbolinks from 'turbolinks'
 import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
@@ -33,6 +34,8 @@ document.addEventListener('turbolinks:load', () => {
       .then( (response) => {
         if( response.data.status === "update succeeded"){
           savedNotice()
+        } else {
+          Turbolinks.visit(`${location.origin}/your-work`)
         }
       })
     })

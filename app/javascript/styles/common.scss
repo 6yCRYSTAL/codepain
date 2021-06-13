@@ -582,10 +582,19 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  @apply flex flex-nowrap tracking-wide py-10 px-20;
+  z-index: 100;
+  @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
+
+  @media screen and (max-width:1330px) {
+    @apply flex-wrap ;
+  }
 }
 .footer-items-wrap{
   @apply w-8/12;
+
+  @media screen and (max-width:1330px) {
+    @apply w-full ;
+  }
 }
 .footer-item,.footer-dev{
   @apply flex mt-0 my-0 mb-2;
@@ -604,31 +613,76 @@ to {
       font-size: var(--text-s-p);
       @apply hover:text-white;
     }
-    .github-icon{
-      color: var(--light-blue);
+
+    &.github-icon{
+      svg{
+        color: var(--light-blue);
+      }
+      &::after{
+        @apply hidden;
+      }
     }
     &::after{
       content: '|';
       @apply inline-block ml-1;
     }
-    &:last-child::after,&:first-child::after{
-      @apply hidden;
+  }
+}
+.footer-item-team-wrap{
+  @apply flex;
+  @media screen and (max-width: 1024px) {
+    @apply flex-col;
+  }
+  .footer-item-team{
+    &:first-of-type{
+      li:last-of-type::after{
+        @media screen and (max-width: 1024px) {
+          @apply hidden;
+        }
+      }
+    }
+    &:last-of-type{
+      li:last-of-type{
+        &::after{
+          @apply hidden;
+        }
+      }
+      @media screen and (max-width: 1024px) {
+        @apply pl-6 pt-2;
+      }
     }
   }
 }
 .footer-item-dev{
   li{
-    &:first-child::after{
-      @apply inline-block;
+    &:last-child::after{
+      @apply hidden;
     }
   }
 }
 .footer-logo-wrap{
   @apply w-4/12 text-white flex flex-col justify-center items-end;
+
+  @media screen and (max-width:1330px) {
+    @apply w-full items-start ;
+  }
   .footer-logo{
     @apply block;
+    @media screen and (max-width:1330px) {
+      @apply hidden ;
+    }
     img{
       width: 10rem;
+    }
+  }
+  .footer-logo-s{
+    @apply hidden;
+    @media screen and (max-width:1330px) {
+      @apply block ;
+    }
+    img{
+      padding: .5rem;
+      width: 3rem;
     }
   }
   .footer-logo-copy,.footer-logo-text{
@@ -637,9 +691,15 @@ to {
   }
   .footer-logo-copy{
     @apply text-gray-500 mt-1 mb-4;
+    @media screen and (max-width:1330px) {
+      @apply text-left ;
+    }
   }
   .footer-logo-text{
-    @apply m-0;
+    @apply m-0 pb-2 ;
+    @media screen and (max-width:1330px) {
+      @apply text-left mb-4 ;
+    }
   }
   .teams-mem-link{
     color: var(--light-blue);

@@ -142,6 +142,9 @@
   .light-text{
     @apply text-gray-400 text-xs;
   }
+  .hidden{
+    @apply hidden;
+  }
 }
 /* comment-wrap end */
 /* comment-content */

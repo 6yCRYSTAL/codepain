@@ -9,6 +9,7 @@ const Alert = (props) => {
   const [ comments, setComments ] = useState([])
   const [ res, setRes] = useState([])
   const [ currentUserId, setCurrentUserId] = useState("")
+  let isReact = false
 
   // 整理 cssCDN 清單
   function cssCDN () {
@@ -22,8 +23,16 @@ const Alert = (props) => {
   function jsCDN () {
     if (jsList) {
       let jsCdnPrepared = jsList.map(({url}) => `<script src="${url}"></script>`)
-      return jsCdnPrepared.join('')
+      if (jsCdnPrepared.join('').includes('react')) {
+        isReact = true
+        jsCdnPrepared += '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>'
+      } else {isReact = false}
+      return jsCdnPrepared
     } else {return ""}
+  }
+
+  function babelSwitch () {
+    return isReact ? 'babel' : 'javascript'
   }
 
   // 關掉彈跳視窗
@@ -37,7 +46,7 @@ const Alert = (props) => {
   };
   // 新增網址，而不會刷新頁面
   useEffect(() =>{
-    history.pushState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `./${user_name}/pen/${random_url}`);
+    history.replaceState({user_name, random_url}, `Selected: ${user_name}, ${random_url}`, `/${user_name}/pen/${random_url}`);
   },[])
 
   useEffect( () => {
@@ -98,18 +107,20 @@ const Alert = (props) => {
           </div>
         </header>
         <div className="modal-iframe">
-           <iframe id="grid-iframe"
+        <iframe id="grid-iframe"
                   sandbox="allow-scripts"
                   loading="lazy"
                   scrolling="no"
                   frameBorder="0"
                   srcDoc={`
                     <html>
-                      <style>${css}</style>
                       ${cssCDN()}
-                      <body>${html}</body>
-                      <script type="text/javascript">${js}</script>
-                      ${jsCDN()}
+                      <style>${css}</style>
+                      <body>
+                        ${html}
+                        ${jsCDN()}
+                        <script type="text/${babelSwitch()}">${js}</script>
+                      </body>
                     </html>`}>
           </iframe>
         </div>
@@ -174,8 +185,8 @@ const Alert = (props) => {
                     <div className="comment-update-block" data-comment-update-target="commentBlock">
                       <textarea data-comment-update-target="updateTextArea" defaultValue={ commentData.content.content }></textarea>
                       <div className="update-btn-block">
-                        <button data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
-                        <button data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id={ commentData.content.id }> Update </button>
+                        <button className="feature-related" data-action="click->comment-update#cancel" data-comment-update-target="cancelBtn"> Cancel </button>
+                        <button className="feature-related" data-action="click->comment-update#update" data-comment-update-target="updateBtn" data-id={ commentData.content.id }> Update </button>
                       </div>
                     </div>
                     <div className="comment-content-block">
@@ -183,12 +194,12 @@ const Alert = (props) => {
                         <p data-comment-update-target="commentShow">{ commentData.content.content }</p>
                       </div>
                       { currentUserId == commentData.user.id &&
-                        <div className="edit-btn-block">
-                          <button className="comment-edit-btn" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
+                        <div className="edit-btn-block" data-comment-update-target="editBtnBlock">
+                          <button className="comment-edit-btn feature-related" data-action="click->comment-update#edit" data-comment-update-target="editBtn">
                             <span><i className="fas fa-pencil-alt"></i></span>
                             <span>Edit</span>
                           </button>
-                          <button className="comment-delete-btn" data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn">
+                          <button className="comment-delete-btn feature-related" data-action="click->comment-delete#delete" data-comment-update-target="deleteBtn">
                             <span><i className="fas fa-trash"></i></span>
                             <span>Delete</span>
                           </button>

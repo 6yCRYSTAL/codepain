@@ -708,3 +708,14 @@ to {
   }
 }
 /* private-lock end */
+
+.no-follow {
+    font-weight: 400;
+  a {
+    text-decoration: none;
+    color: #76daff;
+    &:hover {
+      color: white;
+    }
+  }
+}

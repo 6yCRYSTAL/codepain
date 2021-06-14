@@ -22,7 +22,8 @@ export default class extends Controller {
                 this.comments_count += 1
                 commentCountP.innerText = `${this.comments_count} comments`
               }
-            }if (mutation.removedNodes.length === 1){
+            }
+            if (mutation.removedNodes.length === 1){
               if (this.comments_count === 2) {
                 this.comments_count -= 1
                 commentCountP.innerText = `${this.comments_count} comment`

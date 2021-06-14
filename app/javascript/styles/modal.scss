@@ -235,6 +235,9 @@
             background-color: var(--btn-green);
             color: var(--primary-gray-7);
           }
+          .hidden{
+            @apply hidden;
+          }
         }
         .comment-delete-btn{
           &:hover{

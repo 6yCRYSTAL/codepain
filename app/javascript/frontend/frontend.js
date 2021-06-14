@@ -9,19 +9,12 @@ document.addEventListener('turbolinks:load',function(){
   const YourWorkFeatures = document.querySelector('.your-work-features')
   const OnClose = localStorage.getItem('onClose');
   const homepage = document.querySelector('.homepage-anon-header');
+  const wrap = document.querySelector('.wrap');
+
+  // 首頁背景圖修正
   if(homepage){
-    const BgBottomDiv = document.createElement("div");
-    BgBottomDiv.classList.add("homepage-bg-bottom");
-    BgBottomDiv.innerHTML = `
-      <img src="/images/homepage-bg-bottom.png" alt="背景圖">
-    `;
-    const BgTopDiv = document.createElement("div");
-    BgTopDiv.classList.add("homepage-bg-top");
-    BgTopDiv.innerHTML = `
-      <img src="/images/homepage-bg-top.png" alt="背景圖">
-    `;
-    document.querySelector('.wrap').insertAdjacentElement('afterend', BgBottomDiv);
-    document.querySelector('.wrap').insertAdjacentElement('beforebegin', BgTopDiv);
+    wrap.classList.add('homepage-bg');
+    wrap.style.maxWidth = 'initial';
   }
   // 登入頁-使用者選單
   if (UserMenuBtn) {

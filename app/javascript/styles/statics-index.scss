@@ -2,6 +2,10 @@
   font-family: "Alata", sans-serif;
   letter-spacing: 1px;
 }
+.homepage-wrap{
+  max-width: 1200px;
+  margin: auto;
+}
 /* homepage-logo */
 .homepage-logo{
   max-width: 200px;
@@ -312,48 +316,46 @@
     }
   }
 }
-.homepage-bg-bottom{
-  position: absolute;
-  bottom: 150px;
-  left: 80px;
-  max-width: 700px;
-  z-index: -1;
-  opacity: .4;
-  overflow: hidden;
-  img{
-    @apply w-full;
+/* homepage-body end */
+/* homepage-bg */
+.homepage-bg{
+  position: relative;
+  &::before{
+    content: '';
+    background: url(/images/homepage-bg-top.png) no-repeat;
+    width: 480px;
+    height: 480px;
+    background-size: contain;
+    z-index: -1;
+    @apply absolute top-0 right-0 opacity-60;
+    @media screen and (max-width:768px) {
+      width: 320px;
+      height: 320px;
+    }
+    @media screen and (max-width:375px) {
+      width: 220px;
+      height: 220px;
+    }
   }
-  @media screen and (max-width:830px) {
-    left: 0px;
-    bottom: 0px;
-    img{
-      margin-left: -100px;
+  &::after{
+    content: '';
+    background: url(/images/homepage-bg-bottom.png) no-repeat;
+    width: 480px;
+    height: 360px;
+    background-size: contain;
+    z-index: -1;
+    @apply absolute bottom-0 left-0 opacity-40;
+    @media screen and (max-width:768px) {
+      width: 320px;
+      height: 240px;
+    }
+    @media screen and (max-width:375px) {
+      width: 220px;
+      height: 170px;
     }
   }
 }
-.homepage-bg-top{
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-width: 680px;
-  z-index: -1;
-  opacity: .8;
-  overflow: hidden;
-  img{
-    margin-left: 200px;
-    @apply w-full;
-  }
-  @media screen and (max-width:830px) {
-    max-width: 480px;
-  }
-  @media screen and (max-width:414px) {
-    img{
-      margin-top: -20px;
-      margin-left: 180px;
-      opacity: .6;
-    }
-  }
-}
+/* homepage-bg end */
 /* mobile */
 .homepage-mobile-page{
   padding-bottom: 1.5rem;

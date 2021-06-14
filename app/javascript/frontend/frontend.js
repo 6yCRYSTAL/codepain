@@ -5,10 +5,24 @@ document.addEventListener('turbolinks:load',function(){
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container-left');
   const DeleteTab = document.querySelector('#tab-delete');
-  const searchUsersFeatures = document.querySelector('.search-users-features')
+  const searchUsersFeatures = document.querySelector('.search-users-features');
   const YourWorkFeatures = document.querySelector('.your-work-features')
   const OnClose = localStorage.getItem('onClose');
-
+  const homepage = document.querySelector('.homepage-anon-header');
+  if(homepage){
+    const BgBottomDiv = document.createElement("div");
+    BgBottomDiv.classList.add("homepage-bg-bottom");
+    BgBottomDiv.innerHTML = `
+      <img src="/images/homepage-bg-bottom.png" alt="背景圖">
+    `;
+    const BgTopDiv = document.createElement("div");
+    BgTopDiv.classList.add("homepage-bg-top");
+    BgTopDiv.innerHTML = `
+      <img src="/images/homepage-bg-top.png" alt="背景圖">
+    `;
+    document.querySelector('.wrap').insertAdjacentElement('afterend', BgBottomDiv);
+    document.querySelector('.wrap').insertAdjacentElement('beforebegin', BgTopDiv);
+  }
   // 登入頁-使用者選單
   if (UserMenuBtn) {
     const UserMenuTopNav = document.querySelector('.userMenu-topnav');

@@ -477,7 +477,7 @@
 /* deleted pen tab end */
 
 /* nothing */
-.nothing{
+.nothing,.list-nothing{
   @apply mr-0;
   blockquote{
     @apply max-w-sm mx-auto my-8;

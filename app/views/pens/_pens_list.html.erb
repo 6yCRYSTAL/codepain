@@ -48,10 +48,10 @@
     </div>
     <div class="sort-by-order-wrap">
       <span>Sort Direction</span>
-      <%= link_to request.params.except(:sort_order), class: 'sortOrderDESC' do %>
+      <%= link_to request.params.except(:sort_order), class: 'sortOrderDESC',data: { "action": "click->search#sortByBtn" } do %>
         <div class="sort-by-order"><i class="fas fa-chevron-down"></i></div>
       <% end %>
-      <%= link_to request.params.merge(sort_order: :asc), class: 'sortOrderASC' do %>
+      <%= link_to request.params.merge(sort_order: :asc), class: 'sortOrderASC',data: { "action": "click->search#sortByBtn" } do %>
         <div class="sort-by-order asc-icon"><i class="fas fa-chevron-down"></i></div>
       <% end %>
     </div>
@@ -60,7 +60,7 @@
 
 <%# 判斷搜尋結果是否為0 如果是0 給一段沒有搜尋結果的文字 %>
 <% if @pens.count == 0 %>
-  <div class="no-deleted-pen nothing">
+  <div class="no-deleted-pen list-nothing">
     <div class="no-pen">
       <h2>You haven't created any Pens yet.</h2>
       <a href="/pen">Go make one!</a>

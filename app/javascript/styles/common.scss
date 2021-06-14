@@ -17,16 +17,10 @@
   &:hover{
     background-color: var(--btn-hover-green-dark);
   }
-<<<<<<< HEAD
   @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
     @apply px-2;
-=======
-  @media screen and (max-width:768px) {
-    height: 35px;
-    font-size: var(--text-s-p);
->>>>>>> dev
   }
 }
 @mixin gray-btn{
@@ -40,16 +34,10 @@
   &:hover{
     background-color: var(--primary-gray-3);
   }
-<<<<<<< HEAD
   @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
     @apply px-2;
-=======
-  @media screen and (max-width:768px) {
-    height: 35px;
-    font-size: var(--text-s-p);
->>>>>>> dev
   }
 }
 body, html{

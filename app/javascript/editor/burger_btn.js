@@ -1,19 +1,18 @@
 document.addEventListener('turbolinks:load', () => {
-  let burgerBtn = document.querySelector('.burgerBtn')
-  let headerBtn = document.querySelectorAll('.edit-btn-header > button')
-
-  if (burgerBtn && headerBtn) {
+  let burgerBtn = document.querySelector('.burger-btn')
+  let editBtnWrap = document.querySelector('.edit-btn-wrap')
+  if (burgerBtn) {
     window.addEventListener('click', function(e){
       if (burgerBtn.contains(e.target)) {
-        headerBtn.forEach( (btn) => {
-          btn.classList.toggle('open')
-        })
+        burgerBtn.classList.toggle('burger-btn-open')
+        burgerBtn.nextElementSibling.classList.toggle('mobile-edit-btn')
+      }else if(editBtnWrap.contains(e.target)){
+        burgerBtn.classList.add('burger-btn-open')
+        burgerBtn.nextElementSibling.classList.add('mobile-edit-btn')
       } else {
-        headerBtn.forEach( (btn) => {
-          btn.classList.remove('open')
-        })
+        burgerBtn.classList.remove('burger-btn-open')
+        burgerBtn.nextElementSibling.classList.remove('mobile-edit-btn')
       }
     })
-
   }
 })

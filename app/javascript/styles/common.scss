@@ -17,9 +17,10 @@
   &:hover{
     background-color: var(--btn-hover-green-dark);
   }
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
+    @apply px-2;
   }
 }
 @mixin gray-btn{
@@ -33,9 +34,10 @@
   &:hover{
     background-color: var(--primary-gray-3);
   }
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
+    @apply px-2;
   }
 }
 body, html{
@@ -104,10 +106,9 @@ main{
   height: 100vh;
   position: fixed;
   @include burger{
-    visibility: hidden;
     transform: scale(.8);
     transform-origin: top center;
-    @apply h-auto shadow-2xl absolute z-50 top-14 opacity-0 transition-all;
+    @apply h-auto shadow-2xl absolute z-50 top-14 opacity-0 transition-all invisible;
   }
   .sidebar-toggle-btn{
     button{
@@ -153,9 +154,8 @@ main{
 .main-sidebar.menu-sidebar-active{
   @include burger{
     box-shadow: 0 5px 20px #000;
-    visibility: inherit;
     transform: scale(1);
-    @apply block py-2 opacity-100 transition-all;
+    @apply py-2 opacity-100 transition-all visible;
   }
 }
 .sidebar-toggle-btn{
@@ -382,14 +382,14 @@ to {
 }
 /* burger menu */
 .burger-logo{
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 35px;
   @apply pr-2 hidden;
   @include burger{
     @apply flex;
   }
 }
-.burger-menu{
+.burger-menu,.burger-btn{
   @apply pr-2;
   button{
     box-shadow: 0px 0px 20px black;
@@ -403,13 +403,11 @@ to {
     @include burger{
       @apply flex;
     }
-    // TODO 關鏡向反轉
     svg{
       top: -3px;
       @apply transition-all scale-y-100 relative;
     }
   }
-  // TODO 本來是陰影改三條線
   span{
     width: 10px;
     height: 2px;
@@ -433,9 +431,8 @@ to {
     }
   }
 }
-.burger-menu-open{
+.burger-menu-open,.burger-btn-open{
   button{
-    // TODO 開鏡向反轉
     svg{
       transform: scaleY(-1);
       -moz-transform: scaleY(-1);
@@ -443,7 +440,6 @@ to {
       @apply transition-all;
     }
   }
-  // TODO 本來是陰影改三條線
   span{
     width: 6px;
     &::before{
@@ -454,6 +450,9 @@ to {
 .search-userMenu,.edit-header{
   display: flex;
   align-items: center;
+  > a:last-of-type{
+    @apply mr-0;
+  }
 }
 .search-box{
   position: relative;

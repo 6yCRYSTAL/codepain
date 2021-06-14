@@ -661,11 +661,19 @@ to {
 /* button */
 .next-btn,.prev-btn{
   @include gray-btn
-  @apply mx-3 w-20 hover:bg-gray-500;
+  @apply mx-3 w-20 hover:bg-gray-500 p-0 flex justify-center items-center;
 }
-.arrow-left{
+.next-btn{
   svg{
-    @apply transform -rotate-180;
+    @apply ml-1;
+  }
+}
+.prev-btn{
+  .arrow-left{
+    @apply mr-1;
+    svg{
+      @apply transform -rotate-180;
+    }
   }
 }
 /* button end */

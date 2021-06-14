@@ -478,7 +478,7 @@
 
 /* nothing */
 .nothing,.list-nothing{
-  @apply mr-0;
+  @apply mr-0 inline-block w-full;
   blockquote{
     @apply max-w-sm mx-auto my-8;
   }

@@ -149,9 +149,10 @@ const Alert = (props) => {
               </span>
             </div>
             <p className="comments-count" data-comment-create-target="commentsCount">
-              { comments_count } comments
+                  <strong>No Comments</strong>
+                  <br />You can be the first!
             </p>
-            <ol data-comment-create-target="list" id={random_url}>
+            <ol data-comment-create-target="list" id={"a" + random_url}>
             {
               comments.map( (commentData) => {
                 return(

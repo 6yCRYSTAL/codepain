@@ -105,5 +105,6 @@ class PensController < ApplicationController
 
   def pens_per_page(pens)
     @pens = Kaminari.paginate_array(pens).page(params[:page]).per(6)
+    @pens = Kaminari.paginate_array(pens).page(1).per(6) if @pens.prev_page.nil?
   end
 end

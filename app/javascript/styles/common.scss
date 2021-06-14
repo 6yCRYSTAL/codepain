@@ -17,10 +17,16 @@
   &:hover{
     background-color: var(--btn-hover-green-dark);
   }
+<<<<<<< HEAD
   @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
     @apply px-2;
+=======
+  @media screen and (max-width:768px) {
+    height: 35px;
+    font-size: var(--text-s-p);
+>>>>>>> dev
   }
 }
 @mixin gray-btn{
@@ -34,10 +40,16 @@
   &:hover{
     background-color: var(--primary-gray-3);
   }
+<<<<<<< HEAD
   @media screen and (max-width: 830px) {
     height: 35px;
     font-size: var(--text-s-p);
     @apply px-2;
+=======
+  @media screen and (max-width:768px) {
+    height: 35px;
+    font-size: var(--text-s-p);
+>>>>>>> dev
   }
 }
 body, html{
@@ -80,7 +92,7 @@ ul, ol {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   padding: 1.2rem;
   box-sizing: border-box;
   @include burger {
@@ -101,7 +113,7 @@ main{
   background-color: var(--primary-gray-6);
   top: 0;
   left: 0;
-  z-index: 16;
+  z-index: 10;
   width: 200px;
   height: 100vh;
   position: fixed;
@@ -588,7 +600,8 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  @apply flex flex-nowrap tracking-wide py-10 px-20;
+  z-index: 20;
+  @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
 }
 .footer-items-wrap{
   @apply w-8/12;

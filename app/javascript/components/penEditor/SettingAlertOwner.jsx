@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import 'styles/editor-setting.scss'
 import EditorSettingContainerOwner from './settingComponents/EditorSettingContainerOwner'
+import Turbolinks from 'turbolinks'
 
 const SettingAlert = () => {
   const MySwal = withReactContent(Swal)
@@ -21,7 +22,10 @@ const SettingAlert = () => {
     focusConfirm: false,
     html: <EditorSettingContainerOwner />,
     confirmButtonText: 'Close',
-    confirmButtonColor: '#47cf73'
+    confirmButtonColor: '#47cf73',
+    willClose: () => {
+      Turbolinks.visit(location, 'replace')
+    }
   })
 }
 

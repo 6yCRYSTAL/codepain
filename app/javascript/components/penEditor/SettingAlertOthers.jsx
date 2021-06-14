@@ -21,7 +21,10 @@ const SettingAlert = () => {
     focusConfirm: false,
     html: <EditorSettingContainerOthers />,
     confirmButtonText: 'Close',
-    confirmButtonColor: '#47cf73'
+    confirmButtonColor: '#47cf73',
+    willClose: () => {
+      Turbolinks.visit(location, 'replace')
+    }
   })
 }
 

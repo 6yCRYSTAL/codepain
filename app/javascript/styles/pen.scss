@@ -1,15 +1,16 @@
 @mixin gridRWD2col {
   @media (max-width:1148px) and (min-width:933px){
-    @apply grid-cols-2
+    @apply grid-cols-2;
   }
 }
 @mixin gridRWD1col {
   @media screen and (max-width:932px){
-    @apply grid-cols-1
+    @apply grid-cols-1;
   }
 }
 /* title & features */
 .feat-page-title{
+  @apply mb-6;
   .big-title{
     font-size: var(--text-h4);
     color: var(--primary-gray-2);
@@ -34,7 +35,6 @@
   }
 }
 .your-work-tab{
-  margin-top: 1.5rem;
   width: 100%;
   border-bottom: 2px solid var(--info-blue);
   a{

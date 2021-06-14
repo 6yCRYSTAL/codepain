@@ -13,7 +13,6 @@ document.addEventListener('turbolinks:load', () => {
   let ax = axios.create();
   let token = document.querySelector('meta[name=csrf-token]').content;
   ax.defaults.headers.common['X-CSRF-Token'] = token;
-
   // edit 編輯和存取
   if (editTitleBtn){
     editTitleBtn.addEventListener('click', () => {

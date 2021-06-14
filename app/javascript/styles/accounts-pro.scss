@@ -218,6 +218,12 @@
       @apply hidden;
     }
   }
+  tr.plans-features-wrap{
+    td{
+      @apply hidden;
+    }
+  }
+
   table.plans-table{
     display: table;
     margin: auto;

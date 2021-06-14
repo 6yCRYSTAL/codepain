@@ -4,4 +4,4 @@ import './modal'
 import './points'
 import './homepage'
 import './list_nothing'
-
+import './products'

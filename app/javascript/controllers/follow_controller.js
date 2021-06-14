@@ -13,14 +13,14 @@ export default class extends Controller {
       success: data => {
         if (data.payload.boolean) {
           this.followWrapTarget.innerHTML = `
-            <button data-action="click->follow#unfollow">
+            <button class="feature-related" data-action="click->follow#unfollow">
               <div class="follow-icon"><i class="fas fa-times"></i></div>
               <span>Unfollow @${this.usernameValue}</span>
             </button>
           `
         } else {
           this.followWrapTarget.innerHTML = `
-            <button data-action="click->follow#follow">
+            <button class="feature-related" data-action="click->follow#follow">
               <div class="follow-icon"><i class="fas fa-check"></i></div>
               <span>Follow @${this.usernameValue}</span>
             </button>
@@ -38,7 +38,7 @@ export default class extends Controller {
       success: data => {
         if (data.payload.boolean) {
           this.followWrapTarget.innerHTML = `
-            <button data-action="click->follow#unfollow">
+            <button class="feature-related" data-action="click->follow#unfollow">
               <div class="follow-icon"><i class="fas fa-times"></i></div>
               <span>Unfollow @${this.usernameValue}</span>
             </button>
@@ -56,7 +56,7 @@ export default class extends Controller {
       success: data => {
         if (!data.payload.boolean) {
           this.followWrapTarget.innerHTML = `
-            <button data-action="click->follow#follow">
+            <button class="feature-related" data-action="click->follow#follow">
               <div class="follow-icon"><i class="fas fa-check"></i></div>
               <span>Follow @${this.usernameValue}</span>
             </button>

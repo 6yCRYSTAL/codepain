@@ -42,7 +42,7 @@ export default function points() {
     PointsFollowWrap.forEach((wrap) =>{
       wrap.innerHTML= `
         <div class="points-content-wrap">
-          <button class="points-btn" data-action="click->follow#showUser">
+          <button class="points-btn feature-related" data-action="click->follow#showUser">
             <svg viewBox="0 0 29 7" width="28" title="points">
               <circle cx="3.5" cy="3.5" r="3.5"></circle>
               <circle cx="14.5" cy="3.5" r="3.5"></circle>
@@ -51,11 +51,6 @@ export default function points() {
           </button>
           <div class="points-content points-content-hidden">
             <div class="points-content-box">
-              <button class="private-btn">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <span>Make Private</span>
-                <span class="logo-pro">pro</span>
-              </button>
               <div data-follow-target="followWrap">
               </div>
             </div>

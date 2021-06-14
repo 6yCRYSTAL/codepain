@@ -15,9 +15,6 @@ export default class extends Controller {
         success: (data) => {
           let isLoved = data.payload.boolean
           let heart = this.heartTarget
-          // 塞入pen被幾個人喜歡的值
-          this.heartListsCountTarget.textContent = data.payload.count
-
           // list分頁中判斷是否被current user喜歡
           if (isLoved) {
             heart.classList.add(this.lovedClass)

@@ -50,6 +50,7 @@
     #btn-edit-title{
       padding-left: 2px;
       padding-bottom: 2px;
+      @apply invisible;
       @media screen and (max-width: 830px) {
         svg{
           font-size: 10px;

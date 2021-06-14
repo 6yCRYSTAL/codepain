@@ -7,6 +7,7 @@
 }
 /* plans-header */
 .plans-header-details{
+  @apply pb-4;
   h1{
     font-size: var(--text-h2);
     @include title-font-family;
@@ -15,11 +16,6 @@
   p,a{
     font-size: var(--text-s-p);
     @apply text-white mb-4;
-  }
-  .plans-header-btn{
-    font-size: var(--text-h6);
-    background-color: var(--btn-gray);
-    @apply no-underline py-3 px-4 rounded;
   }
 }
 /* plans-header end */

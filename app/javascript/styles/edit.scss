@@ -1,40 +1,4 @@
-@mixin headerBurger {
-  .burgerBtn{
-    display: none;
-  }
-  @media screen and (max-width:768px){
-    .burgerBtn{
-      display: block;
-      position: absolute;
-      top: -50px;
-      right: 50px;
-      >button{
-        width: 2rem;
-        height: 2rem;
-      }
-      > button > svg{
-        transform: translate(-5px, 0) rotate(270deg);
-      }
-    }
-    width: 200px;
-    position: absolute;
-    right: 13px;
-    top: 65px;
-    display: flex;
-    flex-direction: column;
 
-    > button {
-      display: none;
-    }
-    > button.open{
-      display: block;
-      background-color: black;
-      border-radius: 0;
-      padding: 0;
-      margin: 0;
-    }
-  }
-}
 /* header */
 .edit{
   background-color: var(--primary-gray-6);
@@ -48,13 +12,19 @@
   justify-content: space-between;
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
+  @media screen and (max-width: 830px) {
+    @apply p-2;
+  }
 }
 .edit-title-header{
-  display: flex;
-  align-items: center;
+  @apply flex items-center flex-grow;
   img{
     width: 30px;
     fill: white;
+    @media screen and (max-width: 830px) {
+      width: 24px;
+    }
   }
   .edit-title-area{
     padding-left: .5rem;
@@ -66,6 +36,9 @@
       padding: .2rem 0;
       display: inline-block;
       color: var(--light-gray);
+      @media screen and (max-width: 830px) {
+        font-size: var(--text-p);
+      }
     }
     input{
       background-color: transparent;
@@ -74,24 +47,42 @@
       font-weight: bold;
       padding: 0;
     }
-    span{
+    #btn-edit-title{
       padding-left: 2px;
       padding-bottom: 2px;
+      @media screen and (max-width: 830px) {
+        svg{
+          font-size: 10px;
+          margin-bottom: 2px;
+        }
+      }
     }
     .edit-author{
       font-size: var(--text-s-p);
       color: var(--primary-gray-1);
+      @media screen and (max-width: 830px) {
+        font-size: 10px
+      }
     }
   }
 }
 .edit-btn-header{
-  margin-left: auto;
-  display: flex;
+  @apply ml-auto flex;
   .private-lock {
     height: inherit;
     margin-right: .5rem;
     color: var(--primary-gray-1);
   }
+  .burger-btn{
+    button{
+      background-color: var(--btn-gray);
+      height: 35px;
+      width: 35px;
+    }
+  }
+}
+.edit-btn-wrap{
+  @apply flex;
   button{
     border-radius: 4px;
     height: 45px;
@@ -114,47 +105,28 @@
       background-color: var(--primary-gray-3);
     }
   }
-  .pinned-btn{
-    display: flex;
-      .btn-pinned{
-        display: flex;
-        align-items: center;
-        padding: 5px 12px;
-        background-color:#131417;
-        border: 3px solid #444857;
-        border-radius: 4px 0 0 4px;
-        margin: 0;
-        svg{
-          display: block;
-          transform: rotate(45deg);
-        }
-        &:hover {
-          border:3px solid #8d9096;
-          background-color:#8d9096;
-        }
-      }
-      .btn-pin-arrow{
-        &:hover {
-          background-color:#8d9096;
-        }
-        border-radius: 0 4px 4px 0;
-        width: 40%;
-        padding: 10px 5px;
-        font-size: 10px;
-      }
-      .btn-pinned-blue{
-        display: flex;
-        align-items: center;
-        padding: 5px 12px;
-        color: rgb(83, 106, 197);
-        background-color:#131417;
-        border: 3px solid #444857;
-        border-radius: 4px 0 0 4px;
-        margin: 0;
+  @media screen and (max-width: 830px) {
+    background-color: var(--primary-gray-6);
+    box-shadow: 0 2rem 4rem #0a0a0c;
+    transform: scale(.8);
+    transform-origin: top right;
+    @apply absolute right-0 top-full w-60 py-2 invisible opacity-0 transition-all flex flex-col;
+    > button{
+      background-color: var(--primary-gray-6);
+      @apply w-full rounded-none h-auto text-left px-4 py-2.5;
+      &:hover{
+        background-color: var(--primary-gray-3);
       }
     }
-    @include headerBurger;
+    .private-switch-wrap{
+      @apply order-last py-1 px-4;
+    }
+    &.mobile-edit-btn{
+      transform: scale(1);
+      @apply visible opacity-100 transition-all;
+    }
   }
+}
 /* header end */
 
 /* edit-title-alert */

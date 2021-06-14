@@ -54,7 +54,7 @@ class PensController < ApplicationController
 
   def search_all_users
     begin
-      pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user)
+      pens = Pen.search(params[:q]).includes(:user).where.not(user: current_user, private: true)
       pens_per_page(pens)
 
       respond_to do |format|
@@ -62,7 +62,7 @@ class PensController < ApplicationController
         format.html { render :search_all_users }
       end
     rescue
-      pens = Pen.includes(:user).where.not(user: current_user)
+      pens = Pen.includes(:user).where.not(user: current_user, private: true)
       pens_per_page(pens)
 
       respond_to do |format|
@@ -76,7 +76,7 @@ class PensController < ApplicationController
     begin
       pens = Pen.joins(user: {follower_relationships: :following})
                 .includes(:user)
-                .where(user: current_user.following)
+                .where(user: current_user.following, private: false)
 
       pens_per_page(pens)
 
@@ -87,7 +87,7 @@ class PensController < ApplicationController
     rescue
       pens = Pen.joins(user: {follower_relationships: :following})
                  .includes(:user)
-                 .where.not(user: current_user)
+                 .where.not(user: current_user, private: true)
                  .distinct
 
       pens_per_page(pens)
@@ -102,13 +102,13 @@ class PensController < ApplicationController
   def trending
       most_viewed_pens = Pen.joins(:impressions)
                             .where("impressions.created_at": 1.day.ago..Time.now)
-                            .where.not(user: current_user)
+                            .where.not(user: current_user, private: true)
                             .group("pens.id")
                             .order("count(pens.id) DESC")
 
       most_follower_pens = Pen.joins(user: {follower_relationships: :following})
                               .includes(:user)
-                              .where.not(user: current_user)
+                              .where.not(user: current_user, private: true)
                               .group("pens.id")
                               .order("count(follows.following_id) DESC")
 

@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import 'styles/editor-setting.scss'
 import EditorSettingContainerOthers from './settingComponents/EditorSettingContainerOthers'
+import Turbolinks from 'turbolinks'
 
 const SettingAlert = () => {
   const MySwal = withReactContent(Swal)

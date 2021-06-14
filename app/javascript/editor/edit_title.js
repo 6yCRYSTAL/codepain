@@ -11,7 +11,6 @@ document.addEventListener('turbolinks:load', () => {
   let randomURL = location.href.split('/pen/')[1];
   let LastTwoURL = location.href.split('/').slice(-2)
   let inputValue = '';
-  let username = document.querySelector('#username').textContent;
   let proIcon = document.querySelector('.edit-pro-icon');
   let ax = axios.create();
   let token = document.querySelector('meta[name=csrf-token]').content;
@@ -79,6 +78,7 @@ document.addEventListener('turbolinks:load', () => {
   }
   // 是使用者的 pen 顯示編輯 title
   if (editTitleBtn){
+    let username = document.querySelector('.edit-author').textContent;
     ax.get("/api/v1/user/check_user",{
       params: {username}
     })
@@ -93,6 +93,7 @@ document.addEventListener('turbolinks:load', () => {
   }
   // 會員身份
   if(editUserName){
+    let username = document.querySelector('.edit-author').textContent;
     ax.get("/api/v1/user/membership",{
       params: {username}
     })

@@ -1,4 +1,3 @@
-
 .plans-container{
   @apply p-4 mt-4 mb-40;
 }
@@ -181,3 +180,52 @@
   }
 }
 /* plans-content end */
+.nav-rwd{
+  @apply hidden;
+}
+@media screen and (max-width: 768px) {
+  .nav-rwd{
+    @apply flex rounded;
+    margin: 0 auto 1rem;
+
+    .nav-btn{
+      flex: 1 0 auto;
+      line-height: 1.2;
+      font-size: var(--text-s-p);
+      @apply text-white py-2.5 px-4 text-center;
+
+      &:first-child{
+        @apply rounded-l;
+      }
+      &:last-child{
+        @apply rounded-r;
+      }
+    }
+  }
+
+  tr[data-plans-target="yearTitles"], tr[data-plans-target="monthTitles"]{
+    th{
+      @apply hidden;
+    }
+  }
+  tr[data-plans-target="yearDetails"], tr[data-plans-target="monthDetails" ], tr[data-plans-target="yearLinks"],tr[data-plans-target="monthLinks"],
+  tr[data-plans-target="yearSwitchers"], tr[data-plans-target="monthSwitchers"], tr[data-plans-target="plans-features"]{
+    td{
+      @apply hidden;
+    }
+  }
+  tr.plans-features-wrap{
+    td{
+      @apply hidden;
+    }
+  }
+
+  table.plans-table{
+    display: table;
+    margin: auto;
+  }
+  .free.on, .starter.on, .developer.on, .super.on {
+    display: block;
+  }
+}
+

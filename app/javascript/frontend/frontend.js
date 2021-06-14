@@ -5,10 +5,17 @@ document.addEventListener('turbolinks:load',function(){
   const MainSidebar = document.querySelector('.main-sidebar');
   const Container = document.querySelector('.container-left');
   const DeleteTab = document.querySelector('#tab-delete');
-  const searchUsersFeatures = document.querySelector('.search-users-features')
+  const searchUsersFeatures = document.querySelector('.search-users-features');
   const YourWorkFeatures = document.querySelector('.your-work-features')
   const OnClose = localStorage.getItem('onClose');
+  const homepage = document.querySelector('.homepage-anon-header');
+  const wrap = document.querySelector('.wrap');
 
+  // 首頁背景圖修正
+  if(homepage){
+    wrap.classList.add('homepage-bg');
+    wrap.style.maxWidth = 'initial';
+  }
   // 登入頁-使用者選單
   if (UserMenuBtn) {
     const UserMenuTopNav = document.querySelector('.userMenu-topnav');

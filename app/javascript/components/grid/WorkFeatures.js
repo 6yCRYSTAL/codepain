@@ -5,7 +5,7 @@ import SortBy from './SortBy.js'
 import SortDirection from './SortDirection.js'
 
 // 功能列表
-const WorkFeatures = ({ setAllValue,setSearchNoData })=>{
+const WorkFeatures = ({ setAllValue,setNothing,setSearchNoData })=>{
   const [isSearchValue, setSearchValue] = React.useState([]);
   const [isSortBy, setSortBy] = React.useState('Date Created');
   const [isSortOrder, setSortOrder] = React.useState('');
@@ -18,6 +18,7 @@ const WorkFeatures = ({ setAllValue,setSearchNoData })=>{
       <div className="features-item">
         <SearchInput
         setSearchValue = { setSearchValue }
+        setNothing = { setNothing }
         setSearchNoData = { setSearchNoData }
         />
       </div>

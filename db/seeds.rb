@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'date'
+# require 'date'
 # 10.times do
 #   # password = "password"
 #   user = User.create(
@@ -29,7 +29,7 @@ require 'date'
 3.times do
   # password = "password"
   user = User.create(
-    email: Faker::Internet.free_email,
+    email: Faker::Internet.email,
     password: "password",
     username: Faker::Name.first_name,
     display_name: Faker::Name.first_name,
@@ -37,7 +37,8 @@ require 'date'
   )
   5.times do
     user.pens.create(
-      title: Faker::Book.title
+      title: Faker::Book.title,
+      html: Faker::Book.title
     )
   end
 end
@@ -45,7 +46,7 @@ end
 3.times do
   # password = "password"
   user = User.create(
-    email: Faker::Internet.free_email,
+    email: Faker::Internet.email,
     password: "password",
     username: Faker::Name.first_name,
     display_name: Faker::Name.first_name,
@@ -53,7 +54,8 @@ end
   )
   5.times do
     user.pens.create(
-      title: Faker::Book.title
+      title: Faker::Book.title,
+      html: Faker::Book.title
     )
   end
 end

@@ -73,7 +73,7 @@ export default class extends Controller {
   // 第一次判斷 Private 鎖頭狀態
   initialize() {
     const icon = this.privateIconsTargets;
-    if (icon.length !== 0) {
+    if (icon.length === 2) {
       let isPrivate = icon[0].attributes[2].nodeValue;
       let isPrivate2 = icon[1].attributes[2].nodeValue;
       if ((isPrivate && isPrivate2) === 'true') {

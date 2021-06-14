@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [
     "editBtn", "cancelBtn", "updateBtn", "commentLi",
     "deleteBtn", "commentBlock", "updateTextArea",
-    "commentShow", "warningBlock", "commentsCount"]
+    "commentShow", "warningBlock", "commentsCount", "editBtnBlock"]
 
   initialize() {
     this.commentBlockToggle = () => {
@@ -18,6 +18,7 @@ export default class extends Controller {
   edit() {
     this.commentBlockToggle()
     this.updateTextAreaTarget.value = this.commentShowTarget.textContent
+    this.editBtnBlockTarget.style.visibility = "hidden"
   }
 
   update() {
@@ -34,10 +35,12 @@ export default class extends Controller {
       data: content_upate()
     })
     this.commentBlockToggle()
+    this.editBtnBlockTarget.style.visibility = ""
   }
 
   cancel() {
     this.commentBlockToggle()
+    this.editBtnBlockTarget.style.visibility = ""
   }
 
   delete() {

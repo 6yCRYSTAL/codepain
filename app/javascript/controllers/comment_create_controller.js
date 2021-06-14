@@ -22,7 +22,8 @@ export default class extends Controller {
                 this.comments_count += 1
                 commentCountP.innerText = `${this.comments_count} comments`
               }
-            }if (mutation.removedNodes.length === 1){
+            }
+            if (mutation.removedNodes.length === 1){
               if (this.comments_count === 2) {
                 this.comments_count -= 1
                 commentCountP.innerText = `${this.comments_count} comment`
@@ -90,20 +91,20 @@ export default class extends Controller {
           <div class="comment-content-text">
             <p data-comment-update-target="commentShow">${data.content}</p>
           </div>
-          <div class="edit-btn-block">
+          <div class="edit-btn-block" data-comment-update-target="editBtnBlock">
             <button
-              class='comment-edit-btn'
+              class='comment-edit-btn feature-related'
               data-action='click->comment-update#edit'
               data-comment-update-target='editBtn'>
               <span><i class='fas fa-pencil-alt'></i></span>
               <span>Edit</span>
             </button>
             <button
-              class='comment-delete-btn'
+              class='comment-delete-btn feature-related'
               data-action='click->comment-delete#delete'
               data-comment-update-target='deleteBtn'>
               <span><i class='fas fa-trash'></i></span>
-              <sapn>Delete</sapn>
+              <span>Delete</span>
             </button>
           </div>
         </div>

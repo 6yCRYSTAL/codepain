@@ -13,8 +13,12 @@ const Nothing = ({ searchValue,searchNoData }) =>{
       background: #248c46;
     }
   `
+  const Introduction = styled.blockquote`
+    max-width: 25rem;
+    margin: 2rem auto;
+  `
   return(
-    <div className="no-deleted-pen no-search-pen">
+    <div className="no-deleted-pen nothing">
       {
         (!searchNoData) ?
         <>
@@ -25,13 +29,9 @@ const Nothing = ({ searchValue,searchNoData }) =>{
         </>:
         <>
           <h2>No results for <em>{ searchValue }</em>.</h2>
-          <blockquote
-            style={{
-              maxWidth: '25em',
-              margin: '2rem auto'
-            }}>
+          <Introduction>
             If you want to save our world, you must hurry. We don't know how much longer we can withstand the nothing.<br /><br /><cite>— Southern Oracle, The Neverending Story</cite>
-          </blockquote>
+          </Introduction>
         </>
       }
     </div>

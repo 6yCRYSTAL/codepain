@@ -20,12 +20,13 @@ export default class extends Controller {
     const searchInput = this.searchInputTarget.value
     const url = new URL(location.href)
     const params = url.searchParams
-
     params.set('search_term', searchInput)
     params.delete('page')
     if (searchInput && !(location.href.includes('grid_type=grid'))) {
       Turbolinks.visit(url)
     }
+    // 按下搜尋 判斷 searchNoPen noPen 頁面
+    localStorage.setItem('searchPen','1');
   }
 
   submitSelected() {

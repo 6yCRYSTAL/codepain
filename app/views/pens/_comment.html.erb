@@ -1,6 +1,6 @@
 <div class="comment-wrap"
   data-controller="comment-create"
-  data-comment-create-url-value="<%='a' + pen.random_url %>"
+  data-comment-create-url-value="comment-create-<%= pen.random_url %>"
   data-comment-create-comments-count-value="<%= comments_count %>">
   <div class="aside-info">
     <div class="share-block">
@@ -42,7 +42,7 @@ Give the creator a confidence boost!"
     <p class="comments-count"
       data-comment-create-target="commentsCount">
       <%= comments_count_text(comments_count) %></p>
-    <ol data-comment-create-target="list" id="<%='a' + pen.random_url %>">
+    <ol data-comment-create-target="list" id="comment-create-<%= pen.random_url %>">
       <% comments.each do |comment| %>
       <li
         data-controller="comment-update comment-delete"

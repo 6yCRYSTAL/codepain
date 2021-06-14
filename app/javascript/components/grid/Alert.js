@@ -127,7 +127,7 @@ const Alert = (props) => {
 
         <div className="comment-wrap"
              data-controller="comment-create"
-             data-comment-create-url-value={`a${random_url}`}>
+             data-comment-create-url-value={`comment-create-${random_url}`}>
           <div className="aside-info">
             <div className="share-block">
             <span className="share-text">Share</span>
@@ -163,7 +163,7 @@ const Alert = (props) => {
                   <strong>No Comments</strong>
                   <br />You can be the first!
             </p>
-            <ol data-comment-create-target="list" id={"a" + random_url}>
+            <ol data-comment-create-target="list" id={"comment-create-" + random_url}>
             {
               comments.map( (commentData) => {
                 return(

@@ -100,7 +100,7 @@ main{
   background-color: var(--primary-gray-6);
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 5;
   width: 200px;
   height: 100vh;
   position: fixed;
@@ -587,7 +587,6 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  z-index: 20;
   @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
 }
 .footer-items-wrap{
@@ -667,11 +666,19 @@ to {
 /* button */
 .next-btn,.prev-btn{
   @include gray-btn
-  @apply mx-3 w-20 hover:bg-gray-500;
+  @apply mx-3 w-20 hover:bg-gray-500 p-0 flex justify-center items-center;
 }
-.arrow-left{
+.next-btn{
   svg{
-    @apply transform -rotate-180;
+    @apply ml-1;
+  }
+}
+.prev-btn{
+  .arrow-left{
+    @apply mr-1;
+    svg{
+      @apply transform -rotate-180;
+    }
   }
 }
 /* button end */

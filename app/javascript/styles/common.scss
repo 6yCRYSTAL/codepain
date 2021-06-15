@@ -588,6 +588,9 @@ to {
   @media screen and (max-width:1330px) {
     @apply flex-wrap ;
   }
+  @media screen and (max-width:600px) {
+    padding: 2rem 1.2rem 3rem 1.2rem ;
+  }
 }
 .footer-items-wrap{
   @apply w-8/12;
@@ -600,10 +603,26 @@ to {
   @apply flex mt-0 my-0 mb-2;
   .footer-item-title{
     @apply m-0 text-base;
+    @media screen and (max-width:480px) {
+      @apply w-full ;
+    }
+  }
+}
+.footer-dev{
+  @media screen and (max-width:480px) {
+    @apply hidden ;
+  }
+}
+.footer-item{
+  @media screen and (max-width:480px) {
+    @apply flex-wrap ;
   }
 }
 .footer-item-team,.footer-item-dev{
   @apply flex items-center m-0;
+  @media screen and (max-width: 480px) {
+    @apply flex-wrap ;
+  }
   li{
     color: var(--gray);
     font-size: var(--text-s-p);
@@ -615,6 +634,9 @@ to {
     }
 
     &.github-icon{
+      @media screen and (max-width:480px) {
+        @apply hidden ;
+      }
       svg{
         color: var(--light-blue);
       }
@@ -634,6 +656,16 @@ to {
     @apply flex-col;
   }
   .footer-item-team{
+    &:last-of-type{
+      @media screen and (max-width: 480px) {
+        @apply p-0 ;
+      }
+    }
+    ::after{
+      @media screen and (max-width: 480px) {
+        @apply hidden ;
+      }
+    }
     &:first-of-type{
       li:last-of-type::after{
         @media screen and (max-width: 1024px) {
@@ -649,6 +681,9 @@ to {
       }
       @media screen and (max-width: 1024px) {
         @apply pl-6 pt-2;
+      }     
+      @media screen and (max-width: 480px) {
+        @apply pl-0 pt-2;
       }
     }
   }
@@ -705,7 +740,7 @@ to {
     color: var(--light-blue);
     font-size: var(--text-s-p);
     @apply hover:text-white;
-  }
+    }
 }
 
 /* footer end */

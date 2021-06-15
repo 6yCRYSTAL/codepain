@@ -16,7 +16,6 @@ document.addEventListener('turbolinks:load',function(){
           cursorChar: "|",
           contentType: 'html'
       });
-      console.log('a');
     }, 0);
     setTimeout(function(){
       Type1.nextElementSibling.style.display = 'none';
@@ -29,7 +28,6 @@ document.addEventListener('turbolinks:load',function(){
           cursorChar: "|",
           contentType: 'html'
       });
-      console.log('b');
     }, 2000);
     setTimeout(function(){
       Type2.nextElementSibling.style.display = 'none';
@@ -41,7 +39,6 @@ document.addEventListener('turbolinks:load',function(){
           cursorChar: "|",
           contentType: 'html'
       });
-      console.log('c');
     }, 4000);
     setTimeout(function(){
       Type3.nextElementSibling.style.display = 'none';
@@ -54,7 +51,6 @@ document.addEventListener('turbolinks:load',function(){
           cursorChar: "|",
           contentType: 'html'
       });
-      console.log('d');
     }, 6000);
     setTimeout(function(){
       Type4.nextElementSibling.style.display = 'none';
@@ -66,7 +62,6 @@ document.addEventListener('turbolinks:load',function(){
           cursorChar: "|",
           contentType: 'html'
       });
-      console.log('e');
     }, 8000);
   }
 })

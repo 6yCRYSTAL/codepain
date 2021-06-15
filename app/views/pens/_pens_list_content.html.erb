@@ -1,8 +1,8 @@
 <tr scope="col" data-controller="private" data-private-random-value="<%= pen.random_url %>">
-  <th class="title-wrap flex items-center justify-between">
+  <th class="title-wrap">
     <%= link_to pen.title, edit_pen_path(pen, username: pen.user.username)%>
     <% # 鎖 %>
-    <div  class="private-lock hidden pr-2"
+    <div  class="private-lock"
           data-private-target="privateIcons"
           data-is-private="<%= pen.private %>">
       <i class="fas fa-lock"></i>

@@ -66,6 +66,8 @@ Rails.application.routes.draw do
           get 'follow', to: 'follows#list'
           post 'follow', to: 'follows#follow'
           post 'unfollow', to: 'follows#unfollow'
+          get 'membership', to: 'users#membership'
+          get 'check_user', to: 'users#check_user'
         end
       end
 

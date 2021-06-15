@@ -77,7 +77,7 @@ const Alert = (props) => {
             </div>
             <div className="modal-header-title-username">
               <div className="modal-header-title">
-                <a href={`/${ user_name }/pen/${ random_url }`}>title</a>
+                <a href={`/${ user_name }/pen/${ random_url }`}>{ title }</a>
                 {
                   privateToggle &&
                   <div className="private-lock alert-private-lock" id="private-lock">
@@ -127,7 +127,7 @@ const Alert = (props) => {
 
         <div className="comment-wrap"
              data-controller="comment-create"
-             data-comment-create-url-value={`a${random_url}`}>
+             data-comment-create-url-value={`comment-create-${random_url}`}>
           <div className="aside-info">
             <div className="share-block">
             <span className="share-text">Share</span>
@@ -163,7 +163,7 @@ const Alert = (props) => {
                   <strong>No Comments</strong>
                   <br />You can be the first!
             </p>
-            <ol data-comment-create-target="list" id={"a" + random_url}>
+            <ol data-comment-create-target="list" id={"comment-create-" + random_url}>
             {
               comments.map( (commentData) => {
                 return(

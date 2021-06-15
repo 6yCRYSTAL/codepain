@@ -5,15 +5,18 @@ import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
   const editTitleBtn = document.querySelector('#btn-edit-title');
+  const editUserName = document.querySelector('.edit-username');
   const input = document.querySelector('#input-title');
   const title = document.querySelector('#edit-title');
   let randomURL = location.href.split('/pen/')[1];
   let LastTwoURL = location.href.split('/').slice(-2)
   let inputValue = '';
+  let proIcon = document.querySelector('.edit-pro-icon');
   let ax = axios.create();
   let token = document.querySelector('meta[name=csrf-token]').content;
   ax.defaults.headers.common['X-CSRF-Token'] = token;
-  // edit 編輯和存取
+
+  // 編輯和存取
   if (editTitleBtn){
     editTitleBtn.addEventListener('click', () => {
       title.style.display="none";
@@ -74,5 +77,35 @@ document.addEventListener('turbolinks:load', () => {
         }
       })
     }
+  }
+  // 是使用者的 pen 顯示編輯 title
+  if (editTitleBtn){
+    let username = document.querySelector('.edit-author').textContent;
+    ax.get("/api/v1/user/check_user",{
+      params: {username}
+    })
+    .then(res =>{
+      let isUserPen = res.data.payload.checkUser
+      if(isUserPen){
+        editTitleBtn.style.visibility = 'visible';
+      }else{
+        editTitleBtn.style.visibility = 'hidden';
+      }
+    })
+  }
+  // 會員身份
+  if(editUserName){
+    let username = document.querySelector('.edit-author').textContent;
+    ax.get("/api/v1/user/membership",{
+      params: {username}
+    })
+    .then(res =>{
+      let membership = res.data.payload.ownerMembership;
+      if(membership === 'super'){
+        proIcon.style.visibility = 'visible';
+      }else{
+        proIcon.style.visibility = 'hidden';
+      }
+    })
   }
 })

@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', () => {
     let js = ace.edit("editor--js")
 
     updateBtn.addEventListener('click', () => {
-      let urlUsername = location.pathname.split('/pen/')[0].substring(1)
+      let urlUsername = decodeURIComponent(location.pathname.split('/pen/')[0].substring(1))
       if (urlUsername !== username) {
         Turbolinks.visit(`${location.origin}/your-work`)
       }

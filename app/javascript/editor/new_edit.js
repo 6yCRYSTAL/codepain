@@ -35,6 +35,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
+        wrap: true,
       })
       editorCSS.setOptions({
         mode: "ace/mode/css",
@@ -47,6 +48,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
+        wrap: true,
       })
       editorJS.setOptions({
         mode: "ace/mode/javascript",
@@ -58,6 +60,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
+        wrap: true,
       })
     }
 

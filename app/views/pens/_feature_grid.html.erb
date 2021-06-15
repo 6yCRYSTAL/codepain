@@ -1,6 +1,6 @@
 <div class="pen-items-wrap">
   <% @pens.each do |pen| %>
-    <article class="col" id="a<%= pen.random_url %>">
+    <article class="col" id="grid-content-<%= pen.random_url %>">
       <div class="pen-item">
         <header class="pen-header">
           <%= link_to pen.title,
@@ -51,10 +51,10 @@
                           </html>"></iframe>
           <a class="cover-link" href="<%= edit_pen_path(pen, username: pen.user.username) %>"></a>
           <div class="prompt-link">
-            <button class="modal-btn" id="modal-btn" data-url="<%= pen.random_url %>">
+            <button class="modal-btn" id="modal-btn" data-url="<%= pen.random_url %>" data-username="<%= pen.user.username %>">
               <i class="fas fa-expand-arrows-alt"></i>
             </button>
-            <div id="modal" class="modal" data-url=<%= pen.random_url %>>
+            <div id="modal" class="modal open-modal-<%= pen.random_url %>" data-url=<%= pen.random_url %>>
               <div class="modal-content">
                 <header class="modal-header">
                   <div class="modal-header-user">
@@ -84,7 +84,7 @@
                   </div>
                 </header>
                 <div class="modal-iframe">
-                  <iframe id="b<%= pen.random_url %>"
+                  <iframe id="iframe-<%= pen.random_url %>"
                     sandbox="allow-scripts"
                     loading="lazy"
                     scrolling="no"
@@ -128,7 +128,7 @@
         </div>
         <footer class="pen-footer" data-controller="stats"
                                   data-stats-target="yourWork"
-                                  data-stats-loved-class="text-red-600"
+                                  data-stats-loved-class="love-active"
                                   data-stats-random-value="<%= pen.random_url %>">
           <% if user_signed_in? %>
             <a class="pen-footer-style" data-btn="love" data-action="click->stats#toggleHeart">
@@ -139,7 +139,11 @@
               data-stats-target="heart"></i>
             <span data-stats-target="heartListsCount"><%= pen.heart_lists_count %></span>
           </a>
-          <a class="pen-footer-style" data-btn="comments">
+          <a class="pen-footer-style comment-create-<%= pen.random_url %>"
+             id="modal-btn"
+             data-btn="comments"
+             data-url="<%= pen.random_url %>"
+             data-username="<%= pen.user.username %>">
             <i class="fas fa-comment"></i>
             <span><%= pen.comments.size %></span>
           </a>

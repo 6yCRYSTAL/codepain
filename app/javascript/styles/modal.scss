@@ -106,6 +106,10 @@
   @apply py-4;
   iframe{
     @apply w-full bg-white h-full;
+    border-radius: 0;
+    transform: scale(1);
+    top: 0;
+    left: 0;
   }
 }
 /* modal-iframe end */

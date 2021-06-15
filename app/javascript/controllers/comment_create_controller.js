@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
-  static targets = [ "createBtn", "createTextArea", "list", "commentsCount" ]
+  static targets = [ "createBtn", "createTextArea", "list", "commentsCount"]
   static values = { url: String, commentsCount: Number }
   initialize() {
     this.comments_count = this.commentsCountValue
@@ -12,6 +12,7 @@ export default class extends Controller {
     let commentCountP = this.commentsCountTarget
     let targetNode = document.querySelector(`#${this.urlValue}`);
     let config = { attributes: true, childList: true };
+    let footerCommentsCount = document.querySelector(`.pen-footer-style.${this.urlValue} span`) || document.querySelector(`.comments.${this.urlValue} span`)
     let callback = (mutationsList) => {
           for(let mutation of mutationsList) {
             if (mutation.addedNodes.length === 1){
@@ -40,6 +41,7 @@ export default class extends Controller {
               }
             }
           }
+          if (footerCommentsCount.textContent) {footerCommentsCount.textContent = this.comments_count}
         }
     let observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -47,7 +49,7 @@ export default class extends Controller {
 
   create() {
     let content = this.createTextAreaTarget.value
-    let randomurl = this.urlValue.substring(1)
+    let randomurl = this.urlValue.substring(15)
     let listElement = document.createElement('li')
     listElement.setAttribute("data-controller", "comment-update comment-delete")
     listElement.setAttribute("data-comment-update-target", "commentLi")
@@ -81,6 +83,7 @@ export default class extends Controller {
             data-comment-update-target="cancelBtn"
             > Cancel </button>
             <button
+              class="feature-related"
               data-action="click->comment-update#update"
               data-comment-update-target="updateBtn"
               data-id="${data.id}"

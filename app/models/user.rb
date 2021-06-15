@@ -28,8 +28,8 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = data.email
       user.password = Devise.friendly_token[0, 20]
-      user.username = data.name
-      user.display_name = data.name
+      user.username = data.name.gsub(/\s+/, "")
+      user.display_name = data.name.gsub(/\s+/, "")
       user.skip_confirmation!
     end
   end
@@ -40,5 +40,13 @@ class User < ApplicationRecord
 
   def pinned?(pen)
     pinned_pens.exists?(pen.id)
+  end
+
+  def username=(username)
+    super(username.gsub(/\s+/, ""))
+  end
+
+  def display_name=(display_name)
+    super(display_name.gsub(/\s+/, ""))
   end
 end

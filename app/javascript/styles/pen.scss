@@ -1,16 +1,16 @@
 @mixin gridRWD2col {
   @media (max-width:1148px) and (min-width:933px){
-    @apply grid-cols-2
+    @apply grid-cols-2;
   }
 }
 @mixin gridRWD1col {
   @media screen and (max-width:932px){
-    @apply grid-cols-1
+    @apply grid-cols-1;
   }
 }
 /* title & features */
 .feat-page-title{
-  margin-bottom: 1.5rem;
+  @apply mb-6;
   .big-title{
     font-size: var(--text-h4);
     color: var(--primary-gray-2);
@@ -35,7 +35,6 @@
   }
 }
 .your-work-tab{
-  margin-top: 1.5rem;
   width: 100%;
   border-bottom: 2px solid var(--info-blue);
   a{
@@ -232,7 +231,11 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    @apply cursor-pointer font-bold overflow-hidden whitespace-nowrap;
+    max-width: 70%;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    box-sizing: border-box;
+    @apply cursor-pointer font-bold overflow-hidden overflow-ellipsis;
   }
   .pen-more{
     svg{
@@ -370,7 +373,11 @@
     .title-wrap{
       @apply p-0;
       a{
-        @apply px-2 py-2 block font-normal;
+        max-width: 70%;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        box-sizing: border-box;
+        @apply px-2 py-2 cursor-pointer font-normal overflow-hidden overflow-ellipsis block;
         color: var(--light-blue);
         &:visited {
           color: var(--light-blue);

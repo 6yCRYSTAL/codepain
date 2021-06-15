@@ -111,7 +111,7 @@ const PenItemContent = (props) => {
             />
             <span className="heart-count">{heart_count}</span>
           </a>
-          <a href="#" className="pen-footer-style" data-btn="comments">
+          <a className={`pen-footer-style comment-create-${random_url}`} data-btn="comments" onClick={ atAlert }>
             <i className="fas fa-comment" />
             <span>{comments_count}</span>
           </a>

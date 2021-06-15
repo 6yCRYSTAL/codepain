@@ -77,7 +77,7 @@ const Alert = (props) => {
             </div>
             <div className="modal-header-title-username">
               <div className="modal-header-title">
-                <a href={`/${ user_name }/pen/${ random_url }`}>title</a>
+                <a href={`/${ user_name }/pen/${ random_url }`}>{ title }</a>
                 {
                   privateToggle &&
                   <div className="private-lock alert-private-lock" id="private-lock">

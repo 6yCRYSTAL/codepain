@@ -6,7 +6,7 @@ document.addEventListener('turbolinks:load', () => {
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
   if(html && css && js){
-    let username = location.pathname.split('/pen/')[0].substring(1)
+    let username = decodeURIComponent(location.pathname.split('/pen/')[0].substring(1))
     let randomurl = location.href.split('/pen/')[1]
     let title = document.querySelector('#edit-title')
     let inputValue = document.querySelector("#input-title")

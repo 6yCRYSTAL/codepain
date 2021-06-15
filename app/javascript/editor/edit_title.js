@@ -44,6 +44,7 @@ document.addEventListener('turbolinks:load', () => {
     })
     // 事件後執行內容
     let eventContent = (e) => {
+      let username = document.querySelector('.edit-author').textContent;
       title.style.display="inline";
       input.style.display="none";
       editTitleBtn.style.display="inline";
@@ -51,7 +52,8 @@ document.addEventListener('turbolinks:load', () => {
       // 判斷 預設空：Untitled ; 其他: 輸入值
       if (input.value === ""){
         title.textContent= "Untitled";
-      }else{
+      }
+      else{
         title.textContent= inputValue;
       }
       // 舊 pen 可執行 Patch api

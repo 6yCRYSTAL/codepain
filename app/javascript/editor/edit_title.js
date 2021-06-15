@@ -47,7 +47,6 @@ document.addEventListener('turbolinks:load', () => {
     })
     // 事件後執行內容
     let eventContent = (e) => {
-      let username = document.querySelector('.edit-author').textContent;
       title.style.display="inline";
       input.style.display="none";
       editTitleBtn.style.display="inline";

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import MainEditor from './MainEditor'
 import MainFooter from './Footer'
+import ChangeViewBtns from './ChangeViewBtns'
 import SettingAlertOwner from './SettingAlertOwner'
 import SettingAlertOthers from './SettingAlertOthers'
 
@@ -22,6 +23,17 @@ document.addEventListener('turbolinks:load', () => {
       <MainFooter />,
       editFooter
     )
+  }
+
+  const btnChangeView = document.querySelector('.btn-changeView')
+  const changeViewBtnsWrapper = document.querySelector('.changeViewBtnsWrapper')
+  if (btnChangeView) {
+    btnChangeView.addEventListener('click', ()=>{
+      ReactDOM.render(
+        <ChangeViewBtns />,
+        changeViewBtnsWrapper
+      )
+    })
   }
 
   const settingButton = document.querySelector('#btn-settings')

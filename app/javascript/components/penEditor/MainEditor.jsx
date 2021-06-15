@@ -1,13 +1,20 @@
-import React from 'react'
-import EditorVerticalView from './EditorVerticalView'
+import React, { useState }from 'react'
+import EditorHorizontalView from './EditorHorizontalView'
+import EditorVerticalViewR from './EditorVerticalViewR'
+import EditorVerticalViewL from './EditorVerticalViewL'
 
-const MainEditor = ( ) => {
+const MainEditor = () => {
+
+  const [editorLeft, setEditorLeft] = useState(true)
+  const [editorMiddle, setEditorMiddle] = useState(false)
+  const [editorRight, setEditorRight] = useState(false)
 
   return(
-    <EditorVerticalView />
-
-
-
+    <>
+      { editorLeft && <EditorVerticalViewL />}
+      { editorMiddle && <EditorHorizontalView />}
+      { editorRight && <EditorVerticalViewR />}
+    </>
   )
 }
 

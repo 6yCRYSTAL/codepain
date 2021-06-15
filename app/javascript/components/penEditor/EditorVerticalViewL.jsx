@@ -6,7 +6,7 @@ import Editor from './Editor'
 import EditorConsole from './EditorConsole'
 import Iframe from './Iframe'
 
-const EditorHorizontalView = ( ) => {
+const EditorVerticalViewL = ( ) => {
 
   const [showConsole, setShowConsole] = useState(false)
   const isOpen = showConsole ? "consoleOpen" : "consoleClose"
@@ -23,35 +23,35 @@ const EditorHorizontalView = ( ) => {
   }
 
   return(
-    <div className="horizontalView" data-editor="middle">
+    <div className="verticalViewL" data-editor="left">
       <SplitPane
-        split="horizontal"
+        split="vertical"
         hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}
         resizerOptions={{
           css: {
-            height: '10px',
+            width: '10px',
             background: '#333642',
           },
           hoverCss: {
-            height: '10px',
+            width: '10px',
             background: '#333642',
           },
           grabberSize: '1rem',
         }}>
 
         <SplitPane
-          split="vertical"
+          split="horizontal"
           collapse={true}
           resizerOptions={{
             css: {
-              width: '10px',
+              height: '5px',
               background: '#333642',
             },
             hoverCss: {
-              width: '10px',
+              height: '5px',
               background: '#333642',
             },
-            grabberSize: '1rem',
+            grabberSize: '.5rem',
           }}>
           {/* editor html */}
           <Editor
@@ -76,14 +76,14 @@ const EditorHorizontalView = ( ) => {
             className="iframeAndConsole"
             resizerOptions={{
               css: {
-                height: '10px',
+                height: '5px',
                 background: '#131417',
               },
               hoverCss: {
-                height: '10px',
+                height: '5px',
                 background: '#333642',
               },
-              grabberSize: '1rem',
+              grabberSize: '.5rem',
             }}
             hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}>
 
@@ -102,4 +102,4 @@ const EditorHorizontalView = ( ) => {
   )
 }
 
-export default EditorHorizontalView
+export default EditorVerticalViewL

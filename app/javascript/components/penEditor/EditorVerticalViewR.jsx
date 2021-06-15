@@ -6,7 +6,7 @@ import Editor from './Editor'
 import EditorConsole from './EditorConsole'
 import Iframe from './Iframe'
 
-const EditorVerticalView = ( ) => {
+const EditorVerticalViewR = ( ) => {
 
   const [showConsole, setShowConsole] = useState(false)
   const isOpen = showConsole ? "consoleOpen" : "consoleClose"
@@ -23,35 +23,60 @@ const EditorVerticalView = ( ) => {
   }
 
   return(
-    <div className="verticalView">
+    <div className="verticalViewR" data-editor="right">
       <SplitPane
         split="vertical"
         hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}
         resizerOptions={{
           css: {
-            height: '10px',
+            width: '10px',
             background: '#333642',
           },
           hoverCss: {
-            height: '10px',
+            width: '10px',
             background: '#333642',
           },
           grabberSize: '1rem',
         }}>
+
+        <div className={isOpen}>
+          <SplitPane
+            split="horizontal"
+            className="iframeAndConsole"
+            resizerOptions={{
+              css: {
+                height: '5px',
+                background: '#131417',
+              },
+              hoverCss: {
+                height: '5px',
+                background: '#333642',
+              },
+              grabberSize: '.5rem',
+            }}
+            hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}>
+
+            <div className="edit-render-result" style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
+              <Iframe />
+            </div>
+              <EditorConsole />
+
+          </ SplitPane>
+        </div>
 
         <SplitPane
           split="horizontal"
           collapse={true}
           resizerOptions={{
             css: {
-              width: '10px',
+              height: '5px',
               background: '#333642',
             },
             hoverCss: {
-              width: '10px',
+              height: '5px',
               background: '#333642',
             },
-            grabberSize: '1rem',
+            grabberSize: '.5rem',
           }}>
           {/* editor html */}
           <Editor
@@ -70,31 +95,6 @@ const EditorVerticalView = ( ) => {
             editorClass={"editor-code editor-js"} />
         </ SplitPane>
 
-        <div className={isOpen}>
-          <SplitPane
-            split="horizontal"
-            className="iframeAndConsole"
-            resizerOptions={{
-              css: {
-                height: '10px',
-                background: '#131417',
-              },
-              hoverCss: {
-                height: '10px',
-                background: '#333642',
-              },
-              grabberSize: '1rem',
-            }}
-            hooks={{ onDragStarted: atDragging, onSaveSizes: atDragging }}>
-
-            <div className="edit-render-result" style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
-              <Iframe />
-            </div>
-              <EditorConsole />
-
-          </ SplitPane>
-        </div>
-
       </ SplitPane>
 
       <button onClick={showConsoleBox} id="console-btn" className="fake-console"> Console </button>
@@ -102,4 +102,4 @@ const EditorVerticalView = ( ) => {
   )
 }
 
-export default EditorVerticalView
+export default EditorVerticalViewR

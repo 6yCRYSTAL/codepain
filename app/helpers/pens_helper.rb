@@ -48,7 +48,7 @@ module PensHelper
 
   def private_switch
     if user_signed_in?
-      if current_user.membership != "free" && action_name == "edit"
+      if current_user.membership != "free" && action_name == "edit" && current_user == @pen.user
         render 'shared/private_switch'
       end
     end

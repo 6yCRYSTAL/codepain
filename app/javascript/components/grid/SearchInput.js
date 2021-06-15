@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 // 搜尋功能
-function SearchInput({ setSearchValue,setSearchNoData }) {
-  const [value,setValue] = useState([]);
+function SearchInput({ setSearchValue,setNothing,setSearchNoData }) {
+  const [value,setValue] = useState('');
   const [toggle,setToggle] = useState(false);
   function getValue(e) {
     setValue(e.currentTarget.value);
@@ -11,11 +11,18 @@ function SearchInput({ setSearchValue,setSearchNoData }) {
     e.preventDefault();
     setSearchValue(value);
     setToggle(true);
+    // 空值不顯示 clearSearch 按鈕;有值顯示 SearchNoData 區塊
+    if (value === '') {
+      setToggle(false);
+    }else{
+      setSearchNoData(true);
+    }
   }
   function clearSearch() {
     setValue('');
     setSearchValue('');
     setToggle(false);
+    setNothing(false);
     setSearchNoData(false);
   }
   return(

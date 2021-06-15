@@ -1,15 +1,16 @@
 @mixin gridRWD2col {
   @media (max-width:1148px) and (min-width:933px){
-    @apply grid-cols-2
+    @apply grid-cols-2;
   }
 }
 @mixin gridRWD1col {
   @media screen and (max-width:932px){
-    @apply grid-cols-1
+    @apply grid-cols-1;
   }
 }
 /* title & features */
 .feat-page-title{
+  @apply mb-6;
   .big-title{
     font-size: var(--text-h4);
     color: var(--primary-gray-2);
@@ -34,7 +35,6 @@
   }
 }
 .your-work-tab{
-  margin-top: 1.5rem;
   width: 100%;
   border-bottom: 2px solid var(--info-blue);
   a{
@@ -52,6 +52,7 @@
 }
 .your-work-features{
   background-color: var(--primary-gray-6);
+  @apply mb-6;
   .features-item{
     border-bottom: 1px solid black;
     @apply py-3 px-4 flex;
@@ -180,7 +181,7 @@
 }
 .pen-items-wrap{
   -webkit-box-align: start;
-  @apply grid grid-cols-3 gap-x-12 gap-y-8 my-4 auto-rows-auto;
+  @apply grid grid-cols-3 gap-x-12 gap-y-8 auto-rows-auto;
   @include gridRWD2col();
   @include gridRWD1col();
 }
@@ -212,9 +213,6 @@
   }
 }
 
-.pens-grid-content{
-  margin: 2rem 0;
-}
 .pen-header,.pen-footer{
   display: flex;
   order: 2;
@@ -233,7 +231,11 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    @apply cursor-pointer font-bold overflow-hidden whitespace-nowrap;
+    max-width: 70%;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    box-sizing: border-box;
+    @apply cursor-pointer font-bold overflow-hidden overflow-ellipsis;
   }
   .pen-more{
     svg{
@@ -250,11 +252,16 @@
   overflow: hidden;
   border-radius: 6px;
   iframe{
+    border: 0 none;
     background: #fff;
-    width: 100%;
-    height: 100%;
+    border-radius: 6px;
+    width: calc(200% + 5px);
+    height: calc(200% + 5px);
+    transform: scale(0.5);
+    transform-origin: top left;
     position: absolute;
-    top: 1px;
+    top: 2px;
+    left: -2px;
     overflow: hidden;
   }
   .cover-link{
@@ -267,32 +274,34 @@
   }
   .prompt-link{
     button{
-      position: absolute;
-      background-color: var(--primary-gray-3);
-      width: 32px;
-      height: 32px;
-      right: 20px;
-      top: 20px;
-      border-radius: 6px;
-      box-shadow: 2px 2px 6px rgba(0,0,0,.4);
-      opacity: 0;
-      z-index: 10;
-      padding: 8px;
-      svg{
-        color: var(--light-gray);
-        font-size: 16px;
+      &:not(.feature-related) {
+        position: absolute;
+        background-color: var(--primary-gray-3);
+        width: 32px;
+        height: 32px;
+        right: 20px;
+        top: 20px;
+        border-radius: 6px;
+        box-shadow: 2px 2px 6px rgba(0,0,0,.4);
+        opacity: 0;
+        z-index: 10;
+        padding: 8px;
+          svg{
+            color: var(--light-gray);
+            font-size: 16px;
+          }
       }
-    }
-    &::before{
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 30%;
-      height: 100%;
-      background: linear-gradient(to bottom left,rgba(0,0,0,.7),rgba(0,0,0,.2),transparent 49%);
-      z-index: 2;
-      opacity: 0;
+      &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30%;
+        height: 100%;
+        background: linear-gradient(to bottom left,rgba(0,0,0,.7),rgba(0,0,0,.2),transparent 49%);
+        z-index: 2;
+        opacity: 0;
+      }
     }
   }
 }
@@ -328,7 +337,9 @@
   }
 }
 /* grid-pen-item end */
-
+.pen-footer-style{
+  cursor: pointer;
+}
 /* pen-list */
 .pen-list{
   width: 100%;
@@ -362,7 +373,11 @@
     .title-wrap{
       @apply p-0;
       a{
-        @apply px-2 py-2 block font-normal;
+        max-width: 70%;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        box-sizing: border-box;
+        @apply px-2 py-2 cursor-pointer font-normal overflow-hidden overflow-ellipsis block;
         color: var(--light-blue);
         &:visited {
           color: var(--light-blue);
@@ -395,7 +410,7 @@
 
 /* pen button */
 .next-prev-btn{
-  @apply flex justify-center m-8;
+  @apply flex justify-center mx-auto mt-16 mb-8;
 }
 .clear-search{
   box-sizing: border-box;
@@ -406,6 +421,19 @@
   padding: 0 .8rem;
   color: var(--light-gray);
   @apply cursor-pointer outline-none rounded ml-4 leading-8 hidden;
+}
+.no-pen{
+  a{
+    border-radius: 4px;
+    background: #47cf73;
+    padding: 1rem;
+    display: inline-block;
+    color: black;
+    font-size: 1rem;
+    &:hover{
+      background: #248c46;
+    }
+  }
 }
 /* pen button end */
 
@@ -465,11 +493,14 @@
 }
 /* deleted pen tab end */
 
-/* no-search-pen */
-.no-search-pen{
-  @apply mt-8 mr-0;
+/* nothing */
+.nothing,.list-nothing{
+  @apply mr-0 inline-block w-full;
   blockquote{
     @apply max-w-sm mx-auto my-8;
   }
 }
-/* no-search-pen end */
+.nothing-height-box{
+  @apply block mb-24;
+}
+/* nothing end */

@@ -102,7 +102,7 @@ const PenItemContent = (props) => {
         </div>
 
         <footer className="pen-footer">
-          <button className="pen-footer-style" data-btn="love" data-url={random_url} onClick={ getLike }>
+          <a className="pen-footer-style" data-btn="love" data-url={random_url} onClick={ getLike }>
             <i
               className="fas fa-heart"
               style={{
@@ -110,8 +110,8 @@ const PenItemContent = (props) => {
               }}
             />
             <span className="heart-count">{heart_count}</span>
-          </button>
-          <a href="#" className="pen-footer-style" data-btn="comments">
+          </a>
+          <a className={`pen-footer-style comment-create-${random_url}`} data-btn="comments" onClick={ atAlert }>
             <i className="fas fa-comment" />
             <span>{comments_count}</span>
           </a>

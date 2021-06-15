@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
 }
+// editor
 .edit-zone{
   height: 100%;
 
@@ -14,18 +15,17 @@
     background:#141414;
   }
 }
-
 .editor-code{
   @extend .wh100;
   z-index: 0;
 }
-
+// iframe preview
 .edit-render-result{
   @extend .wh100;
   border: 0 solid transparent;
   background-color: var(--light-gray);
 }
-
+// console box
 .edit-console-container{
   @extend .wh100;
   overflow: scroll;
@@ -58,7 +58,7 @@
 .edit-console-clear{
   margin-left: auto;
 }
-
+// share url box
 .share-box{
   background-color: #fff;
   position: absolute;
@@ -98,8 +98,22 @@
 
   }
 }
-
- ::-webkit-scrollbar {
+//sweat alert popup notice
+.swal2-popup{
+  &.copied-link-popup{
+    width: 230px;
+    height: 50px;
+    line-height: 2rem;
+    background-color: black;
+    border: 2px solid forestgreen;
+  }
+  .copied-link-title{
+    font-size: .8rem;
+    color: white;
+  }
+}
+// editor scrollbar
+::-webkit-scrollbar {
   background: none;
   width: 15px;
   height: 15px;

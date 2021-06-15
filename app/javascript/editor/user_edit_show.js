@@ -1,10 +1,12 @@
 import axios from 'axios'
+import Turbolinks from 'turbolinks'
 
 document.addEventListener('turbolinks:load', () => {
   const html = document.querySelector('#editor--html')
   const css = document.querySelector('#editor--css')
   const js = document.querySelector('#editor--js')
   if(html && css && js){
+    let username = decodeURIComponent(location.pathname.split('/pen/')[0].substring(1))
     let randomurl = location.href.split('/pen/')[1]
     let title = document.querySelector('#edit-title')
     let inputValue = document.querySelector("#input-title")
@@ -18,7 +20,8 @@ document.addEventListener('turbolinks:load', () => {
     if (randomurl){
       axios({
         method: 'get',
-        url: `/api/v1/pens/${randomurl}/edit`
+        url: `/api/v1/pens/${randomurl}/edit`,
+        params: { username }
       })
       .then( (response) => {
         let data = response.data
@@ -45,6 +48,8 @@ document.addEventListener('turbolinks:load', () => {
             privateSwitch.checked = data.payload.private
             privateLock.classList.remove(data.payload.private ? "hidden" : "")
           }
+        } else {
+          Turbolinks.visit(`${location.origin}/your-work`, 'replace')
         }
       })
       .catch( (error) => {

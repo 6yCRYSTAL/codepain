@@ -2,7 +2,7 @@ class Api::V1::PensController < Api::ApiController
   respond_to :json
   include Searchable
   before_action :authenticate_user!, except: [:new, :edit]
-  before_action :find_user_pen, only: [:edit, :update, :private_toggle]
+  before_action :find_user_pen, only: [:private_toggle]
 
   def create
     @pen = current_user.pens.new(pen_params)
@@ -20,14 +20,26 @@ class Api::V1::PensController < Api::ApiController
   end
 
   def edit
-    success_blueprint!(@pen, :normal)
+    begin
+      user = User.find_by!(username: params[:username])
+      @pen = user.pens.find_by!(random_url: params[:random_url])
+      success_blueprint!(@pen, :normal)
+    rescue ActiveRecord::RecordNotFound
+      fail!( { user: nil }, 'user not found')
+    end
   end
 
   def update
-    if @pen.update(pen_params)
-      success_blueprint!(@pen, :normal, 'update succeeded')
-    else
-      fail!(@pen.errors.full_messages, 'update failed')
+    begin
+      user = User.find_by!(username: params[:user][:username])
+      @pen = user.pens.find_by!(random_url: params[:random_url])
+      if @pen.update(pen_params)
+        success_blueprint!(@pen, :normal, 'update succeeded')
+      else
+        fail!(@pen.errors.full_messages, 'update failed')
+      end
+    rescue ActiveRecord::RecordNotFound
+      fail!( { user: nil }, 'user not found')
     end
   end
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Turbolinks from 'turbolinks'
 import savedNotice from './popup_notice.js'
 
 document.addEventListener('turbolinks:load', () => {
@@ -12,7 +13,11 @@ document.addEventListener('turbolinks:load', () => {
     let js = ace.edit("editor--js")
 
     updateBtn.addEventListener('click', () => {
-      let randomurl = location.href.split('/pen/')[1]
+      let urlUsername = decodeURIComponent(location.pathname.split('/pen/')[0].substring(1))
+      if (urlUsername !== username) {
+        Turbolinks.visit(`${location.origin}/your-work`)
+      }
+      let randomurl = location.pathname.split('/pen/')[1]
       let token = document.querySelector('meta[name = csrf-token]').content
 
       let newTitle = title.textContent
@@ -33,6 +38,8 @@ document.addEventListener('turbolinks:load', () => {
       .then( (response) => {
         if( response.data.status === "update succeeded"){
           savedNotice()
+        } else {
+          Turbolinks.visit(`${location.origin}/your-work`)
         }
       })
     })

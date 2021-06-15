@@ -7,7 +7,14 @@ const MainFooter = () => {
   const updatBtn = document.querySelector('#btn-update')
 
   function showShareBox() {
-    setShowURL(!showURL)
+    let sheareBtn = document.querySelector('.btn-Share')
+    window.addEventListener('click', (e) => {
+      if(e.target.contains(sheareBtn)){
+        setShowURL(!showURL)
+      } else {
+        setShowURL(false)
+      }
+    })
   }
 
   return (

@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 import Rails from '@rails/ujs'
 export default class extends Controller {
-  static targets = [ "createBtn", "createTextArea", "list", "commentsCount" ]
+  static targets = [ "createBtn", "createTextArea", "list", "commentsCount"]
   static values = { url: String, commentsCount: Number }
   initialize() {
     this.comments_count = this.commentsCountValue
@@ -12,6 +12,7 @@ export default class extends Controller {
     let commentCountP = this.commentsCountTarget
     let targetNode = document.querySelector(`#${this.urlValue}`);
     let config = { attributes: true, childList: true };
+    let footerCommentsCount = document.querySelector(`.pen-footer-style.${this.urlValue} span`) || document.querySelector(`.comments.${this.urlValue} span`)
     let callback = (mutationsList) => {
           for(let mutation of mutationsList) {
             if (mutation.addedNodes.length === 1){
@@ -22,7 +23,8 @@ export default class extends Controller {
                 this.comments_count += 1
                 commentCountP.innerText = `${this.comments_count} comments`
               }
-            }if (mutation.removedNodes.length === 1){
+            }
+            if (mutation.removedNodes.length === 1){
               if (this.comments_count === 2) {
                 this.comments_count -= 1
                 commentCountP.innerText = `${this.comments_count} comment`
@@ -39,6 +41,7 @@ export default class extends Controller {
               }
             }
           }
+          if (footerCommentsCount.textContent) {footerCommentsCount.textContent = this.comments_count}
         }
     let observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -46,7 +49,7 @@ export default class extends Controller {
 
   create() {
     let content = this.createTextAreaTarget.value
-    let randomurl = this.urlValue.substring(1)
+    let randomurl = this.urlValue.substring(15)
     let listElement = document.createElement('li')
     listElement.setAttribute("data-controller", "comment-update comment-delete")
     listElement.setAttribute("data-comment-update-target", "commentLi")
@@ -80,6 +83,7 @@ export default class extends Controller {
             data-comment-update-target="cancelBtn"
             > Cancel </button>
             <button
+              class="feature-related"
               data-action="click->comment-update#update"
               data-comment-update-target="updateBtn"
               data-id="${data.id}"
@@ -90,20 +94,20 @@ export default class extends Controller {
           <div class="comment-content-text">
             <p data-comment-update-target="commentShow">${data.content}</p>
           </div>
-          <div class="edit-btn-block">
+          <div class="edit-btn-block" data-comment-update-target="editBtnBlock">
             <button
-              class='comment-edit-btn'
+              class='comment-edit-btn feature-related'
               data-action='click->comment-update#edit'
               data-comment-update-target='editBtn'>
               <span><i class='fas fa-pencil-alt'></i></span>
               <span>Edit</span>
             </button>
             <button
-              class='comment-delete-btn'
+              class='comment-delete-btn feature-related'
               data-action='click->comment-delete#delete'
               data-comment-update-target='deleteBtn'>
               <span><i class='fas fa-trash'></i></span>
-              <sapn>Delete</sapn>
+              <span>Delete</span>
             </button>
           </div>
         </div>

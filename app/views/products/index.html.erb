@@ -1,46 +1,52 @@
+<% provide :layout_title, "PRO Plans" %>
 <div class="plans-container">
   <header class="plans-header">
     <div class="plans-header-details">
       <h1>Choose a Plan</h1>
       <p>What do you get for being PRO? A lot!</p>
-      <a href="#" class="plans-header-btn hidden">See PRO Features</a>
     </div>
   </header>
   <section class="plans-content">
+    <nav class="nav-rwd">
+      <button data-item="free" class="nav-btn" style="background-color: rgb(113, 119, 144)">Free</button>
+      <button data-item="starter" class="nav-btn" style="background-color: rgba(14,190,255)">Starter</button>
+      <button data-item="developer" class="nav-btn" style="background-color: rgba(174,99,228)">Developer</button>
+      <button data-item="super" class="nav-btn" style="background-color: rgba(71,207,115)">Super</button>
+    </nav>
     <table data-controller="plans" class="plans-table">
       <thead class="plans-table-thead">
         <tr data-plans-target="yearTitles">
-          <th>
+          <th class="free on" data-content="free">
             <h3 class="plans-title big-title">Free</h3>
           </th>
-          <th>
+          <th class="starter" data-content="starter">
             <h3 class="plans-title big-title">Annual Starter</h3>
           </th>
-          <th>
+          <th class="developer" data-content="developer">
             <h3 class="plans-title big-title">Annual Developer</h3>
           </th>
-          <th>
+          <th class="super" data-content="super">
             <h3 class="plans-title big-title">Annual Super</h3>
           </th>
         </tr>
         <tr data-plans-target="monthTitles" class="plans-table-hidden">
-          <th>
+          <th class="free on" data-content="free">
             <h3 class="plans-title big-title">Free</h3>
           </th>
-          <th>
+          <th class="starter" data-content="starter">
             <h3 class="plans-title big-title">Starter</h3>
           </th>
-          <th>
+          <th class="developer" data-content="developer">
             <h3 class="plans-title big-title">Developer</h3>
           </th>
-          <th>
+          <th class="super" data-content="super">
             <h3 class="plans-title big-title">Super</h3>
           </th>
         </tr>
       </thead>
       <tbody class="plans-table-tbody">
         <tr data-plans-target="yearDetails">
-          <td class="plans-price-free">
+          <td class="plans-price-free free on" data-content="free">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">0</span>
@@ -48,7 +54,7 @@
               <p>Forever</p>
             </div>
           </td>
-          <td class="plans-price-starter">
+          <td class="plans-price-starter starter" data-content="starter">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">8</span>
@@ -60,7 +66,7 @@
                 <mark style="background-color: rgba(14,190,255,.5);">saving<strong>$84</strong></mark></span><br>by  annually.
             </div>
           </td>
-          <td class="plans-price-developer">
+          <td class="plans-price-developer developer" data-content="developer">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">12</span>
@@ -72,28 +78,28 @@
                 <mark style="background-color: rgba(174,99,228,.5);">saving<strong>$84</strong></mark><br>by annually.</span>
             </div>
           </td>
-          <td class="plans-price-super">
+          <td class="plans-price-super super" data-content="super">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">26</span>
               <span class="plans-interval">/month</span>
               <p>Billed at $312/year.</p>
             </div>
-            <div class="plans-annual-savings">You’re
+            <div class="plans-annual-savings ">You’re
               <span class="plans-annual-savings-hightlight">
                 <mark style="background-color: rgba(71,207,115,.5);">saving<strong>$156</strong></span><br>by  annually.
             </div>
           </td>
         </tr>
         <tr data-plans-target="monthDetails" class="plans-table-hidden">
-          <td class="plans-price-free">
+          <td class="plans-price-free free on" data-content="free">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">0</span>
               <span class="plans-interval">/month</span>
             </div>
           </td>
-          <td class="plans-price-starter">
+          <td class="plans-price-starter starter" data-content="starter">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">12</span>
@@ -104,7 +110,7 @@
                 <strong>save $48</strong></mark> a year.
             </div>
           </td>
-          <td class="plans-price-developer">
+          <td class="plans-price-developer developer" data-content="developer">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">19</span>
@@ -115,7 +121,7 @@
               <strong>save $84</strong></mark>a year.
             </div>
           </td>
-          <td class="plans-price-super">
+          <td class="plans-price-super super" data-content="super">
             <div class="plans-price">
               <span class="plans-price-sign">$</span>
               <span class="plans-price-amount">39</span>
@@ -128,31 +134,31 @@
           </td>
         </tr>
         <tr data-plans-target="yearLinks">
-          <td></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'year') %></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'year') %></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'year') %></td>
+          <td class="free on" data-content="free"></td>
+          <td class="starter" data-content="starter"><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'year') %></td>
+          <td class="developer" data-content="developer"><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'year') %></td>
+          <td class="super" data-content="super"><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'year') %></td>
         </tr>
         <tr data-plans-target="monthLinks" class="plans-table-hidden">
-          <td></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'month') %></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'month') %></td>
-          <td><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'month') %></td>
+          <td class="free on" data-content="free"></td>
+          <td class="starter" data-content="starter"><%= link_to 'Upgrade', product_path(@product, plan: 'starter', period: 'month') %></td>
+          <td class="developer" data-content="developer"><%= link_to 'Upgrade', product_path(@product, plan: 'developer', period: 'month') %></td>
+          <td class="super" data-content="super"><%= link_to 'Upgrade', product_path(@product, plan: 'super', period: 'month') %></td>
         </tr>
         <tr data-plans-target="yearSwitchers">
-          <td></td>
-          <td data-action="click->plans#switch">Switch to monthly billing</td>
-          <td data-action="click->plans#switch">Switch to monthly billing</td>
-          <td data-action="click->plans#switch">Switch to monthly billing</td>
+          <td class="free on" data-content="free"></td>
+          <td class="starter" data-content="starter" data-action="click->plans#switch">Switch to monthly billing</td>
+          <td class="developer" data-content="developer" data-action="click->plans#switch">Switch to monthly billing</td>
+          <td class="super" data-content="super" data-action="click->plans#switch">Switch to monthly billing</td>
         </tr>
         <tr data-plans-target="monthSwitchers" class="plans-table-hidden">
-          <td></td>
-          <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
-          <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
-          <td data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+          <td class="free on" data-content="free"></td>
+          <td class="starter" data-content="starter" data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+          <td class="developer" data-content="developer" data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
+          <td class="super" data-content="super" data-action="click->plans#switch" class="text-white cursor-pointer">Switch to annual billing</td>
         </tr>
         <tr class="plans-features-wrap">
-          <td class="plans-features">
+          <td class="plans-features free on" data-content="free">
             <ul class="plans-features-list">
               <li class="plans-features-item">Unlimited public Pens and Collections</li>
               <li class="plans-features-item">Unlimited templates</li>
@@ -160,7 +166,7 @@
               <li class="plans-features-item">1 project with 10 files</li>
             </ul>
           </td>
-          <td class="plans-features">
+          <td class="plans-features starter" data-content="starter">
             <ul class="plans-features-list">
               <li class="plans-features-item">Everything in Free</li>
               <li class="plans-features-item">
@@ -195,7 +201,7 @@
               </li>
             </ul>
           </td>
-          <td class="plans-features">
+          <td class="plans-features developer" data-content="developer">
             <ul class="plans-features-list">
               <li class="plans-features-item">
                 Everything in Starter
@@ -221,7 +227,7 @@
               </li>
             </ul>
           </td>
-          <td class="plans-features">
+          <td class="plans-features super" data-content="super">
             <ul class="plans-features-list">
               <li class="plans-features-item">
                 Everything in Developer

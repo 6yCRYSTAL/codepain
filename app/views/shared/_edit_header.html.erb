@@ -8,30 +8,35 @@
       <h1 id='edit-title'>Untitled</h1>
       <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
       <input type="text" id="input-title" value="" style='display: none;'>
-      <div class="edit-author" id="username"><%= show_username %></div>
+      <div class="edit-username">
+        <div class="edit-author" id="username"><%= show_username %></div>
+        <span class="logo-pro edit-pro-icon">pro</span>
+      </div>
     </div>
   </div>
   <div class="edit-btn-header">
-    <div class="sidebar-toggle-btn burgerBtn">
+    <div class="burger-btn">
       <button>
-        <div class="fas fa-chevron-left"></div>
+        <span></span>
+        <div class="fas fa-chevron-down"></div>
       </button>
-      <div class="sidebar-line"></div>
     </div>
-    <%= private_switch %>
-    <% if user_signed_in? && action_name == 'edit' %>
-      <button class="btn-Love" data-controller="stats"
-                              data-stats-target="editor"
-                              data-action="click->stats#toggleEditorHeart"
-                              data-stats-loved-class="love-active">
-        <span><i class="fas fa-heart stroke-current"
-                data-stats-target="heart"></i>
-        </span>
-      </button>
-    <% end %>
-    <%= save_button %>
-    <%= save_as_private_button %>
-    <button class="btn-settings" id="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
+    <div class="edit-btn-wrap">
+      <%= private_switch %>
+      <% if user_signed_in? && action_name == 'edit' %>
+        <button class="btn-Love" data-controller="stats"
+                                data-stats-target="editor"
+                                data-action="click->stats#toggleEditorHeart"
+                                data-stats-loved-class="love-active">
+          <span><i class="fas fa-heart stroke-current"
+                  data-stats-target="heart"></i>
+          </span>
+        </button>
+      <% end %>
+      <%= save_button %>
+      <%= save_as_private_button %>
+      <button class="btn-settings" id="btn-settings"><span><i  class="fas fa-cog"></i></span>Settings</button>
+    </div>
   </div>
   <%= user_menu_button %>
 </header>

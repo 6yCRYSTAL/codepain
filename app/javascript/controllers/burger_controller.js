@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [ 'burger', 'sidebar']
 
   connect() {
-    // TODO 外面點擊關掉
+    // 外面點擊關掉
     const burger = this.burgerTarget;
     const sidebar = this.sidebarTarget;
     window.addEventListener('click', function(e){

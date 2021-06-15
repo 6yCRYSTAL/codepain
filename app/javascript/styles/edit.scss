@@ -50,6 +50,7 @@
     #btn-edit-title{
       padding-left: 2px;
       padding-bottom: 2px;
+      @apply invisible;
       @media screen and (max-width: 830px) {
         svg{
           font-size: 10px;
@@ -57,11 +58,19 @@
         }
       }
     }
-    .edit-author{
-      font-size: var(--text-s-p);
-      color: var(--primary-gray-1);
-      @media screen and (max-width: 830px) {
-        font-size: 10px
+    .edit-username{
+      @apply flex;
+      .edit-author{
+        font-size: var(--text-s-p);
+        color: var(--primary-gray-1);
+        @media screen and (max-width: 830px) {
+          font-size: 10px
+        }
+      }
+      .edit-pro-icon{
+        font-size: 10px;
+        height: fit-content;
+        @apply invisible ml-1 py-0.5 px-1;
       }
     }
   }

@@ -381,11 +381,16 @@ to {
 }
 /* burger menu */
 .burger-logo{
-  width: 45px;
-  height: 35px;
   @apply pr-2 hidden;
   @include burger{
     @apply flex;
+  }
+  img{
+    width: 45px;
+    height: 35px;
+    @media screen and (max-width: 830px){
+      width: 24px;
+    }
   }
 }
 .burger-menu,.burger-btn{
@@ -686,7 +691,7 @@ to {
       }
       @media screen and (max-width: 1024px) {
         @apply pl-6 pt-2;
-      }     
+      }
       @media screen and (max-width: 480px) {
         @apply pl-0 pt-2;
       }

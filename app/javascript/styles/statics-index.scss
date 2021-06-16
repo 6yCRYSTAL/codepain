@@ -75,8 +75,11 @@
     color: var(--gray-light-1);
     margin: 0;
     line-height: 1.5;
-    span{
+    span,a{
       color: var(--light-gray);
+    }
+    a{
+      @apply underline;
     }
     @media screen and (max-width: 1200px) {
       br{
@@ -91,6 +94,10 @@
     @media screen and (max-width: 414px) {
       max-width: 100%;
     }
+  }
+  .s-mark{
+    color: var(--primary-gray-3);
+    font-size: 10px;
   }
   .sign-up-btn{
     display: inline-block;

@@ -10,6 +10,7 @@ export default class extends Controller {
         `],
         typeSpeed: 30,
         loop: false,
+        showCursor: true,
         cursorChar: "|",
         contentType: 'html',
         // onComplete: (el) => {

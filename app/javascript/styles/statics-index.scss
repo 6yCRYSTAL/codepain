@@ -75,11 +75,8 @@
     color: var(--gray-light-1);
     margin: 0;
     line-height: 1.5;
-    span,a{
+    span{
       color: var(--light-gray);
-    }
-    a{
-      @apply underline;
     }
     @media screen and (max-width: 1200px) {
       br{

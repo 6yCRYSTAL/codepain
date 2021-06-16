@@ -1,6 +1,7 @@
 .search-users-features {
   background-color: var(--primary-gray-6);
   border-top: 2px solid var(--info-blue);
+  @apply mb-5;
   .features-item{
     border-bottom: 1px solid black;
     @apply py-3 px-4 flex;

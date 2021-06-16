@@ -1,5 +1,6 @@
 import './fontawesome'
 import './frontend'
+import './clear_console'
 import './modal'
 import './points'
 import './homepage'

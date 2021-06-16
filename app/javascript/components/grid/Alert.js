@@ -108,19 +108,20 @@ const Alert = (props) => {
         </header>
         <div className="modal-iframe">
         <iframe id="grid-iframe"
-                  loading="lazy"
-                  scrolling="no"
-                  frameBorder="0"
-                  srcDoc={`
-                    <html>
-                      ${cssCDN()}
-                      <style>${css}</style>
-                      <body>
-                        ${html}
-                        ${jsCDN()}
-                        <script type="text/${babelSwitch()}">${js}</script>
-                      </body>
-                    </html>`}>
+                class="iframe-grid"
+                loading="lazy"
+                scrolling="no"
+                frameBorder="0"
+                srcDoc={`
+                  <html>
+                    ${cssCDN()}
+                    <style>${css}</style>
+                    <body>
+                      ${html}
+                      ${jsCDN()}
+                      <script type="text/${babelSwitch()}">${js}</script>
+                    </body>
+                  </html>`}>
           </iframe>
         </div>
 

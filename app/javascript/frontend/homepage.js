@@ -8,6 +8,16 @@ document.addEventListener('turbolinks:load',function(){
   const Type5 = document.querySelector('.homepage-code-css .code-content .css-type5');
 
   if(CSSTypeAn){
+    Type1.innerHTML = ""
+    Type2.innerHTML = ""
+    Type3.innerHTML = ""
+    Type4.innerHTML = ""
+    Type5.innerHTML = ""
+    let cursors = document.querySelectorAll('span.typed-cursor')
+    if(cursors){
+      cursors.forEach(cursor => cursor.remove())
+    }
+
     setTimeout(function(){
       new Typed(Type1, {
           strings: [`<span class="code-yellow">.6yCRYSTAL</span>`],

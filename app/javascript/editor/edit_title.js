@@ -54,7 +54,8 @@ document.addEventListener('turbolinks:load', () => {
       // 判斷 預設空：Untitled ; 其他: 輸入值
       if (input.value === ""){
         title.textContent= "Untitled";
-      }else{
+      }
+      else{
         title.textContent= inputValue;
       }
       // 舊 pen 可執行 Patch api

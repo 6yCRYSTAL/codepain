@@ -231,11 +231,12 @@
   a{
     font-size: var(--text-h6);
     color: var(--light-gray);
-    max-width: 70%;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    box-sizing: border-box;
-    @apply cursor-pointer font-bold overflow-hidden overflow-ellipsis;
+    height: 2rem;
+    white-space: nowrap;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @apply cursor-pointer font-bold;
   }
   .pen-more{
     svg{
@@ -371,19 +372,26 @@
       @apply px-0;
     }
     .title-wrap{
-      @apply p-0;
+      @apply p-0 flex items-center justify-between;
       a{
-        max-width: 70%;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        box-sizing: border-box;
-        @apply px-2 py-2 cursor-pointer font-normal overflow-hidden overflow-ellipsis block;
+        height: 2rem;
+        white-space: nowrap;
+        max-width: 250px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @apply px-2 py-2 cursor-pointer font-normal;
         color: var(--light-blue);
         &:visited {
           color: var(--light-blue);
         }
         &:visited:hover {
           color: #fff;
+        }
+      }
+      .private-lock{
+        @apply pr-2 invisible;
+        &.list-private-lock{
+          @apply visible;
         }
       }
     }

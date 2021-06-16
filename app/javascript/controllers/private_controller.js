@@ -78,12 +78,12 @@ export default class extends Controller {
       let isPrivate2 = icon[1].attributes[2].nodeValue;
       if ((isPrivate && isPrivate2) === 'true') {
         icon.forEach( Icon => {
-          Icon.classList.remove("hidden");
+          Icon.classList.remove("list-private-lock");
         });
       }
       if ((isPrivate && isPrivate2) === 'false'){
         icon.forEach( Icon => {
-          Icon.classList.add("hidden");
+          Icon.classList.add("list-private-lock");
         });
       }
     }

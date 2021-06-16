@@ -18,7 +18,7 @@
   }
 }
 .edit-title-header{
-  @apply flex items-center flex-grow;
+  @apply flex items-center w-5/12;
   img{
     width: 30px;
     fill: white;
@@ -29,6 +29,10 @@
   .edit-title-area{
     padding-left: .5rem;
     color: var(--light-gray);
+    width: 80%;
+  }
+  .edit-title-wrap{
+    @apply flex items-center;
     h1,input{
       font-size: var(--text-h6);
       letter-spacing: .2px;
@@ -39,6 +43,16 @@
       @media screen and (max-width: 830px) {
         font-size: var(--text-p);
       }
+      @media screen and (max-width: 1024px) {
+        font-size: var(--text-h6);
+      }
+    }
+    h1{
+      height: 2rem;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     input{
       background-color: transparent;
@@ -58,20 +72,20 @@
         }
       }
     }
-    .edit-username{
-      @apply flex;
-      .edit-author{
-        font-size: var(--text-s-p);
-        color: var(--primary-gray-1);
-        @media screen and (max-width: 830px) {
-          font-size: 10px
-        }
+  }
+  .edit-username{
+    @apply flex;
+    .edit-author{
+      font-size: var(--text-s-p);
+      color: var(--primary-gray-1);
+      @media screen and (max-width: 830px) {
+        font-size: 10px
       }
-      .edit-pro-icon{
-        font-size: 10px;
-        height: fit-content;
-        @apply invisible ml-1 py-0.5 px-1;
-      }
+    }
+    .edit-pro-icon{
+      font-size: 10px;
+      height: fit-content;
+      @apply invisible ml-1 py-0.5 px-1;
     }
   }
 }
@@ -101,6 +115,7 @@
     padding: 10px 16px;
     margin-right: .5rem;
     background-color: var(--primary-gray-4);
+    @apply flex items-center;
     span{
       display: inline-block;
       margin-right: .2rem;

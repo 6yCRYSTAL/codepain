@@ -7,8 +7,10 @@ div.consoleClose div.Pane.horizontal.iframeAndConsole {
 }
 
 div.horizontalView > div:first-child {
-  // padding-top: 65px;
-  padding-top: 90px;
+  padding-top: 65px;
+}
+div.verticalViewL > div:first-child, div.verticalViewR > div:first-child{
+  height: calc(100% - 65px);
 }
 
 div.sc-fujyAs{

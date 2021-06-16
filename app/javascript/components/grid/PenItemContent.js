@@ -71,7 +71,6 @@ const PenItemContent = (props) => {
         </header>
         <div className="pen-img">
           <iframe id="grid-iframe"
-                  sandbox="allow-scripts"
                   loading="lazy"
                   scrolling="no"
                   frameBorder="0"

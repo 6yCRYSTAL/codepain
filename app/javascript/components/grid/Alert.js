@@ -108,7 +108,6 @@ const Alert = (props) => {
         </header>
         <div className="modal-iframe">
         <iframe id="grid-iframe"
-                  sandbox="allow-scripts"
                   loading="lazy"
                   scrolling="no"
                   frameBorder="0"

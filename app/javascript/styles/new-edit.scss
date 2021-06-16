@@ -22,6 +22,7 @@
 // iframe preview
 .edit-render-result{
   @extend .wh100;
+  padding-top: 5px;
   border: 0 solid transparent;
   background-color: var(--light-gray);
 }

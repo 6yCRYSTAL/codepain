@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Codepain</title>
+    <link rel="shortcut icon" href="/images/title-logo.ico">
+    <% if content_for?(:layout_title)  %>
+      <title><%= yield :layout_title %> - CodePain</title>
+    <% else %>
+      <title>CodePain</title>
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag  'application',  media: 'all',  'data-turbolinks-track': 'reload'  %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-left"
+      data-controller="burger"
+      data-burger-target="mobile">
+      <%= render 'shared/sidebar' %>
+      <% if current_user %>
+        <%= render 'shared/usermenu_signin' %>
+      <% else %>
+        <%= render 'shared/usermenu_signout' %>
+      <% end %>
+      <main class="wrap">
+        <%= yield %>
+      </main>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>

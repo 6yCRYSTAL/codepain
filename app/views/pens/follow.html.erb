@@ -1,0 +1,16 @@
+<% provide :layout_title, "Following" %>
+<div class="feat-page-title">
+  <%= link_to 'Following', follow_path, class: 'big-title active' %>
+  <%= link_to 'Trending', trending_path, class: 'big-title' %>
+  <%= link_to 'Your Work', pens_path, class: 'big-title' %>
+</div>
+
+<% if @pens.length == 0 %>
+  <div class="no-deleted-pen no-search-pen">
+    <h2 class="no-follow">You aren't following anyone yet!<br>
+    Maybe you could find some people to follow in
+    <%= link_to "Trending", trending_path %>.</h2>
+  </div>
+<% else %>
+  <%= render 'feature_grid' %>
+<% end %>

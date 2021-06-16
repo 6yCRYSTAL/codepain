@@ -1,0 +1,29 @@
+<div class="userMenu-box">
+  <button class="userMenu-img" id="userMenu-btn">
+    <img
+      src="/images/user-img.jpg"
+      alt="使用者圖像" />
+  </button>
+  <div class="userMenu-topnav-wrap">
+    <ul class="userMenu-topnav">
+      <li><%= link_to  "Your Work", pens_path %></li>
+      <li><%= link_to  "New Pen", new_pen_path %></li>
+      <li><%= link_to products_path do %>
+            <span>Upgrade to</span>
+            <span class="logo-pro">pro</span>
+          <% end %>
+      </li>
+      <li>
+        <%= link_to logout_path, method: :delete, class: 'userMenu-icon' do %>
+          <svg viewBox="0 0 98.28 68.04" width="20px" height="20px">
+            <path fill="none" d="M82.78 0h15.5v68.04h-15.5z"></path>
+            <path d="M0 0h.51v68.04H0zM56 47.11V60.1H8.39V7.94H56v12.99h7.88V0H.51v68.04h63.37V47.11H56z"></path>
+            <path fill="none" d="M0 0h22.97v68.04H0z"></path>
+            <path d="M41.87 38.04h40.85l-9.93 9.9 5.63 5.67 19.35-19.49-19.35-19.48-5.63 5.57L82.51 30H41.87v8.04z"></path>
+          </svg>
+          <span>Log Out</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

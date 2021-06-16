@@ -17,8 +17,18 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+# JSON serializer
+# https://github.com/procore/blueprinter
+gem 'blueprinter', '~> 0.25.3'
+
+# JSON parser
+# https://github.com/ohler55/oj
+gem 'oj', '~> 3.11', '>= 3.11.5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -28,9 +38,34 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# User authentication
+# https://github.com/heartcombo/devise
+gem 'devise', '~> 4.8'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-google-oauth2', '~> 1.0'
+gem 'omniauth-facebook', '~> 8.0'
+
+# soft deletion
+# https://github.com/rubysherpas/paranoia
+gem 'paranoia', '~> 2.4', '>= 2.4.3'
+
+# view counter
+# https://github.com/charlotte-ruby/impressionist
+gem 'impressionist'
+
+# paginator
+# https://github.com/kaminari/kaminari
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
+
+# browser detector
+gem 'browser', '~> 5.3', '>= 5.3.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "faker", "~> 2.17"
 end
 
 group :development do
@@ -38,10 +73,12 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
+  # gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "foreman", "~> 0.87.2"
+  gem 'hirb', '~> 0.7.3'
 end
 
 group :test do

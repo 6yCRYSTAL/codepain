@@ -1,0 +1,57 @@
+<div class="form-wrap user-form <%= @product.plan %>-form pro-form-wrap">
+  <header class="signup-header">
+    <h1><%= @product.plan %></h1>
+    <p><%= @product.subtitle %></p>
+  </header>
+
+  <div class="user-container">
+    <div class="user-form-left pro-form" data-controller="pro-form">
+      <%= pro_form_left %>
+      <p class="signup-agreement pro-member">By clicking "Submit", you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> .</p>
+    </div>
+
+    <div class="signup-feature-list tier-name">
+      <h3>DEVELOPER</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Private Pens</dt>
+            <dd class="data">Unlimited</dd>
+            <dt>CDN Implement</dt>
+            <dd class="data">Popular Frameworks and packages</dd>
+          </dl>
+      </div>
+
+      <h3>Social Activities</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Love Others' Pen</dt>
+            <dd class="data">✅</dd>
+            <dt>Follow Interesting People</dt>
+            <dd class="data">✅</dd>
+            <dt>Most Viewed Trending</dt>
+            <dd class="data">✅</dd>
+          </dl>
+      </div>
+
+      <h3>PEN VIEWS</h3>
+      <div class="user-right-info">
+          <dl>
+            <dt>Editor View</dt>
+            <dd class="data">✅</dd>
+            <dt>Full View</dt>
+            <dd class="data">✅</dd>
+            <dt>Shareable</dt>
+            <dd class="data">✅</dd>
+          </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="signup-footer">
+    <a href="#">Terms of Service</a>
+     ·
+    <a href="#">Privacy Policy</a>
+     ·
+    <a href="#">Code of Conduct</a>
+  </div>
+</div>

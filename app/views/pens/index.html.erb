@@ -1,0 +1,22 @@
+<div class="feat-page-title">
+  <%= link_to 'Following', follow_path, class: 'big-title' %>
+  <%= link_to 'Trending', trending_path, class: 'big-title' %>
+  <%= link_to 'Your Work', pens_path, class: 'big-title active' %>
+</div>
+
+<nav class="your-work-tab">
+  <%= link_to 'Pens', pens_path %>
+  <%= link_to 'Deleted', pens_path(item_type: 'deleted_item'), id: 'tab-delete' %>
+</nav>
+
+<% if params[:item_type] != 'deleted_item' %>
+
+  <% if params[:grid_type] != 'list' %>
+    <%= render 'pens_grid' %>
+  <% else %>
+    <%= render 'pens_list' %>
+  <% end %>
+
+<% else %>
+  <%= render 'deleted_pens', deleted_pens: @deleted_pens %>
+<% end %>

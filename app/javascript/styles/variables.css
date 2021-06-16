@@ -1,0 +1,38 @@
+:root{
+  --text-h1: 3rem; /* 48px */
+  --text-h2: 2.25rem; /* 36px */
+  --text-h3: 1.75rem; /* 28px */
+  --text-h4: 1.5rem; /* 24px */
+  --text-h5: 1.25rem; /* 20px */
+  --text-h6: 1.125rem; /* 18px */
+  --text-p: 1rem; /* 16px */
+  --text-s-p: 0.875rem; /* 14px */
+
+  --light-gray: #f1f1f3;
+  --dark-gray: #010101;
+  --gray-light-1: #aaaebc;
+  --gray-light-5: #e3e4e8;
+  --gray: #9b9dad;
+  --primary-gray-1: #868ca0;
+  --primary-gray-2: #717790;
+  --primary-gray-3: #5a5f73;
+  --primary-gray-4: #444857;
+  --primary-gray-5: #2c303a;
+  --primary-gray-6: #1e1f26;
+  --primary-gray-7: #131417;
+  --primary-gray-8: #0a0a0c;
+  --purple: #ae63e4;
+  --secondary-dark-purple: #ae63e4;
+  --secondary-purple: #be9fe4;
+  --success-green:#47cf73;
+  --warning-yellow:#ffdd40;
+  --info-blue:#0ebeff;
+  --light-blue: #76daff;
+  --danger-red: #ff3c41;
+
+  --btn-gray: #444857;
+  --btn-light-gray: #9b9dad;
+  --btn-green: #47cf73;
+  --a-hover-gray: #444857;
+  --btn-hover-green-dark: #248c46;
+}

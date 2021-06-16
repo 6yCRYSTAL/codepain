@@ -1,0 +1,31 @@
+*{
+  box-sizing: border-box;
+}
+div.consoleClose div.Pane.horizontal.iframeAndConsole {
+  flex: none !important;
+  height: 105%;
+}
+
+div#index-editor > div:first-child{
+  padding-top: 65px;
+  box-sizing: border-box;
+}
+
+div.sc-fujyAs{
+  background: none;
+}
+
+.fake-console{
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  z-index: 100;
+  color: var(--light-gray);
+  font-size: var(--text-s-p);
+  padding: 2px 7px;
+  background-color: var(--primary-gray-4);
+  border-radius: 2px;
+}
+.fake-console:hover{
+  background-color: var(--primary-gray-2);
+}

@@ -1,0 +1,134 @@
+.points-wrap{
+  @apply relative;
+}
+.points-content-wrap{
+  @apply relative flex justify-center;
+}
+.points-btn{
+  @apply flex p-3 justify-center rounded-b-sm box-border;
+  svg{
+    fill: var(--primary-gray-1);
+  }
+  &:hover{
+    svg{
+      fill: var(--light-gray);
+    }
+  }
+}
+.points-follow-wrap{
+  @apply relative;
+}
+.points-content-hidden{
+  @apply invisible;
+}
+
+.hover-no-color{
+  &:hover{
+    @apply rounded-b-none;
+    svg{
+      fill: var(--primary-gray-1);
+    }
+  }
+}
+.points-content-box{
+  border-radius: 3px 3px 0px 3px;
+  @apply py-2 absolute right-0 bottom-full bg-white z-50;
+  button{
+    font-size: var(--text-h6);
+    color: var(--primary-gray-2);
+    @apply flex py-2 px-4 items-center w-full hover:bg-gray-200;
+    .lock-icon,.trash-icon{
+      @apply pr-4;
+      &.lock-icon{
+        font-size: var(--text-p);
+      }
+    }
+    .follow-icon{
+      @apply pr-3;
+    }
+    span{
+      font-size: var(--text-p);
+      color: var(--primary-gray-8);
+      @apply whitespace-nowrap;
+    }
+    .logo-pro{
+      font-size: var(--text-s-p);
+      @apply px-1 ml-1;
+    }
+  }
+}
+.points-content{
+  @apply relative;
+}
+/* 動態與位置 points-content-top */
+.points-content-top{
+  .points-content{
+    .points-content-box{
+      transform: scale(1);
+      transform-origin: bottom right;
+      opacity: 1;
+      transition: all .3s ease;
+    }
+  }
+}
+.points-content-top{
+  .points-content.points-content-hidden{
+    .points-content-box{
+      transform: scale(0.6);
+      opacity: 0;
+      transform-origin: bottom right;
+    }
+  }
+}
+.points-content-top{
+  width: 5%;
+}
+.points-wrap-grid{
+  width: auto;
+  .points-content-box{
+    bottom: 30px;
+  }
+}
+/* points-content-top end */
+
+/* 動態與位置 points-content-bottom */
+.points-content-bottom{
+  @apply inline-block;
+  .points-content-box{
+    top: 95%;
+    @apply bottom-auto rounded-l rounded-tr-none rounded-br;
+  }
+}
+.points-content-bottom{
+  background-color: var(--primary-gray-4);
+  @apply rounded;
+  .points-btn{
+    @apply py-5 px-4 rounded;
+    &:hover{
+      background-color: var(--primary-gray-3);
+    }
+    &.hover-no-color{
+      @apply rounded-t rounded-b-none;
+    }
+  }
+}
+.points-content-bottom{
+  .points-content{
+    .points-content-box{
+      transform: scale(1);
+      transform-origin: top right;
+      opacity: 1;
+      transition: all .3s ease;
+    }
+  }
+}
+.points-content-bottom{
+  .points-content.points-content-hidden{
+    .points-content-box{
+      transform: scale(0.6);
+      opacity: 0;
+      transform-origin: top right;
+    }
+  }
+}
+/* points-content-top */

@@ -596,6 +596,9 @@ to {
   @media screen and (max-width:600px) {
     padding: 2rem 1.2rem 3rem 1.2rem ;
   }
+  @media screen and (max-width:480px) {
+    @apply text-center ;
+  }
 }
 .footer-items-wrap{
   @apply w-8/12;
@@ -620,13 +623,13 @@ to {
 }
 .footer-item{
   @media screen and (max-width:480px) {
-    @apply flex-wrap ;
+    @apply flex-wrap block ;
   }
 }
 .footer-item-team,.footer-item-dev{
   @apply flex items-center m-0;
   @media screen and (max-width: 480px) {
-    @apply flex-wrap ;
+    @apply flex-wrap justify-center ;
   }
   li{
     color: var(--gray);
@@ -688,7 +691,7 @@ to {
         @apply pl-6 pt-2;
       }     
       @media screen and (max-width: 480px) {
-        @apply pl-0 pt-2;
+        @apply pl-0 pt-4;
       }
     }
   }
@@ -705,6 +708,9 @@ to {
 
   @media screen and (max-width:1330px) {
     @apply w-full items-start ;
+  }
+  @media screen and (max-width:480px) {
+    @apply block ;
   }
   .footer-logo{
     @apply block;
@@ -734,11 +740,17 @@ to {
     @media screen and (max-width:1330px) {
       @apply text-left ;
     }
+    @media screen and (max-width:480px) {
+      @apply text-center ;
+    }
   }
   .footer-logo-text{
     @apply m-0 pb-2 ;
     @media screen and (max-width:1330px) {
       @apply text-left mb-4 ;
+    }
+    @media screen and (max-width:480px) {
+      @apply text-center ;
     }
   }
   .teams-mem-link{

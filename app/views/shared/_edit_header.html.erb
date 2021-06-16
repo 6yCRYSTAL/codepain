@@ -6,7 +6,11 @@
 
     <div class="edit-title-area">
       <div class="edit-title-wrap">
-        <h1 id='edit-title'>Untitled</h1>
+        <% if action_name == 'new' %>
+          <h1 id='edit-title'>Untitled</h1>
+          <% else %>
+          <h1 id='edit-title'></h1>
+        <% end %>
         <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
         <input type="text" id="input-title" value="" style='display: none;'>
       </div>

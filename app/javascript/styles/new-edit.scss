@@ -19,6 +19,9 @@
   @extend .wh100;
   z-index: 0;
 }
+div.ace-twilight div.ace_gutter{
+  color: gray;
+}
 // iframe preview
 .edit-render-result{
   @extend .wh100;

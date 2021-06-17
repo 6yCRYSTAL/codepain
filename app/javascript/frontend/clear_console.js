@@ -6,5 +6,4 @@ document.addEventListener('turbolinks:load',function(){
       console.clear()
     }, 1000)
   }
-
 })

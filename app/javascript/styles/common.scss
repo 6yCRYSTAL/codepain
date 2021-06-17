@@ -594,7 +594,10 @@ to {
     @apply flex-wrap ;
   }
   @media screen and (max-width:600px) {
-    padding: 2rem 1.2rem 3rem 1.2rem ;
+    padding: 2rem 3rem 3rem 3rem ;
+  }
+  @media screen and (max-width:537px) {
+    @apply text-center ;
   }
 }
 .footer-items-wrap{
@@ -608,25 +611,25 @@ to {
   @apply flex mt-0 my-0 mb-2;
   .footer-item-title{
     @apply m-0 text-base;
-    @media screen and (max-width:480px) {
+    @media screen and (max-width:537px) {
       @apply w-full ;
     }
   }
 }
 .footer-dev{
-  @media screen and (max-width:480px) {
+  @media screen and (max-width:537px) {
     @apply hidden ;
   }
 }
 .footer-item{
-  @media screen and (max-width:480px) {
-    @apply flex-wrap ;
+  @media screen and (max-width:537px) {
+    @apply flex-wrap block ;
   }
 }
 .footer-item-team,.footer-item-dev{
   @apply flex items-center m-0;
-  @media screen and (max-width: 480px) {
-    @apply flex-wrap ;
+  @media screen and (max-width: 537px) {
+    @apply flex-wrap justify-center ;
   }
   li{
     color: var(--gray);
@@ -639,7 +642,7 @@ to {
     }
 
     &.github-icon{
-      @media screen and (max-width:480px) {
+      @media screen and (max-width:537px) {
         @apply hidden ;
       }
       svg{
@@ -661,17 +664,18 @@ to {
     @apply flex-col;
   }
   .footer-item-team{
-    &:last-of-type{
-      @media screen and (max-width: 480px) {
-        @apply p-0 ;
-      }
-    }
+    @media screen and (max-width: 1024px) {
+      @apply pl-1;
+    }     
     ::after{
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 537px) {
         @apply hidden ;
       }
     }
     &:first-of-type{
+      @media screen and (max-width: 537px) {
+        @apply pt-2;
+      }
       li:last-of-type::after{
         @media screen and (max-width: 1024px) {
           @apply hidden;
@@ -679,16 +683,13 @@ to {
       }
     }
     &:last-of-type{
+      @media screen and (max-width: 537px) {
+        @apply pt-4;
+      }
       li:last-of-type{
         &::after{
           @apply hidden;
         }
-      }
-      @media screen and (max-width: 1024px) {
-        @apply pl-6 pt-2;
-      }     
-      @media screen and (max-width: 480px) {
-        @apply pl-0 pt-2;
       }
     }
   }
@@ -706,6 +707,9 @@ to {
   @media screen and (max-width:1330px) {
     @apply w-full items-start ;
   }
+  @media screen and (max-width:537px) {
+    @apply block ;
+  }
   .footer-logo{
     @apply block;
     @media screen and (max-width:1330px) {
@@ -719,6 +723,9 @@ to {
     @apply hidden;
     @media screen and (max-width:1330px) {
       @apply block ;
+    }
+    @media screen and (max-width:537px) {
+      @apply pt-2 ;
     }
     img{
       padding: .5rem;
@@ -734,11 +741,17 @@ to {
     @media screen and (max-width:1330px) {
       @apply text-left ;
     }
+    @media screen and (max-width:537px) {
+      @apply text-center ;
+    }
   }
   .footer-logo-text{
     @apply m-0 pb-2 ;
     @media screen and (max-width:1330px) {
       @apply text-left mb-4 ;
+    }
+    @media screen and (max-width:537px) {
+      @apply text-center ;
     }
   }
   .teams-mem-link{

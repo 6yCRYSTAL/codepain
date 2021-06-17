@@ -59,8 +59,9 @@ export default class extends Controller {
     const icon = this.privateIconsTargets;
     const check = this.privateChecksTargets;
     let toArrayCheck = Array.from(check);
-    let isPrivate = icon[0].attributes[2].nodeValue;
-    let isPrivate2 = icon[1].attributes[2].nodeValue;
+    let isPrivate = icon[0].dataset.isPrivate;
+    let isPrivate2 = icon[1].dataset.isPrivate;
+    console.log();
 
     if ((isPrivate && isPrivate2) === 'true') {
       UnlockBtn(toArrayCheck);
@@ -74,8 +75,10 @@ export default class extends Controller {
   initialize() {
     const icon = this.privateIconsTargets;
     if (icon.length === 2) {
+      console.log(isPrivate);
       let isPrivate = icon[0].attributes[2].nodeValue;
       let isPrivate2 = icon[1].attributes[2].nodeValue;
+
       if ((isPrivate && isPrivate2) === 'true') {
         icon.forEach( Icon => {
           Icon.classList.remove("list-private-lock");

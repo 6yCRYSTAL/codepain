@@ -592,7 +592,6 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  z-index: 100;
   @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
 
   @media screen and (max-width:1330px) {

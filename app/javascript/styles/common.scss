@@ -381,11 +381,16 @@ to {
 }
 /* burger menu */
 .burger-logo{
-  width: 45px;
-  height: 35px;
   @apply pr-2 hidden;
   @include burger{
     @apply flex;
+  }
+  img{
+    width: 45px;
+    height: 35px;
+    @media screen and (max-width: 830px){
+      width: 24px;
+    }
   }
 }
 .burger-menu,.burger-btn{
@@ -587,7 +592,6 @@ to {
 .footer-container{
   background-color: var(--primary-gray-8);
   color: var(--light-gray);
-  z-index: 100;
   @apply flex flex-nowrap tracking-wide py-10 px-20 relative;
 
   @media screen and (max-width:1330px) {
@@ -666,7 +670,7 @@ to {
   .footer-item-team{
     @media screen and (max-width: 1024px) {
       @apply pl-1;
-    }     
+    }
     ::after{
       @media screen and (max-width: 537px) {
         @apply hidden ;
@@ -690,6 +694,12 @@ to {
         &::after{
           @apply hidden;
         }
+      }
+      @media screen and (max-width: 1024px) {
+        @apply pl-6 pt-2;
+      }
+      @media screen and (max-width: 480px) {
+        @apply pl-0 pt-2;
       }
     }
   }

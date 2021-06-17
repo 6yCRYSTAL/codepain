@@ -195,16 +195,16 @@
         left: -9.5%;
       }
       .code-content{
-        .css-type-an{
-          margin-left: 4rem;
-          p{
-            margin: 0;
-          }
-          &:nth-child(1){
-            margin-left: 0;
-          }
-          &:nth-child(2){
-            margin-left: 2rem;
+        span{
+          @apply ml-0;
+        }
+        .css-type{
+          span{
+            line-height: 1.5;
+            @apply pl-6;
+            &:first-of-type,&:nth-of-type(3),&:nth-of-type(6),&:nth-of-type(8){
+              @apply pl-0;
+            }
           }
         }
       }

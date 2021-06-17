@@ -108,7 +108,7 @@ const Alert = (props) => {
         </header>
         <div className="modal-iframe">
         <iframe id="grid-iframe"
-                class="iframe-grid"
+                className="iframe-grid"
                 loading="lazy"
                 scrolling="no"
                 frameBorder="0"

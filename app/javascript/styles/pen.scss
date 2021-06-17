@@ -389,10 +389,7 @@
         }
       }
       .private-lock{
-        @apply pr-2 invisible;
-        &.list-private-lock{
-          @apply visible;
-        }
+        @apply pr-2;
       }
     }
     &:hover{
@@ -512,6 +509,8 @@
   @apply block mb-24;
 }
 /* nothing end */
-// .private-lock.hidden {
-//   display: none;
-// }
+/* all private-lock hidden */
+.private-lock.hidden {
+  display: none;
+}
+/* all private-lock hidden end */

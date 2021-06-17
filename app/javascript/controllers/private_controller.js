@@ -59,13 +59,11 @@ export default class extends Controller {
     const icon = this.privateIconsTargets;
     const check = this.privateChecksTargets;
     let toArrayCheck = Array.from(check);
-    let isPrivate = icon[0].attributes[2].nodeValue;
-    let isPrivate2 = icon[1].attributes[2].nodeValue;
+    let isPrivate = icon[0].dataset.isPrivate;
 
-    if ((isPrivate && isPrivate2) === 'true') {
+    if (isPrivate === 'true') {
       UnlockBtn(toArrayCheck);
-    }
-    if ((isPrivate && isPrivate2) === 'false') {
+    }else{
       LockBtn(toArrayCheck);
     }
   }
@@ -74,17 +72,15 @@ export default class extends Controller {
   connect() {
     const icon = this.privateIconsTargets;
     if (icon.length === 2) {
-      let isPrivate = icon[0].attributes[2].nodeValue;
-      let isPrivate2 = icon[1].attributes[2].nodeValue;
+      let isPrivate = icon[0].dataset.isPrivate;
 
-      if ((isPrivate && isPrivate2) === 'true') {
+      if (isPrivate === 'true') {
         icon.forEach( Icon => {
-          Icon.classList.add("list-private-lock");
+          Icon.classList.remove("hidden");
         });
-      }
-      if ((isPrivate && isPrivate2) === 'false'){
+      }else{
         icon.forEach( Icon => {
-          Icon.classList.remove("list-private-lock");
+          Icon.classList.add("hidden");
         });
       }
     }

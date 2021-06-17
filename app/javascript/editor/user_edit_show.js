@@ -55,6 +55,8 @@ document.addEventListener('turbolinks:load', () => {
       .catch( (error) => {
         return `${error.name}: ${error.message}`
       })
+
     }
+
   }
 })

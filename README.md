@@ -1,5 +1,5 @@
 # CodePain - 5xRuby Demo Day Project
-This is a bootcamp project inspired by [CODEPEN](https://codepen.io) and clone by [6yCRYSTAL](https://github.com/6yCRYSTAL).<br />
+This is a bootcamp project inspired by [CodePen](https://codepen.io) and cloned by [6yCRYSTAL](https://github.com/6yCRYSTAL).<br />
 The purpose of creating this app is to strengthen our skills, showcase our skills, and there is no benefit financially.
 # Index
 - [Installation instructions](#installation-instructions)

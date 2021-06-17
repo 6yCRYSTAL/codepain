@@ -68,7 +68,7 @@ export default class extends Controller {
     }
   }
 
-  // 第一次判斷 Private 鎖頭狀態
+  // 更動判斷 Private 鎖頭狀態
   connect() {
     const icon = this.privateIconsTargets;
     if (icon.length === 2) {

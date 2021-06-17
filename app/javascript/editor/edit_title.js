@@ -69,7 +69,23 @@ document.addEventListener('turbolinks:load', () => {
     // Patch api - 成功黃色提示框
     let dataPatch = function() {
       let newTitle = document.querySelector('#edit-title').textContent;
-      ax.patch(`/api/v1/pens/${randomURL}`,{ pen: { title: newTitle }})
+      let html = ace.edit("editor--html")
+      let css = ace.edit("editor--css")
+      let js = ace.edit("editor--js")
+      let htmlValue = encodeURIComponent(html.session.getValue())
+      let cssValue = encodeURIComponent(css.session.getValue())
+      let jsValue = encodeURIComponent(js.session.getValue())
+      let username = document.querySelector('.edit-author').textContent
+      ax.patch(`/api/v1/pens/${randomURL}`,
+        { pen: {
+            title: newTitle,
+            html: htmlValue,
+            css: cssValue,
+            js: jsValue
+          },user: {
+            username: username
+          }
+        })
       .then(res =>{
         if(res.data.status === 'update succeeded'){
           savedNotice()

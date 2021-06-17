@@ -457,6 +457,7 @@
      @apply text-white text-lg font-bold whitespace-nowrap overflow-ellipsis leading-9 opacity-80 animate-pulse;
    }
   .deleted-pen-button {
+    @apply mt-auto mb-auto ml-0 mr-0;
     span {
       @apply text-white opacity-80 mr-52 animate-pulse leading-9 hidden;
     }

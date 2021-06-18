@@ -62,9 +62,38 @@
       padding: 0;
     }
     #btn-edit-title{
-      padding-left: 2px;
-      padding-bottom: 2px;
+      margin-left: 5px;
+      margin-top: -5px;
       @apply invisible;
+      &:hover{
+        svg{
+          animation: title-pen-an .6s ease;
+          -webkit-animation: title-pen-an .6s ease;
+          -moz-animation: title-pen-an .6s ease;
+        }
+        @keyframes title-pen-an{
+          0% {
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(10deg);
+            -webkit-transform: rotate(10deg);
+            -moz-transform: rotate(10deg);
+          }
+          75% {
+            transform: rotate(-10deg);
+            -webkit-transform: rotate(-10deg);
+            -moz-transform: rotate(-10deg);
+          }
+          100% {
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+          }
+        }
+      }
       @media screen and (max-width: 830px) {
         svg{
           font-size: 10px;

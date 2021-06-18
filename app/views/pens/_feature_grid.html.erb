@@ -17,6 +17,7 @@
         <div class="pen-pro"><span><%= pen.user.username %></span><%= pro_logo(pen) %></div>
         <div class="pen-img">
           <iframe id="grid-iframe"
+                  class="iframe-grid"
                   sandbox="allow-scripts"
                   loading="lazy"
                   scrolling="no"
@@ -85,6 +86,7 @@
                 </header>
                 <div class="modal-iframe">
                   <iframe id="iframe-<%= pen.random_url %>"
+                    class="iframe-grid"
                     sandbox="allow-scripts"
                     loading="lazy"
                     scrolling="no"

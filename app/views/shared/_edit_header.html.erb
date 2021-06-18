@@ -1,12 +1,12 @@
 <header class="edit-header">
   <div class="edit-title-header">
     <%= link_to pens_path do %>
-      <img src="/images/logo-s.svg" alt="CodePain">
+      <%= image_tag "/images/logo-s.svg", alt: "CodePain" %>
     <% end %>
 
     <div class="edit-title-area">
       <div class="edit-title-wrap">
-        <h1 id='edit-title'>Untitled</h1>
+        <h1 id='edit-title'><%= 'Untitled' if action_name == 'new' %></h1>
         <span id='btn-edit-title'><i class="fas fa-pencil-alt"></i></span>
         <input type="text" id="input-title" value="" style='display: none;'>
       </div>

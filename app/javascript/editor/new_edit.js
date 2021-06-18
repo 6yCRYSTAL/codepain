@@ -114,7 +114,7 @@ document.addEventListener('turbolinks:load', () => {
     }
 
     // render to iframe
-    function renderToiframe() {
+    window.renderToiframe = function () {
       let result = document.querySelector('#edit--result')
       result.srcdoc =
         `<html>

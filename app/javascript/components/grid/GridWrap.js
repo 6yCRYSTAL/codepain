@@ -45,11 +45,10 @@ function GridItem() {
       }else{
         setNothing(true);
       }
-
       // 清除使用者pen js裡的 console.log()
-      // setTimeout( () => {
-      //   console.clear()
-      // }, 500)
+      setTimeout( () => {
+        console.clear()
+      }, 1000)
     })
   }, [clickPage,allValue]);
   // 上下頁功能

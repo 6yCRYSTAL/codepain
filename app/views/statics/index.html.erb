@@ -4,7 +4,7 @@
   </div>
   <section class="homepage-anon-header">
     <div class="homepage-anon-header-left">
-      <img class="homepage-codepain" src="./images/logo-s.svg" alt="codepain">
+      <%= image_tag "/images/logo-s.svg", alt: "CodePain", class: "homepage-codepain" %>
       <h1 class="homepage-title">
         在這邀請您<br>
         來用<span class="en-text"> CodePain</span>，解你的 <span class="en-text">Pain</span>
@@ -13,6 +13,7 @@
         CodePain <span>向程式碼分享社群平台 CodePen 致敬，</span><br>
         感謝 CodePen，陪著我們成長，讓我們以復刻表達敬意!
       </p>
+      <p class="s-mark"><em>* 此專案串接金流只有測試階段沒有盈利 *</em></p>
       <a href="/accounts/sign_up" class="sign-up-btn">Sign Up for Free</a>
     </div>
     <div class="homepage-anon-header-right">
@@ -31,28 +32,14 @@
             <span class="code-coffee">&gt&lt/div&gt</span>
           </code>
         </section>
-        <section class="Preview homepage-code-css">
+        <section class="Preview homepage-code-css" data-controller="type-an">
           <div class="code-type">
             <i class="fas fa-cog cog-icon"></i>
             <p class="type-title">CSS</p>
             <i class="fas fa-chevron-down arrow-bottom-icon"></i>
           </div>
           <code class="code-content">
-            <div class="css-type-an">
-              <p class="css-type1"></p>
-            </div>
-            <div class="css-type-an">
-              <p class="css-type2"></p>
-            </div>
-            <div class="css-type-an">
-              <p class="css-type3"></p>
-            </div>
-            <div class="css-type-an">
-              <p class="css-type4"></p>
-            </div>
-            <div class="css-type-an">
-              <p class="css-type5"></p>
-            </div>
+            <span class="css-type" data-type-an-target="type"></span>
           </code>
         </section>
         <section class="Preview homepage-code-js">

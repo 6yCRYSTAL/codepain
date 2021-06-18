@@ -24,7 +24,8 @@ const SettingAlert = () => {
     confirmButtonText: 'Close',
     confirmButtonColor: '#47cf73',
     willClose: () => {
-      Turbolinks.visit(location, 'replace')
+      let result = document.querySelector('#edit--result')
+      result.contentDocument.location.reload(true)
     }
   })
 }

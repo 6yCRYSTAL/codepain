@@ -66,13 +66,13 @@ document.addEventListener('turbolinks:load', () => {
 
     // when editor session change excute renderToiframe()
     editorHTML.getSession().on('change',debounce( () => {
-      renderToiframe()
+      renderToiframe(cssCDN, jsCDN, babelSwitch, editorCSS, editorHTML, editorJS)
     }) )
     editorCSS.getSession().on('change',debounce( () => {
-      renderToiframe()
+      renderToiframe(cssCDN, jsCDN, babelSwitch, editorCSS, editorHTML, editorJS)
     }) )
     editorJS.getSession().on('change',debounce( () => {
-      renderToiframe()
+      renderToiframe(cssCDN, jsCDN, babelSwitch, editorCSS, editorHTML, editorJS)
     }) )
 
     //debounce: render to iframe late
@@ -89,44 +89,10 @@ document.addEventListener('turbolinks:load', () => {
       }
     }
 
-    function cssCDN () {
-      let css = JSON.parse(localStorage.getItem('css'))
-      if (css) {
-        let cssCdnPrepared = css.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
-        return cssCdnPrepared.join('')
-      } else {return ""}
-    }
 
-    function jsCDN () {
-      let js = JSON.parse(localStorage.getItem('js'))
-      if (js) {
-        let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
-        if (jsCdnPrepared.join('').includes('react')) {
-          isReact = true
-          jsCdnPrepared += '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>'
-        } else {isReact = false}
-        return jsCdnPrepared
-      } else {return ""}
-    }
-
-    function babelSwitch () {
-      return isReact ? 'babel' : 'javascript'
-    }
 
     // render to iframe
-    function renderToiframe() {
-      let result = document.querySelector('#edit--result')
-      result.srcdoc =
-        `<html>
-          ${cssCDN()}
-          <style>${editorCSS.getValue()}</style>
-          <body>
-            ${editorHTML.getValue()}
-            ${jsCDN()}
-            <script type="text/${babelSwitch()}">${editorJS.getValue()}</script>
-          </body>
-        </html>`
-    }
+
 
     // show console
     const consolecontainer = document.querySelector('.edit-console-container')
@@ -161,6 +127,44 @@ document.addEventListener('turbolinks:load', () => {
     }
 
     init()
-    renderToiframe()
+    renderToiframe(cssCDN, jsCDN, babelSwitch, editorCSS, editorHTML, editorJS)
   }
 })
+
+export function renderToiframe(cssCDN, jsCDN, babelSwitch, editorCSS, editorHTML, editorJS) {
+  let result = document.querySelector('#edit--result')
+  result.srcdoc =
+    `<html>
+      ${cssCDN()}
+      <style>${editorCSS.getValue()}</style>
+      <body>
+        ${editorHTML.getValue()}
+        ${jsCDN()}
+        <script type="text/${babelSwitch()}">${editorJS.getValue()}</script>
+      </body>
+    </html>`
+}
+
+export function cssCDN () {
+  let css = JSON.parse(localStorage.getItem('css'))
+  if (css) {
+    let cssCdnPrepared = css.map(({url}) => `<link rel="stylesheet" href="${url}"></link>`)
+    return cssCdnPrepared.join('')
+  } else {return ""}
+}
+
+export function jsCDN () {
+  let js = JSON.parse(localStorage.getItem('js'))
+  if (js) {
+    let jsCdnPrepared = js.map(({url}) => `<script src="${url}"></script>`)
+    if (jsCdnPrepared.join('').includes('react')) {
+      isReact = true
+      jsCdnPrepared += '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>'
+    } else {isReact = false}
+    return jsCdnPrepared
+  } else {return ""}
+}
+
+export function babelSwitch (isReact) {
+  return isReact ? 'babel' : 'javascript'
+}

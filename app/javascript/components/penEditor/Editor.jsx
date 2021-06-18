@@ -6,8 +6,9 @@ const Editor = ({ editorTitle, editorId, editorClass, setNewPenIframe }) => {
       <div className="edit-zone-bar">
         <div>{editorTitle}</div>
       </div>
-      <div id = {editorId} className = {editorClass} onBlur={ ()=>{
-        setNewPenIframe(false) } }></div>
+      <div id = {editorId} className = {editorClass} onKeyUp={()=>{
+        setNewPenIframe(false)
+      }}></div>
     </div>
   )
 }

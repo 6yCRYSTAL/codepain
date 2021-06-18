@@ -24,7 +24,7 @@ const SettingAlert = () => {
     confirmButtonText: 'Close',
     confirmButtonColor: '#47cf73',
     willClose: () => {
-      Turbolinks.visit(location, 'replace')
+      window.renderToiframe()
     }
   })
 }

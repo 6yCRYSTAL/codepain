@@ -113,11 +113,8 @@ document.addEventListener('turbolinks:load', () => {
       return isReact ? 'babel' : 'javascript'
     }
 
-    let cdnDetector = document.querySelector('#cdn-detector')
-    cdnDetector.addEventListener('change', renderToiframe)
-
     // render to iframe
-    function renderToiframe() {
+    window.renderToiframe = function () {
       let result = document.querySelector('#edit--result')
       result.srcdoc =
         `<html>
@@ -129,8 +126,6 @@ document.addEventListener('turbolinks:load', () => {
             <script type="text/${babelSwitch()}">${editorJS.getValue()}</script>
           </body>
         </html>`
-        cdnDetector.checked = false
-        console.log(123)
     }
 
     // show console

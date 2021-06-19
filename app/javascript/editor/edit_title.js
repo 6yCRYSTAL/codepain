@@ -72,9 +72,9 @@ document.addEventListener('turbolinks:load', () => {
       let html = ace.edit("editor--html")
       let css = ace.edit("editor--css")
       let js = ace.edit("editor--js")
-      let htmlValue = encodeURIComponent(html.session.getValue())
-      let cssValue = encodeURIComponent(css.session.getValue())
-      let jsValue = encodeURIComponent(js.session.getValue())
+      let htmlValue = html.session.getValue()
+      let cssValue = css.session.getValue()
+      let jsValue = js.session.getValue()
       let username = document.querySelector('.edit-author').textContent
       ax.patch(`/api/v1/pens/${randomURL}`,
         { pen: {
@@ -83,7 +83,7 @@ document.addEventListener('turbolinks:load', () => {
             css: cssValue,
             js: jsValue
           },user: {
-            username: username
+            username
           }
         })
       .then(res =>{

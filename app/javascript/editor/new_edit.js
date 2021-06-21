@@ -137,31 +137,44 @@ document.addEventListener('turbolinks:load', () => {
     }
     // get console msg
     function consoleMsg() {
-      let jsInputValue = "editorJS.session.getValue()"
+      // 先把原本的console 備份起來
+      let oldConsole = console
 
-      if (jsInputValue.includes('document.write') == true) {
-        // 先把原本的console 備份起來
-        let oldConsole = console
-
-        editorJS.getSession().on('change', debounce(()=>{
-          let stdoutMsg = ""
-          // 改寫 console
-          window.console = {
-            log: function(msg) {
-              stdoutMsg += `${msg}\n`
-            }
+      editorJS.getSession().on('change', debounce(()=>{
+        let stdoutMsg = ""
+        // 改寫 console
+        window.console = {
+          log: function(msg) {
+            stdoutMsg += `${msg}\n`
           }
+        }
+        let jsInputValue
+        if(editorJS.session.getValue().includes("document.write") == true){
+          jsInputValue = editorJS.session.getValue().replace(/document.write()/gi, '')
+
           try{
-            eval(editorJS.session.getValue())
+            eval(jsInputValue)
             consoleResult.innerText = stdoutMsg
           } catch (e) {
             let msg = `${e.name}: ${e.message}`
             consoleResult.innerText = msg
           }
-          // 恢復原本的 console.log
-          window.console = oldConsole
-        }) )
-      }
+        } else {
+          jsInputValue = editorJS.session.getValue()
+
+          try{
+            eval(jsInputValue)
+            consoleResult.innerText = stdoutMsg
+          } catch (e) {
+            let msg = `${e.name}: ${e.message}`
+            consoleResult.innerText = msg
+          }
+        }
+
+
+        // 恢復原本的 console.log
+        window.console = oldConsole
+      }) )
     }
 
     init()

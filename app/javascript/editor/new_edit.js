@@ -141,6 +141,7 @@ document.addEventListener('turbolinks:load', () => {
       let oldConsole = console
 
       editorJS.getSession().on('change', debounce(()=>{
+        let jsInputValue
         let stdoutMsg = ""
         // 改寫 console
         window.console = {
@@ -148,10 +149,9 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
-        let jsInputValue
         if(editorJS.session.getValue().includes("document.write") == true){
-          jsInputValue = editorJS.session.getValue().replace(/document.write()/gi, '')
 
+          jsInputValue = editorJS.session.getValue().replace(/document.write()/g, '')
           try{
             eval(jsInputValue)
             consoleResult.innerText = stdoutMsg
@@ -160,8 +160,8 @@ document.addEventListener('turbolinks:load', () => {
             consoleResult.innerText = msg
           }
         } else {
-          jsInputValue = editorJS.session.getValue()
 
+          jsInputValue = editorJS.session.getValue()
           try{
             eval(jsInputValue)
             consoleResult.innerText = stdoutMsg
@@ -170,8 +170,6 @@ document.addEventListener('turbolinks:load', () => {
             consoleResult.innerText = msg
           }
         }
-
-
         // 恢復原本的 console.log
         window.console = oldConsole
       }) )

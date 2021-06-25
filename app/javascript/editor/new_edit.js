@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-        wrap: true,
+        // wrap: true,
       })
       editorCSS.setOptions({
         mode: "ace/mode/css",
@@ -48,7 +48,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-        wrap: true,
+        // wrap: true,
       })
       editorJS.setOptions({
         mode: "ace/mode/javascript",
@@ -60,7 +60,7 @@ document.addEventListener('turbolinks:load', () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-        wrap: true,
+        // wrap: true,
       })
     }
 
@@ -116,6 +116,7 @@ document.addEventListener('turbolinks:load', () => {
     // render to iframe
     window.renderToiframe = function () {
       let result = document.querySelector('#edit--result')
+
       result.srcdoc =
         `<html>
           ${cssCDN()}
@@ -141,6 +142,7 @@ document.addEventListener('turbolinks:load', () => {
       let oldConsole = console
 
       editorJS.getSession().on('change', debounce(()=>{
+        let jsInputValue
         let stdoutMsg = ""
         // 改寫 console
         window.console = {
@@ -148,12 +150,26 @@ document.addEventListener('turbolinks:load', () => {
             stdoutMsg += `${msg}\n`
           }
         }
-        try{
-          eval(editorJS.session.getValue())
-          consoleResult.innerText = stdoutMsg
-        } catch (e) {
-          let msg = `${e.name}: ${e.message}`
-          consoleResult.innerText = msg
+        if(editorJS.session.getValue().includes("document.write") == true){
+
+          jsInputValue = editorJS.session.getValue().replace(/document.write()/g, '')
+          try{
+            eval(jsInputValue)
+            consoleResult.innerText = stdoutMsg
+          } catch (e) {
+            let msg = `${e.name}: ${e.message}`
+            consoleResult.innerText = msg
+          }
+        } else {
+
+          jsInputValue = editorJS.session.getValue()
+          try{
+            eval(jsInputValue)
+            consoleResult.innerText = stdoutMsg
+          } catch (e) {
+            let msg = `${e.name}: ${e.message}`
+            consoleResult.innerText = msg
+          }
         }
         // 恢復原本的 console.log
         window.console = oldConsole

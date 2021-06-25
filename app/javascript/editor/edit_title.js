@@ -93,34 +93,40 @@ document.addEventListener('turbolinks:load', () => {
       })
     }
   }
-  // 是使用者的 pen 顯示編輯 title
-  if (editTitleBtn){
-    let username = document.querySelector('.edit-author').textContent;
-    ax.get("/api/v1/user/check_user",{
-      params: {username}
-    })
-    .then(res =>{
-      let isUserPen = res.data.payload.checkUser
-      if(isUserPen){
-        editTitleBtn.style.visibility = 'visible';
-      }else{
-        editTitleBtn.style.visibility = 'hidden';
-      }
-    })
+  const saveBtn = document.querySelector('#btn-save');
+  const updateBtn = document.querySelector('#btn-update')
+
+  if(saveBtn || updateBtn){
+    // 是使用者的 pen 顯示編輯 title
+    if (editTitleBtn){
+      let username = document.querySelector('.edit-author').textContent;
+      ax.get("/api/v1/user/check_user",{
+        params: {username}
+      })
+      .then(res =>{
+        let isUserPen = res.data.payload.checkUser
+        if(isUserPen){
+          editTitleBtn.style.visibility = 'visible';
+        }else{
+          editTitleBtn.style.visibility = 'hidden';
+        }
+      })
+    }
+    // 會員身份
+    if(editUserName){
+      let username = document.querySelector('.edit-author').textContent;
+      ax.get("/api/v1/user/membership",{
+        params: {username}
+      })
+      .then(res =>{
+        let membership = res.data.payload.ownerMembership;
+        if(membership === 'super'){
+          proIcon.style.visibility = 'visible';
+        }else{
+          proIcon.style.visibility = 'hidden';
+        }
+      })
+    }
   }
-  // 會員身份
-  if(editUserName){
-    let username = document.querySelector('.edit-author').textContent;
-    ax.get("/api/v1/user/membership",{
-      params: {username}
-    })
-    .then(res =>{
-      let membership = res.data.payload.ownerMembership;
-      if(membership === 'super'){
-        proIcon.style.visibility = 'visible';
-      }else{
-        proIcon.style.visibility = 'hidden';
-      }
-    })
-  }
+
 })
